@@ -3,6 +3,20 @@ import re
 import ast
 from datetime import datetime
 import time
+import random
+import os
+import numpy as np
+import torch
+
+
+def set_seed(seed=42):
+    random.seed(seed)
+    os.environ["PYTHONHASHSEED"] = str(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed(seed)
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = True
 
 
 def log_synthetic_data(
@@ -53,17 +67,19 @@ def log_synthetic_data(
 
 def response2json(response):
     """
-    Convert a response (str) to a list of dictionaries.
+    Convert a response (str) to a list of dictionaries using json.loads().
     """
     match = re.search(r"```json\n(.*?)\n```", response, re.DOTALL)
 
     if match:
-        response = match.group(1)  # remove the ```json\n...\n``` part
+        response = match.group(1)  # Extract the JSON content
 
-    synthetic_data = ast.literal_eval(
-        response
-    )  # evaluate the string (we get a list of dictionaries)
-    return synthetic_data
+    try:
+        synthetic_data = json.loads(response)  # Parse JSON string
+        return synthetic_data
+    except json.JSONDecodeError as e:
+        print(f"Error decoding JSON: {e}")
+        return None  # Handle errors gracefully
 
 
 def get_response(
