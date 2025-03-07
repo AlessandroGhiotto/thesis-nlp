@@ -9,13 +9,13 @@
 
 The JSON files in `synthetic_data/` follow this structure:
 
-```json
+```javascript
 {
-    "timestamp": timestamp,
-    "model": model_name,
-    "generation_method": "baseline" or "targeted",
-    "prompt": prompt_used,
-    "time_taken_seconds": time_taken,
+    "timestamp": <timestamp>,
+    "model": <model_name>,
+    "generation_method": "baseline" | "targeted",
+    "prompt": "<prompt_used>",
+    "time_taken_seconds": "time_taken",
     "num_examples": number_of_examples,
     "generated_examples": [
         {
