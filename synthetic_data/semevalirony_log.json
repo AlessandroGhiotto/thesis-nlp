@@ -1,0 +1,190 @@
+[
+    {
+        "timestamp": "2025-03-07T10:45:17.727523",
+        "model": "Qwen/Qwen2.5-0.5B-Instruct",
+        "generation_method": "baseline",
+        "prompt": "You are an expert linguist and NLP practitioner specializing in irony detection. Your task is to generate **10 high-quality examples** of ironic and non-ironic statements, with **5 ironic** and **5 non-ironic** examples across different contexts.\n\n### **Output Format (JSON)**\nReturn **only** a valid JSON list in the following structure:\n\n[\n    {\"text\": \"seeing ppl walking w/ crutches makes me really excited for the next 3 weeks of my life\", \"label\": \"ironic\"},\n    {\"text\": \"look for the girl with the broken smile, ask her if she wants to stay while, and she will be loved. 💕🎵\", \"label\": \"non-ironic\"},\n    ...\n]\n",
+        "time_taken_seconds": 5.42,
+        "num_examples": 9,
+        "generated_examples": [
+            {
+                "text": "I'm so happy that I'm getting more money every day! 🚀💸",
+                "label": "ironic"
+            },
+            {
+                "text": "It's raining cats and dogs outside today, but I still want to go out. ☠️💨",
+                "label": "ironic"
+            },
+            {
+                "text": "The new kid at school seems like such a fun person, even though they're not as outgoing as you might think. 🤔👥",
+                "label": "ironic"
+            },
+            {
+                "text": "I've been working on this project all day long, but I just can't seem to get it done. 😞😢",
+                "label": "ironic"
+            },
+            {
+                "text": "The weather report says it's going to rain tomorrow, but I'm already planning on going out. 🌡️🌧️",
+                "label": "non-ironic"
+            },
+            {
+                "text": "Everyone has their own opinion about this movie, and I don't care what anyone else thinks. 😊👍",
+                "label": "non-ironic"
+            },
+            {
+                "text": "The cat was sleeping peacefully inside the house, but suddenly, someone came over and woke him up. 😜😴",
+                "label": "non-ironic"
+            },
+            {
+                "text": "The sun was shining brightly today, but I decided to take a nap instead. 😆💤",
+                "label": "non-ironic"
+            },
+            {
+                "text": "My boss gave me a promotion, but I'm still feeling a bit nervous. 😱💼",
+                "label": "non-ironic"
+            }
+        ]
+    },
+    {
+        "timestamp": "2025-03-07T10:45:33.047158",
+        "model": "Qwen/Qwen2.5-0.5B-Instruct",
+        "generation_method": "targeted",
+        "prompt": "Generate 10 realistic sentences illustrating irony detection examples involving Sarcasm, Negation, Pragmatic Inference, Unexpected Contrast, Wordplay, Paradox, Irony, Metaphor, Rhetorical Question. Ensure that:\n- 5 sentences are **ironic**.\n- 5 sentences are **non-ironic**.\n\n### **Output Format (JSON)**\nReturn **only** a valid JSON list in the following structure:\n\n[\n    {\"text\": \"seeing ppl walking w/ crutches makes me really excited for the next 3 weeks of my life\", \"label\": \"ironic\"},\n    {\"text\": \"look for the girl with the broken smile, ask her if she wants to stay while, and she will be loved. 💕🎵\", \"label\": \"non-ironic\"},\n    ...\n]\n",
+        "time_taken_seconds": 5.15,
+        "num_examples": 8,
+        "generated_examples": [
+            {
+                "text": "I'm so happy because I got a new job right after my last one. 🤩💼",
+                "label": "ironic"
+            },
+            {
+                "text": "The best part is when I get to work every day without feeling overwhelmed. 😎💼",
+                "label": "ironic"
+            },
+            {
+                "text": "It's hard not to feel jealous sometimes, especially when you're surrounded by friends who love you. 😁🌟",
+                "label": "non-ironic"
+            },
+            {
+                "text": "Every time I see someone with a smile on their face, it makes me think of how much they've accomplished. 🌟💡",
+                "label": "non-ironic"
+            },
+            {
+                "text": "I'm so grateful for the people around me who support me through thick and thin. 🙏👥",
+                "label": "ironic"
+            },
+            {
+                "text": "When I'm working out, I don't even notice how tired I am until it's too late. 🧘‍♀️🏋️‍♂️",
+                "label": "non-ironic"
+            },
+            {
+                "text": "The only way to truly understand someone is to listen to them talk. 📝💬",
+                "label": "non-ironic"
+            },
+            {
+                "text": "Life is short, so cherish every moment you have. 🥂❤️",
+                "label": "non-ironic"
+            }
+        ]
+    },
+    {
+        "timestamp": "2025-03-07T10:47:25.585122",
+        "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+        "generation_method": "baseline",
+        "prompt": "You are an expert linguist and NLP practitioner specializing in irony detection. Your task is to generate **10 high-quality examples** of ironic and non-ironic statements, with **5 ironic** and **5 non-ironic** examples across different contexts.\n\n### **Output Format (JSON)**\nReturn the final result into a valid JSON list in the following structure:\n\n[\n    {\"text\": \"seeing ppl walking w/ crutches makes me really excited for the next 3 weeks of my life\", \"label\": \"ironic\"},\n    {\"text\": \"look for the girl with the broken smile, ask her if she wants to stay while, and she will be loved. 💕🎵\", \"label\": \"non-ironic\"},\n    ...\n]\n",
+        "time_taken_seconds": 14.05,
+        "num_examples": 10,
+        "generated_examples": [
+            {
+                "text": "seeing ppl walking w/ crutches makes me really excited for the next 3 weeks of my life",
+                "label": "ironic"
+            },
+            {
+                "text": "look for the girl with the broken smile, ask her if she wants to stay while, and she will be loved. 💕🎵",
+                "label": "non-ironic"
+            },
+            {
+                "text": "i have a broken arm, but i'm still able to do most things because it's just a small problem",
+                "label": "non-ironic"
+            },
+            {
+                "text": "i have a broken leg, and i'm really sad because i can't walk straight anymore",
+                "label": "ironic"
+            },
+            {
+                "text": "i have a broken arm, but i'm happy because i can still play the guitar",
+                "label": "non-ironic"
+            },
+            {
+                "text": "i have a broken leg, but i'm still able to run and climb",
+                "label": "non-ironic"
+            },
+            {
+                "text": "i have a broken arm, but i'm really tired",
+                "label": "ironic"
+            },
+            {
+                "text": "i have a broken leg, but i'm still looking forward to the day i can walk",
+                "label": "non-ironic"
+            },
+            {
+                "text": "i have a broken arm, but i'm still happy because i'm not dead",
+                "label": "non-ironic"
+            },
+            {
+                "text": "i have a broken leg, but i'm still going to the store to buy some groceries",
+                "label": "non-ironic"
+            }
+        ]
+    },
+    {
+        "timestamp": "2025-03-07T10:49:50.737904",
+        "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+        "generation_method": "targeted",
+        "prompt": "Generate 10 realistic sentences illustrating irony detection examples involving . Ensure that:\n- 5 sentences are **ironic**.\n- 5 sentences are **non-ironic**.\n\n### **Output Format (JSON)**\nReturn **only** a valid JSON list in the following structure:\n\n[\n    {\"text\": \"seeing ppl walking w/ crutches makes me really excited for the next 3 weeks of my life\", \"label\": \"ironic\"},\n    {\"text\": \"look for the girl with the broken smile, ask her if she wants to stay while, and she will be loved. 💕🎵\", \"label\": \"non-ironic\"},\n    ...\n]\n",
+        "time_taken_seconds": 37.11,
+        "num_examples": 10,
+        "generated_examples": [
+            {
+                "text": "I feel so happy today despite being sick, it's like my health is making me happy for the next 3 weeks of my life",
+                "label": "ironic"
+            },
+            {
+                "text": "She told me she's feeling tired, but I think she's just been lucky, 💕🎵",
+                "label": "non-ironic"
+            },
+            {
+                "text": "He's been working all day without a break, but he's so tired, it's like he's not working at all",
+                "label": "non-ironic"
+            },
+            {
+                "text": "The weather forecast predicted rain, but it didn't, it's just sunny, 🌞",
+                "label": "non-ironic"
+            },
+            {
+                "text": "I feel so excited about the trip, I couldn't wait to see everyone, it's like I'm missing out",
+                "label": "ironic"
+            },
+            {
+                "text": "She mentioned she's had a bad day, but she's actually feeling really good, 💕",
+                "label": "ironic"
+            },
+            {
+                "text": "He's been working non-stop, but he's just exhausted, it's like he's never worked since",
+                "label": "non-ironic"
+            },
+            {
+                "text": "The project is coming along well, but I feel like I'm missing out on something",
+                "label": "ironic"
+            },
+            {
+                "text": "She's been feeling tired, but she's just been feeling tired for the whole day, it's like I'm not tired at all",
+                "label": "non-ironic"
+            },
+            {
+                "text": "He's been working hard, but he's just been working hard for the last 5 days",
+                "label": "ironic"
+            }
+        ]
+    }
+]
