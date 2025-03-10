@@ -1,173 +1,391 @@
 [
     {
-        "timestamp": "2025-03-07T15:59:08.261485",
+        "timestamp": "2025-03-10T10:27:06.489980",
         "model": "Qwen/Qwen2.5-0.5B-Instruct",
         "generation_method": "baseline",
-        "prompt": "You are an expert in journalism and NLP specializing in **news classification**. Your task is to generate 10 high-quality short documnets. The category of the news is the label of interest. The distribution of the labels should be balanced.The labels are the following:  \n- **Business**\n- **Sci/Tech**\n- **Sports**\n- **World**\n\n### Output Format (JSON)  \nReturn only a valid JSON list of 10 items in the following structure:\n\n```json\n[\n    {\"text\": <text>, \"label\": <label>},\n    ...\n]\n```",
-        "time_taken_seconds": 3.59,
+        "prompt": "You are an expert in journalism and NLP specializing in **news classification**. Your task is to generate 10 high-quality short documents. The category of the news is the label of interest. The distribution of the labels should be balanced.The labels are the following:  \n- **Business**\n- **Sci/Tech**\n- **Sports**\n- **World**\n\n### Output Format (JSON)  \nReturn only a valid JSON list of 10 items in the following structure:\n\n```json\n[\n    {\"text\": <text>, \"label\": <label>},\n    ...\n]\n```\n",
+        "time_taken_seconds": 3.85,
+        "num_examples": 10,
+        "generated_examples": [
+            {
+                "text": "Apple Inc. announces new iPhone models for next year.",
+                "label": "Tech"
+            },
+            {
+                "text": "Tesla unveils new electric vehicle model.",
+                "label": "Tech"
+            },
+            {
+                "text": "Amazon launches new product line.",
+                "label": "Tech"
+            },
+            {
+                "text": "Microsoft releases new version of its Windows operating system.",
+                "label": "Tech"
+            },
+            {
+                "text": "Google introduces new AI-powered assistant.",
+                "label": "Tech"
+            },
+            {
+                "text": "Facebook launches new mobile app for business users.",
+                "label": "Tech"
+            },
+            {
+                "text": "NVIDIA introduces new graphics processing unit.",
+                "label": "Tech"
+            },
+            {
+                "text": "Uber announces new driver recruitment program.",
+                "label": "Tech"
+            },
+            {
+                "text": "Airbnb expands global presence.",
+                "label": "Tech"
+            },
+            {
+                "text": "Lululemon Launches New Yoga and Fitness Clothing Line.",
+                "label": "Tech"
+            }
+        ]
+    },
+    {
+        "timestamp": "2025-03-10T10:27:18.510579",
+        "model": "Qwen/Qwen2.5-0.5B-Instruct",
+        "generation_method": "targeted",
+        "prompt": "You are an expert in journalism and NLP specializing in news classification. Your task is to generate 10 high-quality short documents, that talks about the following four News categories (labels):  \n- **Business**\n- **Sci/Tech**\n- **Sports**\n- **World**\n\n### **Follow these topics:**\n- **Business**  \n  - Markets  \n  - Economy  \n  - Companies  \n  - Startups  \n  - Regulations  \n\n- **Sci/Tech**  \n  - AI  \n  - Space  \n  - Cybersecurity  \n  - Biotech  \n  - Climate  \n\n- **Sports**  \n  - Events  \n  - Records  \n  - Highlights  \n  - Scandals  \n  - Olympics  \n\n- **World**  \n  - Politics  \n  - Conflicts  \n  - Disasters  \n  - Human Rights  \n  - Trade\n\n### **Output Format (JSON)**\nThe labels must be one of the specified categories, which are: Business, Sci/Tech, Sports, World. Return only a valid JSON list of 10 elements in the following structure:\n\n```json\n[\n    {\"text\": <news document>, \"label\": <corresponding label>},\n    ...\n]\n```\n",
+        "time_taken_seconds": 4.48,
+        "num_examples": 10,
+        "generated_examples": [
+            {
+                "text": "Market Trends Analysis: Global Stock Market Performance",
+                "label": "Business"
+            },
+            {
+                "text": "AI Breakthroughs: The Latest Developments in Artificial Intelligence",
+                "label": "Sci/Tech"
+            },
+            {
+                "text": "Space Exploration: Future Prospects for Mars Missions",
+                "label": "Sci/Tech"
+            },
+            {
+                "text": "Cybersecurity Threats: How to Stay Safe Online",
+                "label": "Sci/Tech"
+            },
+            {
+                "text": "Biotechnology Advances: Future Medical Innovations",
+                "label": "Sci/Tech"
+            },
+            {
+                "text": "Climate Change: Solutions for Mitigation and Adaptation",
+                "label": "Sci/Tech"
+            },
+            {
+                "text": "Events: The Best Newscasts of the Week",
+                "label": "Sports"
+            },
+            {
+                "text": "Records: The Unforgettable Moments of the Day",
+                "label": "Sports"
+            },
+            {
+                "text": "Olympics Highlights: The Most Exciting Performances",
+                "label": "Sports"
+            },
+            {
+                "text": "Politics: Current Debates and Polls",
+                "label": "World"
+            }
+        ]
+    },
+    {
+        "timestamp": "2025-03-10T10:27:25.309004",
+        "model": "Qwen/Qwen2.5-0.5B-Instruct",
+        "generation_method": "targeted + linguistic tags",
+        "prompt": "You are an expert in journalism and NLP specializing in news classification. Your task is to generate 10 high-quality **short documents**, that talks about the following four News categories (labels):  \n- **Business**\n- **Sci/Tech**\n- **Sports**\n- **World**.\nFor each example, also list the key phenomena it covers.\n\n### **Follow these topics:**\n- **Business**  \n  - Markets  \n  - Economy  \n  - Companies  \n  - Startups  \n  - Regulations  \n\n- **Sci/Tech**  \n  - AI  \n  - Space  \n  - Cybersecurity  \n  - Biotech  \n  - Climate  \n\n- **Sports**  \n  - Events  \n  - Records  \n  - Highlights  \n  - Scandals  \n  - Olympics  \n\n- **World**  \n  - Politics  \n  - Conflicts  \n  - Disasters  \n  - Human Rights  \n  - Trade\n\n### **Output Format (JSON)**\nThe labels must be one of the specified categories, which are: Business, Sci/Tech, Sports, World. Return only a valid JSON list of 10 elements in the following structure:\n\n```json\n[\n    {\"text\": <news document>, \"label\": <corresponding label>, \"phenomena\": [\"<phenomenon1>\", \"<phenomenon2>\", ...]},\n    ...\n]\n```\n",
+        "time_taken_seconds": 6.79,
         "num_examples": 9,
         "generated_examples": [
             {
-                "text": "Apple announces new iPhone models, including the latest model with a 5G capability.",
-                "label": "Tech"
+                "text": "Market Trends Analysis: Global Stock Market Performance",
+                "label": "Business",
+                "phenomena": [
+                    "Stock market performance",
+                    "Economic indicators"
+                ]
             },
             {
-                "text": "Google launches its Pixel 6 series, offering advanced camera technology.",
-                "label": "Tech"
+                "text": "Space Exploration: SpaceX Launches New Mission",
+                "label": "Sci/Tech",
+                "phenomena": [
+                    "Space exploration",
+                    "Rocket launches",
+                    "Technology advancements"
+                ]
             },
             {
-                "text": "Amazon unveils its new Echo Dot smart speaker.",
-                "label": "Tech"
+                "text": "Cybersecurity Threats: Latest Infections in IoT Devices",
+                "label": "Sci/Tech",
+                "phenomena": [
+                    "Intrusion detection systems",
+                    "IoT devices",
+                    "Security threats"
+                ]
             },
             {
-                "text": "Tesla announces plans to expand its Gigafactory in China.",
-                "label": "Tech"
+                "text": "Climate Change: The Impact on Agriculture",
+                "label": "Sci/Tech",
+                "phenomena": [
+                    "Agriculture practices",
+                    "Climate change impacts",
+                    "Solutions for sustainable agriculture"
+                ]
             },
             {
-                "text": "Microsoft introduces new Azure services for businesses.",
-                "label": "Tech"
+                "text": "Olympic Games: Highlights of the 2022 Tokyo Games",
+                "label": "Sports",
+                "phenomena": [
+                    "Events",
+                    "Record-breaking achievements",
+                    "Scandals during the games"
+                ]
             },
             {
-                "text": "Netflix releases a new streaming service, Netflix Originals.",
-                "label": "Tech"
+                "text": "Politics in Russia: President Putin's Speech",
+                "label": "World",
+                "phenomena": [
+                    "President Putin",
+                    "Speech content",
+                    "Political developments"
+                ]
             },
             {
-                "text": "Unicef launches its new campaign 'Safe Water, Safe Home' to promote access to clean water and sanitation.",
-                "label": "News"
+                "text": "Disaster Relief Efforts: Response to Typhoon Haiyan",
+                "label": "World",
+                "phenomena": [
+                    "Typhoon response",
+                    "Community mobilization",
+                    "Healthcare support"
+                ]
             },
             {
-                "text": "Chinese authorities crack down on illegal wildlife trade, arresting multiple suspects.",
-                "label": "News"
+                "text": "Human Rights Issues: Impact of the Arab Spring",
+                "label": "World",
+                "phenomena": [
+                    "Arab Spring movements",
+                    "Human rights violations",
+                    "International responses"
+                ]
             },
             {
-                "text": "French government announces new regulations aimed at protecting marine life.",
-                "label": "News"
+                "text": "Trade Wars: China-Vietnam Trade Agreement Revisions",
+                "label": "World",
+                "phenomena": [
+                    "Trade agreements",
+                    "Negotiation details",
+                    "Impact on regional trade"
+                ]
             }
         ]
     },
     {
-        "timestamp": "2025-03-07T15:59:14.786567",
-        "model": "Qwen/Qwen2.5-0.5B-Instruct",
-        "generation_method": "targeted",
-        "prompt": "You are an expert in journalism and NLP specializing in news classification. Your task is to generate 10 high-quality short documnets, that talks about the following four News categories (labels):  \n- **Business**\n- **Sci/Tech**\n- **Sports**\n- **World**\n\n### **Guidelines:**\n- Language: The choice of words, sentence structure, and the use of vocabulary to convey information.\n- Semantics: Understanding the meaning behind the language used, including tone, idioms, metaphors, and other figurative expressions.\n- Contextual phenomena: Analyzing how news articles relate to each other (chronology, causality, contrast) and the broader social or political context they operate within.\n- Grammar and syntax: Verbs, nouns, adjectives, prepositions, conjunctions, and punctuation marks that guide the reader's understanding of the text.\n- Categorization: Grouping related news items together for easier reading or searching.\n- Word choice: Choosing appropriate words and phrases to convey specific ideas and emotions.\n- Tone and style: The overall impression the writer wants to give about their subject matter.\n- Logical reasoning: Deciding what information is important and which ones can be ignored based on the content.\n- Relevance: Assessing whether the article relates to the topic at hand and aligns with the author's perspective.\n- Credibility: Evaluating the source and author's expertise on the topic being discussed.\n\n### **Output Format (JSON)**\nThe labels must be one of the specified categories. Return only a valid JSON list in the following structure:\n\n```json\n[\n    {\"text\": <text>, \"label\": <label>},\n    ...\n]\n```\n",
-        "time_taken_seconds": 6.51,
-        "num_examples": 4,
-        "generated_examples": [
-            {
-                "text": "In today’s digital age, businesses have become more reliant on technology than ever before. From online marketplaces to cloud-based services, the rise of technology has transformed the way companies operate. However, it’s crucial for businesses to stay ahead of the curve and invest in sustainable practices to ensure long-term success.",
-                "label": "Business"
-            },
-            {
-                "text": "Scientists from various fields are constantly pushing the boundaries of science. From discovering new elements to developing revolutionary technologies, there’s never been a better time for innovation. But it’s essential to approach scientific research with caution and ethical considerations.",
-                "label": "Science"
-            },
-            {
-                "text": "Sports fans everywhere are eagerly anticipating the results of the upcoming Olympic Games. Whether it’s soccer, basketball, or track and field, the excitement is palpable as athletes compete against each other in a world of competition.",
-                "label": "Sports"
-            },
-            {
-                "text": "As we look towards the future, World leaders are facing unprecedented challenges. Issues such as climate change, global security, and economic inequality require urgent attention. It’s up to us to work together to find solutions and build a brighter tomorrow.",
-                "label": "World"
-            }
-        ]
-    },
-    {
-        "timestamp": "2025-03-07T15:59:53.900796",
+        "timestamp": "2025-03-10T10:28:13.076777",
         "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
         "generation_method": "baseline",
-        "prompt": "You are an expert in journalism and NLP specializing in news classification. Your task is to generate 10 high-quality short documnets, that talks about the following four News categories:  \n- **Business**\n- **Sci/Tech**\n- **Sports**\n- **World**\n\n### **Output Format (JSON)**  \nReturn only a valid JSON list of 10 items in the following structure:\n\n```json\n[\n    {\"text\": <text>, \"label\": <label>},\n    ...\n]\n```\n",
-        "time_taken_seconds": 19.39,
+        "prompt": "You are an expert in journalism and NLP specializing in news classification. Your task is to generate 10 high-quality short documents, that talks about the following four News categories:  \n- **Business**\n- **Sci/Tech**\n- **Sports**\n- **World**\n\n### **Output Format (JSON)**  \nReturn only a valid JSON list of 10 items in the following structure:\n\n```json\n[\n    {\"text\": <text>, \"label\": <label>},\n    ...\n]\n```\n",
+        "time_taken_seconds": 20.67,
         "num_examples": 10,
         "generated_examples": [
             {
-                "text": "The tech company X is launching a new AI-powered platform that aims to revolutionize supply chain management. The company claims it has already implemented this technology in 100 companies worldwide. This development could have a significant impact on industries that rely heavily on efficient supply chains.",
-                "label": "Sci/Tech"
-            },
-            {
-                "text": "In the sports world, the New York Yankees have secured a spot in the playoffs for the first time in decades. The team has made a lot of headlines, including the release of a controversial contract with the New York Yankees, who reportedly agreed to a $30 million bonus to star player Alex Rodriguez. This move has sparked debates about player contracts and team culture.",
-                "label": "Sports"
-            },
-            {
-                "text": "The COVID-19 pandemic has brought unprecedented attention to the global health sector. Governments around the world have implemented various strategies to control the spread of the virus, including lockdowns, mask mandates, and vaccine distribution efforts. The situation has been closely monitored by international news outlets.",
-                "label": "World"
-            },
-            {
-                "text": "A major tech company has revealed that its AI-powered chatbot has become the most popular in the world. The company claims the chatbot has a 95% accuracy rate and has been used in over 10 million conversations. This has led to a lot of excitement among users who have reported improved productivity and customer satisfaction.",
-                "label": "Sci/Tech"
-            },
-            {
-                "text": "The World Cup 2022 was a huge success, with the host nation securing the title after a year of intense competition. The tournament saw record-breaking attendance and a diverse lineup of teams from 14 countries. The success of the tournament has been widely covered by international media.",
-                "label": "World"
-            },
-            {
-                "text": "A new study claims that meditation has been shown to reduce stress levels and improve mental health. The study was published in a reputable medical journal and has been widely covered by news outlets. The findings have sparked debates about the benefits of meditation for different types of stressors.",
-                "label": "Sports"
-            },
-            {
-                "text": "The World Economic Forum 2023 was held in virtual format due to the global pandemic. The event brought together leading economists, policymakers, and business leaders from around the world. The discussions focused on the challenges and opportunities of the global economy during the pandemic.",
+                "text": "A major tech company has announced a new venture that aims to revolutionize the business of artificial intelligence. The company, focused on creating more efficient and scalable AI systems, has raised $500 million in funding. This could have a significant impact on industries like finance, healthcare, and manufacturing.",
                 "label": "Business"
             },
             {
-                "text": "A major tech company has unveiled a new AI model that is capable of processing information at a speed that was previously unimaginable. The model is said to have won a major competition in the AI research community, and it has been used in various industries for its ability to analyze large datasets.",
-                "label": "Sci/Tech"
-            },
-            {
-                "text": "The World Cup 2022 was a massive event with over 30,000 fans attending. The tournament was held in a virtual format due to the COVID-19 pandemic, and the event was closely monitored by international media. The highlights were live streams and social media updates, which have been widely covered by news outlets.",
+                "text": "The US elections are set to take place on November 6th. Major political figures are expected to host a series of high-profile events, including the debate on the impact of climate change. Stay tuned for the latest updates.",
                 "label": "World"
             },
             {
-                "text": "A new study claims that climate change is already having significant effects on the planet. The study was published in a reputable scientific journal and has been widely covered by news outlets. The findings have sparked debates about the effectiveness of climate change mitigation measures.",
+                "text": "Scientists have made a groundbreaking discovery in the field of neuroscience. Their findings could lead to new treatments for conditions like Alzheimer's and Parkinson's. The research was published in a prestigious journal, and the findings are expected to be widely recognized.",
                 "label": "Sci/Tech"
+            },
+            {
+                "text": "The world's top football teams are set to host a major World Cup final match. The tournament is expected to be the most exciting in history, with teams like Russia, Germany, and France making headlines. The match will take place in a stadium in Brazil.",
+                "label": "Sports"
+            },
+            {
+                "text": "A major international conference has been announced for the upcoming World summit on climate change. The event will bring together leading experts, policymakers, and industry leaders to discuss the most effective ways to address global warming. The summit is expected to generate significant public and international attention.",
+                "label": "World"
+            },
+            {
+                "text": "A major international sports event has been organized in the World. The tournament features the biggest teams from all over the globe, including the US, Russia, China, and Australia. The event promises to be a thrilling experience for fans of both men's and women's sports.",
+                "label": "Sports"
+            },
+            {
+                "text": "A new AI system has been developed that can analyze large amounts of data at lightning speed. The system is designed to improve decision-making processes in industries like finance, healthcare, and transportation. The system is currently being tested in a series of experiments.",
+                "label": "Business"
+            },
+            {
+                "text": "The World Cup final match is set to be held in Brazil. The match features the last remaining teams from the tournament, including Russia, Germany, France, and Spain. The game is expected to be a thrilling spectacle with a lot of excitement.",
+                "label": "World"
+            },
+            {
+                "text": "A major scientific breakthrough has been made in the field of quantum computing. Researchers have developed a new algorithm that can perform calculations much faster than any existing method. This discovery could revolutionize the future of technology.",
+                "label": "Sci/Tech"
+            },
+            {
+                "text": "The World is set to host the next FIFA World Cup, which will be the 2026 edition. The tournament will take place in a new stadium in Brazil, and the team organizing the event is expected to be the most powerful and innovative in the world.",
+                "label": "World"
             }
         ]
     },
     {
-        "timestamp": "2025-03-07T16:00:20.861744",
+        "timestamp": "2025-03-10T10:29:00.883653",
         "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
         "generation_method": "targeted",
-        "prompt": "You are an expert in journalism and NLP specializing in news classification. Your task is to generate 10 high-quality short documents, that talks about the following four News categories (labels):  \n- **Business**\n- **Sci/Tech**\n- **Sports**\n- **World**\n\n### **Guidelines:**\nGlobal economy trends, World Cup highlights, Sustainability impact, Sports betting, Trade agreements, Trade balances, Athlete journeys, Sports statistics, Renewable energy, Scientific advancements, Consumer trends, Sponsorships, AI and machine learning, Social media engagement, International business deals, Technology innovations, Sports impact on society, Team performances, Electric vehicles, Player news, Government policies, Tech company earnings, World Series results\n\n### **Output Format (JSON)**\nReturn only a valid JSON list of 10 items in the following structure:\n\n```json\n[\n    {\"text\": <text>, \"label\": <label>},\n    ...\n]\n```\n",
-        "time_taken_seconds": 26.94,
+        "prompt": "You are an expert in journalism and NLP specializing in news classification. Your task is to generate 10 high-quality short documents, that talks about the following four News categories (labels):  \n- **Business**\n- **Sci/Tech**\n- **Sports**\n- **World**\n\n### **Follow these topics:**\n- **Business**  \n  - Markets  \n  - Economy  \n  - Companies  \n  - Startups  \n  - Regulations  \n\n- **Sci/Tech**  \n  - AI  \n  - Space  \n  - Cybersecurity  \n  - Biotech  \n  - Climate  \n\n- **Sports**  \n  - Events  \n  - Records  \n  - Highlights  \n  - Scandals  \n  - Olympics  \n\n- **World**  \n  - Politics  \n  - Conflicts  \n  - Disasters  \n  - Human Rights  \n  - Trade\n\n### **Output Format (JSON)**\nThe labels must be one of the specified categories, which are: Business, Sci/Tech, Sports, World. Return only a valid JSON list of 10 elements in the following structure:\n\n```json\n[\n    {\"text\": <text of the document>, \"label\": <corresponding label>},\n    ...\n]\n```\n",
+        "time_taken_seconds": 15.37,
         "num_examples": 10,
         "generated_examples": [
             {
-                "text": "A major tech company has announced a new AI breakthrough that promises to improve decision-making processes in industries like healthcare and finance.",
-                "label": "Sci/Tech"
-            },
-            {
-                "text": "Global trade balances show a slight improvement in the past quarter, suggesting a shift towards more competitive international markets.",
-                "label": "World"
-            },
-            {
-                "text": "Sports teams are winning record-breaking scores in the World Series, which is a significant milestone for the sport.",
-                "label": "Sports"
-            },
-            {
-                "text": "A new study reveals that social media could be a powerful tool for improving public engagement and awareness.",
-                "label": "World"
-            },
-            {
-                "text": "A major company releases earnings reports, with a significant increase in profits reflecting strong financial performance.",
+                "text": "The rise of quantum computing is reshaping the global market, with companies like Google and IBM leading the charge. This is a key topic in the evolving markets of business and tech.",
                 "label": "Business"
             },
             {
-                "text": "Scientists discover a new quantum computing algorithm that could revolutionize data security and encryption.",
+                "text": "AI advancements are revolutionizing cybersecurity, with major companies investing heavily in research. This is a hot topic in the Sci/Tech category.",
                 "label": "Sci/Tech"
             },
             {
-                "text": "A major event at the World Cup highlights the growing influence of sports in global politics and media.",
+                "text": "The London Olympics highlight the power of sportsmanship and the spirit of competition. This is a well-known event in the Sports category.",
                 "label": "Sports"
             },
             {
-                "text": "Government policies in Country X are expected to boost economic growth, with a focus on infrastructure and education.",
+                "text": "The U.S.-China trade war has sparked global economic tensions. This is a significant event in the World category.",
                 "label": "World"
             },
             {
-                "text": "A large sports league emerges, providing a platform for teams to showcase their performances and boost viewer engagement.",
+                "text": "The Chinese tech giant Huawei has faced criticism for its data security practices. This is a relevant topic in the Business category.",
+                "label": "Business"
+            },
+            {
+                "text": "AI is transforming healthcare through personalized treatment plans. This is a key area in the Sci/Tech category.",
+                "label": "Sci/Tech"
+            },
+            {
+                "text": "The rise of renewable energy has become a major topic in the global economy. This is a relevant topic in the Business category.",
+                "label": "Business"
+            },
+            {
+                "text": "Space exploration is leading to technological breakthroughs that will shape the future. This is a significant topic in the Sci/Tech category.",
+                "label": "Sci/Tech"
+            },
+            {
+                "text": "The London Olympics continue to attract global attention, with athletes proving their mettle. This is a well-known event in the Sports category.",
                 "label": "Sports"
             },
             {
-                "text": "A new AI model is developed, offering improved accuracy in facial recognition technology across various applications.",
-                "label": "Sci/Tech"
+                "text": "The global economy is experiencing a slowdown due to supply chain issues. This is a key topic in the Business category.",
+                "label": "Business"
+            }
+        ]
+    },
+    {
+        "timestamp": "2025-03-10T10:29:20.291871",
+        "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+        "generation_method": "targeted + linguistic tags",
+        "prompt": "You are an expert in journalism and NLP specializing in news classification. Your task is to generate 10 high-quality short documents, that talks about the following four News categories (labels):  \n- **Business**\n- **Sci/Tech**\n- **Sports**\n- **World**.\nFor each example, also list the key phenomena it covers.\n\n### **Follow these topics:**\n- **Business**  \n  - Markets  \n  - Economy  \n  - Companies  \n  - Startups  \n  - Regulations  \n\n- **Sci/Tech**  \n  - AI  \n  - Space  \n  - Cybersecurity  \n  - Biotech  \n  - Climate  \n\n- **Sports**  \n  - Events  \n  - Records  \n  - Highlights  \n  - Scandals  \n  - Olympics  \n\n- **World**  \n  - Politics  \n  - Conflicts  \n  - Disasters  \n  - Human Rights  \n  - Trade\n\n### **Output Format (JSON)**\nThe labels must be one of the specified categories, which are: Business, Sci/Tech, Sports, World. Return only a valid JSON list of 10 elements in the following structure:\n\n```json\n[\n    {\"text\": <text of the document>, \"label\": <corresponding label>, \"phenomena\": [\"<phenomenon1>\", \"<phenomenon2>\", ...]},\n    ...\n]\n```\n",
+        "time_taken_seconds": 19.4,
+        "num_examples": 10,
+        "generated_examples": [
+            {
+                "text": "The global economy is experiencing steady growth, with tech companies like Google and Apple leading the charge. This article explores how companies are adapting to changing market conditions.",
+                "label": "Business",
+                "phenomena": [
+                    "Economic trends",
+                    "Market changes",
+                    "Tech companies"
+                ]
+            },
+            {
+                "text": "The tech industry is witnessing rapid innovation, with companies like Microsoft and Amazon leading the way. This article delves into the impact of AI on the global economy.",
+                "label": "Business",
+                "phenomena": [
+                    "Technological advancements",
+                    "AI impact",
+                    "Economic impact"
+                ]
+            },
+            {
+                "text": "AI is transforming healthcare, enabling better diagnostics and personalized treatments. This article examines the rise of AI in the medical field.",
+                "label": "Sci/Tech",
+                "phenomena": [
+                    "AI in healthcare",
+                    "Technological innovations",
+                    "Medical advancements"
+                ]
+            },
+            {
+                "text": "Space exploration is advancing rapidly, with rockets reaching new destinations. This article discusses the challenges and opportunities of space travel.",
+                "label": "Sci/Tech",
+                "phenomena": [
+                    "Space exploration",
+                    "Technological achievements",
+                    "Cosmic events"
+                ]
+            },
+            {
+                "text": "Sports events are becoming more popular, with highlights and controversies emerging. This article explores the impact of these events on public engagement.",
+                "label": "Sports",
+                "phenomena": [
+                    "Sports events",
+                    "Controversies",
+                    "Public engagement"
+                ]
+            },
+            {
+                "text": "A political scandal involving a major leader has exposed underlying issues within the government. This article examines the consequences of such scandals.",
+                "label": "World",
+                "phenomena": [
+                    "Political corruption",
+                    "Government issues",
+                    "Public corruption"
+                ]
+            },
+            {
+                "text": "Climate change is causing widespread environmental damage, with experts discussing potential solutions. This article explores the impact of climate change on ecosystems.",
+                "label": "World",
+                "phenomena": [
+                    "Climate change",
+                    "Environmental impact",
+                    "Ecosystem effects"
+                ]
+            },
+            {
+                "text": "A major sports event is being celebrated, with records and highlights captured on camera. This article delves into the significance of these records.",
+                "label": "Sports",
+                "phenomena": [
+                    "Sports records",
+                    "Event highlights",
+                    "Public interest"
+                ]
+            },
+            {
+                "text": "A major conflict is breaking out in a region, with both sides facing significant challenges. This article examines the consequences of such conflicts.",
+                "label": "World",
+                "phenomena": [
+                    "Global conflicts",
+                    "Crisis events",
+                    "Public reactions"
+                ]
+            },
+            {
+                "text": "A global trade dispute is being settled, with economic impacts and trade volumes discussed. This article explores the effects of such disputes.",
+                "label": "World",
+                "phenomena": [
+                    "Global trade",
+                    "Economic impacts",
+                    "Trade volumes"
+                ]
             }
         ]
     }
