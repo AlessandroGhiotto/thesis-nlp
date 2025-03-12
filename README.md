@@ -5,8 +5,8 @@
 ```bash
 bai-thesis-nlp/
 ├── src/
-│   ├── misc/           # miscellaneous notebooks and files
-│   ├── utils/          # utility functions and helper code
+│   ├── _misc/           # miscellaneous notebooks and files
+│   ├── _utils/          # utility functions and helper code
 │   ├── dataset1/       # notebooks, scripts and models for this dataset
 │   │   ...
 │   └── datasetN/
