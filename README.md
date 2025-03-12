@@ -2,12 +2,23 @@
 
 ### 📂 Project Structure
 
-- `mycode/` – Contains the Jupyter Notebooks.
-- `synthetic_data/` – Stores generated synthetic data in JSON format.
+```bash
+bai-thesis-nlp/
+├── src/
+│   ├── dataset1/       # notebooks, scripts and models for this dataset
+│   │   ...
+│   ├── datasetN/
+│   ├── utils/          # utility functions and helper code
+│   └── misc/           # assorted notebooks and files
+├── realdata/           # real datasets
+└── synthetic_data/     # generated synthetic data in JSON format
+    ├── logs/           # logs of toy synthetic data
+    └── datasets/       # larger synthetic datasets
+```
 
 ### 📄 Synthetic Data Format
 
-The JSON files in `synthetic_data/` follow this structure:
+The JSON files in `synthetic_data/logs/` follow this structure:
 
 ```
 {

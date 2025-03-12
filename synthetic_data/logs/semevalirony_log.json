@@ -1,0 +1,360 @@
+[
+    {
+        "timestamp": "2025-03-12T22:57:44.973919",
+        "model": "Qwen/Qwen2.5-0.5B-Instruct",
+        "generation_method": "baseline",
+        "prompt": "You are an expert linguist and NLP practitioner specializing in irony detection. Your task is to generate **10 high-quality examples** of \"irony\" and \"non-irony\" statements, with **5 irony** and **5 non-irony** examples across different contexts.\n\n### **Output Format (JSON)**\nReturn only a valid JSON list in the following structure:\n\n```json\n[\n    {\"text\": \"seeing ppl walking w/ crutches makes me really excited for the next 3 weeks of my life\", \"label\": \"irony\"},\n    {\"text\": \"look for the girl with the broken smile, ask her if she wants to stay while, and she will be loved. 💕🎵\", \"label\": \"non-irony\"},\n    ...\n]\n```\n",
+        "time_taken_seconds": 5.2,
+        "num_examples": 9,
+        "generated_examples": [
+            {
+                "text": "The new job offer was great, but I had to take on some extra work that made me feel like a failure.",
+                "label": "irony"
+            },
+            {
+                "text": "I just got a promotion at work - it's been such a long time since I've felt this way.",
+                "label": "irony"
+            },
+            {
+                "text": "He said he'd finish the project before Christmas, but now he's procrastinating instead.",
+                "label": "irony"
+            },
+            {
+                "text": "She always looks so beautiful in her wedding dress, even though she has never worn one before.",
+                "label": "non-irony"
+            },
+            {
+                "text": "This movie is terrible - every scene feels like a dream sequence.",
+                "label": "irony"
+            },
+            {
+                "text": "They're having a big party tonight, but everyone seems too busy to attend.",
+                "label": "irony"
+            },
+            {
+                "text": "The weather is getting colder, but I'm still going out for a walk.",
+                "label": "non-irony"
+            },
+            {
+                "text": "The new kid in school is really good at math, but I don't understand his explanations.",
+                "label": "irony"
+            },
+            {
+                "text": "We need to start preparing for the big test soon, but we haven't started studying yet.",
+                "label": "irony"
+            }
+        ]
+    },
+    {
+        "timestamp": "2025-03-12T22:58:07.598245",
+        "model": "Qwen/Qwen2.5-0.5B-Instruct",
+        "generation_method": "targeted",
+        "prompt": "You are an expert linguist and NLP practitioner. Generate 10 realistic sentences illustrating irony detection examples involving.\nFor each example specify the label as either \"irony\" or \"non-irony\".\n\n### **Consider the following Phenomena:**\n- **Linguistic Phenomena**  \n    - Lexical Choice: Unusual or exaggerated word use.  \n    - Negation: Statements that negate obvious facts.  \n    - Punctuation: Use of exclamation marks, ellipses, or quotes for emphasis.  \n    - Syntactic Cues: Unusual or complex sentence structures.  \n    - Contrastive Conjunctions: Use of \"but,\" \"however,\" to signal contradiction.  \n\n- **Semantic Phenomena**  \n    - Contextual Incongruity: Discrepancy between words and context.  \n    - Polarity Reversal: Positive words with negative intent, or vice versa.  \n    - Hyperbole & Understatement: Exaggeration or minimization for effect.  \n    - Sarcasm: Mocking statements implying the opposite meaning.  \n\n- **Contextual Cues**  \n    - World Knowledge: Understanding cultural or situational references.  \n    - Speaker Intent: Inferring the true intention behind words.  \n    - Discourse Contrast: Contradictions across multiple sentences.  \n\n### **Output Format (JSON)**\nReturn only a valid JSON list in the following structure:\n\n```json\n[\n    {\"text\": <text>, \"label\": <label>},\n    ...\n]\n```\n",
+        "time_taken_seconds": 3.87,
+        "num_examples": 9,
+        "generated_examples": [
+            {
+                "text": "The cat is everywhere.",
+                "label": "Irony"
+            },
+            {
+                "text": "I love ice cream, but I don't like chocolate.",
+                "label": "Non-irony"
+            },
+            {
+                "text": "She always says she'll be here tomorrow, but she's actually going somewhere else.",
+                "label": "Irony"
+            },
+            {
+                "text": "We should eat more vegetables, but we're having too many meals.",
+                "label": "Non-irony"
+            },
+            {
+                "text": "He said he would come over tonight, but he didn't.",
+                "label": "Irony"
+            },
+            {
+                "text": "This movie is great, but it's not really what I expected.",
+                "label": "Non-irony"
+            },
+            {
+                "text": "They said they'd go on vacation next year, but they haven't decided yet.",
+                "label": "Irony"
+            },
+            {
+                "text": "I can't believe you did that, but you're still doing it.",
+                "label": "Non-irony"
+            },
+            {
+                "text": "He promised he'd finish his homework before bedtime, but he never did.",
+                "label": "Irony"
+            }
+        ]
+    },
+    {
+        "timestamp": "2025-03-12T22:58:12.793309",
+        "model": "Qwen/Qwen2.5-0.5B-Instruct",
+        "generation_method": "targeted + linguistic tags",
+        "prompt": "You are an expert linguist and NLP specialist in sarcasm and irony detection. Generate 10 realistic sentences illustrating irony detection examples.For each example specify the label as either \"irony\" or \"non-irony\". And also list the key phenomena it covers.\n\n### **Consider the following Phenomena:**\n- **Linguistic Phenomena**  \n    - Lexical Choice: Unusual or exaggerated word use.  \n    - Negation: Statements that negate obvious facts.  \n    - Punctuation: Use of exclamation marks, ellipses, or quotes for emphasis.  \n    - Syntactic Cues: Unusual or complex sentence structures.  \n    - Contrastive Conjunctions: Use of \"but,\" \"however,\" to signal contradiction.  \n\n- **Semantic Phenomena**  \n    - Contextual Incongruity: Discrepancy between words and context.  \n    - Polarity Reversal: Positive words with negative intent, or vice versa.  \n    - Hyperbole & Understatement: Exaggeration or minimization for effect.  \n    - Sarcasm: Mocking statements implying the opposite meaning.  \n\n- **Contextual Cues**  \n    - World Knowledge: Understanding cultural or situational references.  \n    - Speaker Intent: Inferring the true intention behind words.  \n    - Discourse Contrast: Contradictions across multiple sentences.  \n\n### **Output Format (JSON)**\nReturn only a valid JSON list in the following structure:\n\n```json\n[\n    {\"text\": <text>, \"label\": <corresponding label>, \"phenomena\": [\"<phenomenon1>\", \"<phenomenon2>\", ...]},\n    ...\n]\n```\n",
+        "time_taken_seconds": 5.19,
+        "num_examples": 9,
+        "generated_examples": [
+            {
+                "text": "The company's CEO announced they would be launching a new product.",
+                "label": "non-irony",
+                "phenomena": [
+                    "Lexical Choice",
+                    "Punctuation"
+                ]
+            },
+            {
+                "text": "I'm so tired of this boring lecture.",
+                "label": "non-irony",
+                "phenomena": [
+                    "Negation",
+                    "Syntactic Cues"
+                ]
+            },
+            {
+                "text": "She said she was going on vacation tomorrow.",
+                "label": "non-irony",
+                "phenomena": [
+                    "Negation",
+                    "Sarcasm"
+                ]
+            },
+            {
+                "text": "He said he couldn't make it to the party.",
+                "label": "non-irony",
+                "phenomena": [
+                    "Negation",
+                    "Hyperbole & Understatement"
+                ]
+            },
+            {
+                "text": "They will have to work hard to finish the project.",
+                "label": "non-irony",
+                "phenomena": [
+                    "Contextual Incongruity"
+                ]
+            },
+            {
+                "text": "It is raining heavily outside.",
+                "label": "non-irony",
+                "phenomena": [
+                    "Contextual Incongruity"
+                ]
+            },
+            {
+                "text": "We should stop talking about politics.",
+                "label": "non-irony",
+                "phenomena": [
+                    "Contextual Incongruity"
+                ]
+            },
+            {
+                "text": "She just got married.",
+                "label": "non-irony",
+                "phenomena": [
+                    "Contextual Incongruity"
+                ]
+            },
+            {
+                "text": "This restaurant has terrible food.",
+                "label": "non-irony",
+                "phenomena": [
+                    "Contextual Incongruity"
+                ]
+            }
+        ]
+    },
+    {
+        "timestamp": "2025-03-12T22:59:22.485658",
+        "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+        "generation_method": "baseline",
+        "prompt": "You are an expert linguist and NLP practitioner specializing in irony detection. Your task is to generate **10 high-quality examples** of ironic and non-ironic statements, with **5 ironic** and **5 non-ironic** examples across different contexts.\n\n### **Output Format (JSON)**\nReturn the final result into a valid JSON list in the following structure:\n\n```json\n[\n    {\"text\": \"seeing ppl walking w/ crutches makes me really excited for the next 3 weeks of my life\", \"label\": \"ironic\"},\n    {\"text\": \"look for the girl with the broken smile, ask her if she wants to stay while, and she will be loved. 💕🎵\", \"label\": \"non-ironic\"},\n    ...\n]\n```\n",
+        "time_taken_seconds": 19.83,
+        "num_examples": 10,
+        "generated_examples": [
+            {
+                "text": "I see ppl walking w/ crutches makes me really excited for the next 3 weeks of my life",
+                "label": "ironic"
+            },
+            {
+                "text": "She is so happy she almost fell",
+                "label": "non-ironic"
+            },
+            {
+                "text": "The company is hiring more for the role, but they said they won't. 😕🎵",
+                "label": "ironic"
+            },
+            {
+                "text": "He's been to Paris many times. That's one of the best travel destinations in the world",
+                "label": "non-ironic"
+            },
+            {
+                "text": "I saw a bird in the garden. It's singing. 🌟",
+                "label": "ironic"
+            },
+            {
+                "text": "She loves her job. She told me that, but I still work hard. 💕",
+                "label": "non-ironic"
+            },
+            {
+                "text": "The weather is freezing tonight. It will be cold, so I won't go out",
+                "label": "ironic"
+            },
+            {
+                "text": "They always have the best food in town. So why don't I try it?",
+                "label": "non-ironic"
+            },
+            {
+                "text": "I heard a lot of news about the project. But actually, it's going to be a disaster. 🚨",
+                "label": "ironic"
+            },
+            {
+                "text": "She likes to cook. So why don't I make a meal for you?",
+                "label": "non-ironic"
+            }
+        ]
+    },
+    {
+        "timestamp": "2025-03-12T23:00:10.236332",
+        "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+        "generation_method": "targeted",
+        "prompt": "You are an expert linguist and NLP practitioner. Generate 10 realistic sentences illustrating irony detection examples.For each example specify the label as either \"irony\" or \"non-irony\".\n\n### **Consider the following Phenomena:**\n- **Linguistic Phenomena**  \n    - Lexical Choice: Unusual or exaggerated word use.  \n    - Negation: Statements that negate obvious facts.  \n    - Punctuation: Use of exclamation marks, ellipses, or quotes for emphasis.  \n    - Syntactic Cues: Unusual or complex sentence structures.  \n    - Contrastive Conjunctions: Use of \"but,\" \"however,\" to signal contradiction.  \n\n- **Semantic Phenomena**  \n    - Contextual Incongruity: Discrepancy between words and context.  \n    - Polarity Reversal: Positive words with negative intent, or vice versa.  \n    - Hyperbole & Understatement: Exaggeration or minimization for effect.  \n    - Sarcasm: Mocking statements implying the opposite meaning.  \n\n- **Contextual Cues**  \n    - World Knowledge: Understanding cultural or situational references.  \n    - Speaker Intent: Inferring the true intention behind words.  \n    - Discourse Contrast: Contradictions across multiple sentences.  \n\n### **Output Format (JSON)**\nFor each example specify the label as either \"irony\" or \"non-irony\".\nReturn only a valid JSON list in the following structure:\n\n```json\n[\n    {\"text\": <text>, \"label\": <label>},\n    ...\n]\n```\n",
+        "time_taken_seconds": 19.84,
+        "num_examples": 10,
+        "generated_examples": [
+            {
+                "text": "I love him, but he loves me. You should never be in his presence.",
+                "label": "irony"
+            },
+            {
+                "text": "I'm so tired, I almost want to scream. But I keep talking to myself, pretending I'm not too tired.",
+                "label": "irony"
+            },
+            {
+                "text": "She said, 'I'm not sure what to do.' But she didn't elaborate. She just said, 'I'm not sure what to do.'"
+            },
+            {
+                "text": "In the land of the north, it's said that the wind blows from the north. But in the south, the wind blows from the south. So, the wind must blow from both places!",
+                "label": "irony"
+            },
+            {
+                "text": "The sky is a beautiful place. But I find it hard to believe it's so blue. Maybe it's just a hallucination.",
+                "label": "irony"
+            },
+            {
+                "text": "I said, 'I love him,' but he said, 'I love me.' So, maybe he's not who he seemed.",
+                "label": "irony"
+            },
+            {
+                "text": "She told me, 'I love him.' But when I tried to meet him, he didn't come. So, maybe he's not who he seemed.",
+                "label": "irony"
+            },
+            {
+                "text": "The river flows gently, almost like a whisper. But I feel the current is too strong. Maybe it's just a slow-moving river.",
+                "label": "irony"
+            },
+            {
+                "text": "In ancient Rome, a famous story says that the last man to live was a man named Marcus Aurelius. But in modern times, no one has ever lived as long as he did. So, maybe he's not the last man.",
+                "label": "irony"
+            },
+            {
+                "text": "The river flows gently, almost like a whisper. But I feel the current is too strong. Maybe it's just a slow-moving river.",
+                "label": "irony"
+            }
+        ]
+    },
+    {
+        "timestamp": "2025-03-12T23:00:33.030655",
+        "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+        "generation_method": "targeted + linguistic tags",
+        "prompt": "You are an expert linguist and NLP specialist in sarcasm and irony detection. Generate 10 realistic sentences illustrating irony detection examples.For each example specify the label as either \"irony\" or \"non-irony\", give examples for both of them. And also list the key phenomena it covers.\n\n### **Consider the following Phenomena:**\n- **Linguistic Phenomena**  \n    - Lexical Choice: Unusual or exaggerated word use.  \n    - Negation: Statements that negate obvious facts.  \n    - Punctuation: Use of exclamation marks, ellipses, or quotes for emphasis.  \n    - Syntactic Cues: Unusual or complex sentence structures.  \n    - Contrastive Conjunctions: Use of \"but,\" \"however,\" to signal contradiction.  \n\n- **Semantic Phenomena**  \n    - Contextual Incongruity: Discrepancy between words and context.  \n    - Polarity Reversal: Positive words with negative intent, or vice versa.  \n    - Hyperbole & Understatement: Exaggeration or minimization for effect.  \n    - Sarcasm: Mocking statements implying the opposite meaning.  \n\n- **Contextual Cues**  \n    - World Knowledge: Understanding cultural or situational references.  \n    - Speaker Intent: Inferring the true intention behind words.  \n    - Discourse Contrast: Contradictions across multiple sentences.  \n\n### **Output Format (JSON)**\nReturn only a valid JSON list in the following structure:\n\n```json\n[\n    {\"text\": <text>, \"label\": <corresponding label>, \"phenomena\": [\"<phenomenon1>\", \"<phenomenon2>\", ...]},\n    ...\n]\n```\n",
+        "time_taken_seconds": 22.79,
+        "num_examples": 10,
+        "generated_examples": [
+            {
+                "text": "I don't know if I'm right.",
+                "label": "irony",
+                "phenomena": [
+                    "negation",
+                    "contextual inconsistency"
+                ]
+            },
+            {
+                "text": "I can't believe I didn't see the movie.",
+                "label": "irony",
+                "phenomena": [
+                    "negation",
+                    "contextual inconsistency"
+                ]
+            },
+            {
+                "text": "She always wins the argument.",
+                "label": "irony",
+                "phenomena": [
+                    "contrastive conjunction",
+                    "sarcasm"
+                ]
+            },
+            {
+                "text": "We're going to the beach tomorrow. How about if we go alone?",
+                "label": "non-irony",
+                "phenomena": [
+                    "contextual inconsistency",
+                    "polarity reversal"
+                ]
+            },
+            {
+                "text": "The sun is shining bright today.",
+                "label": "irony",
+                "phenomena": [
+                    "negation",
+                    "contradiction in meaning"
+                ]
+            },
+            {
+                "text": "I can't believe I didn't see the movie.",
+                "label": "irony",
+                "phenomena": [
+                    "negation",
+                    "contextual inconsistency"
+                ]
+            },
+            {
+                "text": "She always wins the argument.",
+                "label": "irony",
+                "phenomena": [
+                    "contradiction in meaning",
+                    "sarcasm"
+                ]
+            },
+            {
+                "text": "We're going to the beach tomorrow. How about if we go alone?",
+                "label": "non-irony",
+                "phenomena": [
+                    "contextual inconsistency",
+                    "polarity reversal"
+                ]
+            },
+            {
+                "text": "The sun is shining bright today.",
+                "label": "irony",
+                "phenomena": [
+                    "negation",
+                    "contradiction in meaning"
+                ]
+            },
+            {
+                "text": "I think I'm over my head.",
+                "label": "irony",
+                "phenomena": [
+                    "negation",
+                    "contrual inconsistency"
+                ]
+            }
+        ]
+    }
+]
