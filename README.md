@@ -5,11 +5,11 @@
 ```bash
 bai-thesis-nlp/
 ├── src/
+│   ├── misc/           # miscellaneous notebooks and files
+│   ├── utils/          # utility functions and helper code
 │   ├── dataset1/       # notebooks, scripts and models for this dataset
 │   │   ...
-│   ├── datasetN/
-│   ├── utils/          # utility functions and helper code
-│   └── misc/           # assorted notebooks and files
+│   └── datasetN/
 ├── realdata/           # real datasets
 └── synthetic_data/     # generated synthetic data in JSON format
     ├── logs/           # logs of toy synthetic data
