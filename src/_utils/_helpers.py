@@ -124,6 +124,7 @@ def log_synthetic_data(
 ):
     """
     Logs synthetic data generation details in a JSON file.
+    Here we have small batches of generated samples
 
     Parameters:
     - model (str): Name of the LLM used.
