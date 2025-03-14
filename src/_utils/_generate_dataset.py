@@ -125,8 +125,10 @@ def get_valid_examples(examples, correct_labels=None, correct_fields=None):
 
     valid_examples = []
     for ex in examples:
+        # skip example if the label is not one of the real labels
         if correct_labels and ex.get("label") not in correct_labels:
             continue
+        # skip example if the fields are not correct
         if correct_fields and set(ex.keys()) != correct_fields:
             continue
         valid_examples.append(ex)
@@ -142,7 +144,7 @@ def generate_synthetic_data(
     max_new_tokens=8192,
     system_prompt=None,
     correct_labels=None,
-    correct_fields=["text", "label", "phenomena"],
+    correct_fields=["text", "label"],
 ):
     """
     generate synthetic data in batches without rolling context
@@ -239,9 +241,7 @@ def main_generate_dataset(config):
     config["max_new_tokens"] = config.get("max_new_tokens", 8192)
     config["system_prompt"] = config.get("system_prompt", None)
     config["correct_labels"] = config.get("correct_labels")
-    config["correct_fields"] = config.get(
-        "correct_fields", ["text", "label", "phenomena"]
-    )
+    config["correct_fields"] = config.get("correct_fields", ["text", "label"])
 
     start_time = time.time()
 
@@ -339,6 +339,6 @@ if __name__ == "__main__":
         "json_output_file": "synthetic_data/datasets/example.json",
         "log_file": "src/semevalirony/example_log.json",
         "correct_labels": ["positive", "negative"],
-        "correct_fields": ["text", "label", "phenomena"],
+        "correct_fields": ["text", "label"],
     }
     main_generate_dataset(config)
