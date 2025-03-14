@@ -7,6 +7,7 @@ import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
 import pandas as pd
 import re
+from tqdm import tqdm
 from src._utils._helpers import response2json, get_response, set_seed, clear_cuda_cache
 
 
@@ -22,7 +23,7 @@ def log_generation(details, log_file):
     logs.append(details)
     with open(log_file, "w", encoding="utf-8") as f:
         json.dump(logs, f, indent=4, ensure_ascii=False)
-    print(f"Logged generation to {log_file}")
+    print(f"📝 Log saved successfully to: {log_file}")
 
 
 def save_dataset_json(metadata, output_file):
@@ -30,7 +31,7 @@ def save_dataset_json(metadata, output_file):
     os.makedirs(os.path.dirname(output_file), exist_ok=True)
     with open(output_file, "w", encoding="utf-8") as f:
         json.dump(metadata, f, indent=4, ensure_ascii=False)
-    print(f"Dataset with metadata saved to {output_file}")
+    print(f"💾 Dataset with metadata saved to: {output_file}")
 
 
 # def generate_synthetic_data_rolling(
@@ -143,42 +144,71 @@ def generate_synthetic_data(
     all_examples = []
 
     # Loop to generate data in batches
-    count = 0
-    while len(all_examples) < num_examples:
-        count += 1
-        print(f"Generation number {count}")
-        generated_text, _ = get_response(
-            prompt,
-            model,
-            tokenizer,
-            max_new_tokens,
-            system_prompt,
-            print_output=False,  # don't print
-            seed=None,  # don't set seed at each iteration
-        )
-
-        match = re.search(r"```json\n(.*?)\n```", generated_text, re.DOTALL)
-
-        if match:
-            generated_text = match.group(1)  # Extract the JSON content
-
-        try:
-            batch_examples = json.loads(generated_text)  # Parse JSON string
-            all_examples.extend(batch_examples)  # append to all_examples
-            print(
-                f"At generation {count} we have {len(all_examples)} examples out of {num_examples}"
+    with tqdm(total=num_examples, desc="Generating Examples", unit="ex") as pbar:
+        run_number = 1
+        while len(all_examples) < num_examples:
+            run_number += 1
+            generated_text, _ = get_response(
+                prompt,
+                model,
+                tokenizer,
+                max_new_tokens,
+                system_prompt,
+                print_output=False,  # don't print
+                seed=None,  # don't set seed at each iteration
             )
-        except Exception as e:
-            print(f"Failed to parse generation {count}: {e}")
 
-        clear_cuda_cache()
+            match = re.search(r"```json\n(.*?)\n```", generated_text, re.DOTALL)
+
+            if match:
+                generated_text = match.group(1)  # Extract the JSON content
+
+            try:
+                batch_examples = json.loads(generated_text)  # Parse JSON string
+                all_examples.extend(batch_examples)  # append to all_examples
+            except Exception as e:
+                tqdm.write(f"❌ Failed to parse generation {run_number}: {e}")
+
+            clear_cuda_cache()
+
+            # Ensure we don't exceed the required number of examples
+            current_count = min(len(all_examples), num_examples)
+            pbar.n = current_count
+            pbar.set_postfix(
+                run=f"{run_number}", examples=f"{current_count}/{num_examples}"
+            )
+            pbar.update(0)  # Refresh the bar without incrementing
 
     all_examples = all_examples[:num_examples]  # truncate to num_examples
 
-    return all_examples, count
+    return all_examples, run_number - 1
 
 
 def main_generate_dataset(config):
+    """ "
+    Generate synthetic data using the specified configuration.
+
+    config: dict containing the following keys:
+        - model (transformers.PreTrainedModel): The model to use for generation.
+        - tokenizer (transformers.PreTrainedTokenizer): The tokenizer for the model.
+        - generation_method (str): The method to use for generation.
+        - prompt (str): The prompt to use for generation.
+        - system_prompt (str): The system prompt to prepend to the user prompt.
+        - num_examples (int): The number of examples to generate.
+        - max_new_tokens (int): The maximum number of tokens to generate.
+        - seed (int): The random seed to use for generation.
+        - json_output_file (str): The path to save the generated dataset as JSON.
+        - log_file (str): The path to save the generation log as JSON.
+    """
+    print("\n🚀 Starting Synthetic Dataset Generation")
+    print(f"📊 Dataset              : {config.get('dataset', 'Not Specified')}")
+    print(f"📚 Generation method    : {config['generation_method']}")
+    print(f"🤖 Model                : {config['model'].name_or_path}")
+    # print(f"📝 Prompt               : {config['prompt'][:100]}{'...' if len(config['prompt']) > 100 else ''}")
+    print(f"🔢 Examples to Generate : {config['num_examples']}")
+    print(f"💾 Output File          : {config['json_output_file']}")
+    print(f"🕹️  Max New Tokens       : {config['max_new_tokens']}")
+    print(f"🎯 Seed                 : {config.get('seed', 'Not Set')}\n")
 
     # Set seed for reproducibility
     seed = config.get("seed", 42)
@@ -211,18 +241,19 @@ def main_generate_dataset(config):
     # Log the generation details
     log_details = {
         "timestamp": datetime.now().isoformat(),
+        "dataset": config.get("dataset", "Not Specified"),
+        "generation_method": config["generation_method"],
+        "num_examples_generated": len(data),
         "model": config["model"].name_or_path,
         "model.generation_config": config["model"].generation_config.to_diff_dict(),
         "model_BitsAndBytesConfig": (
             config["model"].config.quantization_config.to_diff_dict()
-            if hasattr(model.config, "quantization_config")
+            if hasattr(config["model"].config, "quantization_config")
             else None
         ),
-        "generation_method": config["generation_method"],
         "prompt": config["prompt"],
         "system_prompt": config["system_prompt"],
         "time_taken_seconds": total_time,
-        "num_examples_generated": len(data),
         "json_output_file": config["json_output_file"],
         "num_runs": num_runs,  # number of reruns of the prompt taken to generate num_examples examples
         "seed": seed,
@@ -235,7 +266,6 @@ def main_generate_dataset(config):
         "generated_examples": data,
     }
     save_dataset_json(dataset_metadata, config["json_output_file"])
-    clear_cuda_cache(config["model"])
 
 
 #############################################
@@ -267,6 +297,7 @@ if __name__ == "__main__":
 
     # EXAMPLE CONFIG DICT
     config = {
+        "dataset": "dataset_name",
         "model": model,  # THE ACTUAL MODEL OBJECT
         "tokenizer": tokenizer,  # THE ACTUAL TOKENIZER OBJECT
         "generation_method": "targeted",

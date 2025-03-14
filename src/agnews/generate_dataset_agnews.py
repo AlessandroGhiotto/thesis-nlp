@@ -49,6 +49,7 @@ Return only a valid JSON list of 10 items in the following structure:
 """
 
 config = {
+    "dataset": "agnews",
     "model": model,
     "tokenizer": tokenizer,
     "generation_method": "baseline",
@@ -63,7 +64,7 @@ config = {
 main_generate_dataset(config)
 
 #############################################
-# GENERATE TARGETED AGNEWS DATASET
+# GENERATE TARGETED +TAGS AGNEWS DATASET
 #############################################
 
 prompt = f"""\
@@ -118,6 +119,7 @@ Return only a valid JSON list of 10 elements in the following structure:
 """
 
 config = {
+    "dataset": "agnews",
     "model": model,
     "tokenizer": tokenizer,
     "generation_method": "targeted + linguistic tags",
