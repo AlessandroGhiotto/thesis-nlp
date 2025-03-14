@@ -2,13 +2,10 @@ import json
 import os
 import time
 from datetime import datetime
-
-import torch
-from transformers import AutoTokenizer, AutoModelForCausalLM
-import pandas as pd
 import re
 from tqdm import tqdm
-from src._utils._helpers import response2json, get_response, set_seed, clear_cuda_cache
+from transformers import AutoTokenizer, AutoModelForCausalLM
+from src._utils._helpers import get_response, set_seed, clear_cuda_cache
 
 
 def log_generation(details, log_file):
@@ -118,6 +115,25 @@ def save_dataset_json(metadata, output_file):
 #     return all_examples
 
 
+def get_valid_examples(examples, correct_labels=None, correct_fields=None):
+    """
+    Remove the examples that have a non-valid label or fields.
+    """
+
+    correct_labels = set(correct_labels) if correct_labels else None
+    correct_fields = set(correct_fields) if correct_fields else None
+
+    valid_examples = []
+    for ex in examples:
+        if correct_labels and ex.get("label") not in correct_labels:
+            continue
+        if correct_fields and set(ex.keys()) != correct_fields:
+            continue
+        valid_examples.append(ex)
+
+    return valid_examples
+
+
 def generate_synthetic_data(
     prompt,
     num_examples,
@@ -125,6 +141,8 @@ def generate_synthetic_data(
     tokenizer,
     max_new_tokens=8192,
     system_prompt=None,
+    correct_labels=None,
+    correct_fields=["text", "label", "phenomena"],
 ):
     """
     generate synthetic data in batches without rolling context
@@ -141,6 +159,8 @@ def generate_synthetic_data(
         int: number of reruns of the prompt taken to generate num_examples examples
     """
 
+    correct_labels = set(correct_labels) if correct_labels else None
+    correct_fields = set(correct_fields) if correct_fields else None
     all_examples = []
 
     # Loop to generate data in batches
@@ -162,14 +182,14 @@ def generate_synthetic_data(
 
             if match:
                 generated_text = match.group(1)  # Extract the JSON content
-
             try:
                 batch_examples = json.loads(generated_text)  # Parse JSON string
+                batch_examples = get_valid_examples(
+                    batch_examples, correct_labels, correct_fields
+                )
                 all_examples.extend(batch_examples)  # append to all_examples
             except Exception as e:
                 tqdm.write(f"❌ Failed to parse generation {run_number}: {e}")
-
-            clear_cuda_cache()
 
             # Ensure we don't exceed the required number of examples
             current_count = min(len(all_examples), num_examples)
@@ -178,6 +198,8 @@ def generate_synthetic_data(
                 run=f"{run_number}", examples=f"{current_count}/{num_examples}"
             )
             pbar.update(0)  # Refresh the bar without incrementing
+
+            clear_cuda_cache()
 
     all_examples = all_examples[:num_examples]  # truncate to num_examples
 
@@ -216,6 +238,10 @@ def main_generate_dataset(config):
 
     config["max_new_tokens"] = config.get("max_new_tokens", 8192)
     config["system_prompt"] = config.get("system_prompt", None)
+    config["correct_labels"] = config.get("correct_labels")
+    config["correct_fields"] = config.get(
+        "correct_fields", ["text", "label", "phenomena"]
+    )
 
     start_time = time.time()
 
@@ -235,6 +261,8 @@ def main_generate_dataset(config):
         tokenizer=config["tokenizer"],
         max_new_tokens=config["max_new_tokens"],
         system_prompt=config["system_prompt"],
+        correct_labels=config["correct_labels"],
+        correct_fields=config["correct_fields"],
     )
     total_time = round(time.time() - start_time, 2)
 
@@ -257,6 +285,8 @@ def main_generate_dataset(config):
         "json_output_file": config["json_output_file"],
         "num_runs": num_runs,  # number of reruns of the prompt taken to generate num_examples examples
         "seed": seed,
+        "correct_labels": config["correct_labels"],
+        "correct_fields": config["correct_fields"],
     }
     log_generation(log_details, config["log_file"])
 
@@ -308,5 +338,7 @@ if __name__ == "__main__":
         "seed": 42,
         "json_output_file": "synthetic_data/datasets/example.json",
         "log_file": "src/semevalirony/example_log.json",
+        "correct_labels": ["positive", "negative"],
+        "correct_fields": ["text", "label", "phenomena"],
     }
     main_generate_dataset(config)

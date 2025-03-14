@@ -1,11 +1,11 @@
 import os
 import sys
+import pandas as pd
+from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 
 # Get the absolute path to the project root and add it to sys.path
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 sys.path.append(project_root)
-
-from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 from src._utils._generate_dataset import main_generate_dataset
 
 
@@ -24,6 +24,14 @@ model = AutoModelForCausalLM.from_pretrained(
 )
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model.generation_config.pad_token_id = tokenizer.pad_token_id
+
+#############################################
+# get true labels
+#############################################
+df_real = pd.read_csv("real_data/train/agnewstrainAll.csv").rename(
+    columns={"2": "text", "3": "label"}
+)
+correct_labels = df_real["label"].unique().tolist()
 
 #############################################
 # GENERATE BASELINE AGNEWS DATASET
@@ -60,6 +68,8 @@ config = {
     "seed": 42,
     "json_output_file": "synthetic_data/datasets/syn_agnews_baseline_500.json",
     "log_file": "src/agnews/generate_dataset_agnews_log.json",
+    "correct_labels": correct_labels,
+    "correct_fields": ["text", "label"],
 }
 main_generate_dataset(config)
 
@@ -130,5 +140,7 @@ config = {
     "seed": 42,
     "json_output_file": "synthetic_data/datasets/syn_agnews_targeted+tags_500.json",
     "log_file": "src/agnews/generate_dataset_agnews_log.json",
+    "correct_labels": correct_labels,
+    "correct_fields": ["text", "label", "phenomena"],
 }
 main_generate_dataset(config)
