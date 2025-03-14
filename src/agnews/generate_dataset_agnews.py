@@ -5,19 +5,66 @@ import sys
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 sys.path.append(project_root)
 
-from transformers import AutoModelForCausalLM, AutoTokenizer
-from src._utils._generate_dataset import main
+from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
+from src._utils._generate_dataset import main_generate_dataset
+
+
+#############################################
+# LOAD MODEL
+#############################################
 
 model_name = "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"
+quantization_config = BitsAndBytesConfig(load_in_4bit=True)
 model = AutoModelForCausalLM.from_pretrained(
     model_name,
     torch_dtype="auto",
     device_map="cuda",
     attn_implementation="flash_attention_2",
-    # if I want to add other model parameters, I can add them here
+    quantization_config=quantization_config,
 )
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model.generation_config.pad_token_id = tokenizer.pad_token_id
+
+#############################################
+# GENERATE BASELINE AGNEWS DATASET
+#############################################
+
+prompt = f"""\
+You are an expert in journalism and NLP specializing in news classification. \
+Your task is to generate 10 high-quality short documents, that talks about the following four News categories:  
+- **Business**
+- **Sci/Tech**
+- **Sports**
+- **World**
+
+### **Output Format (JSON)**  
+Return only a valid JSON list of 10 items in the following structure:
+
+```json
+[
+    {{"text": <text>, "label": <label>}},
+    ...
+]
+```
+"""
+
+config = {
+    "model": model,
+    "tokenizer": tokenizer,
+    "generation_method": "baseline",
+    "prompt": prompt,
+    "system_prompt": None,
+    "num_examples": 500,
+    "max_new_tokens": 4096,
+    "seed": 42,
+    "json_output_file": "synthetic_data/datasets/syn_agnews_baseline_500.json",
+    "log_file": "src/agnews/generate_dataset_agnews_log.json",
+}
+main_generate_dataset(config)
+
+#############################################
+# GENERATE TARGETED AGNEWS DATASET
+#############################################
 
 prompt = f"""\
 You are an expert in journalism and NLP specializing in news classification. \
@@ -70,17 +117,16 @@ Return only a valid JSON list of 10 elements in the following structure:
 ```
 """
 
-# Example configuration dictionary
 config = {
-    "model": model,  # THE ACTUAL MODEL OBJECT
-    "tokenizer": tokenizer,  # THE ACTUAL TOKENIZER OBJECT
-    "generation_method": "targeted",
+    "model": model,
+    "tokenizer": tokenizer,
+    "generation_method": "targeted + linguistic tags",
     "prompt": prompt,
     "system_prompt": None,
     "num_examples": 500,
-    "max_new_tokens": 4096,  # per generation call (not total)
+    "max_new_tokens": 4096,
     "seed": 42,
-    "json_output_file": "synthetic_data/datasets/syn_agnews_targeted_500.json",
-    "log_file": "src/agnews/dataset_generation_log.json",
+    "json_output_file": "synthetic_data/datasets/syn_agnews_targeted+tags_500.json",
+    "log_file": "src/agnews/generate_dataset_agnews_log.json",
 }
-main(config)
+main_generate_dataset(config)

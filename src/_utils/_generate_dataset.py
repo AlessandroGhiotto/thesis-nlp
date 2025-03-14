@@ -178,7 +178,7 @@ def generate_synthetic_data(
     return all_examples, count
 
 
-def main(config):
+def main_generate_dataset(config):
 
     # Set seed for reproducibility
     seed = config.get("seed", 42)
@@ -213,6 +213,11 @@ def main(config):
         "timestamp": datetime.now().isoformat(),
         "model": config["model"].name_or_path,
         "model.generation_config": config["model"].generation_config.to_diff_dict(),
+        "model_BitsAndBytesConfig": (
+            config["model"].config.quantization_config.to_diff_dict()
+            if hasattr(model.config, "quantization_config")
+            else None
+        ),
         "generation_method": config["generation_method"],
         "prompt": config["prompt"],
         "system_prompt": config["system_prompt"],
@@ -230,31 +235,37 @@ def main(config):
         "generated_examples": data,
     }
     save_dataset_json(dataset_metadata, config["json_output_file"])
+    clear_cuda_cache(config["model"])
 
 
+#############################################
+# EXAMPLE USAGE
+#############################################
 if __name__ == "__main__":
-    # EXAMPLE USAGE
     import os
     import sys
+    from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 
-    # Get the absolute path to the project root and add it to sys.path
     project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
     sys.path.append(project_root)
+    # from src._utils._generate_dataset import main
 
     model_name = "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"
+    quantization_config = BitsAndBytesConfig(load_in_4bit=True)
     model = AutoModelForCausalLM.from_pretrained(
         model_name,
         torch_dtype="auto",
         device_map="cuda",
         attn_implementation="flash_attention_2",
+        quantization_config=quantization_config,  # load in 4-bit quantization
         # if I want to add other model parameters, I can add them here
     )
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     model.generation_config.pad_token_id = tokenizer.pad_token_id
 
-    prompt = "Generate realistic sentences illustrating irony detection examples involving Irony, Subversion, Contradiction, Deception, Ambiguity, Paradox, Ironical tone."
+    prompt = "example prompt"
 
-    # Example configuration dictionary
+    # EXAMPLE CONFIG DICT
     config = {
         "model": model,  # THE ACTUAL MODEL OBJECT
         "tokenizer": tokenizer,  # THE ACTUAL TOKENIZER OBJECT
@@ -264,7 +275,7 @@ if __name__ == "__main__":
         "num_examples": 500,
         "max_new_tokens": 8192,  # per generation call (not total)
         "seed": 42,
-        "json_output_file": "synthetic_data/datasets/syn_semevalirony_targeted_500.json",
-        "log_file": "src/semevalirony/dataset_generation_log.json",
+        "json_output_file": "synthetic_data/datasets/example.json",
+        "log_file": "src/semevalirony/example_log.json",
     }
-    main(config)
+    main_generate_dataset(config)
