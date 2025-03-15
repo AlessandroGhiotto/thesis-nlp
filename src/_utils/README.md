@@ -52,6 +52,8 @@ config = {
     "seed": 42,
     "json_output_file": "synthetic_data/datasets/example.json",
     "log_file": "src/semevalirony/example_log.json",
+    "correct_labels": ["positive", "negative"],
+    "correct_fields": ["text", "label"]
 }
 main_generate_dataset(config)
 ```

@@ -25,9 +25,7 @@ model = AutoModelForCausalLM.from_pretrained(
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model.generation_config.pad_token_id = tokenizer.pad_token_id
 
-#############################################
 # get true labels
-#############################################
 df_real = pd.read_csv("real_data/train/agnewstrainAll.csv").rename(
     columns={"2": "text", "3": "label"}
 )

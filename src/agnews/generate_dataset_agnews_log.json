@@ -1,0 +1,77 @@
+[
+    {
+        "timestamp": "2025-03-15T00:04:32.339356",
+        "dataset": "agnews",
+        "generation_method": "baseline",
+        "num_examples_generated": 500,
+        "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+        "model.generation_config": {
+            "do_sample": true,
+            "temperature": 0.6,
+            "top_p": 0.95,
+            "pad_token_id": 151643,
+            "bos_token_id": 151646,
+            "eos_token_id": 151643,
+            "_from_model_config": true,
+            "transformers_version": "4.49.0"
+        },
+        "model_BitsAndBytesConfig": {
+            "_load_in_4bit": true,
+            "load_in_4bit": true
+        },
+        "prompt": "You are an expert in journalism and NLP specializing in news classification. Your task is to generate 10 high-quality short documents, that talks about the following four News categories:  \n- **Business**\n- **Sci/Tech**\n- **Sports**\n- **World**\n\n### **Output Format (JSON)**  \nReturn only a valid JSON list of 10 items in the following structure:\n\n```json\n[\n    {\"text\": <text>, \"label\": <label>},\n    ...\n]\n```\n",
+        "system_prompt": null,
+        "time_taken_seconds": 835.15,
+        "json_output_file": "synthetic_data/datasets/syn_agnews_baseline_500.json",
+        "num_runs": 57,
+        "seed": 42,
+        "correct_labels": [
+            "Business",
+            "Sci/Tech",
+            "Sports",
+            "World"
+        ],
+        "correct_fields": [
+            "text",
+            "label"
+        ]
+    },
+    {
+        "timestamp": "2025-03-15T00:33:33.532885",
+        "dataset": "agnews",
+        "generation_method": "targeted + linguistic tags",
+        "num_examples_generated": 500,
+        "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+        "model.generation_config": {
+            "do_sample": true,
+            "temperature": 0.6,
+            "top_p": 0.95,
+            "pad_token_id": 151643,
+            "bos_token_id": 151646,
+            "eos_token_id": 151643,
+            "_from_model_config": true,
+            "transformers_version": "4.49.0"
+        },
+        "model_BitsAndBytesConfig": {
+            "_load_in_4bit": true,
+            "load_in_4bit": true
+        },
+        "prompt": "You are an expert in journalism and NLP specializing in news classification. Your task is to generate 10 high-quality short documents, that talks about the following four News categories (labels):  \n- **Business**\n- **Sci/Tech**\n- **Sports**\n- **World**\n\nFor each example, also list the key phenomena it covers.\n\n### **Follow these topics:**\n- **Business**  \n  - Markets  \n  - Economy  \n  - Companies  \n  - Startups  \n  - Regulations  \n\n- **Sci/Tech**  \n  - AI  \n  - Space  \n  - Cybersecurity  \n  - Biotech  \n  - Climate  \n\n- **Sports**  \n  - Events  \n  - Records  \n  - Highlights  \n  - Scandals  \n  - Olympics  \n\n- **World**  \n  - Politics  \n  - Conflicts  \n  - Disasters  \n  - Human Rights  \n  - Trade\n\n### **Output Format (JSON)**\nThe labels must be one of the specified categories, which are: Business, Sci/Tech, Sports, World.\nReturn only a valid JSON list of 10 elements in the following structure:\n\n```json\n[\n    {\"text\": <text of the document>, \"label\": <corresponding label>, \"phenomena\": [\"<phenomenon1>\", \"<phenomenon2>\", ...]},\n    ...\n]\n```\n",
+        "system_prompt": null,
+        "time_taken_seconds": 1741.19,
+        "json_output_file": "synthetic_data/datasets/syn_agnews_targeted+tags_500.json",
+        "num_runs": 70,
+        "seed": 42,
+        "correct_labels": [
+            "Business",
+            "Sci/Tech",
+            "Sports",
+            "World"
+        ],
+        "correct_fields": [
+            "text",
+            "label",
+            "phenomena"
+        ]
+    }
+]

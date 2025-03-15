@@ -1,6 +1,6 @@
 {
     "metadata": {
-        "timestamp": "2025-03-14T11:11:33.141277",
+        "timestamp": "2025-03-15T00:33:33.532885",
         "dataset": "agnews",
         "generation_method": "targeted + linguistic tags",
         "num_examples_generated": 500,
@@ -21,10 +21,21 @@
         },
         "prompt": "You are an expert in journalism and NLP specializing in news classification. Your task is to generate 10 high-quality short documents, that talks about the following four News categories (labels):  \n- **Business**\n- **Sci/Tech**\n- **Sports**\n- **World**\n\nFor each example, also list the key phenomena it covers.\n\n### **Follow these topics:**\n- **Business**  \n  - Markets  \n  - Economy  \n  - Companies  \n  - Startups  \n  - Regulations  \n\n- **Sci/Tech**  \n  - AI  \n  - Space  \n  - Cybersecurity  \n  - Biotech  \n  - Climate  \n\n- **Sports**  \n  - Events  \n  - Records  \n  - Highlights  \n  - Scandals  \n  - Olympics  \n\n- **World**  \n  - Politics  \n  - Conflicts  \n  - Disasters  \n  - Human Rights  \n  - Trade\n\n### **Output Format (JSON)**\nThe labels must be one of the specified categories, which are: Business, Sci/Tech, Sports, World.\nReturn only a valid JSON list of 10 elements in the following structure:\n\n```json\n[\n    {\"text\": <text of the document>, \"label\": <corresponding label>, \"phenomena\": [\"<phenomenon1>\", \"<phenomenon2>\", ...]},\n    ...\n]\n```\n",
         "system_prompt": null,
-        "time_taken_seconds": 1563.34,
+        "time_taken_seconds": 1741.19,
         "json_output_file": "synthetic_data/datasets/syn_agnews_targeted+tags_500.json",
-        "num_runs": 62,
-        "seed": 42
+        "num_runs": 70,
+        "seed": 42,
+        "correct_labels": [
+            "Business",
+            "Sci/Tech",
+            "Sports",
+            "World"
+        ],
+        "correct_fields": [
+            "text",
+            "label",
+            "phenomena"
+        ]
     },
     "generated_examples": [
         {
@@ -247,75 +258,12 @@
             ]
         },
         {
-            "text": "Company A has announced a significant investment in its R&D department. This move is expected to accelerate product development and innovation.",
-            "label": "Companies",
-            "phenomena": [
-                "Investment in R&D",
-                "Product Development Acceleration",
-                "Innovation and Product Innovation"
-            ]
-        },
-        {
-            "text": "Startups are emerging in the tech scene with a focus on AI and cybersecurity. This period is shaping the future of the industry.",
-            "label": "Startups",
-            "phenomena": [
-                "AI and Cybersecurity Breakthroughs",
-                "Startups Focusing on AI and Cybersecurity",
-                "Shaping the Future of Technology"
-            ]
-        },
-        {
-            "text": "Regulatory changes are affecting the markets of major companies. This period is requiring careful consideration of legal and financial implications.",
-            "label": "Regulations",
-            "phenomena": [
-                "Regulatory Changes Impacting Markets",
-                "Legal and Financial Implications",
-                "Regulatory Compliance Considerations"
-            ]
-        },
-        {
-            "text": "A startup has announced a new product line targeting high-availability infrastructure. This product line is set to become a defining feature of the market.",
-            "label": "Startups",
-            "phenomena": [
-                "New High-Availability Infrastructure",
-                "Defining Features of the Market",
-                "Impact on Market Share"
-            ]
-        },
-        {
             "text": "A sports event is being planned in a major city. The event includes highlights from both the winners and the losers.",
             "label": "Sports",
             "phenomena": [
                 "Event Highlights",
                 "Olympic Games Coverage",
                 "Sporting Outcomes"
-            ]
-        },
-        {
-            "text": "A biotech breakthrough has been announced in the field of climate research. This development is expected to have far-reaching implications.",
-            "label": "Biotech",
-            "phenomena": [
-                "New Biotech Discovery",
-                "Climate Research Impact",
-                "Global Climate Implications"
-            ]
-        },
-        {
-            "text": "A space exploration report has been released detailing the findings of the past year's missions.",
-            "label": "Space",
-            "phenomena": [
-                "Space Exploration Findings",
-                "Past Year's Space Missions",
-                "Space Exploration Impact"
-            ]
-        },
-        {
-            "text": "A startup has announced a new product line targeting high-availability infrastructure. This product line is set to become a defining feature of the market.",
-            "label": "Startups",
-            "phenomena": [
-                "New High-Availability Infrastructure",
-                "Defining Features of the Market",
-                "Impact on Market Share"
             ]
         },
         {
@@ -627,14 +575,6 @@
             ]
         },
         {
-            "text": "Startups are a cornerstone of the business sector, with companies like Google and IBM leading the way in innovation.",
-            "label": "Companies",
-            "phenomena": [
-                "Startups",
-                "Innovation Trends"
-            ]
-        },
-        {
             "text": "AI and space exploration are leading the tech scene, with companies like IBM and SpaceX contributing to future advancements.",
             "label": "Sci/Tech",
             "phenomena": [
@@ -799,60 +739,10 @@
             ]
         },
         {
-            "text": "Examine the rise of startups in the tech industry, focusing on companies like Waymo and Tesla. This article explores the challenges startups face in scaling and the potential impact of these companies on the industry.",
-            "label": "Startups",
-            "phenomena": [
-                "Startups",
-                "Regulations"
-            ]
-        },
-        {
-            "text": "Investigate the regulatory landscape in AI technology, focusing on the U.S. and other countries. This article explores the impact of regulations on the development and deployment of AI systems.",
-            "label": "Regulations",
-            "phenomena": [
-                "Regulations"
-            ]
-        },
-        {
             "text": "Analyze the economy of space exploration, focusing on the development of rockets and satellites. This article explores the economic implications of space exploration and its impact on the global economy.",
             "label": "Sci/Tech",
             "phenomena": [
                 "Space"
-            ]
-        },
-        {
-            "text": "Examine the cybersecurity landscape, focusing on the rise of cyber threats and the measures companies are taking to protect their data. This article explores the challenges and opportunities of cybersecurity in the modern world.",
-            "label": "Cybersecurity",
-            "phenomena": [
-                "Cybersecurity"
-            ]
-        },
-        {
-            "text": "Analyze the rise of biotech companies, focusing on advancements in medical treatments and personalized medicine. This article explores the impact of biotech on healthcare and the future of medical research.",
-            "label": "Biotech",
-            "phenomena": [
-                "Biotech"
-            ]
-        },
-        {
-            "text": "Investigate the impact of climate change on ecosystems and agriculture. This article explores the effects of climate change on natural systems and the challenges of mitigating its effects.",
-            "label": "Climate",
-            "phenomena": [
-                "Climate"
-            ]
-        },
-        {
-            "text": "Examine the Olympics, focusing on the achievements of athletes and the impact of the event on global sports and culture. This article explores the history and significance of the Olympics and its role in promoting sports.",
-            "label": "Olympics",
-            "phenomena": [
-                "Olympics"
-            ]
-        },
-        {
-            "text": "Analyze the rise of scandals in sports, focusing on the case of the 2016 Los Angeles Lakers. This article explores the impact of the 2016 Lakers scandal on the game of sports and the lessons learned.",
-            "label": "Scandals",
-            "phenomena": [
-                "Scandals"
             ]
         },
         {
@@ -867,13 +757,6 @@
             "label": "World",
             "phenomena": [
                 "Conflicts"
-            ]
-        },
-        {
-            "text": "Analyze the trade of the world, focusing on the impact of trade policies and the role of trade in global economic stability. This article explores the world's trade landscape and the impact of trade policies on global economic stability.",
-            "label": "Trade",
-            "phenomena": [
-                "Trade"
             ]
         },
         {
@@ -913,13 +796,6 @@
             "phenomena": [
                 "Cybersecurity",
                 "Regulatory"
-            ]
-        },
-        {
-            "text": "A biotech company has developed a new gene-editing technology, which could transform medical research. This breakthrough has sparked debates about the ethical implications of gene therapy.",
-            "label": " Sci/Tech",
-            "phenomena": [
-                "Biotech"
             ]
         },
         {
@@ -1097,149 +973,6 @@
                 " Cybersecurity ",
                 " Biotech ",
                 " Climate "
-            ]
-        },
-        {
-            "text": "Cybersecurity breaches are becoming more frequent, particularly in corporate environments. Governments are implementing stricter regulations to mitigate the impact of such threats.",
-            "label": " Sci/Tech",
-            "phenomena": [
-                " AI ",
-                " Space ",
-                " Cybersecurity ",
-                " Biotech ",
-                " Climate "
-            ]
-        },
-        {
-            "text": "Biotechnology companies are playing a pivotal role in medical research, contributing to advancements in treatments and diagnostics across various fields.",
-            "label": " Sci/Tech",
-            "phenomena": [
-                " Biotech ",
-                " Space ",
-                " Cybersecurity ",
-                " Climate ",
-                " AI "
-            ]
-        },
-        {
-            "text": "A rival sports rival is facing increasing pressure to prove their worth, leading to rivalries and rival sports highlights in the sports world.",
-            "label": " Sports",
-            "phenomena": [
-                " Events ",
-                " Records ",
-                " Highlights ",
-                " Scandals ",
-                " Olympics "
-            ]
-        },
-        {
-            "text": "Space exploration has led to numerous technological breakthroughs, with advancements in AI enabling new space missions and capabilities.",
-            "label": " Sci/Tech",
-            "phenomena": [
-                " AI ",
-                " Space ",
-                " Cybersecurity ",
-                " Biotech ",
-                " Climate "
-            ]
-        },
-        {
-            "text": "The cryptocurrency market has surged, with new investors capitalizing on the digital currency's potential for financial gains.",
-            "label": " Sci/Tech",
-            "phenomena": [
-                " AI ",
-                " Space ",
-                " Cybersecurity ",
-                " Biotech ",
-                " Climate "
-            ]
-        },
-        {
-            "text": "In recent years, biotech has emerged as a key area of innovation, with companies developing new medical treatments and diagnostic tools.",
-            "label": " Sci/Tech",
-            "phenomena": [
-                " Biotech ",
-                " Space ",
-                " Cybersecurity ",
-                " Climate ",
-                " AI "
-            ]
-        },
-        {
-            "text": "The Olympics have become a symbol of sports competition and global engagement, with events showcasing the best of human performance.",
-            "label": " Sports",
-            "phenomena": [
-                " Events ",
-                " Records ",
-                " Highlights ",
-                " Scandals ",
-                " Olympics "
-            ]
-        },
-        {
-            "text": "AI-powered solutions are being used in sports analytics to optimize training and competition strategies, enhancing performance.",
-            "label": " Sci/Tech",
-            "phenomena": [
-                " AI ",
-                " Space ",
-                " Cybersecurity ",
-                " Biotech ",
-                " Climate "
-            ]
-        },
-        {
-            "text": "Global economic conflicts persist, with rising tensions in regions like Ukraine and the Middle East, impacting international trade.",
-            "label": " World",
-            "phenomena": [
-                " Politics ",
-                " Conflicts ",
-                " Disasters ",
-                " Human Rights ",
-                " Trade "
-            ]
-        },
-        {
-            "text": "Disaster recovery efforts have been inefficient, with many companies facing the consequences of their decisions and policy changes.",
-            "label": " World",
-            "phenomena": [
-                " Politics ",
-                " Conflicts ",
-                " Disasters ",
-                " Human Rights ",
-                " Trade "
-            ]
-        },
-        {
-            "text": "Human rights issues persist globally, with countries grappling to address the consequences of political conflicts and economic sanctions.",
-            "label": " World",
-            "phenomena": [
-                " Politics ",
-                " Conflicts ",
-                " Disasters ",
-                " Human Rights ",
-                " Trade "
-            ]
-        },
-        {
-            "text": "Trade policy reforms are gaining momentum, with governments working to address trade barriers and promote inclusive growth.",
-            "label": " World",
-            "phenomena": [
-                " Politics ",
-                " Conflicts ",
-                " Disasters ",
-                " Human Rights ",
-                " Trade "
-            ]
-        },
-        {
-            "text": "The World is facing trade challenges, including trade deficits and trade policy reforms, which are shaping global economic dynamics.",
-            "label": " World",
-            "phenomena": [
-                " Politics ",
-                " Conflicts ",
-                " Disasters ",
-                " Human Rights ",
-                " Trade "
             ]
         },
         {
@@ -1866,57 +1599,12 @@
             ]
         },
         {
-            "text": "The U.S. government introduced new regulations to combat climate change. This document examines the regulatory framework, its impact on environmental policies, and the potential consequences of climate change.",
-            "label": "Regulations",
-            "phenomena": [
-                "Climate Change",
-                "Regulatory Impact",
-                "Economic Consequences"
-            ]
-        },
-        {
             "text": "AI has transformed healthcare through personalized treatments. This document discusses the advancements in AI, their benefits for patients, and the challenges posed by their integration into healthcare systems.",
             "label": "Sci/Tech",
             "phenomena": [
                 "AI Advancements",
                 "Healthcare Impact",
                 "Technological Challenges"
-            ]
-        },
-        {
-            "text": "Space exploration has led to new technologies, such as solar panel efficiency improvements. This document explores the scientific breakthroughs, their technological implications, and the potential for future advancements in space exploration.",
-            "label": "Space",
-            "phenomena": [
-                "Solar Energy",
-                "Technological Innovations",
-                "Astronomical Insights"
-            ]
-        },
-        {
-            "text": "Cybersecurity measures have been bolstered by technological advancements. This document discusses the security protocols, their effectiveness, and the risks of cybersecurity breaches in the digital age.",
-            "label": "Cybersecurity",
-            "phenomena": [
-                "Technological Security",
-                "Crisis Management",
-                "Digital Threats"
-            ]
-        },
-        {
-            "text": "Biotech companies are making strides in agriculture with new crop varieties. This document examines the agricultural impact, the benefits of these varieties, and the implications for food security.",
-            "label": "Biotech",
-            "phenomena": [
-                "Agricultural Innovation",
-                "Food Security",
-                "Economic Impact"
-            ]
-        },
-        {
-            "text": "Climate change is causing natural disasters, such as hurricanes and wildfires. This document explores the causes of these events, their potential impacts, and the measures being taken to mitigate climate change.",
-            "label": "Climate",
-            "phenomena": [
-                "Natural Disasters",
-                "Impact Assessment",
-                "Sustainable Practices"
             ]
         },
         {
@@ -1935,24 +1623,6 @@
                 "Tournament Dynamics",
                 "Conflict Resolution",
                 "Strategic Insights"
-            ]
-        },
-        {
-            "text": "Human rights issues are being addressed through international agreements. This document discusses the progress made, the challenges faced, and the importance of international cooperation in upholding human rights.",
-            "label": "Human Rights",
-            "phenomena": [
-                "Human Rights Progress",
-                "International Agreements",
-                "Societal Impact"
-            ]
-        },
-        {
-            "text": "Trade agreements are being finalized to boost economic growth. This document explores the impact of these agreements, the benefits they bring to countries, and the challenges faced in negotiations.",
-            "label": "Trade",
-            "phenomena": [
-                "Agreement Impact",
-                "Economic Growth",
-                "Societal Changes"
             ]
         },
         {
@@ -2156,14 +1826,6 @@
             ]
         },
         {
-            "text": "Climate change studies have revealed critical insights into the impacts of rising temperatures and rising sea levels.",
-            "label": " Sci/Tech",
-            "phenomena": [
-                "Climate Change Studies",
-                "Temperature Impact"
-            ]
-        },
-        {
             "text": "A popular sports series has become a cultural phenomenon, with viewers eagerly watching its episodes.",
             "label": "Sports",
             "phenomena": [
@@ -2341,114 +2003,6 @@
                 "Trade",
                 "Conflicts",
                 "Olympics"
-            ]
-        },
-        {
-            "text": "In recent markets, unemployment rates have shown a steady decline, impacting consumer spending. Governments are exploring regulations to prevent market bubbles. The impact of these regulations on economic stability is a key phenomenon.",
-            "label": "Business - Markets",
-            "phenomena": [
-                "Unemployment Rates Decline",
-                "Consumer Spending Impact",
-                "Regulatory Measures on Market Bubbles"
-            ]
-        },
-        {
-            "text": "Economic indicators show steady growth in tech sectors. Companies like Apple and Microsoft are leading the charge. Regulatory policies are shaping future market dynamics, affecting tech industries.",
-            "label": "Business - Economy",
-            "phenomena": [
-                "Growth in Tech Sectors",
-                "Influence on Economic Growth",
-                "Regulatory Impact on Market Dynamics"
-            ]
-        },
-        {
-            "text": "Mergers and acquisitions in the tech industry are increasing. Startups like Stripe and Google are emerging. Regulatory changes are reshaping market competition and innovation.",
-            "label": "Business - Companies",
-            "phenomena": [
-                "Mergers and Acquisitions",
-                "Impact of Startups on the Market",
-                "Regulatory Impact on Market Dynamics"
-            ]
-        },
-        {
-            "text": "Regulatory environments in the tech sector are tightening. Companies like Meta and Tesla are facing challenges. The impact of regulations on tech innovation is a critical phenomenon.",
-            "label": "Business - Startups",
-            "phenomena": [
-                "Regulatory Impact on Startups",
-                "Challenges Faced by Startups",
-                "Tightening of Regulatory Environment"
-            ]
-        },
-        {
-            "text": "Regulatory policies in the tech industry are being updated. Companies like Slack and Facebook are adapting to new regulations. The impact of these changes on the market is a key phenomenon.",
-            "label": "Business - Regulations",
-            "phenomena": [
-                "Regulatory Policy Updates",
-                "Impact of Regulatory Changes on Market Dynamics",
-                "Tightening of Regulatory Environment"
-            ]
-        },
-        {
-            "text": "AI advancements are transforming industries. Innovations like AI-driven diagnostics and predictive maintenance are sweeping the industry. Regulatory considerations are shaping AI development.",
-            "label": "Sci/Tech - AI",
-            "phenomena": [
-                "AI Advancements",
-                "Impact of AI on Industries",
-                "Regulatory Considerations for AI Development"
-            ]
-        },
-        {
-            "text": "Space exploration is advancing rapidly. Missions like the James Webb Space Telescope and the Moon Missions are making headlines. Cybersecurity concerns are also rising with the increasing tech reliance on space operations.",
-            "label": "Sci/Tech - Space",
-            "phenomena": [
-                "Advancements in Space Exploration",
-                "Impact of Cybersecurity on Space Operations",
-                "Cybersecurity Concerns in Space Operations"
-            ]
-        },
-        {
-            "text": "Cybersecurity threats are increasing. Ransomware attacks and data breaches are emerging. The impact of cybersecurity on businesses and individuals is a critical phenomenon.",
-            "label": "Sci/Tech - Cybersecurity",
-            "phenomena": [
-                "Ransomware Attacks",
-                "Data Breaches",
-                "Impact of Cybersecurity on Business and Individuals"
-            ]
-        },
-        {
-            "text": "Biotechnology advancements are pushing boundaries. Research into biotech leads to breakthroughs in medicine and agriculture. Biotech impacts human rights and global health are key phenomena.",
-            "label": "Sci/Tech - Biotech",
-            "phenomena": [
-                "Advancements in Biotech Research",
-                "Impact on Human Rights",
-                "Biotech Impact on Global Health"
-            ]
-        },
-        {
-            "text": "Scandals in sports are common. Cases like the 2016 World Cup Scandal and the 2020 American Curling Industry Scandal highlight the importance of sportsmanship.",
-            "label": "Sports - Scandals",
-            "phenomena": [
-                "2016 World Cup Scandal",
-                "2020 American Curling Industry Scandal",
-                "Impact of Scandals on Sports"
-            ]
-        },
-        {
-            "text": "The Olympics are a global event, but they face challenges like infrastructure and training. Each year's event has its own highlights and challenges.",
-            "label": "Sports - Olympics",
-            "phenomena": [
-                "Olympic Highlights",
-                "Training Challenges",
-                "Impact of the Olympics on Global Sports"
-            ]
-        },
-        {
-            "text": "Global trade statistics show steady growth. trade volumes between countries like the US and China are rising. Trade agreements are a key phenomenon affecting global economies.",
-            "label": "World - Trade",
-            "phenomena": [
-                "Growth in Global Trade",
-                "Impact of Trade Agreements",
-                "Trends in Global Trade Statistics"
             ]
         },
         {
@@ -3620,76 +3174,6 @@
             ]
         },
         {
-            "text": "Space exploration news: Details on the upcoming Mars mission and its implications for space technology.",
-            "label": " Sci/Tech",
-            "phenomena": [
-                "Space exploration and technology updates"
-            ]
-        },
-        {
-            "text": "Cybersecurity advancements are highlighted in a recent report, impacting corporate environments.",
-            "label": " Sci/Tech",
-            "phenomena": [
-                "Cybersecurity updates and threats"
-            ]
-        },
-        {
-            "text": "Biotech breakthroughs are discussed in a recent report, influencing industries like pharmaceuticals.",
-            "label": " Sci/Tech",
-            "phenomena": [
-                "Biotech advancements and medical applications"
-            ]
-        },
-        {
-            "text": "Climate change reports are analyzed, offering insights into rising temperatures and environmental impacts.",
-            "label": " Sci/Tech",
-            "phenomena": [
-                "Climate change and environmental statistics"
-            ]
-        },
-        {
-            "text": "International sports conflicts are reported, highlighting tensions in major tournaments.",
-            "label": " Sports",
-            "phenomena": [
-                "International sports conflicts and sports events"
-            ]
-        },
-        {
-            "text": "The Olympics are reported as a historic event, showcasing the best performances in the sport.",
-            "label": " Sports",
-            "phenomena": [
-                " Olympics and sports highlights"
-            ]
-        },
-        {
-            "text": "Political events are discussed, focusing on the outcomes of recent elections and their impacts.",
-            "label": " World",
-            "phenomena": [
-                "Political events and international conflicts"
-            ]
-        },
-        {
-            "text": "Natural disasters are analyzed, with particular attention to the effects of hurricanes on coastal regions.",
-            "label": " World",
-            "phenomena": [
-                "Natural disasters and their impacts"
-            ]
-        },
-        {
-            "text": "Human rights issues are raised in a report, addressing concerns about the protection of vulnerable groups.",
-            "label": " World",
-            "phenomena": [
-                "Human rights issues and concerns"
-            ]
-        },
-        {
-            "text": "Trade statistics are presented, offering insights into global trade patterns and trade policy trends.",
-            "label": " World",
-            "phenomena": [
-                "Trade statistics and policy changes"
-            ]
-        },
-        {
             "text": "The global markets are doing well, with stock prices increasing by 5% this quarter.",
             "label": "Business",
             "phenomena": [
@@ -3970,94 +3454,6 @@
             ]
         },
         {
-            "text": "A new tech startup is expanding its market, regulatory issues in tech",
-            "label": "Business",
-            "phenomenology": [
-                "Market Expansion",
-                "Regulatory Issues in Tech"
-            ]
-        },
-        {
-            "text": "A breakthrough in AI leads to new market opportunities",
-            "label": "Sci/Tech",
-            "phenomenology": [
-                "AI Breakthroughs",
-                "New Market Opportunities"
-            ]
-        },
-        {
-            "text": "A major World Cup game highlights key performances and challenges",
-            "label": "Sports",
-            "phenomenology": [
-                "Game Highlights",
-                "Challenges in Sports"
-            ]
-        },
-        {
-            "text": "International tensions in politics, climate change impacts on trade",
-            "label": "World",
-            "phenomenology": [
-                "International Relations",
-                "Climate Change Impact on Trade"
-            ]
-        },
-        {
-            "text": "A majorbiotech research discovers new treatments for diseases",
-            "label": "Sci/Tech",
-            "phenomenology": [
-                "Biotech Discoveries",
-                "New Treatments for Diseases"
-            ]
-        },
-        {
-            "text": "A new space mission discovers ancient solar system",
-            "label": "Sci/Tech",
-            "phenomenology": [
-                "Space Exploration",
-                "Ancient Solar System Discovery"
-            ]
-        },
-        {
-            "text": "A major biotech research leads to new cancer treatments",
-            "label": "Sci/Tech",
-            "phenomenology": [
-                "Biotech Innovations",
-                "New Cancer Treatments"
-            ]
-        },
-        {
-            "text": "A majorbiotech research discovers new antibiotics",
-            "label": "Sci/Tech",
-            "phenomenology": [
-                "Biotech Discoveries",
-                "New Antibiotic Innovations"
-            ]
-        },
-        {
-            "text": "A majorbiotech research discovers new drugs for mental health",
-            "label": "Sci/Tech",
-            "phenomenology": [
-                "Biotech Innovations",
-                "New Mental Health Drugs"
-            ]
-        },
-        {
-            "text": "A majorbiotech research discovers new treatments for diabetes",
-            "label": "Sci/Tech",
-            "phenomenology": [
-                "Biotech Innovations",
-                "New Diabetes Treatments"
-            ]
-        },
-        {
-            "text": "A majorbiotech research discovers new treatments for Alzheimer's",
-            "label": "Sci/Tech",
-            "phenomenology": [
-                "Biotech Innovations",
-                "New Alzheimer's Treatments"
-            ]
-        },
-        {
             "text": "The tech industry is experiencing exponential growth, with companies leveraging AI to disrupt traditional industries.",
             "label": "Sci/Tech",
             "phenomena": [
@@ -4191,6 +3587,629 @@
             "phenomena": [
                 "Startups",
                 "Funding Rounds"
+            ]
+        },
+        {
+            "text": "A major tech firm announced plans to launch a new AI-powered product. This move underscores the impact of AI on various industries.",
+            "label": "Business",
+            "phenomena": [
+                "AI",
+                "New Product Launches"
+            ]
+        },
+        {
+            "text": "A financial crisis is expected to hit multiple industries in the upcoming month. This event has significant implications for the global economy.",
+            "label": "Business",
+            "phenomena": [
+                "Economic Cycles",
+                "Fiscal Policy"
+            ]
+        },
+        {
+            "text": "A new scientific study claims to have discovered a new biotech compound with potential health benefits. This research could revolutionize the biotech industry.",
+            "label": "Sci/Tech",
+            "phenomena": [
+                "Biotech",
+                "New Discoveries"
+            ]
+        },
+        {
+            "text": "A space exploration mission is expected to complete in two weeks, bringing new insights to the solar system.",
+            "label": "Sci/Tech",
+            "phenomena": [
+                "Space Exploration",
+                "New Discoveries"
+            ]
+        },
+        {
+            "text": "A climate change initiative is being developed to combat rising temperatures. This action aims to mitigate global warming.",
+            "label": "Sci/Tech",
+            "phenomena": [
+                "Climate Change",
+                "Intervention Planning"
+            ]
+        },
+        {
+            "text": "A sports event is being held to celebrate the 100th anniversary of the Olympics. The event highlights the history of the games.",
+            "label": "Sports",
+            "phenomena": [
+                "Olympic Games",
+                "Historical Events"
+            ]
+        },
+        {
+            "text": "A new record is set in the sport of cycling, with participants breaking a personal best time in the event.",
+            "label": "Sports",
+            "phenomena": [
+                "Sports Records",
+                "New Record Breaking"
+            ]
+        },
+        {
+            "text": "A high-profile sports event is being held to honor the legacy of a famous athlete, showcasing the event's significance.",
+            "label": "Sports",
+            "phenomena": [
+                "Sports Events",
+                "Legacy and Recognition"
+            ]
+        },
+        {
+            "text": "A sports match is being played to determine the champion of the World Cup, highlighting the excitement of the tournament.",
+            "label": "Sports",
+            "phenomena": [
+                "Olympic Matches",
+                "Olympic Events"
+            ]
+        },
+        {
+            "text": "A sports team is preparing for the World Cup, showcasing the spirit of competition and teamwork in the sport.",
+            "label": "Sports",
+            "phenomena": [
+                "Sports Teams",
+                "Competition"
+            ]
+        },
+        {
+            "text": "A sports event is being held to celebrate the World's most famous sports star, bringing attention to their career.",
+            "label": "Sports",
+            "phenomena": [
+                "Sports Events",
+                "Celebration"
+            ]
+        },
+        {
+            "text": "A sports match is being played to determine the champion of the World Cup, highlighting the excitement of the tournament.",
+            "label": "Sports",
+            "phenomena": [
+                "Olympic Matches",
+                "Olympic Events"
+            ]
+        },
+        {
+            "text": "A major tech startup has launched a new product line in response to recent regulations targeting AI development in the U.S. This could have significant implications for the industries relying on AI technology.",
+            "label": "Sci/Tech",
+            "phenomena": [
+                "AI",
+                "Cybersecurity"
+            ]
+        },
+        {
+            "text": "The stock market showed mixed reactions as investors reconsidered the impact of the recent economic downturn. This could lead to new market trends and strategies for businesses looking to capitalize on rising demand.",
+            "label": "Business",
+            "phenomena": [
+                "Economy",
+                "Market Trends"
+            ]
+        },
+        {
+            "text": "A new AI algorithm has been developed to improve predictive analytics accuracy. This advancement could revolutionize industries such as healthcare and finance.",
+            "label": "Sci/Tech",
+            "phenomena": [
+                "AI",
+                "Cybersecurity"
+            ]
+        },
+        {
+            "text": "Space exploration continues with new missions to Mars and Venus. These discoveries could influence future technological advancements and scientific research.",
+            "label": "Sci/Tech",
+            "phenomena": [
+                "Space",
+                "Cybersecurity"
+            ]
+        },
+        {
+            "text": "A biotech research team is testing innovative treatments for a rare disease. This could lead to breakthrough medical solutions or new industry boundaries.",
+            "label": "Sci/Tech",
+            "phenomena": [
+                "Biotech",
+                "Clinical Trials"
+            ]
+        },
+        {
+            "text": "A sports event is shaping its third iteration, featuring new rules and highlights. This could offer fans new experiences and update the sports community.",
+            "label": "Sports",
+            "phenomena": [
+                "Olympics",
+                "Scandals"
+            ]
+        },
+        {
+            "text": "A major sports tournament is being held, with records set for the top teams. Highlighting the tournament could provide readers with detailed coverage of the event.",
+            "label": "Sports",
+            "phenomena": [
+                "Olympics",
+                "Records"
+            ]
+        },
+        {
+            "text": "A recent climate change study has sparked debates about the impact of rising temperatures. This could lead to new policies and initiatives in environmental management.",
+            "label": "World",
+            "phenomena": [
+                "Climate",
+                "Human Rights"
+            ]
+        },
+        {
+            "text": "A sports incident has occurred in the US, including injuries and suspensions for multiple teams. This could provide insights into sports management and recovery.",
+            "label": "Sports",
+            "phenomena": [
+                "Olympics",
+                "Scandals"
+            ]
+        },
+        {
+            "text": "A political conference is being held, discussing global issues such as conflicts and trade policies. This could offer readers insights into international relations.",
+            "label": "World",
+            "phenomena": [
+                "Conflicts",
+                "Trade"
+            ]
+        },
+        {
+            "text": "A natural disaster occurs in a remote area, with reports of a powerful earthquake. This could provide information to residents and policymakers about disaster management.",
+            "label": "World",
+            "phenomena": [
+                "Disasters",
+                "Trade"
+            ]
+        },
+        {
+            "text": "A trade policy adjustment is being considered in multiple countries. This could affect global trade dynamics and economic stability.",
+            "label": "World",
+            "phenomena": [
+                "Trade",
+                "Conflicts"
+            ]
+        },
+        {
+            "text": "Business: Global Markets and Economic Trends",
+            "label": "Business",
+            "phenomena": [
+                "Market trends",
+                "Economic indicators",
+                "Company performance",
+                "Startups",
+                "Regulations"
+            ]
+        },
+        {
+            "text": "Sci/Tech: AI and Cybersecurity",
+            "label": "Sci/Tech",
+            "phenomena": [
+                "AI breakthroughs",
+                "Cybersecurity threats",
+                "Biotech innovations",
+                "Climate impact",
+                "Space exploration"
+            ]
+        },
+        {
+            "text": "Sports: Olympic Records and Sports Conflicts",
+            "label": "Sports",
+            "phenomena": [
+                "Olympic records",
+                "Sports conflicts",
+                "Highlights",
+                "Scandals"
+            ]
+        },
+        {
+            "text": "World: Trade and Political Conflicts",
+            "label": "World",
+            "phenomena": [
+                "Trade statistics",
+                "Political conflicts",
+                "Human rights issues",
+                "Disasters"
+            ]
+        },
+        {
+            "text": "Business: Startups and Regulatory Challenges",
+            "label": "Business",
+            "phenomena": [
+                "Startups success stories",
+                "Regulatory challenges",
+                "Market trends"
+            ]
+        },
+        {
+            "text": "Sci/Tech: AI and Climate Change",
+            "label": "Sci/Tech",
+            "phenomena": [
+                "AI solutions for climate change",
+                "Cybersecurity impacts",
+                "Biotech advancements",
+                "AI breakthroughs",
+                "Space exploration"
+            ]
+        },
+        {
+            "text": "Sports: Highlights and Scandals",
+            "label": "Sports",
+            "phenomena": [
+                "Team performances",
+                "Conflicts",
+                "Sports highlights",
+                "Scandals"
+            ]
+        },
+        {
+            "text": "World: Conflicts and Human Rights",
+            "label": "World",
+            "phenomena": [
+                "Conflict scenarios",
+                "Human rights issues",
+                "Trade",
+                "Disasters"
+            ]
+        },
+        {
+            "text": "Business: Market Trends and Economic Indicators",
+            "label": "Business",
+            "phenomena": [
+                "Market trends",
+                "Economic indicators",
+                "Company performance",
+                "Startups",
+                "Regulations"
+            ]
+        },
+        {
+            "text": "Sci/Tech: Space and Biotech",
+            "label": "Sci/Tech",
+            "phenomena": [
+                "Space exploration",
+                "Biotech advancements",
+                "Cybersecurity impacts",
+                "AI breakthroughs",
+                "Climate impact"
+            ]
+        },
+        {
+            "text": "Sports: Highlights and Scandals",
+            "label": "Sports",
+            "phenomena": [
+                "Team performances",
+                "Conflicts",
+                "Sports highlights",
+                "Scandals"
+            ]
+        },
+        {
+            "text": "World: Conflicts and Human Rights",
+            "label": "World",
+            "phenomena": [
+                "Conflict scenarios",
+                "Human rights issues",
+                "Trade",
+                "Disaster scenarios"
+            ]
+        },
+        {
+            "text": "Business: Market Trends and Economic Indicators",
+            "label": "Business",
+            "phenomena": [
+                "Market trends",
+                "Economic indicators",
+                "Company performance",
+                "Startups",
+                "Regulations"
+            ]
+        },
+        {
+            "text": "Sci/Tech: Space and Biotech",
+            "label": "Sci/Tech",
+            "phenomena": [
+                "Space exploration",
+                "Biotech advancements",
+                "Cybersecurity impacts",
+                "AI breakthroughs",
+                "Climate impact"
+            ]
+        },
+        {
+            "text": "The global economy is experiencing a slowdown, with companies like Apple and Amazon re-evaluating their business models. The Federal Reserve has introduced new regulations targeting financial institutions, impacting markets worldwide.",
+            "label": "Business",
+            "phenomena": [
+                "Economic Trends",
+                "Regulatory Changes"
+            ]
+        },
+        {
+            "text": "SpaceX and Arduino announce new AI platforms for industrial automation, inspiring companies to pivot in this space. A major cybersecurity breach has exposed vulnerabilities in existing tech infrastructure.",
+            "label": "Sci/Tech",
+            "phenomena": [
+                "AI Innovations",
+                "Cybersecurity Breakthroughs"
+            ]
+        },
+        {
+            "text": "Biotech researchers discover a breakthrough in gene therapy, promising to treat rare diseases. A climate change study highlights the role of forests in mitigating global warming effects.",
+            "label": "Sci/Tech",
+            "phenomena": [
+                "Biotechnology Discoveries",
+                "Climate Change Studies"
+            ]
+        },
+        {
+            "text": "The World Cup 2022 concluded with intense matches, including unexpected results like a tiebreaker draw between two World Cup winners. Olympic events are often overshadowed by the chaos of the tournament.",
+            "label": "World",
+            "phenomena": [
+                "Olympic Controversies",
+                "Judicial Conflicts"
+            ]
+        },
+        {
+            "text": "AI algorithms are making headlines for their ability to analyze large datasets and predict stock market trends. Sports highlights from the Olympics showcase athletes' performances and team strategies.",
+            "label": "Sports",
+            "phenomena": [
+                "AI Applications",
+                "Olympic Highlights"
+            ]
+        },
+        {
+            "text": "The Middle East is facing tensions as oil prices fall, fueling political tensions in regions like Israel and Saudi Arabia. Natural disasters like hurricanes are causing widespread damage across the world.",
+            "label": "World",
+            "phenomena": [
+                "Geopolitical Conflicts",
+                "Disaster Events"
+            ]
+        },
+        {
+            "text": "A new biotech drug shows promise for treating a rare disease, sparking discussions about the future of precision medicine. Climate change studies highlight the urgency of addressing global environmental issues.",
+            "label": "Sci/Tech",
+            "phenomena": [
+                "Biotech Developments",
+                "Climate Change Studies"
+            ]
+        },
+        {
+            "text": "The World Cup 2022 concluded with thrilling matches, including unexpected results like a tiebreaker draw between two World Cup winners. Olympic events are often overshadowed by the chaos of the tournament.",
+            "label": "World",
+            "phenomena": [
+                "Olympic Controversies",
+                "Judicial Conflicts"
+            ]
+        },
+        {
+            "text": "A startup raises $50 million, redefining the future of e-commerce. Global cybersecurity regulations are tightening, impacting companies operating in financial sectors.",
+            "label": "Business",
+            "phenomena": [
+                "Startups",
+                "Regulatory Changes"
+            ]
+        },
+        {
+            "text": "The World Cup 2022 concluded with intense matches, including unexpected results like a tiebreaker draw between two World Cup winners. Olympic events are often overshadowed by the chaos of the tournament.",
+            "label": "World",
+            "phenomena": [
+                "Olympic Controversies",
+                "Judicial Conflicts"
+            ]
+        },
+        {
+            "text": "A new AI algorithm improves predictions for stock market trends, offering investors new insights into market behavior. Sports highlights from the Olympics showcase athletes' performances and team strategies.",
+            "label": "Sports",
+            "phenomena": [
+                "AI Innovations",
+                "Olympic Highlights"
+            ]
+        },
+        {
+            "text": "The World Cup 2022 concluded with thrilling matches, including unexpected results like a tiebreaker draw between two World Cup winners. Olympic events are often overshadowed by the chaos of the tournament.",
+            "label": "World",
+            "phenomena": [
+                "Olympic Controversies",
+                "Judicial Conflicts"
+            ]
+        },
+        {
+            "text": "The tech startup, [ companies name ], has raised $50 million in round 2, underscoring its growing success and expansion into new markets.",
+            "label": "Sci/Tech",
+            "phenomena": [
+                "AI advancements",
+                "Space exploration",
+                "Cybersecurity vulnerabilities",
+                "Biotech breakthroughs",
+                "Climate change impacts"
+            ]
+        },
+        {
+            "text": "A major sports event, [ sports event name ], is being live-streamed for fans, with live updates and highlights from the championship game.",
+            "label": "Sports",
+            "phenomena": [
+                "Event coverage",
+                "Olympics highlights",
+                "Scandals in sports",
+                "Sports records",
+                "Sports teams' performances"
+            ]
+        },
+        {
+            "text": "The biotech company, [ biotech company name ], has developed a new treatment for a common disease, with early results showing promising results.",
+            "label": "Sci/Tech",
+            "phenomena": [
+                "Biotech breakthroughs",
+                "AI applications",
+                "Cybersecurity innovations",
+                "Space exploration",
+                "Market trends"
+            ]
+        },
+        {
+            "text": "A startup, [ startup name ], has launched a new product line, with customer feedback highlighting its success in the market.",
+            "label": "Sports",
+            "phenomena": [
+                "Sports highlights",
+                "Olympic games coverage",
+                "Olympic records",
+                "Sports teams' performances",
+                "Olympic events"
+            ]
+        },
+        {
+            "text": "The AI algorithm, [ AI algorithm name ], has been trained to recognize patterns in customer data with unprecedented accuracy.",
+            "label": "Sci/Tech",
+            "phenomena": [
+                "AI advancements",
+                "Space exploration",
+                "Cybersecurity vulnerabilities",
+                "Biotech breakthroughs",
+                "Market trends"
+            ]
+        },
+        {
+            "text": "A sports event, [ sports event name ], is being held to celebrate the 50th anniversary of the Olympics.",
+            "label": "Sports",
+            "phenomena": [
+                "Olympic games coverage",
+                "Olympic records",
+                "Scandals in sports",
+                "Sports teams' performances",
+                "Olympic events"
+            ]
+        },
+        {
+            "text": "A sports event, [ sports event name ], is being held to celebrate the 25th anniversary of the Olympics.",
+            "label": "Sports",
+            "phenomena": [
+                "Olympic games coverage",
+                "Olympic records",
+                "Scandals in sports",
+                "Sports teams' performances",
+                "Olympic events"
+            ]
+        },
+        {
+            "text": "A tech startup is expanding into new markets, but regulatory hurdles remain.",
+            "label": "Sci/Tech",
+            "phenomena": [
+                "AI advancements in healthcare",
+                "Climate-related regulations"
+            ]
+        },
+        {
+            "text": "A global company is facing scrutiny over its market entry strategy and regulatory compliance.",
+            "label": "Business",
+            "phenomena": [
+                "Market expansion strategies",
+                "Regulatory scrutiny"
+            ]
+        },
+        {
+            "text": "A biotech firm is leading a clinical trial for a new biocompatible material, breaking into a new market.",
+            "label": "Sci/Tech",
+            "phenomena": [
+                "Biotech advancements",
+                "New market entry"
+            ]
+        },
+        {
+            "text": "The Olympics are being disrupted by athletes facing unexpected injuries, causing chaos in the games.",
+            "label": "World",
+            "phenomena": [
+                "Olympic records",
+                "Athletes' injuries"
+            ]
+        },
+        {
+            "text": "A startup is raising funds but faces scrutiny over its business model and financial regulations.",
+            "label": "Business",
+            "phenomena": [
+                "Startup funding strategies",
+                "Financial regulations"
+            ]
+        },
+        {
+            "text": "AI is transforming healthcare, but concerns about overuse and privacy are raising red flags.",
+            "label": "Sci/Tech",
+            "phenomena": [
+                "AI applications in healthcare",
+                "Privacy concerns"
+            ]
+        },
+        {
+            "text": "A company is expanding into space, facing regulatory and safety challenges, and exploring AI.",
+            "label": "Sci/Tech",
+            "phenomena": [
+                "Space expansion",
+                "Regulatory challenges"
+            ]
+        },
+        {
+            "text": "A biotech firm is leading a clinical trial for a new biocompatible material, breaking into a new market.",
+            "label": "Sci/Tech",
+            "phenomena": [
+                "Biotech advancements",
+                "New market entry"
+            ]
+        },
+        {
+            "text": "The World is experiencing a climate crisis, with rising temperatures and extreme weather, affecting global trade.",
+            "label": "World",
+            "phenomena": [
+                "Climate-related conflicts",
+                "Trade dynamics"
+            ]
+        },
+        {
+            "text": "A company is launching a new product line, but regulatory scrutiny is complicating its market entry.",
+            "label": "Business",
+            "phenomena": [
+                "Market entry strategies",
+                "Regulatory scrutiny"
+            ]
+        },
+        {
+            "text": "A startup is raising funds but facing scrutiny over its business model and financial regulations, and exploring AI.",
+            "label": "Business",
+            "phenomena": [
+                "Startup funding strategies",
+                "Financial regulations"
+            ]
+        },
+        {
+            "text": "A biotech firm is leading a clinical trial for a new biocompatible material, breaking into a new market.",
+            "label": "Sci/Tech",
+            "phenomena": [
+                "Biotech advancements",
+                "New market entry"
+            ]
+        },
+        {
+            "text": "The World is experiencing a climate crisis, with rising temperatures and extreme weather, affecting global trade, and athletes facing injuries at the Olympics.",
+            "label": "World",
+            "phenomena": [
+                "Climate-related conflicts",
+                "Olympic events"
+            ]
+        },
+        {
+            "text": "The financial markets have been a major driver of consumer spending, with companies like Apple and Microsoft leveraging digital platforms for growth.",
+            "label": "Business",
+            "phenomena": [
+                " Markets",
+                "Economy"
             ]
         }
     ]

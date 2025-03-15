@@ -1,6 +1,6 @@
 {
     "metadata": {
-        "timestamp": "2025-03-14T10:43:30.770018",
+        "timestamp": "2025-03-15T00:04:32.339356",
         "dataset": "agnews",
         "generation_method": "baseline",
         "num_examples_generated": 500,
@@ -21,10 +21,20 @@
         },
         "prompt": "You are an expert in journalism and NLP specializing in news classification. Your task is to generate 10 high-quality short documents, that talks about the following four News categories:  \n- **Business**\n- **Sci/Tech**\n- **Sports**\n- **World**\n\n### **Output Format (JSON)**  \nReturn only a valid JSON list of 10 items in the following structure:\n\n```json\n[\n    {\"text\": <text>, \"label\": <label>},\n    ...\n]\n```\n",
         "system_prompt": null,
-        "time_taken_seconds": 836.71,
+        "time_taken_seconds": 835.15,
         "json_output_file": "synthetic_data/datasets/syn_agnews_baseline_500.json",
-        "num_runs": 55,
-        "seed": 42
+        "num_runs": 57,
+        "seed": 42,
+        "correct_labels": [
+            "Business",
+            "Sci/Tech",
+            "Sports",
+            "World"
+        ],
+        "correct_fields": [
+            "text",
+            "label"
+        ]
     },
     "generated_examples": [
         {
@@ -336,10 +346,6 @@
             "label": "Business"
         },
         {
-            "text": "A new drug discovery trial was announced, promising a significant medical breakthrough in time.",
-            "label": " Sci/Tech"
-        },
-        {
             "text": "A sports team reported an unexpected player injury, prompting a thorough evaluation of the team's performance.",
             "label": "Sports"
         },
@@ -352,16 +358,8 @@
             "label": "Business"
         },
         {
-            "text": "An AI-driven platform was developed to optimize supply chain management, reducing costs and improving efficiency.",
-            "label": " Sci/Tech"
-        },
-        {
             "text": "A sports tournament reported high attendance, with notable highlights from key games and player reactions.",
             "label": "Sports"
-        },
-        {
-            "text": "A new research paper was published, detailing a revolutionary method for improving the accuracy of machine learning models.",
-            "label": " Sci/Tech"
         },
         {
             "text": "A tech startup announced a groundbreaking AI system with 95% accuracy, promising advancements in personalized healthcare solutions.",
@@ -760,56 +758,6 @@
             "label": "Sci/Tech"
         },
         {
-            "text": "A major tech company has announced a breakthrough in AI research, promising advancements in machine learning applications.",
-            "label": "Sci/Tech",
-            "tiebreaker": "A recent report highlights advancements in AI technology."
-        },
-        {
-            "text": "The financial sector has experienced a significant rise in stock prices, with major companies announcing Q2 results.",
-            "label": "Business",
-            "tiebreaker": "A recent financial report shows strong market performance."
-        },
-        {
-            "text": "A new quantum computing chip has been developed, offering significant improvements in computational power.",
-            "label": "Sci/Tech",
-            "tiebreaker": "A breakthrough in quantum computing is expected to revolutionize industries."
-        },
-        {
-            "text": "A major international sports event is taking place, showcasing world-class performances and rivalries.",
-            "label": "Sports",
-            "tiebreaker": "A recent World Cup match highlights global sports achievements."
-        },
-        {
-            "text": "A new technology product is launched at the World level, promising advancements in innovation.",
-            "label": "World",
-            "tiebreaker": "A new technology product is announced at the World level."
-        },
-        {
-            "text": "The World Cup 2023 has been held, with exciting matches and updates from around the world.",
-            "label": "World",
-            "tiebreaker": "The World Cup 2023 concluded with thrilling matches and global updates."
-        },
-        {
-            "text": "A major political event has taken place, with new announcements and updates from around the globe.",
-            "label": "World",
-            "tiebreaker": "A major political event has taken place in the World."
-        },
-        {
-            "text": "A major medical breakthrough has been announced, improving patient outcomes in healthcare.",
-            "label": "Sci/Tech",
-            "tiebreaker": "A significant medical breakthrough is expected to improve patient outcomes."
-        },
-        {
-            "text": "A major sports event is held, showcasing the best performances and rivalries in the world.",
-            "label": "Sports",
-            "tiebreaker": "A recent World level sports event highlights world-class performances."
-        },
-        {
-            "text": "A new technology product is developed, promising advancements in innovation and efficiency.",
-            "label": "World",
-            "tiebreaker": "A new technology product is developed at the World level."
-        },
-        {
             "text": "A new restaurant review in the city's culinary scene highlights the success of a local favorite.",
             "label": "Business"
         },
@@ -906,10 +854,6 @@
             "label": "Business"
         },
         {
-            "text": "A popular book launch event is expected to generate significant interest and sales.",
-            "label": " Sci/Tech"
-        },
-        {
             "text": "A local sports team has won the state championship, marking a major milestone for the community.",
             "label": "Sports"
         },
@@ -920,10 +864,6 @@
         {
             "text": "A large company is expanding its operations globally, presenting a new business opportunity.",
             "label": "Business"
-        },
-        {
-            "text": "A new tech gadget is released by a leading company, offering innovative solutions for everyday use.",
-            "label": " Sci/Tech"
         },
         {
             "text": "A national sports league is hosting a championship game, with exciting results to follow.",
@@ -1386,10 +1326,6 @@
             "label": "World"
         },
         {
-            "text": "A new company is completing its product development, with detailed updates and updates to its website.",
-            "label": " Sci/Tech"
-        },
-        {
             "text": "The impact of the COVID-19 pandemic on global stock markets and companies in the tech sector.",
             "label": "Business"
         },
@@ -1778,10 +1714,6 @@
             "label": "World"
         },
         {
-            "text": "A newly discovered planet was identified through a high-redshift telescope, opening new avenues for studying exoplanets.",
-            "label": "Science"
-        },
-        {
             "text": "A major event in [event name] is being reported, with immediate implications for the global financial market.",
             "label": "Business"
         },
@@ -1896,10 +1828,6 @@
         {
             "text": "The World Cup is a massive success, with nearly 100 countries participating and numerous exciting moments.",
             "label": "World"
-        },
-        {
-            "text": "A company has launched a new product line aimed at boosting customer engagement through personalized recommendations.",
-            "label": " Sci/Tech"
         },
         {
             "text": "World Record Breakers are updating their websites with new achievements in sports and science.",
@@ -2036,6 +1964,78 @@
         {
             "text": "An international conference was announced at the World Economic Forum in Davos, showcasing leading economic solutions.",
             "label": "World"
+        },
+        {
+            "text": "A merger and restructure agreement was finalized, affecting the company's financial health for the third quarter.",
+            "label": "Business"
+        },
+        {
+            "text": "A new biotech discovery was announced, leading to increased confidence in its efficacy across various fields.",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "A local sports team won their first championship since entering the sport, with a 60% win rate in the tournament.",
+            "label": "Sports"
+        },
+        {
+            "text": "A major sports event was held in the World, featuring over 100 participants and multiple competitions.",
+            "label": "World"
+        },
+        {
+            "text": "A tech company reported a 20% drop in revenue for the third quarter, prompting a revised financial strategy.",
+            "label": "Business"
+        },
+        {
+            "text": "A new medical drug was developed, with early reports indicating potential benefits for a specific condition.",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "A major tech company has launched a new product line targeting businesses looking to enhance customer engagement with innovative tools.",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "The U.S. government has released data showing economic growth in the previous quarter, raising concerns about inflation.",
+            "label": "Business"
+        },
+        {
+            "text": "A new startup is raising funds for a project that aims to revolutionize the way companies communicate with their customers.",
+            "label": "Sports"
+        },
+        {
+            "text": "Global health officials have released updated statistics on COVID-19 cases, warning of a surge in hospitalizations.",
+            "label": "World"
+        },
+        {
+            "text": "A major league baseball game is scheduled to begin later this week, featuring a star player in attendance.",
+            "label": "Sports"
+        },
+        {
+            "text": "A new scientific study has been published, offering insights into the effectiveness of a novel drug combination.",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "The World Cup is set to begin in a new location, with a live stream available to fans worldwide.",
+            "label": "World"
+        },
+        {
+            "text": "A major political conference is gathering in a new location, with updates on upcoming events.",
+            "label": "Business"
+        },
+        {
+            "text": "A global airline company is launching a new route, aiming to expand its market presence.",
+            "label": "Sports"
+        },
+        {
+            "text": "A new scientific discovery is being highlighted in a press release, with details yet to be finalized.",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "The tech company X is releasing a new AI-powered product at a major conference. This event could revolutionize industries like healthcare and finance.",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "The stock market is showing signs of recovery. Major indices are rising, and investors are cautiously weighing the impact of a global economic slowdown.",
+            "label": "Business"
         }
     ]
 }
