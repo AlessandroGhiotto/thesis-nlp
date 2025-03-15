@@ -18,23 +18,43 @@ bai-thesis-nlp/
 
 ### 📄 Synthetic Data Format
 
-The JSON files in `synthetic_data/logs/` follow this structure:
+The JSON files in `synthetic_data/datasets/` follow this structure:
 
 ```
 {
-    "timestamp": "<timestamp>",
-    "model": "<model_name>",
-    "generation_method": "baseline" | "targeted" | "targeted + linguistic tags",
-    "prompt": "<prompt_used>",
-    "time_taken_seconds": <time_taken>,
-    "num_examples": <number_of_examples>,
+    "metadata": {...}
     "generated_examples": [
         {
             "text": "<generated_text>",
             "label": "<corresponding_label>",
             "phenomena": ["<phenomenon1>", "<phenomenon2>", ...] (optional)
         }
+        ...
     ]
 }
+```
+
+The JSON files in `synthetic_data/logs/` follow this structure:
+
+```
+[
+    {
+        "timestamp": "<timestamp>",
+        "model": "<model_name>",
+        "generation_method": "baseline" | "targeted" | "targeted + linguistic tags",
+        "prompt": "<prompt_used>",
+        "time_taken_seconds": <time_taken>,
+        "num_examples": <number_of_examples>,
+        "generated_examples": [
+            {
+                "text": "<generated_text>",
+                "label": "<corresponding_label>",
+                "phenomena": ["<phenomenon1>", "<phenomenon2>", ...] (optional)
+            }
+            ...
+        ]
+    }
+    ...
+]
 
 ```
