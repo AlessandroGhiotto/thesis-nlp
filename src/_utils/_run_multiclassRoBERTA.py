@@ -1,13 +1,12 @@
 import os
 import pandas as pd
 import numpy as np
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import f1_score, roc_auc_score, accuracy_score
+from sklearn.metrics import f1_score, accuracy_score
 import torch
 import json
 from datetime import datetime
 import time
-import evaluate
+import shutil
 from datasets import Dataset
 from transformers import (
     AutoTokenizer,
@@ -18,9 +17,9 @@ from transformers import (
 )
 from src._utils._helpers import set_seed
 
-MODEL_NAME = "roberta-large"
+MODEL_NAME = "roberta-base"
 device = "cuda:0" if torch.cuda.is_available() else "cpu"
-tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, use_fast=True)
+tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, use_fast=True, verbose=False)
 data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
 
 
@@ -54,7 +53,11 @@ def preprocess_data(df, label2id):
 
     def tokenize_function(examples):
         encoding = tokenizer(
-            examples["text"], padding="max_length", truncation=True, max_length=128
+            examples["text"],
+            padding="max_length",
+            truncation=True,
+            max_length=128,
+            verbose=False,
         )
         encoding["labels"] = [label2id[label] for label in examples["label"]]
         return encoding
@@ -68,16 +71,16 @@ def compute_metrics(p):
     y_true = p.label_ids
 
     return {
-        "f1": f1_score(y_true, y_pred, average="micro"),
-        "accuracy": accuracy_score(y_true, y_pred),
+        "f1_micro": f1_score(y_true, y_pred, average="micro"),
         "f1_macro": f1_score(y_true, y_pred, average="macro"),
+        "accuracy": accuracy_score(y_true, y_pred),
     }
 
 
-def train_model(train_df, dev_df, labels, output_dir):
+def train_model(
+    train_df, dev_df, labels, output_dir, id2label=None, label2id=None, save_model=True
+):
     """Train the model"""
-    id2label = {idx: label for idx, label in enumerate(labels)}
-    label2id = {label: idx for idx, label in enumerate(labels)}
 
     model = AutoModelForSequenceClassification.from_pretrained(
         MODEL_NAME,
@@ -92,14 +95,14 @@ def train_model(train_df, dev_df, labels, output_dir):
         learning_rate=2e-5,
         per_device_train_batch_size=16,
         per_device_eval_batch_size=16,
-        num_train_epochs=8,
+        num_train_epochs=2,  # (8 EPOCHS)
         weight_decay=0.01,
         eval_strategy="epoch",
         save_strategy="epoch",
         logging_strategy="epoch",
         save_total_limit=1,
         load_best_model_at_end=True,
-        metric_for_best_model="f1",
+        metric_for_best_model="f1_micro",
         push_to_hub=False,
     )
 
@@ -112,12 +115,40 @@ def train_model(train_df, dev_df, labels, output_dir):
         data_collator=data_collator,
         compute_metrics=compute_metrics,
     )
-
-    # print("🚀 Training model...")
     trainer.train()
-    print(f"💾 experiment saved to: {output_dir}")
 
-    return model
+    if save_model is False:
+        # delete checkpoints after training
+        for checkpoint in [
+            f for f in os.listdir(output_dir) if f.startswith("checkpoint-")
+        ]:
+            shutil.rmtree(os.path.join(output_dir, checkpoint))
+
+        print(f"save_model={save_model}: Checkpoints deleted after training.")
+
+    # extrac the train history
+    log_history = trainer.state.log_history
+    log_df = pd.DataFrame(log_history)
+    # get what we are interested on
+    loss_column = log_df[log_df["loss"].notnull()]["loss"]
+    log_df = log_df[log_df["epoch"].notnull() & log_df["eval_f1_micro"].notnull()]
+    log_df = log_df[
+        [
+            "epoch",
+            "train_loss",
+            "eval_loss",
+            "eval_accuracy",
+            "eval_f1_micro",
+            "eval_f1_macro",
+        ]
+    ]
+    log_df["train_loss"] = loss_column.values
+    # aave to CSV in the experiment folder
+    log_file_path = os.path.join(output_dir, "training_log.csv")
+    log_df.to_csv(log_file_path, index=False)
+
+    print(f"💾 experiment saved to: {output_dir}\n")
+    return trainer.model  # return the best model
 
 
 def evaluation(test_dataset, model_input):
@@ -141,12 +172,6 @@ def evaluation(test_dataset, model_input):
     model.eval()
     model.to(device)
 
-    # prepare evaluation metrics
-    accuracy = evaluate.load("accuracy")
-    precision = evaluate.load("precision")
-    recall = evaluate.load("recall")
-    f1 = evaluate.load("f1")
-
     all_preds = []
     all_labels = []
 
@@ -168,29 +193,29 @@ def evaluation(test_dataset, model_input):
             all_labels.append(labels)
 
     # compute metrics
-    results = {
-        "accuracy": accuracy.compute(predictions=all_preds, references=all_labels)[
-            "accuracy"
-        ],
-        "precision": precision.compute(
-            predictions=all_preds, references=all_labels, average="weighted"
-        )["precision"],
-        "recall": recall.compute(
-            predictions=all_preds, references=all_labels, average="weighted"
-        )["recall"],
-        "f1": f1.compute(
-            predictions=all_preds, references=all_labels, average="weighted"
-        )["f1"],
+    eval_metrics = {
+        "f1_micro": f1_score(all_labels, all_preds, average="micro"),
+        "f1_macro": f1_score(all_labels, all_preds, average="macro"),
+        "accuracy": accuracy_score(all_labels, all_preds),
     }
 
-    return results
+    display_metrics = {k: f"{v:.4f}" for k, v in eval_metrics.items()}
+    print("🚀 Metrics on dev set:", display_metrics)
+    return eval_metrics
 
 
-def save_log(details, output_file):
+def save_log(details, log_file):
     """Save details of all experiments in a json file."""
-    os.makedirs(os.path.dirname(output_file), exist_ok=True)
-    with open(output_file, "w", encoding="utf-8") as f:
-        json.dump(details, f, indent=4, ensure_ascii=False)
+    os.makedirs(os.path.dirname(log_file), exist_ok=True)
+    try:
+        with open(log_file, "r", encoding="utf-8") as f:
+            logs = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        logs = []
+
+    logs.append(details)
+    with open(log_file, "w", encoding="utf-8") as f:
+        json.dump(logs, f, indent=4, ensure_ascii=False)
 
 
 def main_multiclassRoBERTA(
@@ -202,6 +227,8 @@ def main_multiclassRoBERTA(
     output_dir="experiment_output",
     log_dir="log.json",
     generation_method=None,  # generic vs targeted augmentation
+    save_model=True,
+    save_dataset=True,
 ):
     """
     Train a multi-class RoBERTA model using real and synthetic datasets.
@@ -226,19 +253,31 @@ def main_multiclassRoBERTA(
     # save datasets for reproducibility
     train_path = os.path.join(output_dir, "train.csv")
     dev_path = os.path.join(output_dir, "dev.csv")
-    combined_df.to_csv(train_path, index=False)
-    dev_df.to_csv(dev_path, index=False)
+    if save_dataset:
+        # save the actual train and dev sets
+        combined_df.to_csv(train_path, index=False)
+        dev_df.to_csv(dev_path, index=False)
 
     # preprocess data
     labels = combined_df["label"].unique().tolist()
+    id2label = {idx: label for idx, label in enumerate(labels)}
     label2id = {label: idx for idx, label in enumerate(labels)}
+
     train_dataset = preprocess_data(Dataset.from_pandas(combined_df), label2id)
     dev_dataset = preprocess_data(Dataset.from_pandas(dev_df), label2id)
 
     # train
     start_time = time.time()
     labels_ids = [label2id[label] for label in labels]
-    best_model = train_model(train_dataset, dev_dataset, labels_ids, output_dir)
+    best_model = train_model(
+        train_dataset,
+        dev_dataset,
+        labels_ids,
+        output_dir,
+        id2label,
+        label2id,
+        save_model,
+    )
     end_time = time.time()
 
     if synth_df is None:
@@ -260,8 +299,6 @@ def main_multiclassRoBERTA(
 
     # evaluate
     eval_metrics = evaluation(dev_dataset, best_model)
-    display_metrics = {k: f"{v:.4f}" for k, v in eval_metrics.items()}
-    print(display_metrics)
     train_details["metrics_dev"] = eval_metrics
 
     # save log
