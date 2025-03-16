@@ -1,0 +1,82 @@
+[
+	{
+		"experiment_name": "exp_500real",
+		"experiment_dir": "src/agnews/experiments/RoBERTA_500samples/exp_500real",
+		"generation_method": null,
+		"timestamp": "2025-03-16T17:25:22.584069",
+		"model": "roberta-large",
+		"train_size": 500,
+		"dev_size": 500,
+		"synthetic_ratio": 0.0,
+		"train_time_seconds": 309.2534363269806,
+		"metrics_dev": {
+			"f1_micro": 0.924,
+			"f1_macro": 0.8849795949659437,
+			"accuracy": 0.924
+		}
+	},
+	{
+		"experiment_name": "exp_250real_250generic",
+		"experiment_dir": "src/agnews/experiments/RoBERTA_500samples/exp_250real_250generic",
+		"generation_method": "generic augmentation",
+		"timestamp": "2025-03-16T17:30:47.198775",
+		"model": "roberta-large",
+		"train_size": 500,
+		"dev_size": 500,
+		"synthetic_ratio": 0.5,
+		"train_time_seconds": 315.88418555259705,
+		"metrics_dev": {
+			"f1_micro": 0.912,
+			"f1_macro": 0.8642021536113353,
+			"accuracy": 0.912
+		}
+	},
+	{
+		"experiment_name": "exp_250real_250targeted",
+		"experiment_dir": "src/agnews/experiments/RoBERTA_500samples/exp_250real_250targeted",
+		"generation_method": "targeted augmentation",
+		"timestamp": "2025-03-16T17:36:04.913184",
+		"model": "roberta-large",
+		"train_size": 500,
+		"dev_size": 500,
+		"synthetic_ratio": 0.5,
+		"train_time_seconds": 309.08077239990234,
+		"metrics_dev": {
+			"f1_micro": 0.924,
+			"f1_macro": 0.8868578738728308,
+			"accuracy": 0.924
+		}
+	},
+	{
+		"experiment_name": "exp_500generic",
+		"experiment_dir": "src/agnews/experiments/RoBERTA_500samples/exp_500generic",
+		"generation_method": "generic augmentation",
+		"timestamp": "2025-03-16T17:41:28.001282",
+		"model": "roberta-large",
+		"train_size": 500,
+		"dev_size": 500,
+		"synthetic_ratio": 1.0,
+		"train_time_seconds": 314.4267609119415,
+		"metrics_dev": {
+			"f1_micro": 0.762,
+			"f1_macro": 0.7241301847512627,
+			"accuracy": 0.762
+		}
+	},
+	{
+		"experiment_name": "exp_500targeted",
+		"experiment_dir": "src/agnews/experiments/RoBERTA_500samples/exp_500targeted",
+		"generation_method": "targeted augmentation",
+		"timestamp": "2025-03-16T17:46:39.877634",
+		"model": "roberta-large",
+		"train_size": 500,
+		"dev_size": 500,
+		"synthetic_ratio": 1.0,
+		"train_time_seconds": 303.3860650062561,
+		"metrics_dev": {
+			"f1_micro": 0.852,
+			"f1_macro": 0.8059685094259561,
+			"accuracy": 0.852
+		}
+	}
+]

@@ -17,7 +17,7 @@ from transformers import (
 )
 from src._utils._helpers import set_seed
 
-MODEL_NAME = "roberta-base"
+MODEL_NAME = "roberta-large"
 device = "cuda:0" if torch.cuda.is_available() else "cpu"
 tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, use_fast=True, verbose=False)
 data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
@@ -95,7 +95,7 @@ def train_model(
         learning_rate=2e-5,
         per_device_train_batch_size=16,
         per_device_eval_batch_size=16,
-        num_train_epochs=2,  # (8 EPOCHS)
+        num_train_epochs=8,
         weight_decay=0.01,
         eval_strategy="epoch",
         save_strategy="epoch",
@@ -117,15 +117,7 @@ def train_model(
     )
     trainer.train()
 
-    if save_model is False:
-        # delete checkpoints after training
-        for checkpoint in [
-            f for f in os.listdir(output_dir) if f.startswith("checkpoint-")
-        ]:
-            shutil.rmtree(os.path.join(output_dir, checkpoint))
-
-        print(f"save_model={save_model}: Checkpoints deleted after training.")
-
+    ### GET THE TABLE THAT IS SHOWED DURING TRAINING (EPOCH, LOSS, ACCURACY, ETC per epoch)
     # extrac the train history
     log_history = trainer.state.log_history
     log_df = pd.DataFrame(log_history)
@@ -148,6 +140,15 @@ def train_model(
     log_df.to_csv(log_file_path, index=False)
 
     print(f"💾 experiment saved to: {output_dir}\n")
+
+    if save_model is False:
+        # delete checkpoints after training
+        for checkpoint in [
+            f for f in os.listdir(output_dir) if f.startswith("checkpoint-")
+        ]:
+            shutil.rmtree(os.path.join(output_dir, checkpoint))
+        print(f"🗑️ save_model={save_model}: Checkpoints deleted after training.\n")
+
     return trainer.model  # return the best model
 
 
@@ -280,6 +281,9 @@ def main_multiclassRoBERTA(
     )
     end_time = time.time()
 
+    # evaluate
+    eval_metrics = evaluation(dev_dataset, best_model)
+
     if synth_df is None:
         synth_ratio = 0.0
     if real_df is None:
@@ -295,11 +299,8 @@ def main_multiclassRoBERTA(
         "dev_size": len(dev_df),
         "synthetic_ratio": synth_ratio,
         "train_time_seconds": end_time - start_time,
+        "metrics_dev": eval_metrics,
     }
-
-    # evaluate
-    eval_metrics = evaluation(dev_dataset, best_model)
-    train_details["metrics_dev"] = eval_metrics
 
     # save log
     save_log(train_details, log_dir)
