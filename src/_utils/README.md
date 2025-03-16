@@ -12,6 +12,9 @@ This folder contains utility scripts for managing synthetic dataset generation.
 - **`_generate_dataset.py`**  
   Script for generating a dataset, given a configuration. It is imported and executed in the folder corresponding to a dataset.
 
+- **`_run_multiclassRoBERTA_.py`**  
+  Script for finetuning RoBERTA in single-label multi-class settings.
+
 ---
 
 ### `_generate_dataset.py` Example Usage
@@ -56,4 +59,30 @@ config = {
     "correct_fields": ["text", "label"]
 }
 main_generate_dataset(config)
+```
+
+### `_run_multiclassRoBERTA_.py` Example Usage
+
+1. combine the real and synthetic data into a dataset constituted of:
+   - number of synthetic examples = int(max_samples \* synth_ratio)
+   - number of real examples = max_samples - num_synth
+2. tokenize
+3. train (on combined data)
+4. evaluate (on dev)
+
+```python
+from src._utils._run_multiclassRoBERTA import main_multiclassRoBERTA
+
+train_details = main_multiclassRoBERTA(
+    real_df=real_train_df,
+    synth_df=synthetic_train_df,
+    dev_df=dev_df,
+    synth_ratio=ratio
+    max_samples=max_samples,
+    output_dir=output_dir,
+    log_dir=log_dir,
+    generation_method="generic augmentation" or "targeted augmentation" or None ...,
+    save_model=Bool,
+    save_dataset=Bool,
+)
 ```
