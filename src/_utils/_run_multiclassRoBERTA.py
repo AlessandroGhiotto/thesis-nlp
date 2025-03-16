@@ -7,7 +7,7 @@ import torch
 import json
 from datetime import datetime
 import time
-from evaluate import evaluator
+import evaluate
 from datasets import Dataset
 from transformers import (
     AutoTokenizer,
@@ -16,8 +16,9 @@ from transformers import (
     TrainingArguments,
     Trainer,
 )
+from src._utils._helpers import set_seed
 
-MODEL_NAME = "roberta-base"
+MODEL_NAME = "roberta-large"
 device = "cuda:0" if torch.cuda.is_available() else "cpu"
 tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, use_fast=True)
 data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
@@ -28,17 +29,17 @@ def combine_datasets(real_df=None, synth_df=None, synth_ratio=0.0, max_samples=5
     combined_df = pd.DataFrame()
 
     # combine real and synthetic datasets
-    if real_df is not None and synth_df is not None and synth_ratio > 0:
+    if real_df is not None and synth_df is not None and 0 < synth_ratio < 1:
         num_synth = int(max_samples * synth_ratio)
         num_real = max_samples - num_synth
         real_sample = real_df.sample(n=min(num_real, len(real_df)), random_state=42)
         synth_sample = synth_df.sample(n=min(num_synth, len(synth_df)), random_state=42)
         combined_df = pd.concat([real_sample, synth_sample], ignore_index=True)
     # only real data
-    elif real_df is not None:
+    elif real_df is not None or synth_ratio == 0:
         combined_df = real_df.sample(n=min(max_samples, len(real_df)), random_state=42)
     # only synthetic data
-    elif synth_df is not None:
+    elif synth_df is not None or synth_ratio == 1:
         combined_df = synth_df.sample(
             n=min(max_samples, len(synth_df)), random_state=42
         )
@@ -49,8 +50,9 @@ def combine_datasets(real_df=None, synth_df=None, synth_ratio=0.0, max_samples=5
 
 
 def preprocess_data(df, label2id):
+    """Tokenize the text and add labels."""
+
     def tokenize_function(examples):
-        # Tokenize the text and add labels
         encoding = tokenizer(
             examples["text"], padding="max_length", truncation=True, max_length=128
         )
@@ -73,6 +75,7 @@ def compute_metrics(p):
 
 
 def train_model(train_df, dev_df, labels, output_dir):
+    """Train the model"""
     id2label = {idx: label for idx, label in enumerate(labels)}
     label2id = {label: idx for idx, label in enumerate(labels)}
 
@@ -93,6 +96,7 @@ def train_model(train_df, dev_df, labels, output_dir):
         weight_decay=0.01,
         eval_strategy="epoch",
         save_strategy="epoch",
+        logging_strategy="epoch",
         save_total_limit=1,
         load_best_model_at_end=True,
         metric_for_best_model="f1",
@@ -109,46 +113,108 @@ def train_model(train_df, dev_df, labels, output_dir):
         compute_metrics=compute_metrics,
     )
 
+    # print("🚀 Training model...")
     trainer.train()
-    print(f"Training completed for experiment saved in: {output_dir}")
+    print(f"💾 experiment saved to: {output_dir}")
+
+    return model
 
 
-def evaluation(test_df, label2id, modelname):
-    task_evaluator = evaluator("text-classification")
-    eval_results = task_evaluator.compute(
-        model_or_pipeline=modelname,
-        data=data["train"],
-        metric=evaluate.combine(["accuracy", "recall", "precision", "f1"]),
-        label_mapping=label2id,
-    )
-    return eval_results
+def evaluation(test_dataset, model_input):
+    """
+    Evaluates a model using tokenized input data.
 
+    Parameters:
+    - test_dataset: Dataset containing 'input_ids' and 'attention_mask' (and 'labels' if available).
+    - modelname: Path to the trained model checkpoint.
 
-def save_log(
-    output_dir, experiment_name, train_size, dev_size, synth_ratio, train_time, metrics
-):
-    log = {
-        "experiment_name": experiment_name,
-        "timestamp": datetime.now().isoformat(),
-        "train_size": train_size,
-        "dev_size": dev_size,
-        "synthetic_ratio": synth_ratio,
-        "train_time_seconds": train_time,
-        "metrics": metrics,
+    Returns:
+    - Dictionary of evaluation metrics.
+    """
+    # load model
+    if isinstance(model_input, str):
+        # load from huggingface or local path
+        model = AutoModelForSequenceClassification.from_pretrained(model_input)
+    else:
+        # assume it's already a model instance
+        model = model_input
+    model.eval()
+    model.to(device)
+
+    # prepare evaluation metrics
+    accuracy = evaluate.load("accuracy")
+    precision = evaluate.load("precision")
+    recall = evaluate.load("recall")
+    f1 = evaluate.load("f1")
+
+    all_preds = []
+    all_labels = []
+
+    # eval
+    with torch.no_grad():
+        for batch in test_dataset:
+            # test dataset is assumed already preprocessed
+            input_ids = torch.tensor(batch["input_ids"]).unsqueeze(0).to(device)
+            attention_mask = (
+                torch.tensor(batch["attention_mask"]).unsqueeze(0).to(device)
+            )
+            labels = batch["labels"]
+
+            # get output + argmax
+            outputs = model(input_ids=input_ids, attention_mask=attention_mask)
+            preds = torch.argmax(outputs.logits, dim=-1).cpu().numpy()
+
+            all_preds.extend(preds)
+            all_labels.append(labels)
+
+    # compute metrics
+    results = {
+        "accuracy": accuracy.compute(predictions=all_preds, references=all_labels)[
+            "accuracy"
+        ],
+        "precision": precision.compute(
+            predictions=all_preds, references=all_labels, average="weighted"
+        )["precision"],
+        "recall": recall.compute(
+            predictions=all_preds, references=all_labels, average="weighted"
+        )["recall"],
+        "f1": f1.compute(
+            predictions=all_preds, references=all_labels, average="weighted"
+        )["f1"],
     }
-    log_path = os.path.join(output_dir, "log.json")
-    with open(log_path, "w") as f:
-        json.dump(log, f, indent=4)
+
+    return results
 
 
-def prepare_and_train(
+def save_log(details, output_file):
+    """Save details of all experiments in a json file."""
+    os.makedirs(os.path.dirname(output_file), exist_ok=True)
+    with open(output_file, "w", encoding="utf-8") as f:
+        json.dump(details, f, indent=4, ensure_ascii=False)
+
+
+def main_multiclassRoBERTA(
     real_df=None,
     synth_df=None,
     dev_df=None,
     synth_ratio=0.0,
     max_samples=500,
     output_dir="experiment_output",
+    log_dir="log.json",
+    generation_method=None,  # generic vs targeted augmentation
 ):
+    """
+    Train a multi-class RoBERTA model using real and synthetic datasets.
+
+    STEPS:
+    1. Combine real and synthetic datasets.
+    2. Tokenize and preprocess the data.
+    3. Train the model.
+    4. Evaluate
+    5. Save the experiment details.
+    """
+    set_seed(42)
+
     if dev_df is None:
         raise ValueError("A development dataset (dev_df) must be provided.")
 
@@ -172,30 +238,33 @@ def prepare_and_train(
     # train
     start_time = time.time()
     labels_ids = [label2id[label] for label in labels]
-    train_model(train_dataset, dev_dataset, labels_ids, output_dir)
+    best_model = train_model(train_dataset, dev_dataset, labels_ids, output_dir)
     end_time = time.time()
 
-    # Metrics can be logged here if available post-training
-    metrics = {
-        "f1": 0.85,
-        "f1_macro": 0.80,
-        "accuracy": 0.82,
-    }  # Placeholder, replace with actual metrics
+    if synth_df is None:
+        synth_ratio = 0.0
+    if real_df is None:
+        synth_ratio = 1.0
 
-    save_log(
-        output_dir,
-        os.path.basename(output_dir),
-        len(combined_df),
-        len(dev_df),
-        synth_ratio,
-        end_time - start_time,
-        metrics,
-    )
+    train_details = {
+        "experiment_name": os.path.basename(output_dir),
+        "experiment_dir": output_dir,
+        "generation_method": generation_method,
+        "timestamp": datetime.now().isoformat(),
+        "model": MODEL_NAME,
+        "train_size": len(combined_df),
+        "dev_size": len(dev_df),
+        "synthetic_ratio": synth_ratio,
+        "train_time_seconds": end_time - start_time,
+    }
 
-    print(f"Experiment saved in: {output_dir}")
+    # evaluate
+    eval_metrics = evaluation(dev_dataset, best_model)
+    display_metrics = {k: f"{v:.4f}" for k, v in eval_metrics.items()}
+    print(display_metrics)
+    train_details["metrics_dev"] = eval_metrics
 
+    # save log
+    save_log(train_details, log_dir)
 
-# Example usage:
-# prepare_and_train(real_df=real_df, synth_df=random_df, dev_df=dev_df, synth_ratio=0.3, max_samples=500, output_dir="random_aug_experiment")
-# prepare_and_train(real_df=None, synth_df=targeted_df, dev_df=dev_df, max_samples=500, output_dir="targeted_synth_only")
-# prepare_and_train(real_df=real_df, dev_df=dev_df, max_samples=500, output_dir="real_only_experiment")
+    return train_details

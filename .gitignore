@@ -1,4 +1,5 @@
 real_data/
 papers/
 **/__pycache__/
-# **/*checkpoint*/
+# ignore all checkpoint folders (trained models)
+**/*checkpoint*/
