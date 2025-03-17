@@ -78,7 +78,15 @@ def compute_metrics(p):
 
 
 def train_model(
-    train_df, dev_df, labels, output_dir, id2label=None, label2id=None, save_model=True
+    train_df,
+    dev_df,
+    labels,
+    output_dir,
+    epochs=8,
+    batch_size=16,
+    id2label=None,
+    label2id=None,
+    save_model=True,
 ):
     """Train the model"""
 
@@ -93,9 +101,9 @@ def train_model(
     training_args = TrainingArguments(
         output_dir=output_dir,
         learning_rate=2e-5,
-        per_device_train_batch_size=16,
-        per_device_eval_batch_size=16,
-        num_train_epochs=8,
+        per_device_train_batch_size=batch_size,
+        per_device_eval_batch_size=batch_size,
+        num_train_epochs=epochs,
         weight_decay=0.01,
         eval_strategy="epoch",
         save_strategy="epoch",
@@ -105,6 +113,29 @@ def train_model(
         metric_for_best_model="f1_micro",
         push_to_hub=False,
     )
+
+    ### EVALUATE EVERY HALF EPOCH
+    # # Calculate steps for half an epoch
+    # steps_per_epoch = len(train_df) // batch_size
+    # eval_steps = max(1, steps_per_epoch // 2)
+    # training_args = TrainingArguments(
+    #     output_dir=output_dir,
+    #     learning_rate=2e-5,
+    #     per_device_train_batch_size=batch_size,
+    #     per_device_eval_batch_size=batch_size,
+    #     num_train_epochs=epochs,
+    #     weight_decay=0.01,
+    #     eval_strategy="steps",
+    #     eval_steps=eval_steps,  # Evaluate every half epoch
+    #     save_strategy="steps",
+    #     save_steps=eval_steps,  # Save every half epoch
+    #     logging_strategy="steps",
+    #     logging_steps=eval_steps,  # Log every half epoch
+    #     save_total_limit=1,
+    #     load_best_model_at_end=True,
+    #     metric_for_best_model="f1_micro",
+    #     push_to_hub=False,
+    # )
 
     trainer = Trainer(
         model=model,
@@ -126,7 +157,7 @@ def train_model(
     log_df = log_df[log_df["epoch"].notnull() & log_df["eval_f1_micro"].notnull()]
     log_df = log_df[
         [
-            "epoch",
+            "epoch",  ### <== PUT "step" WHEN EVALUATING EVERY HALF EPOCH ###
             "train_loss",
             "eval_loss",
             "eval_accuracy",
@@ -225,6 +256,8 @@ def main_multiclassRoBERTA(
     dev_df=None,
     synth_ratio=0.0,
     max_samples=500,
+    epochs=8,
+    batch_size=16,
     output_dir="experiment_output",
     log_dir="log.json",
     generation_method=None,  # generic vs targeted augmentation
@@ -275,6 +308,8 @@ def main_multiclassRoBERTA(
         dev_dataset,
         labels_ids,
         output_dir,
+        epochs,
+        batch_size,
         id2label,
         label2id,
         save_model,
@@ -298,6 +333,8 @@ def main_multiclassRoBERTA(
         "train_size": len(combined_df),
         "dev_size": len(dev_df),
         "synthetic_ratio": synth_ratio,
+        "epochs": epochs,
+        "batch_size": batch_size,
         "train_time_seconds": end_time - start_time,
         "metrics_dev": eval_metrics,
     }
