@@ -6,4 +6,4 @@ conda install pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvi
 pip install transformers
 
 conda install tqdm numpy pandas matplotlib seaborn wordcloud ipykernel ipywidgets scikit-learn scipy -c conda-forge
-pip install datasets evaluate accelerate bitsandbytes flash-attn
+pip install datasets evaluate accelerate bitsandbytes flash-attn sentencepiece protobuf

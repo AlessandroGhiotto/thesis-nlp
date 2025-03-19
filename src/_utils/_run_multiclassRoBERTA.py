@@ -232,7 +232,7 @@ def evaluation(test_dataset, model_input):
     }
 
     display_metrics = {k: f"{v:.4f}" for k, v in eval_metrics.items()}
-    print("🚀 Metrics on dev set:", display_metrics)
+    # print("🚀 Metrics on dev set:", display_metrics)
     return eval_metrics
 
 

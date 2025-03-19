@@ -252,9 +252,11 @@ dependencies:
       - multidict==6.1.0
       - multiprocess==0.70.16
       - propcache==0.3.0
+      - protobuf==6.30.1
       - pyarrow==19.0.1
       - regex==2024.11.6
       - safetensors==0.5.3
+      - sentencepiece==0.2.0
       - sympy==1.13.1
       - tokenizers==0.21.1
       - transformers==4.49.0

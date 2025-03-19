@@ -1,0 +1,348 @@
+[
+	{
+		"timestamp": "2025-03-19T16:41:30.671773",
+		"dataset_name": "agnews",
+		"experiment_name": "fewshot_classification",
+		"model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+		"model.generation_config": {
+			"do_sample": true,
+			"temperature": 0.6,
+			"top_p": 0.95,
+			"pad_token_id": 151643,
+			"bos_token_id": 151646,
+			"eos_token_id": 151643,
+			"_from_model_config": true,
+			"transformers_version": "4.49.0"
+		},
+		"model_BitsAndBytesConfig": {
+			"_load_in_4bit": true,
+			"bnb_4bit_compute_dtype": "float16",
+			"load_in_4bit": true
+		},
+		"num_fewshot_examples": 500,
+		"label": ["Business", "Sci/Tech", "Sports", "World"],
+		"instruction": "Classify the following texts into one of the given categories",
+		"system_prompt": null,
+		"time_taken_seconds": 94.27,
+		"log_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshotCasualLM.json",
+		"output_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshot_deepseek_1ex4label.csv",
+		"seed": 42,
+		"fewshot_df": [
+			{
+				"text": "Wal-Mart amasses more data about the products it sells and its shoppers'' buying habits than anyone else, and some privacy advocates worry about the potential for abuse.",
+				"label": "Business"
+			},
+			{
+				"text": "AP - Three-dimensional movies at home, without the silly glasses, have been a science-fiction dream for at least as long as Dick Tracy''s wristwatch cell phone and the household robot.",
+				"label": "Sci/Tech"
+			},
+			{
+				"text": "World number one Roger Federer was stretched to the limit by fourth-seeded Thai Paradorn Srichaphan before edging a 7-5 2-6 6-3 victory in the Thailand Open semi-finals on Saturday.",
+				"label": "Sports"
+			},
+			{
+				"text": "Rebels blew up a pipeline inside an oilfield in southern Iraq in the latest in a series of attacks on the country #39;s oil infrastructure that ",
+				"label": "World"
+			}
+		],
+		"metrics_test": {
+			"f1_micro": 0.472,
+			"f1_macro": 0.4371374998240283,
+			"accuracy": 0.472
+		}
+	},
+	{
+		"timestamp": "2025-03-19T16:43:27.542576",
+		"dataset_name": "agnews",
+		"experiment_name": "fewshot_classification",
+		"model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+		"model.generation_config": {
+			"do_sample": true,
+			"temperature": 0.6,
+			"top_p": 0.95,
+			"pad_token_id": 151643,
+			"bos_token_id": 151646,
+			"eos_token_id": 151643,
+			"_from_model_config": true,
+			"transformers_version": "4.49.0"
+		},
+		"model_BitsAndBytesConfig": {
+			"_load_in_4bit": true,
+			"bnb_4bit_compute_dtype": "float16",
+			"load_in_4bit": true
+		},
+		"num_fewshot_examples": 500,
+		"label": ["Business", "Sci/Tech", "Sports", "World"],
+		"instruction": "Classify the following texts into one of the given categories",
+		"system_prompt": null,
+		"time_taken_seconds": 95.58,
+		"log_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshotCasualLM.json",
+		"output_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshot_deepseek_1ex4label.csv",
+		"seed": 42,
+		"fewshot_df": [
+			{
+				"text": "Wal-Mart amasses more data about the products it sells and its shoppers'' buying habits than anyone else, and some privacy advocates worry about the potential for abuse.",
+				"label": "Business"
+			},
+			{
+				"text": "AP - Three-dimensional movies at home, without the silly glasses, have been a science-fiction dream for at least as long as Dick Tracy''s wristwatch cell phone and the household robot.",
+				"label": "Sci/Tech"
+			},
+			{
+				"text": "World number one Roger Federer was stretched to the limit by fourth-seeded Thai Paradorn Srichaphan before edging a 7-5 2-6 6-3 victory in the Thailand Open semi-finals on Saturday.",
+				"label": "Sports"
+			},
+			{
+				"text": "Rebels blew up a pipeline inside an oilfield in southern Iraq in the latest in a series of attacks on the country #39;s oil infrastructure that ",
+				"label": "World"
+			}
+		],
+		"metrics_test": {
+			"f1_micro": 0.472,
+			"f1_macro": 0.4371374998240283,
+			"accuracy": 0.472
+		}
+	},
+	{
+		"timestamp": "2025-03-19T16:46:17.474233",
+		"dataset_name": "agnews",
+		"experiment_name": "fewshot_classification",
+		"model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+		"model.generation_config": {
+			"do_sample": true,
+			"temperature": 0.6,
+			"top_p": 0.95,
+			"pad_token_id": 151643,
+			"bos_token_id": 151646,
+			"eos_token_id": 151643,
+			"_from_model_config": true,
+			"transformers_version": "4.49.0"
+		},
+		"model_BitsAndBytesConfig": {
+			"_load_in_4bit": true,
+			"bnb_4bit_compute_dtype": "float16",
+			"load_in_4bit": true
+		},
+		"num_fewshot_examples": 500,
+		"label": ["Business", "Sci/Tech", "Sports", "World"],
+		"instruction": "Classify the following texts into one of the given categories",
+		"system_prompt": null,
+		"time_taken_seconds": 96.11,
+		"log_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshotCasualLM.json",
+		"output_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshot_deepseek_1ex4label.csv",
+		"seed": 42,
+		"fewshot_df": [
+			{
+				"text": "Wal-Mart amasses more data about the products it sells and its shoppers'' buying habits than anyone else, and some privacy advocates worry about the potential for abuse.",
+				"label": "Business"
+			},
+			{
+				"text": "AP - Three-dimensional movies at home, without the silly glasses, have been a science-fiction dream for at least as long as Dick Tracy''s wristwatch cell phone and the household robot.",
+				"label": "Sci/Tech"
+			},
+			{
+				"text": "World number one Roger Federer was stretched to the limit by fourth-seeded Thai Paradorn Srichaphan before edging a 7-5 2-6 6-3 victory in the Thailand Open semi-finals on Saturday.",
+				"label": "Sports"
+			},
+			{
+				"text": "Rebels blew up a pipeline inside an oilfield in southern Iraq in the latest in a series of attacks on the country #39;s oil infrastructure that ",
+				"label": "World"
+			}
+		],
+		"metrics_test": {
+			"f1_micro": 0.472,
+			"f1_macro": 0.4371374998240283,
+			"accuracy": 0.472
+		}
+	},
+	{
+		"timestamp": "2025-03-19T16:53:16.701656",
+		"dataset_name": "agnews",
+		"experiment_name": "fewshot_classification",
+		"model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+		"model.generation_config": {
+			"do_sample": true,
+			"temperature": 0.6,
+			"top_p": 0.95,
+			"pad_token_id": 151643,
+			"bos_token_id": 151646,
+			"eos_token_id": 151643,
+			"_from_model_config": true,
+			"transformers_version": "4.49.0"
+		},
+		"model_BitsAndBytesConfig": {
+			"_load_in_4bit": true,
+			"bnb_4bit_compute_dtype": "float16",
+			"load_in_4bit": true
+		},
+		"num_fewshot_examples": 500,
+		"label": ["Business", "Sci/Tech", "Sports", "World"],
+		"instruction": "Classify the following texts into one of the given categories",
+		"system_prompt": null,
+		"time_taken_seconds": 105.5,
+		"log_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshotCasualLM.json",
+		"output_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshot_deepseek_2ex4label.csv",
+		"seed": 42,
+		"fewshot_df": [
+			{
+				"text": "Wal-Mart amasses more data about the products it sells and its shoppers'' buying habits than anyone else, and some privacy advocates worry about the potential for abuse.",
+				"label": "Business"
+			},
+			{
+				"text": "Business Week has reached outside its own ranks and into those of The Wall Street Journal to name a new editor in chief. The 75-year-old financial magazine said yesterday that Stephen J. Adler ",
+				"label": "Business"
+			},
+			{
+				"text": "AP - Three-dimensional movies at home, without the silly glasses, have been a science-fiction dream for at least as long as Dick Tracy''s wristwatch cell phone and the household robot.",
+				"label": "Sci/Tech"
+			},
+			{
+				"text": "Low initial shipment figures for Sony #39;s forthcoming PlayStation Portable are down to a decision to focus on manufacturing the profitable PlayStation 2 hardware, according to a spokesperson for the Japanese giant.",
+				"label": "Sci/Tech"
+			},
+			{
+				"text": "World number one Roger Federer was stretched to the limit by fourth-seeded Thai Paradorn Srichaphan before edging a 7-5 2-6 6-3 victory in the Thailand Open semi-finals on Saturday.",
+				"label": "Sports"
+			},
+			{
+				"text": "MILTON -- If you could build a prototype Mansfield Hornet, he just might look like Brett McDermott.",
+				"label": "Sports"
+			},
+			{
+				"text": "Rebels blew up a pipeline inside an oilfield in southern Iraq in the latest in a series of attacks on the country #39;s oil infrastructure that ",
+				"label": "World"
+			},
+			{
+				"text": "SEOUL, South Korea - A huge mushroom cloud that reportedly billowed up from North Korea was not caused by a nuclear explosion, South Korean and U.S. officials said Sunday, but they said the cause was a mystery...",
+				"label": "World"
+			}
+		],
+		"metrics_test": {
+			"f1_micro": 0.282,
+			"f1_macro": 0.254281289898715,
+			"accuracy": 0.282
+		}
+	},
+	{
+		"timestamp": "2025-03-19T16:57:37.075063",
+		"dataset_name": "agnews",
+		"experiment_name": "fewshot_classification",
+		"model": "meta-llama/Llama-2-7b-hf",
+		"model.generation_config": {
+			"max_length": 4096,
+			"do_sample": true,
+			"temperature": 0.6,
+			"top_p": 0.9,
+			"pad_token_id": 0,
+			"bos_token_id": 1,
+			"eos_token_id": 2,
+			"transformers_version": "4.49.0",
+			"attn_implementation": "flash_attention_2"
+		},
+		"model_BitsAndBytesConfig": {
+			"_load_in_4bit": true,
+			"bnb_4bit_compute_dtype": "float16",
+			"load_in_4bit": true
+		},
+		"num_fewshot_examples": 500,
+		"label": ["Business", "Sci/Tech", "Sports", "World"],
+		"instruction": "Classify the following texts into one of the given categories",
+		"system_prompt": null,
+		"time_taken_seconds": 243.17,
+		"log_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshotCasualLM.json",
+		"output_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshot_llama2_1ex4label.csv",
+		"seed": 42,
+		"fewshot_df": [
+			{
+				"text": "Wal-Mart amasses more data about the products it sells and its shoppers'' buying habits than anyone else, and some privacy advocates worry about the potential for abuse.",
+				"label": "Business"
+			},
+			{
+				"text": "AP - Three-dimensional movies at home, without the silly glasses, have been a science-fiction dream for at least as long as Dick Tracy''s wristwatch cell phone and the household robot.",
+				"label": "Sci/Tech"
+			},
+			{
+				"text": "World number one Roger Federer was stretched to the limit by fourth-seeded Thai Paradorn Srichaphan before edging a 7-5 2-6 6-3 victory in the Thailand Open semi-finals on Saturday.",
+				"label": "Sports"
+			},
+			{
+				"text": "Rebels blew up a pipeline inside an oilfield in southern Iraq in the latest in a series of attacks on the country #39;s oil infrastructure that ",
+				"label": "World"
+			}
+		],
+		"metrics_test": {
+			"f1_micro": 0.668,
+			"f1_macro": 0.43322563988593776,
+			"accuracy": 0.668
+		}
+	},
+	{
+		"timestamp": "2025-03-19T17:02:07.919730",
+		"dataset_name": "agnews",
+		"experiment_name": "fewshot_classification",
+		"model": "meta-llama/Llama-2-7b-hf",
+		"model.generation_config": {
+			"max_length": 4096,
+			"do_sample": true,
+			"temperature": 0.6,
+			"top_p": 0.9,
+			"pad_token_id": 0,
+			"bos_token_id": 1,
+			"eos_token_id": 2,
+			"transformers_version": "4.49.0",
+			"attn_implementation": "flash_attention_2"
+		},
+		"model_BitsAndBytesConfig": {
+			"_load_in_4bit": true,
+			"bnb_4bit_compute_dtype": "float16",
+			"load_in_4bit": true
+		},
+		"num_fewshot_examples": 500,
+		"label": ["Business", "Sci/Tech", "Sports", "World"],
+		"instruction": "Classify the following texts into one of the given categories",
+		"system_prompt": null,
+		"time_taken_seconds": 270.8,
+		"log_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshotCasualLM.json",
+		"output_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshot_llama2_2ex4label.csv",
+		"seed": 42,
+		"fewshot_df": [
+			{
+				"text": "Wal-Mart amasses more data about the products it sells and its shoppers'' buying habits than anyone else, and some privacy advocates worry about the potential for abuse.",
+				"label": "Business"
+			},
+			{
+				"text": "Business Week has reached outside its own ranks and into those of The Wall Street Journal to name a new editor in chief. The 75-year-old financial magazine said yesterday that Stephen J. Adler ",
+				"label": "Business"
+			},
+			{
+				"text": "AP - Three-dimensional movies at home, without the silly glasses, have been a science-fiction dream for at least as long as Dick Tracy''s wristwatch cell phone and the household robot.",
+				"label": "Sci/Tech"
+			},
+			{
+				"text": "Low initial shipment figures for Sony #39;s forthcoming PlayStation Portable are down to a decision to focus on manufacturing the profitable PlayStation 2 hardware, according to a spokesperson for the Japanese giant.",
+				"label": "Sci/Tech"
+			},
+			{
+				"text": "World number one Roger Federer was stretched to the limit by fourth-seeded Thai Paradorn Srichaphan before edging a 7-5 2-6 6-3 victory in the Thailand Open semi-finals on Saturday.",
+				"label": "Sports"
+			},
+			{
+				"text": "MILTON -- If you could build a prototype Mansfield Hornet, he just might look like Brett McDermott.",
+				"label": "Sports"
+			},
+			{
+				"text": "Rebels blew up a pipeline inside an oilfield in southern Iraq in the latest in a series of attacks on the country #39;s oil infrastructure that ",
+				"label": "World"
+			},
+			{
+				"text": "SEOUL, South Korea - A huge mushroom cloud that reportedly billowed up from North Korea was not caused by a nuclear explosion, South Korean and U.S. officials said Sunday, but they said the cause was a mystery...",
+				"label": "World"
+			}
+		],
+		"metrics_test": {
+			"f1_micro": 0.834,
+			"f1_macro": 0.5304623199861558,
+			"accuracy": 0.834
+		}
+	}
+]
