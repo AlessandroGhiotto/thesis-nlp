@@ -1,5 +1,0 @@
-method,f1_micro,f1_macro,accuracy,time_taken_seconds
-deepseek_1ex4label,0.472,0.4371374998240283,0.472,96.11
-deepseek_2ex4label,0.282,0.254281289898715,0.282,105.5
-llama2_1ex4label,0.668,0.43322563988593776,0.668,243.17
-llama2_2ex4label,0.834,0.5304623199861558,0.834,270.8

@@ -24,7 +24,7 @@ def log_generation(details, log_file):
     print(f"📝 Log saved successfully to: {log_file}")
 
 
-def construct_fewshot_prompt(selected_examples, labels, instruction):
+def construct_fewshot_prompt(selected_examples, instruction):
     """Constructs the few-shot learning prompt"""
 
     def interleave_fewshot_examples(df):
@@ -46,6 +46,7 @@ def construct_fewshot_prompt(selected_examples, labels, instruction):
                     )  # Take one example per round
         return pd.DataFrame(interleaved, columns=df.columns)
 
+    labels = selected_examples["label"].unique().tolist()
     selected_examples = interleave_fewshot_examples(selected_examples)
     # attach options to instruction
     options = ", ".join(labels)
@@ -73,7 +74,7 @@ def run_fewshot_task(
         # append the text to be predicted to the few-shot prompt
         prompt_text = fewshot_prompt + f"\nText: {text}. Category:"
 
-        ### generate output
+        ## generate output
         # use chat template with system prompt if provided
         if system_prompt:
             messages = [
@@ -89,6 +90,20 @@ def run_fewshot_task(
         # use prompt text directly
         else:
             model_inputs = tokenizer(prompt_text, return_tensors="pt").to(model.device)
+
+        # messages = []
+        # if system_prompt:
+        #     messages.append({"role": "system", "content": system_prompt})
+
+        # messages.append({"role": "user", "content": fewshot_prompt})
+        # messages.append({"role": "assistant", "content": f"Text: {text}. Category:"})
+        # input_text = tokenizer.apply_chat_template(
+        #     messages,
+        #     tokenize=False,
+        #     continue_final_message=True,  # CONTINUE THE LAST MESSAGE
+        # )
+        # model_inputs = tokenizer([input_text], return_tensors="pt").to(model.device)
+
         generated_ids = model.generate(
             **model_inputs,
             max_new_tokens=max(
@@ -140,15 +155,15 @@ def main_fewshot_classification(config):
     print(f"🤖 Model           : {config['model'].name_or_path}")
     print(f"💾 Output File     : {config['output_file']}")
     print(f"🎯 Seed            : {config.get('seed', 'Not Set')}\n")
-    start_time = time.time()
 
     config["label"] = config["fewshot_df"]["label"].unique().tolist()
     system_prompt = config.get("system_prompt", None)
 
+    t0 = time.time()
     # CONSTRUCT FEWSHOT PROMPT
     # few-shot df should contains n examples per label with columns ["text", "label"]
     fewshot_prompt = construct_fewshot_prompt(
-        config["fewshot_df"], config["label"], config["instruction"]
+        config["fewshot_df"], config["instruction"]
     )
 
     # RUN FEWSHOT TASK
@@ -164,7 +179,7 @@ def main_fewshot_classification(config):
     # COMPUTE METRICS
     eval_metrics = compute_metrics(predictions_df)
 
-    total_time = round(time.time() - start_time, 2)
+    eval_time = time.time() - t0
 
     # LOGGING
     log_details = {
@@ -182,7 +197,7 @@ def main_fewshot_classification(config):
         "label": config["label"],
         "instruction": config["instruction"],
         "system_prompt": system_prompt,
-        "time_taken_seconds": total_time,
+        "eval_time": eval_time,
         "log_file": config["log_file"],
         "output_file": config["output_file"],
         "seed": seed,

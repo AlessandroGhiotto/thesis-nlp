@@ -301,7 +301,7 @@ def main_multiclassRoBERTA(
     dev_dataset = preprocess_data(Dataset.from_pandas(dev_df), label2id)
 
     # train
-    start_time = time.time()
+    t0 = time.time()
     labels_ids = [label2id[label] for label in labels]
     best_model = train_model(
         train_dataset,
@@ -314,10 +314,12 @@ def main_multiclassRoBERTA(
         label2id,
         save_model,
     )
-    end_time = time.time()
+    train_time = time.time() - t0
 
     # evaluate
+    t0 = time.time()
     eval_metrics = evaluation(dev_dataset, best_model)
+    eval_time = time.time() - t0
 
     if synth_df is None:
         synth_ratio = 0.0
@@ -335,7 +337,8 @@ def main_multiclassRoBERTA(
         "synthetic_ratio": synth_ratio,
         "epochs": epochs,
         "batch_size": batch_size,
-        "train_time_seconds": end_time - start_time,
+        "train_time": train_time,
+        "eval_time": eval_time,
         "metrics_dev": eval_metrics,
     }
 
