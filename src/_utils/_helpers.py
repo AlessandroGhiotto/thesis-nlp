@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from wordcloud import WordCloud
 
-sns.set(style="darkgrid")
+sns.set_style("darkgrid")
 torch.backends.cudnn.deterministic = True
 torch.backends.cudnn.benchmark = True
 
