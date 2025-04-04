@@ -522,5 +522,529 @@
             "f1_macro": 0.4617409991099466,
             "accuracy": 0.836
         }
+    },
+    {
+        "timestamp": "2025-04-04T17:00:37.091352",
+        "dataset_name": "agnews",
+        "experiment_name": "fewshot_classification",
+        "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+        "model.generation_config": {
+            "do_sample": true,
+            "temperature": 0.6,
+            "top_p": 0.95,
+            "pad_token_id": 151643,
+            "bos_token_id": 151646,
+            "eos_token_id": 151643,
+            "_from_model_config": true,
+            "transformers_version": "4.49.0"
+        },
+        "model_BitsAndBytesConfig": {
+            "_load_in_4bit": true,
+            "bnb_4bit_compute_dtype": "float16",
+            "load_in_4bit": true
+        },
+        "num_fewshot_examples": 500,
+        "label": [
+            "Business",
+            "Sci/Tech",
+            "Sports",
+            "World"
+        ],
+        "instruction": "Classify the following texts into one of the given categories",
+        "system_prompt": null,
+        "eval_time": 95.5954852104187,
+        "log_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshotCasualLM.json",
+        "output_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshot_deepseek_1ex4label.csv",
+        "seed": 42,
+        "fewshot_df": [
+            {
+                "text": "HONG KONG Hutchison Whampoa has filed with US regulators to raise as much as \\$2 billion in an initial public offering of its phone business in Hong Kong, India and six other markets.",
+                "label": "Business"
+            },
+            {
+                "text": "LEESBURG, Va. - A brother and sister who sent unsolicited junk e-mail to millions of America Online customers were convicted Wednesday in the nation #39;s first felony prosecution of distributors of spam.",
+                "label": "Sci/Tech"
+            },
+            {
+                "text": "Hungary #39;s Robert Fazekas won the discus with an Olympic-record toss of 232 feet, 8 inches (70.93 meters) on Monday, beating the past two gold medalists.",
+                "label": "Sports"
+            },
+            {
+                "text": "Israeli troops spotted a Palestinian in the security zone about 50 meters from the fence separating Gaza from Israel and shot him dead early yesterday.",
+                "label": "World"
+            }
+        ],
+        "metrics_test": {
+            "f1_micro": 0.304,
+            "f1_macro": 0.3145841873353295,
+            "accuracy": 0.304
+        }
+    },
+    {
+        "timestamp": "2025-04-04T17:02:21.604371",
+        "dataset_name": "agnews",
+        "experiment_name": "fewshot_classification",
+        "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+        "model.generation_config": {
+            "do_sample": true,
+            "temperature": 0.6,
+            "top_p": 0.95,
+            "pad_token_id": 151643,
+            "bos_token_id": 151646,
+            "eos_token_id": 151643,
+            "_from_model_config": true,
+            "transformers_version": "4.49.0"
+        },
+        "model_BitsAndBytesConfig": {
+            "_load_in_4bit": true,
+            "bnb_4bit_compute_dtype": "float16",
+            "load_in_4bit": true
+        },
+        "num_fewshot_examples": 500,
+        "label": [
+            "Business",
+            "Sci/Tech",
+            "Sports",
+            "World"
+        ],
+        "instruction": "Classify the following texts into one of the given categories",
+        "system_prompt": null,
+        "eval_time": 104.30746817588806,
+        "log_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshotCasualLM.json",
+        "output_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshot_deepseek_2ex4label.csv",
+        "seed": 42,
+        "fewshot_df": [
+            {
+                "text": "HONG KONG Hutchison Whampoa has filed with US regulators to raise as much as \\$2 billion in an initial public offering of its phone business in Hong Kong, India and six other markets.",
+                "label": "Business"
+            },
+            {
+                "text": "SEOUL A group of investors, including Donald Trump Jr., plans to invest \\$3 billion to develop Yeongjong Island in Incheon, a South Korean lawmaker said Sunday.",
+                "label": "Business"
+            },
+            {
+                "text": "LEESBURG, Va. - A brother and sister who sent unsolicited junk e-mail to millions of America Online customers were convicted Wednesday in the nation #39;s first felony prosecution of distributors of spam.",
+                "label": "Sci/Tech"
+            },
+            {
+                "text": "America Online has formally opened up its AIM instant messaging network to bot-makers with the launch of a pay-per-use AIM Bot Program targeting enterprise customers.",
+                "label": "Sci/Tech"
+            },
+            {
+                "text": "Hungary #39;s Robert Fazekas won the discus with an Olympic-record toss of 232 feet, 8 inches (70.93 meters) on Monday, beating the past two gold medalists.",
+                "label": "Sports"
+            },
+            {
+                "text": "Lindsay Davenport #39;s world number one ranking is in doubt after she failed to make the finals of the WTA Tour Championships in Los Angeles.",
+                "label": "Sports"
+            },
+            {
+                "text": "Israeli troops spotted a Palestinian in the security zone about 50 meters from the fence separating Gaza from Israel and shot him dead early yesterday.",
+                "label": "World"
+            },
+            {
+                "text": " VIENNA (Reuters) - Iran said Monday it was losing patience  with U.N. inspections of its nuclear program and announced that  its agreement with the Europeans to halt uranium enrichment  would soon come to an end.",
+                "label": "World"
+            }
+        ],
+        "metrics_test": {
+            "f1_micro": 0.228,
+            "f1_macro": 0.19569949313782214,
+            "accuracy": 0.228
+        }
+    },
+    {
+        "timestamp": "2025-04-04T17:06:44.385361",
+        "dataset_name": "agnews",
+        "experiment_name": "fewshot_classification",
+        "model": "meta-llama/Llama-2-7b-hf",
+        "model.generation_config": {
+            "max_length": 4096,
+            "do_sample": true,
+            "temperature": 0.6,
+            "top_p": 0.9,
+            "pad_token_id": 0,
+            "bos_token_id": 1,
+            "eos_token_id": 2,
+            "transformers_version": "4.49.0",
+            "attn_implementation": "flash_attention_2"
+        },
+        "model_BitsAndBytesConfig": {
+            "_load_in_4bit": true,
+            "bnb_4bit_compute_dtype": "float16",
+            "load_in_4bit": true
+        },
+        "num_fewshot_examples": 500,
+        "label": [
+            "Business",
+            "Sci/Tech",
+            "Sports",
+            "World"
+        ],
+        "instruction": "Classify the following texts into one of the given categories",
+        "system_prompt": null,
+        "eval_time": 242.13162112236023,
+        "log_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshotCasualLM.json",
+        "output_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshot_llama2_1ex4label.csv",
+        "seed": 42,
+        "fewshot_df": [
+            {
+                "text": "HONG KONG Hutchison Whampoa has filed with US regulators to raise as much as \\$2 billion in an initial public offering of its phone business in Hong Kong, India and six other markets.",
+                "label": "Business"
+            },
+            {
+                "text": "LEESBURG, Va. - A brother and sister who sent unsolicited junk e-mail to millions of America Online customers were convicted Wednesday in the nation #39;s first felony prosecution of distributors of spam.",
+                "label": "Sci/Tech"
+            },
+            {
+                "text": "Hungary #39;s Robert Fazekas won the discus with an Olympic-record toss of 232 feet, 8 inches (70.93 meters) on Monday, beating the past two gold medalists.",
+                "label": "Sports"
+            },
+            {
+                "text": "Israeli troops spotted a Palestinian in the security zone about 50 meters from the fence separating Gaza from Israel and shot him dead early yesterday.",
+                "label": "World"
+            }
+        ],
+        "metrics_test": {
+            "f1_micro": 0.668,
+            "f1_macro": 0.5129332498244416,
+            "accuracy": 0.668
+        }
+    },
+    {
+        "timestamp": "2025-04-04T17:11:16.516348",
+        "dataset_name": "agnews",
+        "experiment_name": "fewshot_classification",
+        "model": "meta-llama/Llama-2-7b-hf",
+        "model.generation_config": {
+            "max_length": 4096,
+            "do_sample": true,
+            "temperature": 0.6,
+            "top_p": 0.9,
+            "pad_token_id": 0,
+            "bos_token_id": 1,
+            "eos_token_id": 2,
+            "transformers_version": "4.49.0",
+            "attn_implementation": "flash_attention_2"
+        },
+        "model_BitsAndBytesConfig": {
+            "_load_in_4bit": true,
+            "bnb_4bit_compute_dtype": "float16",
+            "load_in_4bit": true
+        },
+        "num_fewshot_examples": 500,
+        "label": [
+            "Business",
+            "Sci/Tech",
+            "Sports",
+            "World"
+        ],
+        "instruction": "Classify the following texts into one of the given categories",
+        "system_prompt": null,
+        "eval_time": 272.0857934951782,
+        "log_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshotCasualLM.json",
+        "output_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshot_llama2_2ex4label.csv",
+        "seed": 42,
+        "fewshot_df": [
+            {
+                "text": "HONG KONG Hutchison Whampoa has filed with US regulators to raise as much as \\$2 billion in an initial public offering of its phone business in Hong Kong, India and six other markets.",
+                "label": "Business"
+            },
+            {
+                "text": "SEOUL A group of investors, including Donald Trump Jr., plans to invest \\$3 billion to develop Yeongjong Island in Incheon, a South Korean lawmaker said Sunday.",
+                "label": "Business"
+            },
+            {
+                "text": "LEESBURG, Va. - A brother and sister who sent unsolicited junk e-mail to millions of America Online customers were convicted Wednesday in the nation #39;s first felony prosecution of distributors of spam.",
+                "label": "Sci/Tech"
+            },
+            {
+                "text": "America Online has formally opened up its AIM instant messaging network to bot-makers with the launch of a pay-per-use AIM Bot Program targeting enterprise customers.",
+                "label": "Sci/Tech"
+            },
+            {
+                "text": "Hungary #39;s Robert Fazekas won the discus with an Olympic-record toss of 232 feet, 8 inches (70.93 meters) on Monday, beating the past two gold medalists.",
+                "label": "Sports"
+            },
+            {
+                "text": "Lindsay Davenport #39;s world number one ranking is in doubt after she failed to make the finals of the WTA Tour Championships in Los Angeles.",
+                "label": "Sports"
+            },
+            {
+                "text": "Israeli troops spotted a Palestinian in the security zone about 50 meters from the fence separating Gaza from Israel and shot him dead early yesterday.",
+                "label": "World"
+            },
+            {
+                "text": " VIENNA (Reuters) - Iran said Monday it was losing patience  with U.N. inspections of its nuclear program and announced that  its agreement with the Europeans to halt uranium enrichment  would soon come to an end.",
+                "label": "World"
+            }
+        ],
+        "metrics_test": {
+            "f1_micro": 0.856,
+            "f1_macro": 0.46802215911335143,
+            "accuracy": 0.856
+        }
+    },
+    {
+        "timestamp": "2025-04-04T17:22:18.900451",
+        "dataset_name": "agnews",
+        "experiment_name": "fewshot_classification",
+        "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+        "model.generation_config": {
+            "do_sample": true,
+            "temperature": 0.6,
+            "top_p": 0.95,
+            "pad_token_id": 151643,
+            "bos_token_id": 151646,
+            "eos_token_id": 151643,
+            "_from_model_config": true,
+            "transformers_version": "4.49.0"
+        },
+        "model_BitsAndBytesConfig": {
+            "_load_in_4bit": true,
+            "bnb_4bit_compute_dtype": "float16",
+            "load_in_4bit": true
+        },
+        "num_fewshot_examples": 500,
+        "label": [
+            "Business",
+            "Sci/Tech",
+            "Sports",
+            "World"
+        ],
+        "instruction": "Classify the following texts into one of the given categories",
+        "system_prompt": null,
+        "eval_time": 99.7643256187439,
+        "log_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshotCasualLM.json",
+        "output_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshot_deepseek_1ex4label.csv",
+        "seed": 42,
+        "fewshot_df": [
+            {
+                "text": "WASHINGTON - The US job market brightened in August as employers added 144,000 workers to their payrolls and hiring totals for the two prior months were revised up, the Labor Department (search) reported on Friday.",
+                "label": "Business"
+            },
+            {
+                "text": "AP - A U.S. Fish and Wildlife Service biologist says returning wolves to the Rocky Mountains is ''a chance to undo a great wrong'' done when wolves were exterminated from about 98 percent of their range by the mid-1900s.",
+                "label": "Sci/Tech"
+            },
+            {
+                "text": "Annika Sorenstam was hitting the ball so well she knew exactly where it was going. Combine that with an unusually calm day in south Florida, and her name atop the leaderboard was no surprise.",
+                "label": "Sports"
+            },
+            {
+                "text": "Model Elizabeth Jagger, daughter of rocker Mick Jagger, is seen on the catwalk during London Fashion Week. Picture:AP. People watchers and pure clothes junkies flocked to London Fashion Week today to see well ",
+                "label": "World"
+            }
+        ],
+        "metrics_test": {
+            "f1_micro": 0.45,
+            "f1_macro": 0.3134028003907522,
+            "accuracy": 0.45
+        }
+    },
+    {
+        "timestamp": "2025-04-04T17:24:04.063191",
+        "dataset_name": "agnews",
+        "experiment_name": "fewshot_classification",
+        "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+        "model.generation_config": {
+            "do_sample": true,
+            "temperature": 0.6,
+            "top_p": 0.95,
+            "pad_token_id": 151643,
+            "bos_token_id": 151646,
+            "eos_token_id": 151643,
+            "_from_model_config": true,
+            "transformers_version": "4.49.0"
+        },
+        "model_BitsAndBytesConfig": {
+            "_load_in_4bit": true,
+            "bnb_4bit_compute_dtype": "float16",
+            "load_in_4bit": true
+        },
+        "num_fewshot_examples": 500,
+        "label": [
+            "Business",
+            "Sci/Tech",
+            "Sports",
+            "World"
+        ],
+        "instruction": "Classify the following texts into one of the given categories",
+        "system_prompt": null,
+        "eval_time": 105.11549282073975,
+        "log_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshotCasualLM.json",
+        "output_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshot_deepseek_2ex4label.csv",
+        "seed": 42,
+        "fewshot_df": [
+            {
+                "text": "WASHINGTON - The US job market brightened in August as employers added 144,000 workers to their payrolls and hiring totals for the two prior months were revised up, the Labor Department (search) reported on Friday.",
+                "label": "Business"
+            },
+            {
+                "text": "WASHINGTON - The nation will face  quot;abrupt and painful quot; consequences unless the government moves quickly to fix the finances of Social Security and Medicare, Federal Reserve Chairman Alan Greenspan said Friday.",
+                "label": "Business"
+            },
+            {
+                "text": "AP - A U.S. Fish and Wildlife Service biologist says returning wolves to the Rocky Mountains is ''a chance to undo a great wrong'' done when wolves were exterminated from about 98 percent of their range by the mid-1900s.",
+                "label": "Sci/Tech"
+            },
+            {
+                "text": "MONKEYS use tools to dig up roots, crack seeds and dig insects from holes in trees, scientists have found, contradicting the traditional idea that humans are nature #39;s only tool-makers.",
+                "label": "Sci/Tech"
+            },
+            {
+                "text": "Annika Sorenstam was hitting the ball so well she knew exactly where it was going. Combine that with an unusually calm day in south Florida, and her name atop the leaderboard was no surprise.",
+                "label": "Sports"
+            },
+            {
+                "text": "AP - Mark Knowles and Daniel Nestor won their first U.S. Open doubles title by beating Leander Paes and David Rikl 6-3, 6-3 Friday.",
+                "label": "Sports"
+            },
+            {
+                "text": "Model Elizabeth Jagger, daughter of rocker Mick Jagger, is seen on the catwalk during London Fashion Week. Picture:AP. People watchers and pure clothes junkies flocked to London Fashion Week today to see well ",
+                "label": "World"
+            },
+            {
+                "text": "Polio, which can paralyze small children, has become the latest threat to refugees already struggling with famine and disease in the camps of Darfur.",
+                "label": "World"
+            }
+        ],
+        "metrics_test": {
+            "f1_micro": 0.468,
+            "f1_macro": 0.4583587764948239,
+            "accuracy": 0.468
+        }
+    },
+    {
+        "timestamp": "2025-04-04T17:28:19.710849",
+        "dataset_name": "agnews",
+        "experiment_name": "fewshot_classification",
+        "model": "meta-llama/Llama-2-7b-hf",
+        "model.generation_config": {
+            "max_length": 4096,
+            "do_sample": true,
+            "temperature": 0.6,
+            "top_p": 0.9,
+            "pad_token_id": 0,
+            "bos_token_id": 1,
+            "eos_token_id": 2,
+            "transformers_version": "4.49.0",
+            "attn_implementation": "flash_attention_2"
+        },
+        "model_BitsAndBytesConfig": {
+            "_load_in_4bit": true,
+            "bnb_4bit_compute_dtype": "float16",
+            "load_in_4bit": true
+        },
+        "num_fewshot_examples": 500,
+        "label": [
+            "Business",
+            "Sci/Tech",
+            "Sports",
+            "World"
+        ],
+        "instruction": "Classify the following texts into one of the given categories",
+        "system_prompt": null,
+        "eval_time": 234.06136345863342,
+        "log_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshotCasualLM.json",
+        "output_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshot_llama2_1ex4label.csv",
+        "seed": 42,
+        "fewshot_df": [
+            {
+                "text": "WASHINGTON - The US job market brightened in August as employers added 144,000 workers to their payrolls and hiring totals for the two prior months were revised up, the Labor Department (search) reported on Friday.",
+                "label": "Business"
+            },
+            {
+                "text": "AP - A U.S. Fish and Wildlife Service biologist says returning wolves to the Rocky Mountains is ''a chance to undo a great wrong'' done when wolves were exterminated from about 98 percent of their range by the mid-1900s.",
+                "label": "Sci/Tech"
+            },
+            {
+                "text": "Annika Sorenstam was hitting the ball so well she knew exactly where it was going. Combine that with an unusually calm day in south Florida, and her name atop the leaderboard was no surprise.",
+                "label": "Sports"
+            },
+            {
+                "text": "Model Elizabeth Jagger, daughter of rocker Mick Jagger, is seen on the catwalk during London Fashion Week. Picture:AP. People watchers and pure clothes junkies flocked to London Fashion Week today to see well ",
+                "label": "World"
+            }
+        ],
+        "metrics_test": {
+            "f1_micro": 0.692,
+            "f1_macro": 0.5373454756625213,
+            "accuracy": 0.692
+        }
+    },
+    {
+        "timestamp": "2025-04-04T17:33:07.889159",
+        "dataset_name": "agnews",
+        "experiment_name": "fewshot_classification",
+        "model": "meta-llama/Llama-2-7b-hf",
+        "model.generation_config": {
+            "max_length": 4096,
+            "do_sample": true,
+            "temperature": 0.6,
+            "top_p": 0.9,
+            "pad_token_id": 0,
+            "bos_token_id": 1,
+            "eos_token_id": 2,
+            "transformers_version": "4.49.0",
+            "attn_implementation": "flash_attention_2"
+        },
+        "model_BitsAndBytesConfig": {
+            "_load_in_4bit": true,
+            "bnb_4bit_compute_dtype": "float16",
+            "load_in_4bit": true
+        },
+        "num_fewshot_examples": 500,
+        "label": [
+            "Business",
+            "Sci/Tech",
+            "Sports",
+            "World"
+        ],
+        "instruction": "Classify the following texts into one of the given categories",
+        "system_prompt": null,
+        "eval_time": 288.1178116798401,
+        "log_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshotCasualLM.json",
+        "output_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshot_llama2_2ex4label.csv",
+        "seed": 42,
+        "fewshot_df": [
+            {
+                "text": "WASHINGTON - The US job market brightened in August as employers added 144,000 workers to their payrolls and hiring totals for the two prior months were revised up, the Labor Department (search) reported on Friday.",
+                "label": "Business"
+            },
+            {
+                "text": "WASHINGTON - The nation will face  quot;abrupt and painful quot; consequences unless the government moves quickly to fix the finances of Social Security and Medicare, Federal Reserve Chairman Alan Greenspan said Friday.",
+                "label": "Business"
+            },
+            {
+                "text": "AP - A U.S. Fish and Wildlife Service biologist says returning wolves to the Rocky Mountains is ''a chance to undo a great wrong'' done when wolves were exterminated from about 98 percent of their range by the mid-1900s.",
+                "label": "Sci/Tech"
+            },
+            {
+                "text": "MONKEYS use tools to dig up roots, crack seeds and dig insects from holes in trees, scientists have found, contradicting the traditional idea that humans are nature #39;s only tool-makers.",
+                "label": "Sci/Tech"
+            },
+            {
+                "text": "Annika Sorenstam was hitting the ball so well she knew exactly where it was going. Combine that with an unusually calm day in south Florida, and her name atop the leaderboard was no surprise.",
+                "label": "Sports"
+            },
+            {
+                "text": "AP - Mark Knowles and Daniel Nestor won their first U.S. Open doubles title by beating Leander Paes and David Rikl 6-3, 6-3 Friday.",
+                "label": "Sports"
+            },
+            {
+                "text": "Model Elizabeth Jagger, daughter of rocker Mick Jagger, is seen on the catwalk during London Fashion Week. Picture:AP. People watchers and pure clothes junkies flocked to London Fashion Week today to see well ",
+                "label": "World"
+            },
+            {
+                "text": "Polio, which can paralyze small children, has become the latest threat to refugees already struggling with famine and disease in the camps of Darfur.",
+                "label": "World"
+            }
+        ],
+        "metrics_test": {
+            "f1_micro": 0.836,
+            "f1_macro": 0.4617409991099466,
+            "accuracy": 0.836
+        }
     }
 ]
