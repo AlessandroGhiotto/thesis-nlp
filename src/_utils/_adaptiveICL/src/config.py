@@ -90,9 +90,9 @@ def get_config(args):
         per_device_eval_batch_size = 256
 
     ### ! ADDED AGNEWS HERE
-    elif dataset == "agnews":
-        train_datapath = "data/agnews"
-        test_datapath = "data/agnews"
+    elif "agnews" in dataset:
+        train_datapath = "data/" + dataset
+        test_datapath = "data/" + dataset
         classes = [
             "World",
             "Sports",
@@ -111,6 +111,8 @@ def get_config(args):
         num_epochs = 100
         per_device_train_batch_size = 256
         per_device_eval_batch_size = 256
+    else:
+        raise ValueError("Dataset not supported")
 
     embed, neigh, input_dim, output_dim = None, None, None, None
     if prepare or method == "dynamic":

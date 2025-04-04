@@ -54,11 +54,17 @@ def arg_parser():
         default="similar",
         required=False,
     )
+    # parser.add_argument(
+    #     "--dataset",
+    #     type=str,
+    #     choices=["sst2", "trec", "rte", "cola", "agnews"],
+    #     help="Dataset",
+    #     required=True,
+    # )
     parser.add_argument(
         "--dataset",
         type=str,
-        choices=["sst2", "trec", "rte", "cola", "agnews"],
-        help="Dataset",
+        help='Dataset (e.g., "sst2", "trec", "rte", "cola", "agnews", "agnews_1000real", "agnews_500real+500targetedaug")',
         required=True,
     )
     parser.add_argument(
@@ -359,7 +365,7 @@ def load_dataset(dataset, train_datapath, test_datapath, classes_in_data, tokeni
             train_val, test_size=0.1, random_state=42, shuffle=True
         )
     ### ! AGNEWS HERE
-    elif dataset == "agnews":
+    elif "agnews" in dataset:
         train_val = csvProcessor(classes_in_data).get_examples(train_datapath, "train")
         dataset_dict["test"] = csvProcessor(classes_in_data).get_examples(
             test_datapath, "test"
@@ -453,7 +459,7 @@ def pred_batch(
             padding="longest",
         )
     ### ! AGNEWS HERE
-    elif dataset == "agnews":
+    elif "agnews" in dataset:
         enc = tokenizer.batch_encode_plus(
             [
                 f"{prompt_prefix}Sentence: {test_example.text_a}\n"
@@ -556,7 +562,7 @@ def pred_batch(
                     )
                 )
             ### ! AGNEWS HERE
-            elif dataset == "agnews":
+            elif "agnews" in dataset:
                 demonstrations.append(
                     "".join(
                         [
@@ -606,7 +612,7 @@ def pred_batch(
                 padding="longest",
             )
         ### ! AGNEWS HERE
-        elif dataset == "agnews":
+        elif "agnews" in dataset:
             enc = tokenizer.batch_encode_plus(
                 [
                     f"{prompt_prefix}{demonstrations[indx]}Sentence: {test_example.text_a}\n"
