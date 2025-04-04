@@ -3,3 +3,5 @@ papers/
 **/__pycache__/
 # ignore all checkpoint folders (trained models)
 **/*checkpoint*/
+src/_utils/_adaptiveICL/
+src/_utils/hf_token.txt
