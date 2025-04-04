@@ -3,5 +3,14 @@ papers/
 **/__pycache__/
 # ignore all checkpoint folders (trained models)
 **/*checkpoint*/
-src/_utils/_adaptiveICL/
 src/_utils/hf_token.txt
+#src/_utils/_adaptiveICL/
+src/_utils/_adaptiveICL/models/
+# datasets in adaptiveICL
+*cola*
+*CoLA*
+*rte*
+*RTE*
+*sst2*
+*SST2*
+*trec*
