@@ -131,5 +131,24 @@
             "f1_macro": 0.8059685094259561,
             "accuracy": 0.852
         }
+    },
+    {
+        "experiment_name": "exp_500real",
+        "experiment_dir": "src/agnews/experiments/RoBERTA_500samples/exp_500real",
+        "generation_method": null,
+        "timestamp": "2025-04-08T09:38:35.447228",
+        "model": "roberta-large",
+        "train_size": 500,
+        "dev_size": 500,
+        "synthetic_ratio": 0.0,
+        "epochs": 8,
+        "batch_size": 16,
+        "train_time": 310.33454751968384,
+        "eval_time": 8.757440328598022,
+        "metrics_dev": {
+            "f1_micro": 0.924,
+            "f1_macro": 0.8849795949659437,
+            "accuracy": 0.924
+        }
     }
 ]

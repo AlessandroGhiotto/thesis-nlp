@@ -1,4 +1,4 @@
-# Changes I have made to adaptiveICL
+# Changes to adaptiveICL
 
 - utils.arg_parser(), "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B" as model choice
 - utils.arg_parser(), --dataset accept any string (no more a list of specified choices), for more flexibility
