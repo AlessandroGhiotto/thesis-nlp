@@ -388,5 +388,103 @@
                 ]
             }
         ]
+    },
+    {
+        "timestamp": "2025-05-12T11:37:58.921133",
+        "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+        "generation_method": "targeted + linguistic tags",
+        "prompt": "You are an expert in journalism and NLP specialized in news classification. Your task is to generate an high-quality short documents, that talks about one of the following four News categories (labels):\n- **Business**\n- **Sci/Tech**\n- **Sports**\n- **World**.\n\nHere some examples of the documents you can use as a reference:\n- The combined worldwide market for desktops, servers and packaged software running on Linux is forecast to grow at a 2003-2008 compound annual growth rate of 25.9 percent worldwide, reaching \\$35.7 billion by 2008.\n- A SECOND-HALF Springbok blitz gave South Africa their first Tri-Nations rugby title in six years with a win over Australia at Kings Park.\n- It #39;ll cost about the same as the regular-sized PS 2 in the US and Europe. The smaller PlayStation 2 has all regular PlayStation 2 functions such as playing CDs and DVDs.\n- Three British nationals were nabbed by gunmen in the Iraqi capital on Thursday, the Iraqi Interior Ministry said. The three British men were believed to be civilians living \n- AP - Seattle and Miami are among the NBA''s four winningest teams so far this season, ranking just behind Phoenix and San Antonio. Yet when the Heat put their 14-game winning streak on the line Monday night against the SuperSonics, Miami won''t be looking at the matchup as a potential NBA Finals preview or a measuring stick to see where it ranks against one of the Western Conference''s elite clubs.\n\nGenerate a new news document, with the corresponding category (label) with the following format:\n```json\n[\n    {\"text\": <text of the document>, \"label\": <corresponding label>}\n]\n```\n",
+        "time_taken_seconds": 11.16,
+        "num_examples": 1,
+        "generated_examples": [
+            {
+                "text": "The global market for cloud computing services is projected to grow by 12% in the next three years, driven by the increasing adoption of AI and data analytics across various industries. This growth is expected to reach $1.5 trillion by 2023, making it one of the fastest-growing sectors in the business sector.",
+                "label": "Business"
+            }
+        ]
+    },
+    {
+        "timestamp": "2025-05-12T11:38:45.656581",
+        "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+        "generation_method": "targeted + linguistic tags",
+        "prompt": "You are an expert in journalism and NLP specialized in news classification. Your task is to generate an high-quality short documents, that talks about one of the following four News categories (labels):\n- **Business**\n- **Sci/Tech**\n- **Sports**\n- **World**.\n\nHere some examples of the documents you can use as a reference:\n- The combined worldwide market for desktops, servers and packaged software running on Linux is forecast to grow at a 2003-2008 compound annual growth rate of 25.9 percent worldwide, reaching \\$35.7 billion by 2008.\n- A SECOND-HALF Springbok blitz gave South Africa their first Tri-Nations rugby title in six years with a win over Australia at Kings Park.\n- It #39;ll cost about the same as the regular-sized PS 2 in the US and Europe. The smaller PlayStation 2 has all regular PlayStation 2 functions such as playing CDs and DVDs.\n- Three British nationals were nabbed by gunmen in the Iraqi capital on Thursday, the Iraqi Interior Ministry said. The three British men were believed to be civilians living \n- AP - Seattle and Miami are among the NBA''s four winningest teams so far this season, ranking just behind Phoenix and San Antonio. Yet when the Heat put their 14-game winning streak on the line Monday night against the SuperSonics, Miami won''t be looking at the matchup as a potential NBA Finals preview or a measuring stick to see where it ranks against one of the Western Conference''s elite clubs.\n\nGenerate a new news document, with the corresponding category (label) with the following format:\n```json\n[\n    {\"text\": <text of the document>, \"label\": <corresponding label>}\n]\n```\n",
+        "time_taken_seconds": 11.01,
+        "num_examples": 1,
+        "generated_examples": [
+            {
+                "text": "The global market for cloud computing services is projected to grow by 12% in the next three years, driven by the increasing adoption of AI and data analytics across various industries. This growth is expected to reach $1.5 trillion by 2023, making it one of the fastest-growing sectors in the business sector.",
+                "label": "Business"
+            }
+        ]
+    },
+    {
+        "timestamp": "2025-05-12T11:40:38.108153",
+        "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+        "generation_method": "targeted + linguistic tags",
+        "prompt": "You are an expert in journalism and NLP specialized in news classification. Your task is to generate an high-quality short documents, that talks about one of the following four News categories (labels):\n- **Business**\n- **Sci/Tech**\n- **Sports**\n- **World**.\n\nHere some examples of the documents you can use as a reference:\n\n\nGenerate a new news document, with the corresponding category (label) with the following format:\n```json\n[\n    {\"text\": <text of the document>, \"label\": <corresponding label>}\n]\n```\n",
+        "time_taken_seconds": 9.93,
+        "num_examples": 1,
+        "generated_examples": [
+            {
+                "text": "In recent weeks, a leading renewable energy company has reported significant earnings growth, driven by rising demand for sustainable energy solutions. The company's revenue increased by 15% year-over-year, reflecting improved demand in the global renewable market. The company's profit margin improved to 7%, indicating strong operational efficiency. Their market position remains strong in the renewable energy sector, with several new projects under development. Investors are encouraged to follow the company's earnings report for further insights into their future strategy. Stay tuned for more details on the company's upcoming initiatives.",
+                "label": "Business"
+            }
+        ]
+    },
+    {
+        "timestamp": "2025-05-12T11:42:33.184629",
+        "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+        "generation_method": "targeted + linguistic tags",
+        "prompt": "You are an expert in journalism and NLP specialized in news classification. Your task is to generate an high-quality short documents, that talks about one of the following four News categories (labels):\n- **Business**\n- **Sci/Tech**\n- **Sports**\n- **World**.\n\nHere some examples of the documents you can use as a reference:\n- The shock here was not just from the awful fact itself, that two vibrant young Italian women were kidnapped in Iraq, dragged from their office by attackers who, it seems, knew their names.\n- BAGHDAD, Iraq - A pared-down delegation of Iraqis arrived in Najaf by helicopter Tuesday to present radical Shiite cleric Muqtada al-Sadr with a peace proposal aimed at ending the violent insurgency wracking the holy city.    Despite the delegation''s presence there, fighting intensified in Najaf, with at least one U.S...\n- Albert Pujols and Scott Rolen hit back-to-back home runs in the eighth inning to lead the St Louis Cardinals to a 6-4 win over the Houston Astros in Game Two of the NL Championship Series at Busch Stadium on Thursday.\n- Besides unleashing Solaris 10, Sun Microsystems on Monday plans to turn the spotlight on new storage hardware and software offerings as part of its quarterly product launch.\n- For those who need to make telephone calls in flight and don''t want to sell the second car to finance them, help is on the way.\n\nGenerate a new news document, with the corresponding category (label) with the following format:\n```json\n[\n    {\"text\": <text of the document>, \"label\": <corresponding label>}\n]\n```\n",
+        "time_taken_seconds": 29.38,
+        "num_examples": 1,
+        "generated_examples": [
+            {
+                "text": "For those who need to make telephone calls in flight and don't want to sell the second car to finance them, help is on the way.",
+                "label": "World"
+            }
+        ]
+    },
+    {
+        "timestamp": "2025-05-12T20:39:45.751161",
+        "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+        "generation_method": "unsupervised context",
+        "prompt": "You are an expert in journalism and NLP specialized in news classification. Your task is to generate an high-quality short documents, that talks about one of the following four News categories (labels):\n- **Business**\n- **Sci/Tech**\n- **Sports**\n- **World**.\n\nHere some examples of the documents you can use as a reference:\n- The combined worldwide market for desktops, servers and packaged software running on Linux is forecast to grow at a 2003-2008 compound annual growth rate of 25.9 percent worldwide, reaching \\$35.7 billion by 2008.\n- A SECOND-HALF Springbok blitz gave South Africa their first Tri-Nations rugby title in six years with a win over Australia at Kings Park.\n- It #39;ll cost about the same as the regular-sized PS 2 in the US and Europe. The smaller PlayStation 2 has all regular PlayStation 2 functions such as playing CDs and DVDs.\n- Three British nationals were nabbed by gunmen in the Iraqi capital on Thursday, the Iraqi Interior Ministry said. The three British men were believed to be civilians living \n- AP - Seattle and Miami are among the NBA''s four winningest teams so far this season, ranking just behind Phoenix and San Antonio. Yet when the Heat put their 14-game winning streak on the line Monday night against the SuperSonics, Miami won''t be looking at the matchup as a potential NBA Finals preview or a measuring stick to see where it ranks against one of the Western Conference''s elite clubs.\n\nGenerate a new news document, with the corresponding category (label) with the following format:\n```json\n[\n    {\"text\": <text of the document>, \"label\": <corresponding label>}\n]\n```\n",
+        "time_taken_seconds": 19.22,
+        "num_examples": 1,
+        "generated_examples": [
+            {
+                "text": "The global market for cloud computing services is projected to grow by 12% in the next three years, driven by the increasing adoption of AI and data analytics across various industries. This growth is expected to reach $1.5 trillion by 2023, making it one of the fastest-growing sectors in the business sector.",
+                "label": "Business"
+            }
+        ]
+    },
+    {
+        "timestamp": "2025-05-12T20:40:05.199951",
+        "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+        "generation_method": "unsupervised context",
+        "prompt": "You are an expert in journalism and NLP specialized in news classification. Your task is to generate an high-quality short documents, that talks about one of the following four News categories (labels):\n- **Business**\n- **Sci/Tech**\n- **Sports**\n- **World**.\n\nHere some examples of the documents you can use as a reference:\n- The combined worldwide market for desktops, servers and packaged software running on Linux is forecast to grow at a 2003-2008 compound annual growth rate of 25.9 percent worldwide, reaching \\$35.7 billion by 2008.\n- A SECOND-HALF Springbok blitz gave South Africa their first Tri-Nations rugby title in six years with a win over Australia at Kings Park.\n- It #39;ll cost about the same as the regular-sized PS 2 in the US and Europe. The smaller PlayStation 2 has all regular PlayStation 2 functions such as playing CDs and DVDs.\n- Three British nationals were nabbed by gunmen in the Iraqi capital on Thursday, the Iraqi Interior Ministry said. The three British men were believed to be civilians living \n- AP - Seattle and Miami are among the NBA''s four winningest teams so far this season, ranking just behind Phoenix and San Antonio. Yet when the Heat put their 14-game winning streak on the line Monday night against the SuperSonics, Miami won''t be looking at the matchup as a potential NBA Finals preview or a measuring stick to see where it ranks against one of the Western Conference''s elite clubs.\n\nGenerate a new news document, with the corresponding category (label) with the following format:\n```json\n[\n    {\"text\": <text of the document>, \"label\": <corresponding label>}\n]\n```\n",
+        "time_taken_seconds": 18.1,
+        "num_examples": 1,
+        "generated_examples": [
+            {
+                "text": "The global market for cloud computing services is projected to grow by 12% in the next three years, driven by the increasing adoption of AI and data analytics across various industries. This growth is expected to reach $1.5 trillion by 2023, making it one of the fastest-growing sectors in the business sector.",
+                "label": "Business"
+            }
+        ]
+    },
+    {
+        "timestamp": "2025-05-12T20:41:56.587373",
+        "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+        "generation_method": "unsupervised context",
+        "prompt": "You are an expert in journalism and NLP specialized in news classification. Your task is to generate an high-quality short documents, that talks about one of the following four News categories (labels):\n- **Business**\n- **Sci/Tech**\n- **Sports**\n- **World**.\n\nHere some examples of the documents you can use as a reference:\n- The shock here was not just from the awful fact itself, that two vibrant young Italian women were kidnapped in Iraq, dragged from their office by attackers who, it seems, knew their names.\n- BAGHDAD, Iraq - A pared-down delegation of Iraqis arrived in Najaf by helicopter Tuesday to present radical Shiite cleric Muqtada al-Sadr with a peace proposal aimed at ending the violent insurgency wracking the holy city.    Despite the delegation''s presence there, fighting intensified in Najaf, with at least one U.S...\n- Albert Pujols and Scott Rolen hit back-to-back home runs in the eighth inning to lead the St Louis Cardinals to a 6-4 win over the Houston Astros in Game Two of the NL Championship Series at Busch Stadium on Thursday.\n- Besides unleashing Solaris 10, Sun Microsystems on Monday plans to turn the spotlight on new storage hardware and software offerings as part of its quarterly product launch.\n- For those who need to make telephone calls in flight and don''t want to sell the second car to finance them, help is on the way.\n\nGenerate a new news document, with the corresponding category (label) with the following format:\n```json\n[\n    {\"text\": <text of the document>, \"label\": <corresponding label>}\n]\n```\n",
+        "time_taken_seconds": 47.32,
+        "num_examples": 1,
+        "generated_examples": [
+            {
+                "text": "For those who need to make telephone calls in flight and don't want to sell the second car to finance them, help is on the way.",
+                "label": "World"
+            }
+        ]
     }
 ]
