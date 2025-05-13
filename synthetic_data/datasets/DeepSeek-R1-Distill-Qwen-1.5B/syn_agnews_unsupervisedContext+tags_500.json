@@ -1,0 +1,126 @@
+{
+    "metadata": {
+        "timestamp": "2025-05-13T12:09:47.112243",
+        "dataset": "agnews",
+        "generation_method": "unsupervised context + linguistic tags",
+        "num_examples_generated": 5,
+        "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+        "model.generation_config": {
+            "do_sample": true,
+            "temperature": 0.6,
+            "top_p": 0.95,
+            "pad_token_id": 151643,
+            "bos_token_id": 151646,
+            "eos_token_id": 151643,
+            "_from_model_config": true,
+            "transformers_version": "4.49.0"
+        },
+        "model_BitsAndBytesConfig": {
+            "_load_in_4bit": true,
+            "load_in_4bit": true
+        },
+        "prompt": "You are an expert in journalism and NLP specialized in news classification. Your task is to generate an high-quality short documents, that talks about one of the following four News categories (labels):\n- Business\n- Sci/Tech\n- Sports\n- World.\n\nHere some examples of the documents you can use as a reference:\n",
+        "prompt_postfix": "\nGenerate a new news document, with the corresponding category (label) and the key linguistic phenomena it covers, with the following format:\n```json\n[\n    {\n        \"text\": \"<text of the document>\", \n        \"label\": \"<corresponding label>\", \n        \"phenomena\": [\"<phenomenon1>\", \"<phenomenon2>\", ...] \n    }\n]\n```\n",
+        "system_prompt": null,
+        "time_taken_seconds": 43.4,
+        "json_output_file": "synthetic_data/datasets/DeepSeek-R1-Distill-Qwen-1.5B/syn_agnews_unsupervisedContext+tags_500.json",
+        "num_runs": 5,
+        "seed": 42,
+        "correct_labels": [
+            "Business",
+            "Sci/Tech",
+            "Sports",
+            "World"
+        ],
+        "correct_fields": [
+            "text",
+            "label",
+            "phenomena"
+        ]
+    },
+    "generated_examples": [
+        {
+            "text": "The World Cup is always a big deal for fans and players around the world. On March 22, 2023, the final match of the tournament was held in Russia, showcasing the best and brightest of sports. The match was intense, with both teams performing at their best. It was a big moment in history for the world of sports. The players' reactions and the crowd's support made it unforgettable.",
+            "label": "World",
+            "phenomena": [
+                "saint of the game",
+                "big day",
+                "big moment"
+            ],
+            "context_examples": [
+                "Reuters - Up to 60 protected gray seals have been\\killed off the west coast of Ireland in what a wildlife group\\described as slaughter.",
+                "AP - Private Indian and Pakistani information technology companies will meet in the Pakistani capital next month to tap business opportunities and sign a cooperation agreement.",
+                "com. An Auburn touchdown with 52 seconds left in the first half Saturday night brought a smile to celebrity Tiger fan Charles Barkley pacing the sideline.",
+                " MUNICH (Reuters) - Sweden''s Fredrik Jacobson made his bid  for a last-gasp Ryder Cup debut with a spectacular  seven-under-par 65 in the BMW International Open second round  on Friday.",
+                "Coach Doc Rivers had to have liked what he saw in the first half of last night #39;s game against the Portland Trail Blazers. Gary Payton scored "
+            ]
+        },
+        {
+            "text": "A sports analyst highlights the recent match between the Los Angeles Lakers and the Golden State Warriors, emphasizing the team's momentum and the challenges they face in the competitive landscape.",
+            "label": "Sports",
+            "phenomena": [
+                "team performance",
+                "challenges in the competitive landscape",
+                "momentum in sports"
+            ],
+            "context_examples": [
+                "AFP - Australian Prime Minister John Howard called a general election for October 9 with his conservative government trailing well behind the opposition Labor Party in opinion polls.",
+                "Israeli forces and Palestinian militants trade gunfire in the Gaza Strip after an Israeli tank is hit by a Hamas bomb.",
+                "At times like this, it is important to remember a simple truth: No matter how much they have improved, no matter how much promise they may show at times, there is something they have yet to escape.",
+                "AP - President Bush made an unexpected visit to the Russian Embassy on Sunday where he signed a book of condolences for victims of the school hostage seizure and expressed outrage at the actions of ''evil terrorists.''",
+                "The Los Angeles Dodgers signed Ricky Ledee to a two-year contract Monday, giving them a left-handed pinch-hitter and more depth in the outfield."
+            ]
+        },
+        {
+            "text": "A biotech firm has announced $50 million in funding for its pursuit of a groundbreaking cancer treatment, potentially transforming the industry in the process.",
+            "label": "Business",
+            "phenomena": [
+                "Innovation in Biotechnology",
+                "Global Investment in Medical Research"
+            ],
+            "context_examples": [
+                "Reuters - German luxury carmaker BMW unveiled the\\world''s fastest hydrogen-powered car at the Paris auto show on\\Wednesday, dubbed the H2R, capable of exceeding 300 kilometers\\(185 miles) per hour.",
+                "AP - Mark Knowles and Daniel Nestor won their first U.S. Open doubles title by beating Leander Paes and David Rikl 6-3, 6-3 Friday.",
+                "Real Madrid star and England Soccer team captain David Beckham has already been an inspiration of a massive international hit movie Bend it like Beckham.",
+                "Denver Nuggets star Carmelo Anthony beat a marijuana rap yesterday and then smoked the Raptors. Pot possession charges filed earlier this year against the sophomore were dismissed prior to last night #39;s game ",
+                "Serena Williams was all about show at the beginning of this US Open. Dress in what some would consider an outrageous manner. Tweak the tennis establishment."
+            ]
+        },
+        {
+            "text": "The 2023 World Series champion, Alexioms, won their seventh series sweep and secured their title at home. In the final game, the Boston Red Sox took down the San Francisco Giants 4-2 in a thrilling moment of World Series history.",
+            "label": "Sports",
+            "phenomena": [
+                "World Series",
+                "Sports achievements",
+                "Game significance",
+                "Boston Red Sox",
+                "San Francisco Giants",
+                "Grand slam victory",
+                "Player contributions"
+            ],
+            "context_examples": [
+                "Doing some news catch up and came across this interesting item from InfoWorld last week: Google helps promote Windows XP. It #39;s about how Microsoft #39;s Partner Pack For Windows is promoting the Google Deskbar.",
+                "Cingular Wireless, the largest U.S. wireless phone company, said Wednesday it expects to report a profit and positive cash flow in 2005, one year earlier than planned, following its \\$41 billion purchase of AT #38;T Wireless Services Inc.",
+                "AP - Curt Schilling became the first 19-game winner in the major leagues this year and Manny Ramirez homered twice, including his second grand slam of the season, to lead the Boston Red Sox over the Seattle Mariners 13-2 Friday night.",
+                "It was 3:45 pm ET on Wednesday afternoon when Expos president Tony Tavares held a team meeting to inform the players that the Expos franchise would be relocated to Washington, DC, starting in 2005.",
+                " NEW YORK (Reuters) - The wireless industry, not content  with getting corporate executives addicted to e-mail on the go,  is setting its sights on the instant messaging generation."
+            ]
+        },
+        {
+            "text": "The financial sector has recently experienced a surge in economic activity, with key figures highlighting a 5% increase in investment in tech and consumer products sectors, as well as a 4% rise in exports of core consumer goods. This growth is expected to drive economic stability and growth in the region, particularly in areas with high demand for tech and consumer goods.",
+            "label": "Business",
+            "phenomena": [
+                "5% increase in investment in tech and consumer products sectors",
+                "4% rise in exports of core consumer goods",
+                "Economic stability and growth expected in areas with high demand for tech and consumer goods"
+            ],
+            "context_examples": [
+                "California - Currently compatible only with the Windows operating system, Google #39;s new 400-kilobyte desktop program requires about 10 minutes to download on a dial-up connection and takes some five or six hours to index a computer #39;s hard drive.",
+                "When it happens, somehow it will change. It will change by making the remainder of the season more meaningful, extending the dreams of a BCS bowl bid, which is what it''s all about at the highest level of college football.",
+                "A new variant of the Internet worm MyDoom - Mydoom.Y - has anti-virus vendors puzzled. Not because they can #39;t do anything about it but because it comes along with a description of itself.",
+                "MIAMI - A teen whose life sentence in the beating death of a 6-year-old playmate was thrown out on appeal went before a judge yesterday on charges he violated his probation by walking around late at night with a pocket knife.",
+                "Andrew Brackman helped rally ninth-ranked North Carolina State to a tougher-than-expected, 78-72 victory over Louisiana-Lafayette Wednesday night."
+            ]
+        }
+    ]
+}

@@ -31,90 +31,6 @@ def save_dataset_json(metadata, output_file):
     print(f"💾 Dataset with metadata saved to: {output_file}")
 
 
-# def generate_synthetic_data_rolling(
-#     prompt_template,
-#     num_examples,
-#     model,
-#     tokenizer,
-#     batch_size=50,
-#     max_new_tokens=8192,
-#     system_prompt=None,
-# ):
-#     """
-#     Generate synthetic data in batches using a rolling context.
-#     The model is expected to output a JSON array of examples.
-
-#     Each example should have at least 'text' and 'label' keys,
-#     and optionally a 'phenomena' key.
-
-#     If a system_prompt is provided, the function uses the chat template via
-#     tokenizer.apply_chat_template.
-
-#     Returns:
-#         List[dict]: A list of generated examples.
-#     """
-
-#     def build_prompt(previous_examples):
-#         """
-#         Build a prompt with rolling context using the last few examples.
-#         """
-#         if previous_examples:
-#             # Include the last 5 examples as context (if available)
-#             context_examples = previous_examples[-5:]
-#             examples_str = "\n".join(
-#                 [
-#                     f'{{"text": "{ex["text"]}", "label": "{ex["label"]}", "phenomena": {ex.get("phenomena", [])}}}'
-#                     for ex in context_examples
-#                 ]
-#             )
-#             return f"{prompt_template}\n\nReference examples:\n{examples_str}\n\nNow generate new examples."
-#         else:
-#             return prompt_template
-
-#     all_examples = []
-
-#     # Loop to generate data in batches
-#     for i in range(0, num_examples, batch_size):
-#         current_batch_size = min(batch_size, num_examples - i)
-#         prompt = build_prompt(all_examples)
-#         # Add the desired number of examples to generate in this batch
-#         prompt_batch = (
-#             f"{prompt}\n\nGenerate {current_batch_size} examples in JSON format."
-#         )
-#         print(f"Generating batch {i // batch_size + 1} with prompt:\n{prompt_batch}\n")
-
-#         # If system_prompt is provided, use the chat template
-#         if system_prompt:
-#             messages = []
-#             messages.append({"role": "system", "content": system_prompt})
-#             messages.append({"role": "user", "content": prompt_batch})
-#             text = tokenizer.apply_chat_template(
-#                 messages, tokenize=False, add_generation_prompt=True
-#             )
-#             inputs = tokenizer(text, return_tensors="pt").to(model.device)
-#         else:
-#             inputs = tokenizer(prompt_batch, return_tensors="pt").to(model.device)
-
-#         outputs = model.generate(
-#             **inputs,
-#             max_new_tokens=max_new_tokens,
-#             do_sample=True,
-#         )
-#         generated_text = tokenizer.decode(outputs[0], skip_special_tokens=True)
-
-#         # Extract JSON array from the generated text
-#         try:
-#             batch_examples = response2json(generated_text)
-#             all_examples.extend(batch_examples)
-#             print(
-#                 f"Batch {i // batch_size + 1} generated with {len(batch_examples)} examples."
-#             )
-#         except Exception as e:
-#             print(f"Failed to parse batch {i // batch_size + 1}: {e}")
-
-#     return all_examples
-
-
 def get_valid_examples(examples, correct_labels=None, correct_fields=None):
     """
     Remove the examples that have a non-valid label or fields.
@@ -134,6 +50,41 @@ def get_valid_examples(examples, correct_labels=None, correct_fields=None):
         valid_examples.append(ex)
 
     return valid_examples
+
+
+def format_prompt_with_context(
+    base_prompt, context_examples, example_format="bullet", postfix=None
+):
+    """
+    Format the prompt by including context examples, with optional postfix.
+    """
+    # base_prompt + context examples + postfix
+    prompt_parts = []
+    if base_prompt:
+        prompt_parts.append(base_prompt)
+    if context_examples:
+        if example_format == "json":
+            # when an example is a list of dicts
+            # context_str = "Here are some examples:\n"
+            context_str = ""
+            context_str += (
+                "```json\n"
+                + json.dumps(context_examples, indent=4, ensure_ascii=False)
+                + "\n```\n"
+            )
+        elif example_format == "bullet":
+            # when an example is a string
+            # context_str = "Here are some examples:\n"
+            ### The part "here are some examples..." must be printed in the base prompt
+            context_str = ""
+            for example in context_examples:
+                context_str += f"- {example}\n"
+        else:
+            context_str = f"Context examples:\n{str(context_examples)}\n"
+        prompt_parts.append(context_str)
+    if postfix:
+        prompt_parts.append(postfix)
+    return "\n".join([part for part in prompt_parts if part])
 
 
 def generate_synthetic_data(
@@ -163,12 +114,12 @@ def generate_synthetic_data(
 
     correct_labels = set(correct_labels) if correct_labels else None
     correct_fields = set(correct_fields) if correct_fields else None
-    all_examples = []
+    all_samples = []
 
     # Loop to generate data in batches
     with tqdm(total=num_examples, desc="Generating Examples", unit="ex") as pbar:
         run_number = 1
-        while len(all_examples) < num_examples:
+        while len(all_samples) < num_examples:
             run_number += 1
             generated_text, _ = get_response(
                 prompt,
@@ -185,16 +136,16 @@ def generate_synthetic_data(
             if match:
                 generated_text = match.group(1)  # Extract the JSON content
             try:
-                batch_examples = json.loads(generated_text)  # Parse JSON string
-                batch_examples = get_valid_examples(
-                    batch_examples, correct_labels, correct_fields
+                batch_samples = json.loads(generated_text)  # Parse JSON string
+                batch_samples = get_valid_examples(
+                    batch_samples, correct_labels, correct_fields
                 )
-                all_examples.extend(batch_examples)  # append to all_examples
+                all_samples.extend(batch_samples)  # append to all_examples
             except Exception as e:
                 tqdm.write(f"❌ Failed to parse generation {run_number}: {e}")
 
             # Ensure we don't exceed the required number of examples
-            current_count = min(len(all_examples), num_examples)
+            current_count = min(len(all_samples), num_examples)
             pbar.n = current_count
             pbar.set_postfix(
                 run=f"{run_number}", examples=f"{current_count}/{num_examples}"
@@ -203,9 +154,92 @@ def generate_synthetic_data(
 
             clear_cuda_cache()
 
-    all_examples = all_examples[:num_examples]  # truncate to num_examples
+    all_samples = all_samples[:num_examples]  # truncate to num_examples
 
-    return all_examples, run_number - 1
+    return all_samples, run_number - 1
+
+
+def generate_synthetic_data_with_context(
+    prompt,
+    num_examples,
+    model,
+    tokenizer,
+    context_examples=None,
+    max_new_tokens=8192,
+    system_prompt=None,
+    correct_labels=None,
+    correct_fields=["text", "label"],
+    postfix=None,
+):
+    """
+    Generate synthetic data one at a time, using context examples in the prompt.
+    - context_examples: list of lists of dicts, each sublist is the context for one generation.
+    - postfix: string to append after the prompt.
+    """
+    correct_labels = set(correct_labels) if correct_labels else None
+    correct_fields = set(correct_fields) if correct_fields else None
+    all_samples = []
+
+    if not context_examples:
+        context_examples = [None] * num_examples
+    elif len(context_examples) < num_examples:
+        context_examples = context_examples + [None] * (
+            num_examples - len(context_examples)
+        )
+
+    idx = 0
+    with tqdm(
+        total=num_examples, desc="Generating Examples (context)", unit="ex"
+    ) as pbar:
+        while len(all_samples) < num_examples:
+            if idx >= len(context_examples):
+                tqdm.write("❌ Used all the examples.")
+                break
+            this_context = context_examples[idx]
+            prompt_with_context = format_prompt_with_context(
+                prompt, this_context, postfix=postfix
+            )
+            generated_text, _ = get_response(
+                prompt_with_context,
+                model,
+                tokenizer,
+                max_new_tokens,
+                system_prompt,
+                print_output=False,
+                seed=None,
+            )
+            # extract json in the format ```json\n...\n```
+            match = re.search(r"```json\n(.*?)\n```", generated_text, re.DOTALL)
+            if match:
+                generated_text = match.group(1)
+            else:
+                # Try to directly extract a JSON object or array from the text
+                json_match = re.search(r"(\{.*\}|\[.*\])", generated_text, re.DOTALL)
+                if json_match:
+                    generated_text = json_match.group(1)
+            try:
+                sample = json.loads(generated_text)
+                if isinstance(sample, dict):
+                    sample = [sample]
+                valid = get_valid_examples(sample, correct_labels, correct_fields)
+                if valid:
+                    out_sample = dict(valid[0])
+                    out_sample["context_examples"] = this_context
+                    all_samples.append(out_sample)
+                else:
+                    tqdm.write(f"❌ Invalid example at run {idx}")
+            except Exception as e:
+                tqdm.write(f"❌ Failed to parse generation {idx}: {e}")
+
+            pbar.n = len(all_samples)
+            pbar.set_postfix(
+                run=f"{idx}", examples=f"{len(all_samples)}/{num_examples}"
+            )
+            pbar.update(0)
+            clear_cuda_cache()
+            idx += 1
+
+    return all_samples, idx
 
 
 def main_generate_dataset(config):
@@ -223,6 +257,8 @@ def main_generate_dataset(config):
         - seed (int): The random seed to use for generation.
         - json_output_file (str): The path to save the generated dataset as JSON.
         - log_file (str): The path to save the generation log as JSON.
+        - context_examples (list): Context examples to include in the prompt.
+        - prompt_postfix (str): Postfix to append to the prompt.
     """
     print("\n🚀 Starting Synthetic Dataset Generation")
     print(f"📊 Dataset              : {config.get('dataset', 'Not Specified')}")
@@ -231,7 +267,7 @@ def main_generate_dataset(config):
     # print(f"📝 Prompt               : {config['prompt'][:100]}{'...' if len(config['prompt']) > 100 else ''}")
     print(f"🔢 Examples to Generate : {config['num_examples']}")
     print(f"💾 Output File          : {config['json_output_file']}")
-    print(f"🕹️  Max New Tokens       : {config['max_new_tokens']}")
+    print(f"🕹️ Max New Tokens       : {config['max_new_tokens']}")
     print(f"🎯 Seed                 : {config.get('seed', 'Not Set')}\n")
 
     # Set seed for reproducibility
@@ -242,28 +278,35 @@ def main_generate_dataset(config):
     config["system_prompt"] = config.get("system_prompt", None)
     config["correct_labels"] = config.get("correct_labels")
     config["correct_fields"] = config.get("correct_fields", ["text", "label"])
+    context_examples = config.get("context_examples", None)
+    postfix = config.get("prompt_postfix", None)
 
     start_time = time.time()
 
-    # Generate data using batch generation
-    # data = generate_synthetic_data_rolling(
-    #     prompt_template=config["prompt"],
-    #     num_examples=config["num_examples"],
-    #     model=config["model"],
-    #     tokenizer=config["tokenizer"],
-    #     batch_size=config.get("batch_size", 50),
-    #     max_new_tokens=config.get("max_new_tokens", 8192),
-    # )
-    data, num_runs = generate_synthetic_data(
-        prompt=config["prompt"],
-        num_examples=config["num_examples"],
-        model=config["model"],
-        tokenizer=config["tokenizer"],
-        max_new_tokens=config["max_new_tokens"],
-        system_prompt=config["system_prompt"],
-        correct_labels=config["correct_labels"],
-        correct_fields=config["correct_fields"],
-    )
+    if context_examples:
+        data, num_runs = generate_synthetic_data_with_context(
+            prompt=config["prompt"],
+            num_examples=config["num_examples"],
+            model=config["model"],
+            tokenizer=config["tokenizer"],
+            context_examples=context_examples,
+            max_new_tokens=config["max_new_tokens"],
+            system_prompt=config["system_prompt"],
+            correct_labels=config["correct_labels"],
+            correct_fields=config["correct_fields"],
+            postfix=postfix,
+        )
+    else:
+        data, num_runs = generate_synthetic_data(
+            prompt=config["prompt"],
+            num_examples=config["num_examples"],
+            model=config["model"],
+            tokenizer=config["tokenizer"],
+            max_new_tokens=config["max_new_tokens"],
+            system_prompt=config["system_prompt"],
+            correct_labels=config["correct_labels"],
+            correct_fields=config["correct_fields"],
+        )
     total_time = round(time.time() - start_time, 2)
 
     # Log the generation details
@@ -280,6 +323,7 @@ def main_generate_dataset(config):
             else None
         ),
         "prompt": config["prompt"],
+        "prompt_postfix": config["prompt_postfix"],
         "system_prompt": config["system_prompt"],
         "time_taken_seconds": total_time,
         "json_output_file": config["json_output_file"],
@@ -336,9 +380,14 @@ if __name__ == "__main__":
         "num_examples": 500,
         "max_new_tokens": 8192,  # per generation call (not total)
         "seed": 42,
-        "json_output_file": "synthetic_data/datasets/example.json",
+        "json_output_file": "synthetic_data/datasets/DeepSeek-R1-Distill-Qwen-1.5B/example.json",
         "log_file": "src/semevalirony/example_log.json",
         "correct_labels": ["positive", "negative"],
         "correct_fields": ["text", "label"],
+        "context_examples": [
+            ["example1", "example2"],
+            ["example3", "example4"],
+        ],  # list of lists like object
+        "prompt_postfix": "Postfix text",
     }
     main_generate_dataset(config)

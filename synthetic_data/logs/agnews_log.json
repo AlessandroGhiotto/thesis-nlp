@@ -486,5 +486,104 @@
                 "label": "World"
             }
         ]
+    },
+    {
+        "timestamp": "2025-05-13T12:52:09.637498",
+        "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+        "generation_method": "unsupervised context",
+        "prompt": "You are an expert in journalism and NLP specialized in news classification. Your task is to generate an high-quality short documents, that talks about one of the following four News categories (labels):\n- **Business**\n- **Sci/Tech**\n- **Sports**\n- **World**.\n\nHere some examples of the documents you can use as a reference:\n- The shock here was not just from the awful fact itself, that two vibrant young Italian women were kidnapped in Iraq, dragged from their office by attackers who, it seems, knew their names.\n- BAGHDAD, Iraq - A pared-down delegation of Iraqis arrived in Najaf by helicopter Tuesday to present radical Shiite cleric Muqtada al-Sadr with a peace proposal aimed at ending the violent insurgency wracking the holy city.    Despite the delegation''s presence there, fighting intensified in Najaf, with at least one U.S...\n- Albert Pujols and Scott Rolen hit back-to-back home runs in the eighth inning to lead the St Louis Cardinals to a 6-4 win over the Houston Astros in Game Two of the NL Championship Series at Busch Stadium on Thursday.\n- Besides unleashing Solaris 10, Sun Microsystems on Monday plans to turn the spotlight on new storage hardware and software offerings as part of its quarterly product launch.\n- For those who need to make telephone calls in flight and don''t want to sell the second car to finance them, help is on the way.\n\nGenerate a new news document, with the corresponding category (label) with the following format:\n```json\n[\n    {\n        \"text\": \"<text of the document>\", \n        \"label\": \"<corresponding label>\"\n    }\n]\n```\n",
+        "time_taken_seconds": 6.57,
+        "num_examples": 1,
+        "generated_examples": [
+            {
+                "text": "A young American football player was found dead in a football stadium, sparking a nationwide debate about human rights and the ethics of football rules.",
+                "label": "Sports"
+            }
+        ]
+    },
+    {
+        "timestamp": "2025-05-13T12:52:23.184970",
+        "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+        "generation_method": "unsupervised context + linguistic tags",
+        "prompt": "You are an expert in journalism and NLP specialized in news classification. Your task is to generate an high-quality short documents, that talks about one of the following four News categories (labels):\n- **Business**\n- **Sci/Tech**\n- **Sports**\n- **World**.\n\nHere some examples of the documents you can use as a reference:\n- AP - Tony Batista homered twice to reach 30 this season, Livan Hernandez pitched another complete game and the Montreal Expos beat the New York Mets 6-1 Tuesday night before just 3,839 at Olympic Stadium.\n- The nation #39;s factories cranked out more products in July, miners dug more minerals and builders broke ground on more homes, the government said yesterday in three reports that showed some rebound in economic activity last month. \n-  DALLAS (Reuters) - Several Wall Street analysts cut their  forecast on earnings for American Airlines parent AMR Corp.  &lt;A HREF=''http://www.investor.reuters.com/FullQuote.aspx?ticker=AMR.N target=/stocks/quickinfo/fullquote''&gt;AMR.N&lt;/A&gt; on Thursday while the airline''s chief executive said  high fuel prices had stung the world''s largest carrier.\n- Israeli troops spotted a Palestinian in the security zone about 50 meters from the fence separating Gaza from Israel and shot him dead early yesterday.\n- A three-touchdown point spread and a recent history of late-season collapses had many thinking the UCLA football team would provide little opposition to rival USC #39;s march to the BCS-championship game at the Orange Bowl.\n\nGenerate a new news document, with the corresponding category (label) and the key linguistic phenomena it covers, with the following format:\n```json\n[\n    {\n        \"text\": \"<text of the document>\", \n        \"label\": \"<corresponding label>\", \n        \"phenomena\": [\"<phenomenon1>\", \"<phenomenon2>\", ...] \n    }\n]\n```\n",
+        "time_taken_seconds": 6.65,
+        "num_examples": 1,
+        "generated_examples": [
+            {
+                "text": "UCLA Basketball Beats USC in a Close Game",
+                "label": "Sports",
+                "phenomena": [
+                    "Three-Touchdown Point Spread",
+                    "Late-Season Collapses",
+                    "Game Outcome"
+                ]
+            }
+        ]
+    },
+    {
+        "timestamp": "2025-05-13T12:52:57.310857",
+        "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+        "generation_method": "unsupervised context + linguistic tags",
+        "prompt": "You are an expert in journalism and NLP specialized in news classification. Your task is to generate an high-quality short documents, that talks about one of the following four News categories (labels):\n- **Business**\n- **Sci/Tech**\n- **Sports**\n- **World**.\n\nHere some examples of the documents you can use as a reference:\n- AP - Tony Batista homered twice to reach 30 this season, Livan Hernandez pitched another complete game and the Montreal Expos beat the New York Mets 6-1 Tuesday night before just 3,839 at Olympic Stadium.\n- The nation #39;s factories cranked out more products in July, miners dug more minerals and builders broke ground on more homes, the government said yesterday in three reports that showed some rebound in economic activity last month. \n-  DALLAS (Reuters) - Several Wall Street analysts cut their  forecast on earnings for American Airlines parent AMR Corp.  &lt;A HREF=''http://www.investor.reuters.com/FullQuote.aspx?ticker=AMR.N target=/stocks/quickinfo/fullquote''&gt;AMR.N&lt;/A&gt; on Thursday while the airline''s chief executive said  high fuel prices had stung the world''s largest carrier.\n- Israeli troops spotted a Palestinian in the security zone about 50 meters from the fence separating Gaza from Israel and shot him dead early yesterday.\n- A three-touchdown point spread and a recent history of late-season collapses had many thinking the UCLA football team would provide little opposition to rival USC #39;s march to the BCS-championship game at the Orange Bowl.\n\nGenerate a new news document, with the corresponding category (label) and the key linguistic phenomena it covers, with the following format:\n```json\n[\n    {\n        \"text\": \"<text of the document>\", \n        \"label\": \"<corresponding label>\", \n        \"phenomena\": [\"<phenomenon1>\", \"<phenomenon2>\", ...] \n    }\n]\n```\n",
+        "time_taken_seconds": 6.61,
+        "num_examples": 1,
+        "generated_examples": [
+            {
+                "text": "UCLA Basketball Beats USC in a Close Game",
+                "label": "Sports",
+                "phenomena": [
+                    "Three-Touchdown Point Spread",
+                    "Late-Season Collapses",
+                    "Game Outcome"
+                ]
+            }
+        ]
+    },
+    {
+        "timestamp": "2025-05-13T12:54:27.107336",
+        "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+        "generation_method": "unsupervised context",
+        "prompt": "You are an expert in journalism and NLP specialized in news classification. Your task is to generate an high-quality short documents, that talks about one of the following four News categories (labels):\n- **Business**\n- **Sci/Tech**\n- **Sports**\n- **World**.\n\nHere some examples of the documents you can use as a reference:\n- AP - Tony Batista homered twice to reach 30 this season, Livan Hernandez pitched another complete game and the Montreal Expos beat the New York Mets 6-1 Tuesday night before just 3,839 at Olympic Stadium.\n- The nation #39;s factories cranked out more products in July, miners dug more minerals and builders broke ground on more homes, the government said yesterday in three reports that showed some rebound in economic activity last month. \n-  DALLAS (Reuters) - Several Wall Street analysts cut their  forecast on earnings for American Airlines parent AMR Corp.  &lt;A HREF=''http://www.investor.reuters.com/FullQuote.aspx?ticker=AMR.N target=/stocks/quickinfo/fullquote''&gt;AMR.N&lt;/A&gt; on Thursday while the airline''s chief executive said  high fuel prices had stung the world''s largest carrier.\n- Israeli troops spotted a Palestinian in the security zone about 50 meters from the fence separating Gaza from Israel and shot him dead early yesterday.\n- A three-touchdown point spread and a recent history of late-season collapses had many thinking the UCLA football team would provide little opposition to rival USC #39;s march to the BCS-championship game at the Orange Bowl.\n\nGenerate a new news document, with the corresponding category (label) with the following format:\n```json\n[\n    {\n        \"text\": \"<text of the document>\", \n        \"label\": \"<corresponding label>\",\n    }\n]\n```\n",
+        "time_taken_seconds": 9.42,
+        "num_examples": 1,
+        "generated_examples": [
+            {
+                "text": "The University of California (UC) and the University of Southern California (USC) are set to face off in their third championship game in a row at the Orange Bowl on Sunday. The game, which will be a thrilling showdown between the two highly ranked teams, promises to be a historic encounter. The scoreline is 40-33 in favor of UC, a significant win for the program. The game marks the first time the Orange Bowl has been held at UC, marking a historic moment in California's football history.",
+                "label": "Sports"
+            }
+        ]
+    },
+    {
+        "timestamp": "2025-05-13T12:58:15.595552",
+        "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+        "generation_method": "unsupervised context",
+        "prompt": "You are an expert in journalism and NLP specialized in news classification. Your task is to generate an high-quality short documents, that talks about one of the following four News categories (labels):\n- **Business**\n- **Sci/Tech**\n- **Sports**\n- **World**.\n\nHere some examples of the documents you can use as a reference:\n- The shock here was not just from the awful fact itself, that two vibrant young Italian women were kidnapped in Iraq, dragged from their office by attackers who, it seems, knew their names.\n- BAGHDAD, Iraq - A pared-down delegation of Iraqis arrived in Najaf by helicopter Tuesday to present radical Shiite cleric Muqtada al-Sadr with a peace proposal aimed at ending the violent insurgency wracking the holy city.    Despite the delegation''s presence there, fighting intensified in Najaf, with at least one U.S...\n- Albert Pujols and Scott Rolen hit back-to-back home runs in the eighth inning to lead the St Louis Cardinals to a 6-4 win over the Houston Astros in Game Two of the NL Championship Series at Busch Stadium on Thursday.\n- Besides unleashing Solaris 10, Sun Microsystems on Monday plans to turn the spotlight on new storage hardware and software offerings as part of its quarterly product launch.\n- For those who need to make telephone calls in flight and don''t want to sell the second car to finance them, help is on the way.\n\nGenerate a new news document, with the corresponding category (label) with the following format:\n```json\n[\n    {\n        \"text\": \"<text of the document>\", \n        \"label\": \"<corresponding label>\"\n    }\n]\n```\n",
+        "time_taken_seconds": 6.48,
+        "num_examples": 1,
+        "generated_examples": [
+            {
+                "text": "A young American football player was found dead in a football stadium, sparking a nationwide debate about human rights and the ethics of football rules.",
+                "label": "Sports"
+            }
+        ]
+    },
+    {
+        "timestamp": "2025-05-13T12:58:22.327098",
+        "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+        "generation_method": "unsupervised context + linguistic tags",
+        "prompt": "You are an expert in journalism and NLP specialized in news classification. Your task is to generate an high-quality short documents, that talks about one of the following four News categories (labels):\n- **Business**\n- **Sci/Tech**\n- **Sports**\n- **World**.\n\nHere some examples of the documents you can use as a reference:\n- AP - Tony Batista homered twice to reach 30 this season, Livan Hernandez pitched another complete game and the Montreal Expos beat the New York Mets 6-1 Tuesday night before just 3,839 at Olympic Stadium.\n- The nation #39;s factories cranked out more products in July, miners dug more minerals and builders broke ground on more homes, the government said yesterday in three reports that showed some rebound in economic activity last month. \n-  DALLAS (Reuters) - Several Wall Street analysts cut their  forecast on earnings for American Airlines parent AMR Corp.  &lt;A HREF=''http://www.investor.reuters.com/FullQuote.aspx?ticker=AMR.N target=/stocks/quickinfo/fullquote''&gt;AMR.N&lt;/A&gt; on Thursday while the airline''s chief executive said  high fuel prices had stung the world''s largest carrier.\n- Israeli troops spotted a Palestinian in the security zone about 50 meters from the fence separating Gaza from Israel and shot him dead early yesterday.\n- A three-touchdown point spread and a recent history of late-season collapses had many thinking the UCLA football team would provide little opposition to rival USC #39;s march to the BCS-championship game at the Orange Bowl.\n\nGenerate a new news document, with the corresponding category (label) and the key linguistic phenomena it covers, with the following format:\n```json\n[\n    {\n        \"text\": \"<text of the document>\", \n        \"label\": \"<corresponding label>\", \n        \"phenomena\": [\"<phenomenon1>\", \"<phenomenon2>\", ...] \n    }\n]\n```\n",
+        "time_taken_seconds": 6.71,
+        "num_examples": 1,
+        "generated_examples": [
+            {
+                "text": "UCLA Basketball Beats USC in a Close Game",
+                "label": "Sports",
+                "phenomena": [
+                    "Three-Touchdown Point Spread",
+                    "Late-Season Collapses",
+                    "Game Outcome"
+                ]
+            }
+        ]
     }
 ]

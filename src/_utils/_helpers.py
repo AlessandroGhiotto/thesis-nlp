@@ -239,10 +239,18 @@ def basic_analysis(df, print_missing_values=True, print_count_statistics=True):
     threshold = df["text_length"].quantile(0.995)  # Keep 99.5% of data
     filtered_df = df[df["text_length"] <= threshold]
 
-    sns.histplot(filtered_df["text_length"], bins=30, kde=False, ax=axes[2])
+    mean_length = df["text_length"].mean()
+
+    sns.histplot(
+        filtered_df["text_length"], bins=30, kde=False, ax=axes[2], label="Text Lengths"
+    )
+    axes[2].axvline(
+        mean_length, color="red", linestyle="--", label=f"Mean = {mean_length:.2f}"
+    )
     axes[2].set_title("Text Length Distribution")
     axes[2].set_xlabel("Number of words")
     axes[2].set_ylabel("Frequency")
+    axes[2].legend()
 
     plt.tight_layout()
     plt.show()
