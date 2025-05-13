@@ -150,5 +150,24 @@
             "f1_macro": 0.8849795949659437,
             "accuracy": 0.924
         }
+    },
+    {
+        "experiment_name": "exp_500unsupContext",
+        "experiment_dir": "src/agnews/experiments/RoBERTA_500samples/exp_500unsupContext",
+        "generation_method": "Unsupervised Context",
+        "timestamp": "2025-05-13T20:16:16.488498",
+        "model": "roberta-large",
+        "train_size": 500,
+        "dev_size": 500,
+        "synthetic_ratio": 1.0,
+        "epochs": 8,
+        "batch_size": 16,
+        "train_time": 317.78588032722473,
+        "eval_time": 8.65430998802185,
+        "metrics_dev": {
+            "f1_micro": 0.608,
+            "f1_macro": 0.5482166834153714,
+            "accuracy": 0.608
+        }
     }
 ]
