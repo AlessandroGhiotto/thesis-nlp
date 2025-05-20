@@ -1,0 +1,43 @@
+[
+    {
+        "timestamp": "2025-05-20T14:42:04.638122",
+        "dataset": "agnews",
+        "generation_method": "baseline",
+        "num_examples_generated": 5,
+        "model": "meta-llama/Llama-2-7b-hf",
+        "model.generation_config": {
+            "max_length": 4096,
+            "do_sample": true,
+            "temperature": 0.6,
+            "top_p": 0.9,
+            "pad_token_id": 0,
+            "bos_token_id": 1,
+            "eos_token_id": 2,
+            "transformers_version": "4.49.0",
+            "attn_implementation": "flash_attention_2"
+        },
+        "model_BitsAndBytesConfig": {
+            "_load_in_4bit": true,
+            "bnb_4bit_compute_dtype": "float16",
+            "load_in_4bit": true
+        },
+        "prompt": "You are an expert in journalism and NLP specializing in news classification. Your task is to generate 10 high-quality short documents, that talks about the following four News categories:  \n- **Business**\n- **Sci/Tech**\n- **Sports**\n- **World**\n\n### **Output Format (JSON)**  \nReturn only a valid JSON list of 10 items in the following structure:\n\n```json\n[\n    {\"text\": <text>, \"label\": <label>},\n    ...\n]\n```\n",
+        "prompt_postfix": null,
+        "system_prompt": null,
+        "apply_chat_template": false,
+        "time_taken_seconds": 74.54,
+        "json_output_file": "synthetic_data/datasets/Llama-2-7b-hf/syn_agnews_baseline_500.json",
+        "num_runs": 1,
+        "seed": 42,
+        "correct_labels": [
+            "Business",
+            "Sci/Tech",
+            "Sports",
+            "World"
+        ],
+        "correct_fields": [
+            "text",
+            "label"
+        ]
+    }
+]

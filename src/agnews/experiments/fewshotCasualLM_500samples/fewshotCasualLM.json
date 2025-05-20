@@ -1046,5 +1046,285 @@
             "f1_macro": 0.4617409991099466,
             "accuracy": 0.836
         }
+    },
+    {
+        "timestamp": "2025-05-19T13:18:40.455283",
+        "dataset_name": "agnews",
+        "experiment_name": "fewshot_classification",
+        "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+        "model.generation_config": {
+            "do_sample": true,
+            "temperature": 0.6,
+            "top_p": 0.95,
+            "pad_token_id": 151643,
+            "bos_token_id": 151646,
+            "eos_token_id": 151643,
+            "_from_model_config": true,
+            "transformers_version": "4.49.0"
+        },
+        "model_BitsAndBytesConfig": {
+            "_load_in_4bit": true,
+            "bnb_4bit_compute_dtype": "float16",
+            "load_in_4bit": true
+        },
+        "num_fewshot_examples": 500,
+        "label": [
+            "Sci/Tech",
+            "Sports",
+            "Business",
+            "World"
+        ],
+        "instruction": "Classify the following texts into one of the given categories",
+        "system_prompt": null,
+        "eval_time": 85.5658643245697,
+        "log_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshotCasualLM.json",
+        "output_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshot_deepseek_zeroshot.csv",
+        "seed": 42,
+        "fewshot_df": null,
+        "metrics_test": {
+            "f1_micro": 0.0,
+            "f1_macro": 0.0,
+            "accuracy": 0.0
+        }
+    },
+    {
+        "timestamp": "2025-05-19T13:24:50.643697",
+        "dataset_name": "agnews",
+        "experiment_name": "fewshot_classification",
+        "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+        "model.generation_config": {
+            "do_sample": true,
+            "temperature": 0.6,
+            "top_p": 0.95,
+            "pad_token_id": 151643,
+            "bos_token_id": 151646,
+            "eos_token_id": 151643,
+            "_from_model_config": true,
+            "transformers_version": "4.49.0"
+        },
+        "model_BitsAndBytesConfig": {
+            "_load_in_4bit": true,
+            "bnb_4bit_compute_dtype": "float16",
+            "load_in_4bit": true
+        },
+        "num_fewshot_examples": 500,
+        "label": [
+            "Sci/Tech",
+            "Sports",
+            "Business",
+            "World"
+        ],
+        "instruction": "Classify the following texts into one of the given categories",
+        "system_prompt": null,
+        "eval_time": 85.0603380203247,
+        "log_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshotCasualLM.json",
+        "output_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshot_deepseek_zeroshot.csv",
+        "seed": 42,
+        "fewshot_df": null,
+        "metrics_test": {
+            "f1_micro": 0.0,
+            "f1_macro": 0.0,
+            "accuracy": 0.0
+        }
+    },
+    {
+        "timestamp": "2025-05-19T13:27:51.634358",
+        "dataset_name": "agnews",
+        "experiment_name": "fewshot_classification",
+        "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+        "model.generation_config": {
+            "do_sample": true,
+            "temperature": 0.6,
+            "top_p": 0.95,
+            "pad_token_id": 151643,
+            "bos_token_id": 151646,
+            "eos_token_id": 151643,
+            "_from_model_config": true,
+            "transformers_version": "4.49.0"
+        },
+        "model_BitsAndBytesConfig": {
+            "_load_in_4bit": true,
+            "bnb_4bit_compute_dtype": "float16",
+            "load_in_4bit": true
+        },
+        "num_fewshot_examples": 500,
+        "label": [
+            "Sci/Tech",
+            "Sports",
+            "Business",
+            "World"
+        ],
+        "instruction": "Classify the following texts into one of the given categories",
+        "system_prompt": null,
+        "eval_time": 86.75951981544495,
+        "log_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshotCasualLM.json",
+        "output_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshot_deepseek_zeroshot.csv",
+        "seed": 42,
+        "fewshot_df": null,
+        "metrics_test": {
+            "f1_micro": 0.05,
+            "f1_macro": 0.020436146792171546,
+            "accuracy": 0.05
+        }
+    },
+    {
+        "timestamp": "2025-05-19T13:31:21.530033",
+        "dataset_name": "agnews",
+        "experiment_name": "fewshot_classification",
+        "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+        "model.generation_config": {
+            "do_sample": true,
+            "temperature": 0.6,
+            "top_p": 0.95,
+            "pad_token_id": 151643,
+            "bos_token_id": 151646,
+            "eos_token_id": 151643,
+            "_from_model_config": true,
+            "transformers_version": "4.49.0"
+        },
+        "model_BitsAndBytesConfig": {
+            "_load_in_4bit": true,
+            "bnb_4bit_compute_dtype": "float16",
+            "load_in_4bit": true
+        },
+        "num_fewshot_examples": 500,
+        "label": [
+            "Sci/Tech",
+            "Sports",
+            "Business",
+            "World"
+        ],
+        "instruction": "Classify the following texts into one of the given categories",
+        "system_prompt": null,
+        "eval_time": 83.74385213851929,
+        "log_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshotCasualLM.json",
+        "output_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshot_deepseek_zeroshot.csv",
+        "seed": 42,
+        "fewshot_df": null,
+        "metrics_test": {
+            "f1_micro": 0.076,
+            "f1_macro": 0.013082202384454601,
+            "accuracy": 0.076
+        }
+    },
+    {
+        "timestamp": "2025-05-19T13:34:17.751337",
+        "dataset_name": "agnews",
+        "experiment_name": "fewshot_classification",
+        "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+        "model.generation_config": {
+            "do_sample": true,
+            "temperature": 0.6,
+            "top_p": 0.95,
+            "pad_token_id": 151643,
+            "bos_token_id": 151646,
+            "eos_token_id": 151643,
+            "_from_model_config": true,
+            "transformers_version": "4.49.0"
+        },
+        "model_BitsAndBytesConfig": {
+            "_load_in_4bit": true,
+            "bnb_4bit_compute_dtype": "float16",
+            "load_in_4bit": true
+        },
+        "num_fewshot_examples": 500,
+        "label": [
+            "Sci/Tech",
+            "Sports",
+            "Business",
+            "World"
+        ],
+        "instruction": "Classify the following texts into one of the given categories",
+        "system_prompt": null,
+        "eval_time": 84.01092886924744,
+        "log_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshotCasualLM.json",
+        "output_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshot_deepseek_zeroshot.csv",
+        "seed": 42,
+        "fewshot_df": null,
+        "metrics_test": {
+            "f1_micro": 0.0,
+            "f1_macro": 0.0,
+            "accuracy": 0.0
+        }
+    },
+    {
+        "timestamp": "2025-05-19T13:36:30.237610",
+        "dataset_name": "agnews",
+        "experiment_name": "fewshot_classification",
+        "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+        "model.generation_config": {
+            "do_sample": true,
+            "temperature": 0.6,
+            "top_p": 0.95,
+            "pad_token_id": 151643,
+            "bos_token_id": 151646,
+            "eos_token_id": 151643,
+            "_from_model_config": true,
+            "transformers_version": "4.49.0"
+        },
+        "model_BitsAndBytesConfig": {
+            "_load_in_4bit": true,
+            "bnb_4bit_compute_dtype": "float16",
+            "load_in_4bit": true
+        },
+        "num_fewshot_examples": 500,
+        "label": [
+            "Sci/Tech",
+            "Sports",
+            "Business",
+            "World"
+        ],
+        "instruction": "Classify the following texts into one of the given categories",
+        "system_prompt": null,
+        "eval_time": 85.42045092582703,
+        "log_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshotCasualLM.json",
+        "output_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshot_deepseek_zeroshot.csv",
+        "seed": 42,
+        "fewshot_df": null,
+        "metrics_test": {
+            "f1_micro": 0.028,
+            "f1_macro": 0.007246985086320266,
+            "accuracy": 0.028
+        }
+    },
+    {
+        "timestamp": "2025-05-19T13:38:32.652179",
+        "dataset_name": "agnews",
+        "experiment_name": "fewshot_classification",
+        "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+        "model.generation_config": {
+            "do_sample": true,
+            "temperature": 0.6,
+            "top_p": 0.95,
+            "pad_token_id": 151643,
+            "bos_token_id": 151646,
+            "eos_token_id": 151643,
+            "_from_model_config": true,
+            "transformers_version": "4.49.0"
+        },
+        "model_BitsAndBytesConfig": {
+            "_load_in_4bit": true,
+            "bnb_4bit_compute_dtype": "float16",
+            "load_in_4bit": true
+        },
+        "num_fewshot_examples": 500,
+        "label": [
+            "Sci/Tech",
+            "Sports",
+            "Business",
+            "World"
+        ],
+        "instruction": "Classify the following texts into one of the given categories",
+        "system_prompt": null,
+        "eval_time": 85.01119542121887,
+        "log_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshotCasualLM.json",
+        "output_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshot_deepseek_zeroshot.csv",
+        "seed": 42,
+        "fewshot_df": null,
+        "metrics_test": {
+            "f1_micro": 0.044,
+            "f1_macro": 0.01510989010989011,
+            "accuracy": 0.044
+        }
     }
 ]

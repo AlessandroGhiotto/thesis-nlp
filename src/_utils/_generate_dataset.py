@@ -96,6 +96,7 @@ def generate_synthetic_data(
     system_prompt=None,
     correct_labels=None,
     correct_fields=["text", "label"],
+    apply_chat_template=True,
 ):
     """
     generate synthetic data in batches without rolling context
@@ -129,6 +130,7 @@ def generate_synthetic_data(
                 system_prompt,
                 print_output=False,  # don't print
                 seed=None,  # don't set seed at each iteration
+                apply_chat_template=apply_chat_template,
             )
 
             match = re.search(r"```json\n(.*?)\n```", generated_text, re.DOTALL)
@@ -170,6 +172,7 @@ def generate_synthetic_data_with_context(
     correct_labels=None,
     correct_fields=["text", "label"],
     postfix=None,
+    apply_chat_template=True,
 ):
     """
     Generate synthetic data one at a time, using context examples in the prompt.
@@ -207,6 +210,7 @@ def generate_synthetic_data_with_context(
                 system_prompt,
                 print_output=False,
                 seed=None,
+                apply_chat_template=apply_chat_template,
             )
             # extract json in the format ```json\n...\n```
             match = re.search(r"```json\n(.*?)\n```", generated_text, re.DOTALL)
@@ -274,12 +278,13 @@ def main_generate_dataset(config):
     seed = config.get("seed", 42)
     set_seed(seed)
 
-    config["max_new_tokens"] = config.get("max_new_tokens", 8192)
+    config["max_new_tokens"] = config.get("max_new_tokens", 2048)
     config["system_prompt"] = config.get("system_prompt", None)
     config["correct_labels"] = config.get("correct_labels")
     config["correct_fields"] = config.get("correct_fields", ["text", "label"])
+    config["apply_chat_template"] = config.get("apply_chat_template", True)
+    config["prompt_postfix"] = config.get("prompt_postfix", None)
     context_examples = config.get("context_examples", None)
-    postfix = config.get("prompt_postfix", None)
 
     start_time = time.time()
 
@@ -294,7 +299,8 @@ def main_generate_dataset(config):
             system_prompt=config["system_prompt"],
             correct_labels=config["correct_labels"],
             correct_fields=config["correct_fields"],
-            postfix=postfix,
+            postfix=config["prompt_postfix"],
+            apply_chat_template=config["apply_chat_template"],
         )
     else:
         data, num_runs = generate_synthetic_data(
@@ -306,6 +312,7 @@ def main_generate_dataset(config):
             system_prompt=config["system_prompt"],
             correct_labels=config["correct_labels"],
             correct_fields=config["correct_fields"],
+            apply_chat_template=config["apply_chat_template"],
         )
     total_time = round(time.time() - start_time, 2)
 
@@ -325,6 +332,7 @@ def main_generate_dataset(config):
         "prompt": config["prompt"],
         "prompt_postfix": config["prompt_postfix"],
         "system_prompt": config["system_prompt"],
+        "apply_chat_template": config["apply_chat_template"],
         "time_taken_seconds": total_time,
         "json_output_file": config["json_output_file"],
         "num_runs": num_runs,  # number of reruns of the prompt taken to generate num_examples examples

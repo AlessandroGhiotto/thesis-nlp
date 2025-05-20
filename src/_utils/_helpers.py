@@ -48,6 +48,7 @@ def get_response(
     system_prompt=None,
     print_output=True,
     seed=42,
+    apply_chat_template=True,
 ):
     """
     Generate a response from the model given a prompt.
@@ -71,20 +72,24 @@ def get_response(
         set_seed(seed)
 
     t0 = time.time()
-    messages = []
-    # Add system prompt only if given
-    if system_prompt:
-        messages.append({"role": "system", "content": system_prompt})
-    # Always add user prompt
-    messages.append({"role": "user", "content": prompt})
+    if apply_chat_template:
+        messages = []
+        # Add system prompt only if given
+        if system_prompt:
+            messages.append({"role": "system", "content": system_prompt})
+        # Always add user prompt
+        messages.append({"role": "user", "content": prompt})
 
-    text = tokenizer.apply_chat_template(
-        messages,
-        tokenize=False,
-        add_generation_prompt=True,
-    )
+        text = tokenizer.apply_chat_template(
+            messages,
+            tokenize=False,
+            add_generation_prompt=True,
+        )
 
-    model_inputs = tokenizer([text], return_tensors="pt").to(model.device)
+        model_inputs = tokenizer([text], return_tensors="pt").to(model.device)
+    else:
+        # Use the prompt directly
+        model_inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
 
     generated_ids = model.generate(**model_inputs, max_new_tokens=max_new_tokens)
 

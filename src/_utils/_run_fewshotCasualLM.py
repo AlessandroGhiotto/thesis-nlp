@@ -24,6 +24,15 @@ def log_generation(details, log_file):
     print(f"📝 Log saved successfully to: {log_file}")
 
 
+def construct_zeroshot_prompt(instruction, labels):
+    """Constructs the zero-shot learning prompt"""
+    # attach options to instruction
+    # options = ", ".join(labels)
+    options = "".join([f"* {label}\n" for label in labels])
+    instruction += f". The options are:\n{options}\n"
+    return instruction
+
+
 def construct_fewshot_prompt(selected_examples, instruction):
     """Constructs the few-shot learning prompt"""
 
@@ -156,15 +165,25 @@ def main_fewshot_classification(config):
     print(f"💾 Output File     : {config['output_file']}")
     print(f"🎯 Seed            : {config.get('seed', 'Not Set')}\n")
 
-    config["label"] = config["fewshot_df"]["label"].unique().tolist()
+    config["fewshot_df"] = config.get("fewshot_df", None)
+    config["label"] = config.get("label", None)  # take label if given
+    if config["label"] is None:  # or take from fewshot_df
+        config["label"] = config["fewshot_df"]["label"].unique().tolist()
     system_prompt = config.get("system_prompt", None)
 
     t0 = time.time()
     # CONSTRUCT FEWSHOT PROMPT
     # few-shot df should contains n examples per label with columns ["text", "label"]
-    fewshot_prompt = construct_fewshot_prompt(
-        config["fewshot_df"], config["instruction"]
-    )
+    if config["fewshot_df"] is not None:
+        fewshot_prompt = construct_fewshot_prompt(
+            config["fewshot_df"], config["instruction"]
+        )
+    else:
+        # ZERO-SHOT IF NO FEWSHOT EXAMPLES
+        # just attach the options to the instruction
+        fewshot_prompt = construct_zeroshot_prompt(
+            config["instruction"], config["label"]
+        )
 
     # RUN FEWSHOT TASK
     predictions_df = run_fewshot_task(
@@ -201,7 +220,11 @@ def main_fewshot_classification(config):
         "log_file": config["log_file"],
         "output_file": config["output_file"],
         "seed": seed,
-        "fewshot_df": config["fewshot_df"].to_dict(orient="records"),
+        "fewshot_df": (
+            config["fewshot_df"].to_dict(orient="records")
+            if config["fewshot_df"]
+            else None
+        ),
         "metrics_test": eval_metrics,
     }
     log_generation(log_details, config["log_file"])

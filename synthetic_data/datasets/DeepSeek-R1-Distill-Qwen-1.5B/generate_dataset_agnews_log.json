@@ -338,5 +338,84 @@
             "text",
             "label"
         ]
+    },
+    {
+        "timestamp": "2025-05-20T10:20:05.034321",
+        "dataset": "agnews",
+        "generation_method": "unsupervised context + linguistic tags",
+        "num_examples_generated": 5,
+        "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+        "model.generation_config": {
+            "do_sample": true,
+            "temperature": 0.6,
+            "top_p": 0.95,
+            "pad_token_id": 151643,
+            "bos_token_id": 151646,
+            "eos_token_id": 151643,
+            "_from_model_config": true,
+            "transformers_version": "4.49.0"
+        },
+        "model_BitsAndBytesConfig": {
+            "_load_in_4bit": true,
+            "load_in_4bit": true
+        },
+        "prompt": "You are an expert in journalism and NLP specialized in news classification. Your task is to generate an high-quality short documents, that talks about one of the following four News categories (labels):\n- Business\n- Sci/Tech\n- Sports\n- World.\n\nHere some examples of the documents you can use as a reference:\n",
+        "prompt_postfix": "\nGenerate a new news document, with the corresponding category (label) and the key linguistic phenomena it covers, with the following format:\n```json\n[\n    {\n        \"text\": \"<text of the document>\", \n        \"label\": \"<corresponding label>\", \n        \"phenomena\": [\"<phenomenon1>\", \"<phenomenon2>\", ...] \n    }\n]\n```\n",
+        "system_prompt": null,
+        "time_taken_seconds": 59.52,
+        "json_output_file": "synthetic_data/datasets/DeepSeek-R1-Distill-Qwen-1.5B/syn_agnews_unsupervisedContext+tags_500.json",
+        "num_runs": 6,
+        "seed": 42,
+        "correct_labels": [
+            "Business",
+            "Sci/Tech",
+            "Sports",
+            "World"
+        ],
+        "correct_fields": [
+            "text",
+            "label",
+            "phenomena"
+        ]
+    },
+    {
+        "timestamp": "2025-05-20T12:41:38.615523",
+        "dataset": "agnews",
+        "generation_method": "unsupervised context + linguistic tags",
+        "num_examples_generated": 5,
+        "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+        "model.generation_config": {
+            "do_sample": true,
+            "temperature": 0.6,
+            "top_p": 0.95,
+            "pad_token_id": 151643,
+            "bos_token_id": 151646,
+            "eos_token_id": 151643,
+            "_from_model_config": true,
+            "transformers_version": "4.49.0"
+        },
+        "model_BitsAndBytesConfig": {
+            "_load_in_4bit": true,
+            "load_in_4bit": true
+        },
+        "prompt": "You are an expert in journalism and NLP specialized in news classification. Your task is to generate an high-quality short documents, that talks about one of the following four News categories (labels):\n- Business\n- Sci/Tech\n- Sports\n- World.\n\nHere some examples of the documents you can use as a reference:\n",
+        "prompt_postfix": "\nGenerate a new news document, with the corresponding category (label) and the key linguistic phenomena it covers, with the following format:\n```json\n[\n    {\n        \"text\": \"<text of the document>\", \n        \"label\": \"<corresponding label>\", \n        \"phenomena\": [\"<phenomenon1>\", \"<phenomenon2>\", ...] \n    }\n]\n```\n",
+        "system_prompt": null,
+        "apply_chat_template": true,
+        "time_taken_seconds": 58.29,
+        "json_output_file": "synthetic_data/datasets/DeepSeek-R1-Distill-Qwen-1.5B/syn_agnews_unsupervisedContext+tags_500.json",
+        "num_runs": 6,
+        "seed": 42,
+        "correct_labels": [
+            "Business",
+            "Sci/Tech",
+            "Sports",
+            "World"
+        ],
+        "correct_fields": [
+            "text",
+            "label",
+            "phenomena"
+        ]
     }
 ]
