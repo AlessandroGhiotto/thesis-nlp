@@ -6,6 +6,7 @@ import torch
 import json
 from datetime import datetime
 import time
+import gc
 import shutil
 from datasets import Dataset
 from datasets.utils.logging import disable_progress_bar
@@ -16,10 +17,10 @@ from transformers import (
     TrainingArguments,
     Trainer,
 )
-from src._utils._helpers import set_seed
+from src._utils._helpers import set_seed, clear_cuda_cache
 
 
-MODEL_NAME = "roberta-large"
+MODEL_NAME = "roberta-large"  # roberta-base
 device = "cuda:0" if torch.cuda.is_available() else "cpu"
 tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, use_fast=True, verbose=False)
 data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
@@ -173,20 +174,26 @@ def train_model(
     log_file_path = os.path.join(output_dir, "training_log.csv")
     log_df.to_csv(log_file_path, index=False)
 
-    print(f"💾 experiment saved to: {output_dir}\n")
-
     if save_model is False:
         # delete checkpoints after training
         for checkpoint in [
             f for f in os.listdir(output_dir) if f.startswith("checkpoint-")
         ]:
             shutil.rmtree(os.path.join(output_dir, checkpoint))
-        print(f"🗑️ save_model={save_model}: Checkpoints deleted after training.\n")
+        # print(f"🗑️ save_model={save_model}: Checkpoints deleted after training.\n")
+    # print(f"💾 experiment saved to: {output_dir}\n")
 
-    return trainer.model  # return the best model
+    # store and return the best model
+    # model = trainer.model
+
+    # Free GPU Memory After Training
+    del trainer
+    torch.cuda.empty_cache()
+    gc.collect()
+    return model
 
 
-def evaluation(test_dataset, model_input):
+def evaluation(test_dataset, model):
     """
     Evaluates a model using tokenized input data.
 
@@ -198,12 +205,12 @@ def evaluation(test_dataset, model_input):
     - Dictionary of evaluation metrics.
     """
     # load model
-    if isinstance(model_input, str):
+    if isinstance(model, str):
         # load from huggingface or local path
-        model = AutoModelForSequenceClassification.from_pretrained(model_input)
-    else:
-        # assume it's already a model instance
-        model = model_input
+        model = AutoModelForSequenceClassification.from_pretrained(model)
+    # else:
+    #     # assume it's already a model instance
+    #     model = model
     model.eval()
     model.to(device)
 
@@ -234,7 +241,7 @@ def evaluation(test_dataset, model_input):
         "accuracy": accuracy_score(all_labels, all_preds),
     }
 
-    display_metrics = {k: f"{v:.4f}" for k, v in eval_metrics.items()}
+    # display_metrics = {k: f"{v:.4f}" for k, v in eval_metrics.items()}
     # print("🚀 Metrics on dev set:", display_metrics)
     return eval_metrics
 
@@ -347,5 +354,7 @@ def main_multiclassRoBERTA(
 
     # save log
     save_log(train_details, log_dir)
+
+    clear_cuda_cache(model=best_model)
 
     return train_details

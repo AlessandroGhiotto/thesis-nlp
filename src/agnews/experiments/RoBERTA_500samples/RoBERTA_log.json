@@ -169,5 +169,119 @@
             "f1_macro": 0.5482166834153714,
             "accuracy": 0.608
         }
+    },
+    {
+        "experiment_name": "exp_500real",
+        "experiment_dir": "src/agnews/experiments/RoBERTA_500samples/exp_500real",
+        "generation_method": null,
+        "timestamp": "2025-05-20T17:51:00.963743",
+        "model": "roberta-base",
+        "train_size": 500,
+        "dev_size": 500,
+        "synthetic_ratio": 0.0,
+        "epochs": 8,
+        "batch_size": 16,
+        "train_time": 98.78230810165405,
+        "eval_time": 2.578690528869629,
+        "metrics_dev": {
+            "f1_micro": 0.922,
+            "f1_macro": 0.8779462987449127,
+            "accuracy": 0.922
+        }
+    },
+    {
+        "experiment_name": "exp_500real",
+        "experiment_dir": "src/agnews/experiments/RoBERTA_500samples/exp_500real",
+        "generation_method": null,
+        "timestamp": "2025-05-20T17:54:39.978874",
+        "model": "roberta-base",
+        "train_size": 500,
+        "dev_size": 500,
+        "synthetic_ratio": 0.0,
+        "epochs": 8,
+        "batch_size": 16,
+        "train_time": 99.27472043037415,
+        "eval_time": 2.583815574645996,
+        "metrics_dev": {
+            "f1_micro": 0.912,
+            "f1_macro": 0.8696831879875359,
+            "accuracy": 0.912
+        }
+    },
+    {
+        "experiment_name": "exp_500real",
+        "experiment_dir": "src/agnews/experiments/RoBERTA_500samples/exp_500real",
+        "generation_method": null,
+        "timestamp": "2025-05-20T17:57:46.125695",
+        "model": "roberta-base",
+        "train_size": 500,
+        "dev_size": 500,
+        "synthetic_ratio": 0.0,
+        "epochs": 8,
+        "batch_size": 16,
+        "train_time": 99.8125593662262,
+        "eval_time": 2.5954487323760986,
+        "metrics_dev": {
+            "f1_micro": 0.922,
+            "f1_macro": 0.8779462987449127,
+            "accuracy": 0.922
+        }
+    },
+    {
+        "experiment_name": "exp_500real",
+        "experiment_dir": "src/agnews/experiments/RoBERTA_500samples/exp_500real",
+        "generation_method": null,
+        "timestamp": "2025-05-20T18:02:40.058392",
+        "model": "roberta-base",
+        "train_size": 500,
+        "dev_size": 500,
+        "synthetic_ratio": 0.0,
+        "epochs": 8,
+        "batch_size": 16,
+        "train_time": 99.47252225875854,
+        "eval_time": 2.5952770709991455,
+        "metrics_dev": {
+            "f1_micro": 0.922,
+            "f1_macro": 0.8779462987449127,
+            "accuracy": 0.922
+        }
+    },
+    {
+        "experiment_name": "exp_500real",
+        "experiment_dir": "src/agnews/experiments/RoBERTA_500samples/exp_500real",
+        "generation_method": null,
+        "timestamp": "2025-05-20T18:09:21.669002",
+        "model": "roberta-large",
+        "train_size": 500,
+        "dev_size": 500,
+        "synthetic_ratio": 0.0,
+        "epochs": 8,
+        "batch_size": 16,
+        "train_time": 316.317396402359,
+        "eval_time": 8.435720205307007,
+        "metrics_dev": {
+            "f1_micro": 0.924,
+            "f1_macro": 0.8849795949659437,
+            "accuracy": 0.924
+        }
+    },
+    {
+        "experiment_name": "exp_250real_250generic",
+        "experiment_dir": "src/agnews/experiments/RoBERTA_500samples/exp_250real_250generic",
+        "generation_method": "generic augmentation",
+        "timestamp": "2025-05-20T18:18:08.520776",
+        "model": "roberta-large",
+        "train_size": 500,
+        "dev_size": 500,
+        "synthetic_ratio": 0.5,
+        "epochs": 8,
+        "batch_size": 16,
+        "train_time": 313.6240916252136,
+        "eval_time": 8.47675609588623,
+        "metrics_dev": {
+            "f1_micro": 0.912,
+            "f1_macro": 0.8642021536113353,
+            "accuracy": 0.912
+        }
     }
 ]
