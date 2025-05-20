@@ -585,5 +585,55 @@
                 ]
             }
         ]
+    },
+    {
+        "timestamp": "2025-05-20T21:11:42.036202",
+        "model": "meta-llama/Llama-2-7b-hf",
+        "generation_method": "baseline",
+        "prompt": "You are an expert in journalism and NLP specializing in news classification. Your task is to generate 10 high-quality short documents, that talks about the following four News categories:  \n- **Business**\n- **Sci/Tech**\n- **Sports**\n- **World**\n\n### **Output Format (JSON)**  \nReturn only a valid JSON list of 10 items in the following structure:\n\n```json\n[\n    {\"text\": <text>, \"label\": <label>},\n    ...\n]\n```\n",
+        "time_taken_seconds": 62.06,
+        "num_examples": 10,
+        "generated_examples": [
+            {
+                "text": "The new Apple iPhone 11 Pro is the best iPhone ever made.",
+                "label": "Business"
+            },
+            {
+                "text": "The new Apple iPhone 11 Pro is the best iPhone ever made.",
+                "label": "Business"
+            },
+            {
+                "text": "The new Apple iPhone 11 Pro is the best iPhone ever made.",
+                "label": "Business"
+            },
+            {
+                "text": "The new Apple iPhone 11 Pro is the best iPhone ever made.",
+                "label": "Business"
+            },
+            {
+                "text": "The new Apple iPhone 11 Pro is the best iPhone ever made.",
+                "label": "Business"
+            },
+            {
+                "text": "The new Apple iPhone 11 Pro is the best iPhone ever made.",
+                "label": "Business"
+            },
+            {
+                "text": "The new Apple iPhone 11 Pro is the best iPhone ever made.",
+                "label": "Business"
+            },
+            {
+                "text": "The new Apple iPhone 11 Pro is the best iPhone ever made.",
+                "label": "Business"
+            },
+            {
+                "text": "The new Apple iPhone 11 Pro is the best iPhone ever made.",
+                "label": "Business"
+            },
+            {
+                "text": "The new Apple iPhone 11 Pro is the best iPhone ever made.",
+                "label": "Business"
+            }
+        ]
     }
 ]

@@ -136,8 +136,8 @@ def run_fewshot_task(
 
 def compute_metrics(df):
     # Single-label multi-class classification
-    y_true = df["label"].tolist()
-    y_pred = df["predicted_label"].tolist()
+    y_true = [str(label).lower() for label in df["label"].tolist()]
+    y_pred = [str(label).lower() for label in df["predicted_label"].tolist()]
 
     return {
         "f1_micro": f1_score(y_true, y_pred, average="micro"),

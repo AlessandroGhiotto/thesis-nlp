@@ -283,5 +283,24 @@
             "f1_macro": 0.8642021536113353,
             "accuracy": 0.912
         }
+    },
+    {
+        "experiment_name": "exp_500real_zeroshotLabel",
+        "experiment_dir": "src/agnews/experiments/RoBERTA_500samples/exp_500real_zeroshotLabel",
+        "generation_method": "real data with zero-shot labels",
+        "timestamp": "2025-05-20T22:43:38.923500",
+        "model": "roberta-large",
+        "train_size": 463,
+        "dev_size": 500,
+        "synthetic_ratio": 0.0,
+        "epochs": 8,
+        "batch_size": 16,
+        "train_time": 301.73714447021484,
+        "eval_time": 8.52996039390564,
+        "metrics_dev": {
+            "f1_micro": 0.854,
+            "f1_macro": 0.8148291230238727,
+            "accuracy": 0.854
+        }
     }
 ]
