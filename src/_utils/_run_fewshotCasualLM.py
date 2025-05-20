@@ -21,7 +21,6 @@ def log_generation(details, log_file):
     logs.append(details)
     with open(log_file, "w", encoding="utf-8") as f:
         json.dump(logs, f, indent=4, ensure_ascii=False)
-    print(f"📝 Log saved successfully to: {log_file}")
 
 
 def construct_zeroshot_prompt(instruction, labels):
@@ -158,12 +157,13 @@ def main_fewshot_classification(config):
     seed = config.get("seed", 42)
     set_seed(seed)
 
-    print("\n🚀 Starting Few-Shot Classification")
-    print(f"📊 Dataset         : {config.get('dataset_name', 'Not Specified')}")
-    print(f"📚 Experiment      : {config.get('experiment_name', 'Not Specified')}")
-    print(f"🤖 Model           : {config['model'].name_or_path}")
-    print(f"💾 Output File     : {config['output_file']}")
-    print(f"🎯 Seed            : {config.get('seed', 'Not Set')}\n")
+    if config.get("verbose", False):
+        print("\n🚀 Starting Few-Shot Classification")
+        print(f"📊 Dataset         : {config.get('dataset_name', 'Not Specified')}")
+        print(f"📚 Experiment      : {config.get('experiment_name', 'Not Specified')}")
+        print(f"🤖 Model           : {config['model'].name_or_path}")
+        print(f"💾 Output File     : {config['output_file']}")
+        print(f"🎯 Seed            : {config.get('seed', 'Not Set')}\n")
 
     config["fewshot_df"] = config.get("fewshot_df", None)
     config["label"] = config.get("label", None)  # take label if given
@@ -222,7 +222,7 @@ def main_fewshot_classification(config):
         "seed": seed,
         "fewshot_df": (
             config["fewshot_df"].to_dict(orient="records")
-            if config["fewshot_df"]
+            if config["fewshot_df"] is not None
             else None
         ),
         "metrics_test": eval_metrics,
@@ -230,7 +230,9 @@ def main_fewshot_classification(config):
     log_generation(log_details, config["log_file"])
 
     predictions_df.to_csv(config["output_file"], index=False)
-    print(f"💾 Predictions saved to: {config['output_file']}")
+    if config.get("verbose", False):
+        print(f"📝 Log saved successfully to: {config['output_file']}")
+        print(f"💾 Predictions saved to: {config['output_file']}")
 
     return log_details
 

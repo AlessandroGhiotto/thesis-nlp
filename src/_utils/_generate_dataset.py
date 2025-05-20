@@ -20,7 +20,6 @@ def log_generation(details, log_file):
     logs.append(details)
     with open(log_file, "w", encoding="utf-8") as f:
         json.dump(logs, f, indent=4, ensure_ascii=False)
-    print(f"📝 Log saved successfully to: {log_file}")
 
 
 def save_dataset_json(metadata, output_file):
@@ -28,7 +27,6 @@ def save_dataset_json(metadata, output_file):
     os.makedirs(os.path.dirname(output_file), exist_ok=True)
     with open(output_file, "w", encoding="utf-8") as f:
         json.dump(metadata, f, indent=4, ensure_ascii=False)
-    print(f"💾 Dataset with metadata saved to: {output_file}")
 
 
 def get_valid_examples(examples, correct_labels=None, correct_fields=None):
@@ -264,15 +262,16 @@ def main_generate_dataset(config):
         - context_examples (list): Context examples to include in the prompt.
         - prompt_postfix (str): Postfix to append to the prompt.
     """
-    print("\n🚀 Starting Synthetic Dataset Generation")
-    print(f"📊 Dataset              : {config.get('dataset', 'Not Specified')}")
-    print(f"📚 Generation method    : {config['generation_method']}")
-    print(f"🤖 Model                : {config['model'].name_or_path}")
-    # print(f"📝 Prompt               : {config['prompt'][:100]}{'...' if len(config['prompt']) > 100 else ''}")
-    print(f"🔢 Examples to Generate : {config['num_examples']}")
-    print(f"💾 Output File          : {config['json_output_file']}")
-    print(f"🕹️ Max New Tokens       : {config['max_new_tokens']}")
-    print(f"🎯 Seed                 : {config.get('seed', 'Not Set')}\n")
+    if config.get("verbose", False):
+        print("\n🚀 Starting Synthetic Dataset Generation")
+        print(f"📊 Dataset              : {config.get('dataset', 'Not Specified')}")
+        print(f"📚 Generation method    : {config['generation_method']}")
+        print(f"🤖 Model                : {config['model'].name_or_path}")
+        # print(f"📝 Prompt               : {config['prompt'][:100]}{'...' if len(config['prompt']) > 100 else ''}")
+        print(f"🔢 Examples to Generate : {config['num_examples']}")
+        print(f"💾 Output File          : {config['json_output_file']}")
+        print(f"🕹️ Max New Tokens       : {config['max_new_tokens']}")
+        print(f"🎯 Seed                 : {config.get('seed', 'Not Set')}\n")
 
     # Set seed for reproducibility
     seed = config.get("seed", 42)
@@ -348,6 +347,11 @@ def main_generate_dataset(config):
         "generated_examples": data,
     }
     save_dataset_json(dataset_metadata, config["json_output_file"])
+
+    print(f"⏱️ Time taken: {total_time} seconds.")
+    if config.get("verbose", False):
+        print(f"📝 Log saved successfully to: {config['log_file']}")
+        print(f"💾 Dataset with metadata saved to: {config['json_output_file']}")
 
 
 #############################################

@@ -1326,5 +1326,428 @@
             "f1_macro": 0.01510989010989011,
             "accuracy": 0.044
         }
+    },
+    {
+        "timestamp": "2025-05-20T15:22:03.307993",
+        "dataset_name": "agnews",
+        "experiment_name": "fewshot_classification",
+        "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+        "model.generation_config": {
+            "do_sample": true,
+            "temperature": 0.6,
+            "top_p": 0.95,
+            "pad_token_id": 151643,
+            "bos_token_id": 151646,
+            "eos_token_id": 151643,
+            "_from_model_config": true,
+            "transformers_version": "4.49.0"
+        },
+        "model_BitsAndBytesConfig": {
+            "_load_in_4bit": true,
+            "bnb_4bit_compute_dtype": "float16",
+            "load_in_4bit": true
+        },
+        "num_fewshot_examples": 500,
+        "label": [
+            "Sci/Tech",
+            "Sports",
+            "Business",
+            "World"
+        ],
+        "instruction": "Classify the following texts into one of the given categories",
+        "system_prompt": null,
+        "eval_time": 84.78382849693298,
+        "log_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshotCasualLM.json",
+        "output_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshot_deepseek_zeroshot.csv",
+        "seed": 42,
+        "fewshot_df": null,
+        "metrics_test": {
+            "f1_micro": 0.044,
+            "f1_macro": 0.01510989010989011,
+            "accuracy": 0.044
+        }
+    },
+    {
+        "timestamp": "2025-05-20T15:57:34.396136",
+        "dataset_name": "agnews",
+        "experiment_name": "fewshot_classification",
+        "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+        "model.generation_config": {
+            "do_sample": true,
+            "temperature": 0.6,
+            "top_p": 0.95,
+            "pad_token_id": 151643,
+            "bos_token_id": 151646,
+            "eos_token_id": 151643,
+            "_from_model_config": true,
+            "transformers_version": "4.49.0"
+        },
+        "model_BitsAndBytesConfig": {
+            "_load_in_4bit": true,
+            "bnb_4bit_compute_dtype": "float16",
+            "load_in_4bit": true
+        },
+        "num_fewshot_examples": 500,
+        "label": [
+            "Sci/Tech",
+            "Sports",
+            "Business",
+            "World"
+        ],
+        "instruction": "Classify the following texts into one of the given categories",
+        "system_prompt": null,
+        "eval_time": 81.11684346199036,
+        "log_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshotCasualLM.json",
+        "output_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshot_deepseek_zeroshot.csv",
+        "seed": 42,
+        "fewshot_df": null,
+        "metrics_test": {
+            "f1_micro": 0.044,
+            "f1_macro": 0.01510989010989011,
+            "accuracy": 0.044
+        }
+    },
+    {
+        "timestamp": "2025-05-20T16:05:59.557568",
+        "dataset_name": "agnews",
+        "experiment_name": "fewshot_classification",
+        "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+        "model.generation_config": {
+            "do_sample": true,
+            "temperature": 0.6,
+            "top_p": 0.95,
+            "pad_token_id": 151643,
+            "bos_token_id": 151646,
+            "eos_token_id": 151643,
+            "_from_model_config": true,
+            "transformers_version": "4.49.0"
+        },
+        "model_BitsAndBytesConfig": {
+            "_load_in_4bit": true,
+            "bnb_4bit_compute_dtype": "float16",
+            "load_in_4bit": true
+        },
+        "num_fewshot_examples": 500,
+        "label": [
+            "Sci/Tech",
+            "Sports",
+            "Business",
+            "World"
+        ],
+        "instruction": "Classify the following texts into one of the given categories",
+        "system_prompt": null,
+        "eval_time": 98.32443475723267,
+        "log_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshotCasualLM.json",
+        "output_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshot_deepseek_1ex4label.csv",
+        "seed": 42,
+        "fewshot_df": [
+            {
+                "text": "WASHINGTON - The US job market brightened in August as employers added 144,000 workers to their payrolls and hiring totals for the two prior months were revised up, the Labor Department (search) reported on Friday.",
+                "label": "Business"
+            },
+            {
+                "text": "AP - A U.S. Fish and Wildlife Service biologist says returning wolves to the Rocky Mountains is ''a chance to undo a great wrong'' done when wolves were exterminated from about 98 percent of their range by the mid-1900s.",
+                "label": "Sci/Tech"
+            },
+            {
+                "text": "Annika Sorenstam was hitting the ball so well she knew exactly where it was going. Combine that with an unusually calm day in south Florida, and her name atop the leaderboard was no surprise.",
+                "label": "Sports"
+            },
+            {
+                "text": "Model Elizabeth Jagger, daughter of rocker Mick Jagger, is seen on the catwalk during London Fashion Week. Picture:AP. People watchers and pure clothes junkies flocked to London Fashion Week today to see well ",
+                "label": "World"
+            }
+        ],
+        "metrics_test": {
+            "f1_micro": 0.45,
+            "f1_macro": 0.3134028003907522,
+            "accuracy": 0.45
+        }
+    },
+    {
+        "timestamp": "2025-05-20T16:07:47.925805",
+        "dataset_name": "agnews",
+        "experiment_name": "fewshot_classification",
+        "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+        "model.generation_config": {
+            "do_sample": true,
+            "temperature": 0.6,
+            "top_p": 0.95,
+            "pad_token_id": 151643,
+            "bos_token_id": 151646,
+            "eos_token_id": 151643,
+            "_from_model_config": true,
+            "transformers_version": "4.49.0"
+        },
+        "model_BitsAndBytesConfig": {
+            "_load_in_4bit": true,
+            "bnb_4bit_compute_dtype": "float16",
+            "load_in_4bit": true
+        },
+        "num_fewshot_examples": 500,
+        "label": [
+            "Sci/Tech",
+            "Sports",
+            "Business",
+            "World"
+        ],
+        "instruction": "Classify the following texts into one of the given categories",
+        "system_prompt": null,
+        "eval_time": 108.32953095436096,
+        "log_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshotCasualLM.json",
+        "output_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshot_deepseek_2ex4label.csv",
+        "seed": 42,
+        "fewshot_df": [
+            {
+                "text": "WASHINGTON - The US job market brightened in August as employers added 144,000 workers to their payrolls and hiring totals for the two prior months were revised up, the Labor Department (search) reported on Friday.",
+                "label": "Business"
+            },
+            {
+                "text": "WASHINGTON - The nation will face  quot;abrupt and painful quot; consequences unless the government moves quickly to fix the finances of Social Security and Medicare, Federal Reserve Chairman Alan Greenspan said Friday.",
+                "label": "Business"
+            },
+            {
+                "text": "AP - A U.S. Fish and Wildlife Service biologist says returning wolves to the Rocky Mountains is ''a chance to undo a great wrong'' done when wolves were exterminated from about 98 percent of their range by the mid-1900s.",
+                "label": "Sci/Tech"
+            },
+            {
+                "text": "MONKEYS use tools to dig up roots, crack seeds and dig insects from holes in trees, scientists have found, contradicting the traditional idea that humans are nature #39;s only tool-makers.",
+                "label": "Sci/Tech"
+            },
+            {
+                "text": "Annika Sorenstam was hitting the ball so well she knew exactly where it was going. Combine that with an unusually calm day in south Florida, and her name atop the leaderboard was no surprise.",
+                "label": "Sports"
+            },
+            {
+                "text": "AP - Mark Knowles and Daniel Nestor won their first U.S. Open doubles title by beating Leander Paes and David Rikl 6-3, 6-3 Friday.",
+                "label": "Sports"
+            },
+            {
+                "text": "Model Elizabeth Jagger, daughter of rocker Mick Jagger, is seen on the catwalk during London Fashion Week. Picture:AP. People watchers and pure clothes junkies flocked to London Fashion Week today to see well ",
+                "label": "World"
+            },
+            {
+                "text": "Polio, which can paralyze small children, has become the latest threat to refugees already struggling with famine and disease in the camps of Darfur.",
+                "label": "World"
+            }
+        ],
+        "metrics_test": {
+            "f1_micro": 0.468,
+            "f1_macro": 0.4583587764948239,
+            "accuracy": 0.468
+        }
+    },
+    {
+        "timestamp": "2025-05-20T16:11:21.289473",
+        "dataset_name": "agnews",
+        "experiment_name": "fewshot_classification",
+        "model": "meta-llama/Llama-2-7b-hf",
+        "model.generation_config": {
+            "max_length": 4096,
+            "do_sample": true,
+            "temperature": 0.6,
+            "top_p": 0.9,
+            "pad_token_id": 0,
+            "bos_token_id": 1,
+            "eos_token_id": 2,
+            "transformers_version": "4.49.0",
+            "attn_implementation": "flash_attention_2"
+        },
+        "model_BitsAndBytesConfig": {
+            "_load_in_4bit": true,
+            "bnb_4bit_compute_dtype": "float16",
+            "load_in_4bit": true
+        },
+        "num_fewshot_examples": 500,
+        "label": [
+            "Sci/Tech",
+            "Sports",
+            "Business",
+            "World"
+        ],
+        "instruction": "Classify the following texts into one of the given categories",
+        "system_prompt": null,
+        "eval_time": 194.7002375125885,
+        "log_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshotCasualLM.json",
+        "output_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshot_llama2_zeroshot.csv",
+        "seed": 42,
+        "fewshot_df": null,
+        "metrics_test": {
+            "f1_micro": 0.656,
+            "f1_macro": 0.08079860812476707,
+            "accuracy": 0.656
+        }
+    },
+    {
+        "timestamp": "2025-05-20T16:16:04.319341",
+        "dataset_name": "agnews",
+        "experiment_name": "fewshot_classification",
+        "model": "meta-llama/Llama-2-7b-hf",
+        "model.generation_config": {
+            "max_length": 4096,
+            "do_sample": true,
+            "temperature": 0.6,
+            "top_p": 0.9,
+            "pad_token_id": 0,
+            "bos_token_id": 1,
+            "eos_token_id": 2,
+            "transformers_version": "4.49.0",
+            "attn_implementation": "flash_attention_2"
+        },
+        "model_BitsAndBytesConfig": {
+            "_load_in_4bit": true,
+            "bnb_4bit_compute_dtype": "float16",
+            "load_in_4bit": true
+        },
+        "num_fewshot_examples": 500,
+        "label": [
+            "Sci/Tech",
+            "Sports",
+            "Business",
+            "World"
+        ],
+        "instruction": "Classify the following texts into one of the given categories",
+        "system_prompt": null,
+        "eval_time": 282.9971282482147,
+        "log_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshotCasualLM.json",
+        "output_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshot_llama2_1ex4label.csv",
+        "seed": 42,
+        "fewshot_df": [
+            {
+                "text": "WASHINGTON - The US job market brightened in August as employers added 144,000 workers to their payrolls and hiring totals for the two prior months were revised up, the Labor Department (search) reported on Friday.",
+                "label": "Business"
+            },
+            {
+                "text": "AP - A U.S. Fish and Wildlife Service biologist says returning wolves to the Rocky Mountains is ''a chance to undo a great wrong'' done when wolves were exterminated from about 98 percent of their range by the mid-1900s.",
+                "label": "Sci/Tech"
+            },
+            {
+                "text": "Annika Sorenstam was hitting the ball so well she knew exactly where it was going. Combine that with an unusually calm day in south Florida, and her name atop the leaderboard was no surprise.",
+                "label": "Sports"
+            },
+            {
+                "text": "Model Elizabeth Jagger, daughter of rocker Mick Jagger, is seen on the catwalk during London Fashion Week. Picture:AP. People watchers and pure clothes junkies flocked to London Fashion Week today to see well ",
+                "label": "World"
+            }
+        ],
+        "metrics_test": {
+            "f1_micro": 0.692,
+            "f1_macro": 0.5373454756625213,
+            "accuracy": 0.692
+        }
+    },
+    {
+        "timestamp": "2025-05-20T16:21:48.043262",
+        "dataset_name": "agnews",
+        "experiment_name": "fewshot_classification",
+        "model": "meta-llama/Llama-2-7b-hf",
+        "model.generation_config": {
+            "max_length": 4096,
+            "do_sample": true,
+            "temperature": 0.6,
+            "top_p": 0.9,
+            "pad_token_id": 0,
+            "bos_token_id": 1,
+            "eos_token_id": 2,
+            "transformers_version": "4.49.0",
+            "attn_implementation": "flash_attention_2"
+        },
+        "model_BitsAndBytesConfig": {
+            "_load_in_4bit": true,
+            "bnb_4bit_compute_dtype": "float16",
+            "load_in_4bit": true
+        },
+        "num_fewshot_examples": 500,
+        "label": [
+            "Sci/Tech",
+            "Sports",
+            "Business",
+            "World"
+        ],
+        "instruction": "Classify the following texts into one of the given categories",
+        "system_prompt": null,
+        "eval_time": 343.6938238143921,
+        "log_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshotCasualLM.json",
+        "output_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshot_llama2_2ex4label.csv",
+        "seed": 42,
+        "fewshot_df": [
+            {
+                "text": "WASHINGTON - The US job market brightened in August as employers added 144,000 workers to their payrolls and hiring totals for the two prior months were revised up, the Labor Department (search) reported on Friday.",
+                "label": "Business"
+            },
+            {
+                "text": "WASHINGTON - The nation will face  quot;abrupt and painful quot; consequences unless the government moves quickly to fix the finances of Social Security and Medicare, Federal Reserve Chairman Alan Greenspan said Friday.",
+                "label": "Business"
+            },
+            {
+                "text": "AP - A U.S. Fish and Wildlife Service biologist says returning wolves to the Rocky Mountains is ''a chance to undo a great wrong'' done when wolves were exterminated from about 98 percent of their range by the mid-1900s.",
+                "label": "Sci/Tech"
+            },
+            {
+                "text": "MONKEYS use tools to dig up roots, crack seeds and dig insects from holes in trees, scientists have found, contradicting the traditional idea that humans are nature #39;s only tool-makers.",
+                "label": "Sci/Tech"
+            },
+            {
+                "text": "Annika Sorenstam was hitting the ball so well she knew exactly where it was going. Combine that with an unusually calm day in south Florida, and her name atop the leaderboard was no surprise.",
+                "label": "Sports"
+            },
+            {
+                "text": "AP - Mark Knowles and Daniel Nestor won their first U.S. Open doubles title by beating Leander Paes and David Rikl 6-3, 6-3 Friday.",
+                "label": "Sports"
+            },
+            {
+                "text": "Model Elizabeth Jagger, daughter of rocker Mick Jagger, is seen on the catwalk during London Fashion Week. Picture:AP. People watchers and pure clothes junkies flocked to London Fashion Week today to see well ",
+                "label": "World"
+            },
+            {
+                "text": "Polio, which can paralyze small children, has become the latest threat to refugees already struggling with famine and disease in the camps of Darfur.",
+                "label": "World"
+            }
+        ],
+        "metrics_test": {
+            "f1_micro": 0.836,
+            "f1_macro": 0.4617409991099466,
+            "accuracy": 0.836
+        }
+    },
+    {
+        "timestamp": "2025-05-20T16:25:10.076493",
+        "dataset_name": "agnews",
+        "experiment_name": "fewshot_classification",
+        "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+        "model.generation_config": {
+            "do_sample": true,
+            "temperature": 0.6,
+            "top_p": 0.95,
+            "pad_token_id": 151643,
+            "bos_token_id": 151646,
+            "eos_token_id": 151643,
+            "_from_model_config": true,
+            "transformers_version": "4.49.0"
+        },
+        "model_BitsAndBytesConfig": {
+            "_load_in_4bit": true,
+            "bnb_4bit_compute_dtype": "float16",
+            "load_in_4bit": true
+        },
+        "num_fewshot_examples": 500,
+        "label": [
+            "Sci/Tech",
+            "Sports",
+            "Business",
+            "World"
+        ],
+        "instruction": "Classify the following texts into one of the given categories",
+        "system_prompt": null,
+        "eval_time": 85.94810247421265,
+        "log_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshotCasualLM.json",
+        "output_file": "src/agnews/experiments/fewshotCasualLM_500samples/fewshot_deepseek_zeroshot.csv",
+        "seed": 42,
+        "fewshot_df": null,
+        "metrics_test": {
+            "f1_micro": 0.044,
+            "f1_macro": 0.01510989010989011,
+            "accuracy": 0.044
+        }
     }
 ]

@@ -8,6 +8,7 @@ from datetime import datetime
 import time
 import shutil
 from datasets import Dataset
+from datasets.utils.logging import disable_progress_bar
 from transformers import (
     AutoTokenizer,
     DataCollatorWithPadding,
@@ -17,10 +18,12 @@ from transformers import (
 )
 from src._utils._helpers import set_seed
 
+
 MODEL_NAME = "roberta-large"
 device = "cuda:0" if torch.cuda.is_available() else "cpu"
 tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, use_fast=True, verbose=False)
 data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
+disable_progress_bar()  # disable progress bar for datasets library (no progress bar when tokenizing)
 
 
 def combine_datasets(real_df=None, synth_df=None, synth_ratio=0.0, max_samples=500):
