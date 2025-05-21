@@ -5,7 +5,12 @@ from datetime import datetime
 import re
 from tqdm import tqdm
 from transformers import AutoTokenizer, AutoModelForCausalLM
-from src._utils._helpers import get_response, set_seed, clear_cuda_cache
+from src._utils._helpers import (
+    get_response,
+    set_seed,
+    clear_cuda_cache,
+    extract_json_from_text,
+)
 
 
 def log_generation(details, log_file):
@@ -131,16 +136,18 @@ def generate_synthetic_data(
                 apply_chat_template=apply_chat_template,
             )
 
-            match = re.search(r"```json\n(.*?)\n```", generated_text, re.DOTALL)
+            json_str = extract_json_from_text(generated_text)
 
-            if match:
-                generated_text = match.group(1)  # Extract the JSON content
+            if json_str is None:
+                tqdm.write(f"❌ No valid JSON found in generation {run_number}")
+                continue
+
             try:
-                batch_samples = json.loads(generated_text)  # Parse JSON string
+                batch_samples = json.loads(json_str)
                 batch_samples = get_valid_examples(
                     batch_samples, correct_labels, correct_fields
                 )
-                all_samples.extend(batch_samples)  # append to all_examples
+                all_samples.extend(batch_samples)
             except Exception as e:
                 tqdm.write(f"❌ Failed to parse generation {run_number}: {e}")
 

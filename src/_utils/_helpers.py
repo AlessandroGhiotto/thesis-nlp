@@ -46,63 +46,74 @@ def get_response(
     tokenizer,
     max_new_tokens=2048,
     system_prompt=None,
+    messages=None,
     print_output=True,
     seed=42,
     apply_chat_template=True,
 ):
     """
-    Generate a response from the model given a prompt.
+    Generate a response from a model given a prompt or message list.
 
     Parameters:
-    - prompt (str): The prompt to generate a response to.
+    - prompt (str): User prompt to generate a response to.
     - model (transformers.PreTrainedModel): The model to generate the response.
-    - tokenizer (transformers.PreTrainedTokenizer): The tokenizer for the model.
-    - max_new_tokens (int): The maximum number of tokens to generate.
-    - system_prompt (str): The system prompt to prepend to the user prompt.
-    - print_output (bool): Whether to print the generated.
-    - seed (int): The random seed to use for generation.
+    - tokenizer (transformers.PreTrainedTokenizer): Tokenizer for the model.
+    - max_new_tokens (int): Maximum number of tokens to generate.
+    - system_prompt (str): Optional system prompt prepended to the user prompt.
+    - messages (list): Optional list of chat messages (dicts with 'role' and 'content').
+    - print_output (bool): Whether to print the generated response.
+    - seed (int): Random seed for deterministic generation.
+    - apply_chat_template (bool): Whether to apply the chat template (for chat models).
 
     Returns:
-    - response (str): The generated response.
+    - response (str): The generated text response.
     - delta_t (float): Time taken for generation in seconds.
     """
-    # Set random seed if given
-    # so the order in which I execute the cells does not affect the results
-    if seed:
+
+    if seed is not None:
         set_seed(seed)
 
     t0 = time.time()
-    if apply_chat_template:
-        messages = []
-        # Add system prompt only if given
-        if system_prompt:
-            messages.append({"role": "system", "content": system_prompt})
-        # Always add user prompt
-        messages.append({"role": "user", "content": prompt})
 
-        text = tokenizer.apply_chat_template(
+    if apply_chat_template:
+        if messages is None:
+            messages = []
+            if system_prompt:
+                messages.append({"role": "system", "content": system_prompt})
+            messages.append({"role": "user", "content": prompt})
+        elif system_prompt:
+            # insert system prompt only if not already in messages
+            if not any(m["role"] == "system" for m in messages):
+                messages = [{"role": "system", "content": system_prompt}] + messages
+
+        formatted_text = tokenizer.apply_chat_template(
             messages,
             tokenize=False,
             add_generation_prompt=True,
-        )
+        ).strip()
+        model_inputs = tokenizer([formatted_text], return_tensors="pt").to(model.device)
 
-        model_inputs = tokenizer([text], return_tensors="pt").to(model.device)
     else:
-        # Use the prompt directly
+        # plain prompt (no chat template)
         model_inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
 
-    generated_ids = model.generate(**model_inputs, max_new_tokens=max_new_tokens)
+    # Generate output
+    generated_ids = model.generate(
+        **model_inputs,
+        max_new_tokens=max_new_tokens,
+    )
 
+    # Remove the prompt part from output
     generated_ids = [
         output_ids[len(input_ids) :]
         for input_ids, output_ids in zip(model_inputs.input_ids, generated_ids)
     ]
 
     response = tokenizer.batch_decode(generated_ids, skip_special_tokens=True)[0]
-
     delta_t = round(time.time() - t0, 2)
+
     if print_output:
-        print(f"TIME TAKEN: {delta_t}\nGENERATED RESPONSE:\n{response}")
+        print(f"TIME TAKEN: {delta_t:.2f} seconds\nGENERATED RESPONSE:\n{response}")
 
     return response, delta_t
 
@@ -111,17 +122,46 @@ def response2json(response):
     """
     Convert a response (str) to a list of dictionaries using json.loads().
     """
-    match = re.search(r"```json\n(.*?)\n```", response, re.DOTALL)
+    json_str = extract_json_from_text(response)
 
-    if match:
-        response = match.group(1)  # Extract the JSON content
+    if not json_str:
+        print("No JSON-like content found in the response.")
+        return None
 
     try:
-        synthetic_data = json.loads(response)  # Parse JSON string
-        return synthetic_data
+        return json.loads(json_str)
     except json.JSONDecodeError as e:
         print(f"Error decoding JSON: {e}")
-        return None  # Handle errors gracefully
+        return None
+
+
+def extract_json_from_text(text):
+    """
+    Extracts JSON content from a string using multiple fallbacks.
+
+    Tries:
+    1. ```json\n...\n```
+    2. First object or array-looking structure: {} or [{}...]
+
+    Returns:
+    - str or None: JSON string if found, else None
+    """
+    # Try triple-backtick json blocks first
+    match = re.search(r"```json\s*\n(.*?)```", text, re.DOTALL)
+    if match:
+        return match.group(1).strip()
+
+    # Try finding a list of objects: [ {...}, {...} ]
+    match = re.search(r"\[\s*\{.*?\}\s*(?:,\s*\{.*?\}\s*)*\]", text, re.DOTALL)
+    if match:
+        return match.group(0).strip()
+
+    # Try finding a single object: { ... }
+    match = re.search(r"\{\s*.*?\s*\}", text, re.DOTALL)
+    if match:
+        return match.group(0).strip()
+
+    return None
 
 
 def log_synthetic_data(

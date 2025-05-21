@@ -635,5 +635,17 @@
                 "label": "Business"
             }
         ]
+    },
+    {
+        "timestamp": "2025-05-21T16:08:51.894663",
+        "model": "meta-llama/Llama-2-7b-chat-hf",
+        "generation_method": "baseline",
+        "prompt": "User: Your task is to generate one high-quality short document (around 30 words), that talks about one of the following four News categories:  \n- Business\n- Sci/Tech\n- Sports\n- World\n\nChoose one of the categories (labels), generate the corresponding text and return it in the following JSON format:\n\n```json\n{\n    \"text\": \"<text of the document>\", \n    \"label\": \"<corresponding label>\", \n}\n```\n",
+        "time_taken_seconds": 3.09,
+        "num_examples": 2,
+        "generated_examples": {
+            "text": "Researchers at MIT have developed a new AI algorithm that can identify and track individual cells in real-time. This breakthrough could revolutionize the field of medicine and lead to new treatments for diseases. #SciTech #MedTech",
+            "label": "Sci/Tech"
+        }
     }
 ]
