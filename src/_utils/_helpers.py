@@ -188,6 +188,12 @@ def log_synthetic_data(
         print("No samples to log.")
         return None
 
+    generated_samples = (
+        generated_samples
+        if isinstance(generated_samples, list)
+        else [generated_samples]
+    )
+
     log_entry = {
         "timestamp": datetime.now().isoformat(),
         "model": model,

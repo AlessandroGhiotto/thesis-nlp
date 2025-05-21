@@ -647,5 +647,121 @@
             "text": "Researchers at MIT have developed a new AI algorithm that can identify and track individual cells in real-time. This breakthrough could revolutionize the field of medicine and lead to new treatments for diseases. #SciTech #MedTech",
             "label": "Sci/Tech"
         }
+    },
+    {
+        "timestamp": "2025-05-21T16:49:36.366537",
+        "model": "meta-llama/Llama-2-7b-chat-hf",
+        "generation_method": "baseline",
+        "prompt": "Your task is to generate one high-quality short document (around 30 words), that talks about one of the following four News categories:  \n- Business\n- Sci/Tech\n- Sports\n- World\n\nChoose one of the categories (labels), generate the corresponding text and return it in the following JSON format:\n\n```json\n{\n    \"text\": \"<text of the document>\", \n    \"label\": \"<corresponding label>\", \n}\n```\n",
+        "time_taken_seconds": 4.38,
+        "num_examples": 2,
+        "generated_examples": {
+            "text": "Researchers have discovered a new species of ancient human in the Philippines, which may have evolved independently of other human species. The findings were published in the journal Nature and shed light on the complex evolutionary history of humanity. #SciTech #Archaeology",
+            "label": "Sci/Tech"
+        }
+    },
+    {
+        "timestamp": "2025-05-21T16:53:09.313064",
+        "model": "meta-llama/Llama-2-7b-chat-hf",
+        "generation_method": "targeted + linguistic tags",
+        "prompt": "Your task is to generate one high-quality short document (around 30 words), that talks about one of the following four News categories:  \n- Business\n- Sci/Tech\n- Sports\n- World\n\nFor each example, also list the key phenomena it covers.\n\n### **Follow these topics:**\n- **Business**  \n  - Markets  \n  - Economy  \n  - Companies  \n  - Startups  \n  - Regulations  \n\n- **Sci/Tech**  \n  - AI  \n  - Space  \n  - Cybersecurity  \n  - Biotech  \n  - Climate  \n\n- **Sports**  \n  - Events  \n  - Records  \n  - Highlights  \n  - Scandals  \n  - Olympics  \n\n- **World**  \n  - Politics  \n  - Conflicts  \n  - Disasters  \n  - Human Rights  \n  - Trade\n\n### **Output Format (JSON)**\nThe labels must be one of the specified categories, which are: Business, Sci/Tech, Sports, World.\nChoose one of the categories (labels), generate the corresponding text, write the corresponding phenomena and return it in the following JSON format:\n\n```json\n{\n    \"text\": \"<text of the document>\", \n    \"label\": \"<corresponding label>\", \n    \"phenomena\": [\"<phenomenon1>\", \"<phenomenon2>\", ...]\n}\n```\n",
+        "time_taken_seconds": 3.23,
+        "num_examples": 3,
+        "generated_examples": {
+            "text": "Stock market sees record highs as tech stocks surge",
+            "label": "Business",
+            "phenomena": [
+                "Markets",
+                "Economy",
+                "Companies",
+                "Startups"
+            ]
+        }
+    },
+    {
+        "timestamp": "2025-05-21T16:59:37.952462",
+        "model": "meta-llama/Llama-2-7b-chat-hf",
+        "generation_method": "targeted + linguistic tags",
+        "prompt": "Your task is to generate one high-quality short document (around 30 words), that talks about one of the following four News categories:  \n- Business\n- Sci/Tech\n- Sports\n- World\n\n### **Follow these topics:**\n- **Business**  \n  - Markets  \n  - Economy  \n  - Companies  \n  - Startups  \n  - Regulations  \n\n- **Sci/Tech**  \n  - AI  \n  - Space  \n  - Cybersecurity  \n  - Biotech  \n  - Climate  \n\n- **Sports**  \n  - Events  \n  - Records  \n  - Highlights  \n  - Scandals  \n  - Olympics  \n\n- **World**  \n  - Politics  \n  - Conflicts  \n  - Disasters  \n  - Human Rights  \n  - Trade\n\n### **Output Format (JSON)**\nThe labels must be one of the specified categories, which are: Business, Sci/Tech, Sports, World. Choose one of the categories (labels), generate the corresponding text and return it in the following JSON format:\n\n```json\n{\n    \"text\": \"<text of the document>\", \n    \"label\": \"<corresponding label>\", \n}\n```\n",
+        "time_taken_seconds": 3.96,
+        "num_examples": 2,
+        "generated_examples": {
+            "text": "Stock market sees record highs as tech stocks surge. Apple reaches $2 trillion market cap, Amazon nears $1 trillion. Economists predict continued growth in 2023.",
+            "label": "Business"
+        }
+    },
+    {
+        "timestamp": "2025-05-21T17:02:11.404744",
+        "model": "meta-llama/Llama-2-7b-chat-hf",
+        "generation_method": "unsupervised context",
+        "prompt": "Your task is to generate an high-quality short documents, that talks about one of the following four News categories (labels):\n- Business\n- Sci/Tech\n- Sports\n- World.\n\nHere some examples of the documents you can use as a reference:\n- The combined worldwide market for desktops, servers and packaged software running on Linux is forecast to grow at a 2003-2008 compound annual growth rate of 25.9 percent worldwide, reaching \\$35.7 billion by 2008.\n- A SECOND-HALF Springbok blitz gave South Africa their first Tri-Nations rugby title in six years with a win over Australia at Kings Park.\n- It #39;ll cost about the same as the regular-sized PS 2 in the US and Europe. The smaller PlayStation 2 has all regular PlayStation 2 functions such as playing CDs and DVDs.\n- Three British nationals were nabbed by gunmen in the Iraqi capital on Thursday, the Iraqi Interior Ministry said. The three British men were believed to be civilians living \n- AP - Seattle and Miami are among the NBA''s four winningest teams so far this season, ranking just behind Phoenix and San Antonio. Yet when the Heat put their 14-game winning streak on the line Monday night against the SuperSonics, Miami won''t be looking at the matchup as a potential NBA Finals preview or a measuring stick to see where it ranks against one of the Western Conference''s elite clubs.\n\nChoose one of the categories (labels), generate the corresponding text and return it in the following JSON format:\n\n```json\n{\n    \"text\": \"<text of the document>\", \n    \"label\": \"<corresponding label>\", \n}\n```\n",
+        "time_taken_seconds": 4.72,
+        "num_examples": 2,
+        "generated_examples": {
+            "text": "Amazon announced plans to expand its drone delivery service to new markets, with the goal of delivering packages to customers in under 30 minutes. The company has been testing the service in select areas, and plans to roll it out to more locations in the coming months. The drone delivery service uses autonomous drones to transport packages of up to 5 pounds, and can reach customers in as little as 10 minutes in some areas. Amazon hopes to use the service to increase efficiency and reduce delivery times for its customers.",
+            "label": "Business"
+        }
+    },
+    {
+        "timestamp": "2025-05-21T17:15:15.713841",
+        "model": "meta-llama/Llama-2-7b-chat-hf",
+        "generation_method": "baseline",
+        "prompt": "Your task is to generate one high-quality short document (around 30 words), that talks about one of the following four News categories:  \n- Business\n- Sci/Tech\n- Sports\n- World\n\nChoose one of the categories (labels), generate the corresponding text and return it in the following JSON format:\n\n```json\n{\n    \"text\": \"<text of the document>\", \n    \"label\": \"<corresponding label>\", \n}\n```\n",
+        "time_taken_seconds": 4.55,
+        "num_examples": 1,
+        "generated_examples": [
+            {
+                "text": "Researchers have discovered a new species of ancient human in the Philippines, which may have evolved independently of other human species. The findings were published in the journal Nature and shed light on the complex evolutionary history of humanity. #SciTech #Archaeology",
+                "label": "Sci/Tech"
+            }
+        ]
+    },
+    {
+        "timestamp": "2025-05-21T17:15:19.720035",
+        "model": "meta-llama/Llama-2-7b-chat-hf",
+        "generation_method": "targeted",
+        "prompt": "Your task is to generate one high-quality short document (around 30 words), that talks about one of the following four News categories:  \n- Business\n- Sci/Tech\n- Sports\n- World\n\n### **Follow these topics:**\n- **Business**  \n  - Markets  \n  - Economy  \n  - Companies  \n  - Startups  \n  - Regulations  \n\n- **Sci/Tech**  \n  - AI  \n  - Space  \n  - Cybersecurity  \n  - Biotech  \n  - Climate  \n\n- **Sports**  \n  - Events  \n  - Records  \n  - Highlights  \n  - Scandals  \n  - Olympics  \n\n- **World**  \n  - Politics  \n  - Conflicts  \n  - Disasters  \n  - Human Rights  \n  - Trade\n\n### **Output Format (JSON)**\nThe labels must be one of the specified categories, which are: Business, Sci/Tech, Sports, World. Choose one of the categories (labels), generate the corresponding text and return it in the following JSON format:\n\n```json\n{\n    \"text\": \"<text of the document>\", \n    \"label\": \"<corresponding label>\", \n}\n```\n",
+        "time_taken_seconds": 3.99,
+        "num_examples": 1,
+        "generated_examples": [
+            {
+                "text": "Stock market sees record highs as tech stocks surge. Apple reaches $2 trillion market cap, Amazon nears $1 trillion. Economists predict continued growth in 2023.",
+                "label": "Business"
+            }
+        ]
+    },
+    {
+        "timestamp": "2025-05-21T17:15:22.978935",
+        "model": "meta-llama/Llama-2-7b-chat-hf",
+        "generation_method": "targeted + linguistic tags",
+        "prompt": "Your task is to generate one high-quality short document (around 30 words), that talks about one of the following four News categories:  \n- Business\n- Sci/Tech\n- Sports\n- World\n\nFor each example, also list the key phenomena it covers.\n\n### **Follow these topics:**\n- **Business**  \n  - Markets  \n  - Economy  \n  - Companies  \n  - Startups  \n  - Regulations  \n\n- **Sci/Tech**  \n  - AI  \n  - Space  \n  - Cybersecurity  \n  - Biotech  \n  - Climate  \n\n- **Sports**  \n  - Events  \n  - Records  \n  - Highlights  \n  - Scandals  \n  - Olympics  \n\n- **World**  \n  - Politics  \n  - Conflicts  \n  - Disasters  \n  - Human Rights  \n  - Trade\n\n### **Output Format (JSON)**\nThe labels must be one of the specified categories, which are: Business, Sci/Tech, Sports, World. Choose one of the categories (labels), generate the corresponding text, write the corresponding phenomena and return it in the following JSON format:\n\n```json\n{\n    \"text\": \"<text of the document>\", \n    \"label\": \"<corresponding label>\", \n    \"phenomena\": [\"<phenomenon1>\", \"<phenomenon2>\", ...]\n}\n```\n",
+        "time_taken_seconds": 3.25,
+        "num_examples": 1,
+        "generated_examples": [
+            {
+                "text": "Stock market sees record highs as tech stocks surge",
+                "label": "Business",
+                "phenomena": [
+                    "Markets",
+                    "Economy",
+                    "Companies",
+                    "Startups"
+                ]
+            }
+        ]
+    },
+    {
+        "timestamp": "2025-05-21T17:15:27.721909",
+        "model": "meta-llama/Llama-2-7b-chat-hf",
+        "generation_method": "unsupervised context",
+        "prompt": "Your task is to generate an high-quality short documents, that talks about one of the following four News categories (labels):\n- Business\n- Sci/Tech\n- Sports\n- World.\n\nHere some examples of the documents you can use as a reference:\n- The combined worldwide market for desktops, servers and packaged software running on Linux is forecast to grow at a 2003-2008 compound annual growth rate of 25.9 percent worldwide, reaching \\$35.7 billion by 2008.\n- A SECOND-HALF Springbok blitz gave South Africa their first Tri-Nations rugby title in six years with a win over Australia at Kings Park.\n- It #39;ll cost about the same as the regular-sized PS 2 in the US and Europe. The smaller PlayStation 2 has all regular PlayStation 2 functions such as playing CDs and DVDs.\n- Three British nationals were nabbed by gunmen in the Iraqi capital on Thursday, the Iraqi Interior Ministry said. The three British men were believed to be civilians living \n- AP - Seattle and Miami are among the NBA''s four winningest teams so far this season, ranking just behind Phoenix and San Antonio. Yet when the Heat put their 14-game winning streak on the line Monday night against the SuperSonics, Miami won''t be looking at the matchup as a potential NBA Finals preview or a measuring stick to see where it ranks against one of the Western Conference''s elite clubs.\n\nChoose one of the categories (labels), generate the corresponding text and return it in the following JSON format:\n\n```json\n{\n    \"text\": \"<text of the document>\", \n    \"label\": \"<corresponding label>\", \n}\n```\n",
+        "time_taken_seconds": 4.71,
+        "num_examples": 1,
+        "generated_examples": [
+            {
+                "text": "Amazon announced plans to expand its drone delivery service to new markets, with the goal of delivering packages to customers in under 30 minutes. The company has been testing the service in select areas, and plans to roll it out to more locations in the coming months. The drone delivery service uses autonomous drones to transport packages of up to 5 pounds, and can reach customers in as little as 10 minutes in some areas. Amazon hopes to use the service to increase efficiency and reduce delivery times for its customers.",
+                "label": "Business"
+            }
+        ]
     }
 ]
