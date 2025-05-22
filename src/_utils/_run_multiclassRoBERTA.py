@@ -17,6 +17,7 @@ from transformers import (
     TrainingArguments,
     Trainer,
 )
+import logging
 from src._utils._helpers import set_seed, clear_cuda_cache
 
 
@@ -24,7 +25,12 @@ MODEL_NAME = "roberta-large"  # roberta-base
 device = "cuda:0" if torch.cuda.is_available() else "cpu"
 tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, use_fast=True, verbose=False)
 data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
+
 disable_progress_bar()  # disable progress bar for datasets library (no progress bar when tokenizing)
+### disable following warning:
+# Some weights of RobertaForSequenceClassification were not initialized from the model checkpoint at roberta-large and are newly initialized: ['classifier.dense.bias', 'classifier.dense.weight', 'classifier.out_proj.bias', 'classifier.out_proj.weight']
+# You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+logging.getLogger("transformers.modeling_utils").setLevel(logging.ERROR)
 
 
 def combine_datasets(real_df=None, synth_df=None, synth_ratio=0.0, max_samples=500):

@@ -11,6 +11,7 @@ from src._utils._helpers import (
     set_seed,
     clear_cuda_cache,
     extract_json_from_text,
+    fix_missing_commas,
 )
 
 
@@ -200,6 +201,8 @@ def generate_synthetic_data(
                 messages_with_label = insert_label_in_messages(
                     messages, random_label, placeholder=label_placeholder
                 )
+            else:
+                messages_with_label = messages
 
             generated_text, _ = get_response(
                 prompt=user_prompt,
@@ -217,17 +220,31 @@ def generate_synthetic_data(
             if json_str is None:
                 tqdm.write(f"❌ No valid JSON found in generation {run_number}")
                 continue
-
             try:
-                batch_samples = json.loads(json_str)
-                if isinstance(batch_samples, dict):
-                    batch_samples = [batch_samples]
-                batch_samples = get_valid_examples(
-                    batch_samples, correct_labels, correct_fields
-                )
-                all_samples.extend(batch_samples)
-            except Exception as e:
-                tqdm.write(f"❌ Failed to parse generation {run_number}: {e}")
+                sample = json.loads(json_str)
+            except json.JSONDecodeError as e:
+                # Try fixing common formatting issues
+                fixed_json_str = fix_missing_commas(json_str)
+                try:
+                    sample = json.loads(fixed_json_str)
+                except Exception as e2:
+                    tqdm.write(f"❌ Failed to parse generation {run_number}: {e2}")
+                    continue
+
+            sample = sample if isinstance(sample, list) else [sample]
+            sample = get_valid_examples(sample, correct_labels, correct_fields)
+            all_samples.extend(sample)
+
+            # try:
+            #     batch_samples = json.loads(json_str)
+            #     if isinstance(batch_samples, dict):
+            #         batch_samples = [batch_samples]
+            #     batch_samples = get_valid_examples(
+            #         batch_samples, correct_labels, correct_fields
+            #     )
+            #     all_samples.extend(batch_samples)
+            # except Exception as e:
+            #     tqdm.write(f"❌ Failed to parse generation {run_number}: {e}")
 
             # Ensure we don't exceed the required number of examples
             current_count = min(len(all_samples), num_examples)
@@ -328,29 +345,34 @@ def generate_synthetic_data_with_context(
             )
 
             json_str = extract_json_from_text(generated_text)
+
             if json_str is None:
                 tqdm.write(f"❌ No valid JSON found at run {idx}")
                 idx += 1
                 continue
             try:
                 sample = json.loads(json_str)
-                if isinstance(sample, dict):
-                    sample = [sample]
-                valid = get_valid_examples(
-                    sample,
-                    set(correct_labels) if correct_labels else None,
-                    correct_fields,
-                )
-                if valid:
-                    out_sample = dict(valid[0])
-                    out_sample["context_examples"] = this_context
-                    if random_label:
-                        out_sample["requested_label"] = random_label
-                    all_samples.append(out_sample)
-                else:
-                    tqdm.write(f"❌ Invalid example at run {idx}")
-            except Exception as e:
-                tqdm.write(f"❌ Failed to parse generation {idx}: {e}")
+            except json.JSONDecodeError as e:
+                # Try fixing common formatting issues
+                fixed_json_str = fix_missing_commas(json_str)
+                try:
+                    sample = json.loads(fixed_json_str)
+                except Exception as e2:
+                    tqdm.write(f"❌ Failed to parse generation {idx}: {e2}")
+                    idx += 1
+                    continue
+
+            sample = sample if isinstance(sample, list) else [sample]
+            sample = get_valid_examples(sample, correct_labels, correct_fields)
+            all_samples.extend(sample)
+            if sample:
+                out_sample = dict(sample[0])
+                out_sample["context_examples"] = this_context
+                if add_random_label:
+                    out_sample["requested_label"] = random_label
+                all_samples.append(out_sample)
+            else:
+                tqdm.write(f"❌ Invalid example at run {idx}")
 
             pbar.n = len(all_samples)
             pbar.set_postfix(

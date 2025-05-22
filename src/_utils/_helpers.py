@@ -92,7 +92,6 @@ def get_response(
             add_generation_prompt=True,
         ).strip()
         model_inputs = tokenizer([formatted_text], return_tensors="pt").to(model.device)
-
     else:
         # plain prompt (no chat template)
         model_inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
@@ -162,6 +161,51 @@ def extract_json_from_text(text):
         return match.group(0).strip()
 
     return None
+
+
+def fix_missing_commas(json_str):
+    """
+    Attempts to fix missing commas between string fields in JSON objects.
+    works just in simple cases (such as ours)
+    1. Between object fields (e.g., "a": 1 "b": 2 → "a": 1, "b": 2)
+    2. Between list elements (e.g., {...}{...} → {...}, {...})
+    """
+    # Fix missing commas between fields inside an object
+    json_str = re.sub(
+        r'(":[^"]*?")\s*(")',  # Matches `": value" "next_field"` without comma
+        r"\1, \2",  # Inserts comma: `": value", "next_field"`
+        json_str,
+    )
+
+    # Fix missing commas between objects in a list (e.g., }{ → }, {)
+    json_str = re.sub(
+        r"(\})\s*(\{)", r"\1, \2", json_str  # Matches }{  # Replace with },{
+    )
+
+    return json_str
+
+
+def fix_missing_commas(json_str):
+    """
+    Fixes:
+    1. Missing commas between fields in objects.
+    2. Missing commas between objects in a list.
+    3. Trailing commas before closing brackets.
+    """
+    # Fix missing commas between fields in objects (e.g., "val" "key" → "val", "key")
+    json_str = re.sub(
+        r'(":[^"]*?")\s*(")',  # Match string value followed by another field name
+        r"\1, \2",
+        json_str,
+    )
+
+    # Fix missing commas between adjacent objects (e.g., }{ → }, {)
+    json_str = re.sub(r"(\})\s*(\{)", r"\1, \2", json_str)
+
+    # Optional: Remove trailing commas before closing array or object brackets (last element)
+    json_str = re.sub(r",\s*([\]}])", r"\1", json_str)
+
+    return json_str
 
 
 def log_synthetic_data(
@@ -317,3 +361,21 @@ def basic_analysis(df, print_missing_values=True, print_count_statistics=True):
         print(df["text_length"].describe().round(2))
 
     return None
+
+
+def get_context_examples(df, num_examples_per_prompt, num_prompts):
+    """
+    Function used for sampling context examples for the unsupervised generation
+
+    we sample randomly "num_examples_per_prompt" examples, and we do it "num_prompts" times
+    we store them in a list of lists
+    """
+    context_examples = []
+    for _ in range(num_prompts):
+        examples = df.sample(
+            n=num_examples_per_prompt,
+            replace=False,
+            random_state=np.random.randint(0, 1e6),
+        )
+        context_examples.append(examples["text"].tolist())
+    return context_examples

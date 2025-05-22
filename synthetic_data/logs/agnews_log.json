@@ -763,5 +763,173 @@
                 "label": "Business"
             }
         ]
+    },
+    {
+        "timestamp": "2025-05-22T10:33:38.692097",
+        "model": "meta-llama/Llama-2-7b-chat-hf",
+        "generation_method": "baseline",
+        "prompt": "Your task is to generate one high-quality short document (around 30 words), that talks about one of the following four News categories:  \n- Business\n- Sci/Tech\n- Sports\n- World\n\nChoose one of the categories (labels), generate the corresponding text and return it in the following JSON format:\n\n```json\n{\n    \"text\": \"<text of the document>\", \n    \"label\": \"<corresponding label>\", \n}\n```\n",
+        "time_taken_seconds": 4.15,
+        "num_examples": 1,
+        "generated_examples": [
+            {
+                "text": "Major tech company announces new AI-powered tool for businesses, set to revolutionize industry",
+                "label": "Business"
+            }
+        ]
+    },
+    {
+        "timestamp": "2025-05-22T10:34:54.507492",
+        "model": "meta-llama/Llama-2-7b-chat-hf",
+        "generation_method": "unsupervised context",
+        "prompt": "Your task is to generate an high-quality short documents (around 30 words), that talks about one of the following four News categories (labels):\n- Business\n- Sci/Tech\n- Sports\n- World.\n\nHere some examples of the documents you can use as a reference:\n- The combined worldwide market for desktops, servers and packaged software running on Linux is forecast to grow at a 2003-2008 compound annual growth rate of 25.9 percent worldwide, reaching \\$35.7 billion by 2008.\n- A SECOND-HALF Springbok blitz gave South Africa their first Tri-Nations rugby title in six years with a win over Australia at Kings Park.\n- It #39;ll cost about the same as the regular-sized PS 2 in the US and Europe. The smaller PlayStation 2 has all regular PlayStation 2 functions such as playing CDs and DVDs.\n- Three British nationals were nabbed by gunmen in the Iraqi capital on Thursday, the Iraqi Interior Ministry said. The three British men were believed to be civilians living \n- AP - Seattle and Miami are among the NBA''s four winningest teams so far this season, ranking just behind Phoenix and San Antonio. Yet when the Heat put their 14-game winning streak on the line Monday night against the SuperSonics, Miami won''t be looking at the matchup as a potential NBA Finals preview or a measuring stick to see where it ranks against one of the Western Conference''s elite clubs.\n\nChoose one of the categories (labels), generate the corresponding text and return it in the following JSON format:\n\n```json\n{\n    \"text\": \"<text of the document>\", \n    \"label\": \"<corresponding label>\", \n}\n```\n",
+        "time_taken_seconds": 3.59,
+        "num_examples": 1,
+        "generated_examples": [
+            {
+                "text": "The combined market for cloud computing services is forecast to reach $123 billion by 2023, growing at a CAGR of 18.3% from 2020 to 2023. Major players in the market include Amazon Web Services, Microsoft Azure, and Google Cloud Platform.",
+                "label": "Business"
+            }
+        ]
+    },
+    {
+        "timestamp": "2025-05-22T10:35:25.300119",
+        "model": "meta-llama/Llama-2-7b-chat-hf",
+        "generation_method": "unsupervised context",
+        "prompt": "Your task is to generate an high-quality short documents (around 30 words), that talks about one of the following four News categories (labels):\n- Business\n- Sci/Tech\n- Sports\n- World.\n\nHere some examples of the documents you can use as a reference:\n- The combined worldwide market for desktops, servers and packaged software running on Linux is forecast to grow at a 2003-2008 compound annual growth rate of 25.9 percent worldwide, reaching \\$35.7 billion by 2008.\n- A SECOND-HALF Springbok blitz gave South Africa their first Tri-Nations rugby title in six years with a win over Australia at Kings Park.\n- It #39;ll cost about the same as the regular-sized PS 2 in the US and Europe. The smaller PlayStation 2 has all regular PlayStation 2 functions such as playing CDs and DVDs.\n- Three British nationals were nabbed by gunmen in the Iraqi capital on Thursday, the Iraqi Interior Ministry said. The three British men were believed to be civilians living \n- AP - Seattle and Miami are among the NBA''s four winningest teams so far this season, ranking just behind Phoenix and San Antonio. Yet when the Heat put their 14-game winning streak on the line Monday night against the SuperSonics, Miami won''t be looking at the matchup as a potential NBA Finals preview or a measuring stick to see where it ranks against one of the Western Conference''s elite clubs.\n\nChoose one of the categories (labels), generate the corresponding text and return it in the following JSON format:\n\n```json\n{\n    \"text\": \"<text of the document>\", \n    \"label\": \"<corresponding label>\", \n}\n```\n",
+        "time_taken_seconds": 4.1,
+        "num_examples": 1,
+        "generated_examples": [
+            {
+                "text": "The combined worldwide market for desktops, servers and packaged software running on Linux is forecast to grow at a 2003-2008 compound annual growth rate of 25.9 percent worldwide, reaching $35.7 billion by 2008.",
+                "label": "Business"
+            }
+        ]
+    },
+    {
+        "timestamp": "2025-05-22T10:35:38.298407",
+        "model": "meta-llama/Llama-2-7b-chat-hf",
+        "generation_method": "unsupervised context",
+        "prompt": "Your task is to generate an high-quality short documents (around 30 words), that talks about one of the following four News categories (labels):\n- Business\n- Sci/Tech\n- Sports\n- World.\n\nHere some examples of the documents you can use as a reference:\n- The combined worldwide market for desktops, servers and packaged software running on Linux is forecast to grow at a 2003-2008 compound annual growth rate of 25.9 percent worldwide, reaching \\$35.7 billion by 2008.\n- A SECOND-HALF Springbok blitz gave South Africa their first Tri-Nations rugby title in six years with a win over Australia at Kings Park.\n- It #39;ll cost about the same as the regular-sized PS 2 in the US and Europe. The smaller PlayStation 2 has all regular PlayStation 2 functions such as playing CDs and DVDs.\n- Three British nationals were nabbed by gunmen in the Iraqi capital on Thursday, the Iraqi Interior Ministry said. The three British men were believed to be civilians living \n- AP - Seattle and Miami are among the NBA''s four winningest teams so far this season, ranking just behind Phoenix and San Antonio. Yet when the Heat put their 14-game winning streak on the line Monday night against the SuperSonics, Miami won''t be looking at the matchup as a potential NBA Finals preview or a measuring stick to see where it ranks against one of the Western Conference''s elite clubs.\n\nChoose one of the categories (labels), generate the corresponding text and return it in the following JSON format:\n\n```json\n{\n    \"text\": \"<text of the document>\", \n    \"label\": \"<corresponding label>\", \n}\n```\n",
+        "time_taken_seconds": 4.88,
+        "num_examples": 1,
+        "generated_examples": [
+            {
+                "text": "Amazon is expanding its grocery delivery service to 200 new cities across the US, aiming to reach 80% of the US population by the end of 2023. The move is part of the company's strategy to diversify its revenue streams and compete with traditional grocery retailers.",
+                "label": "Business"
+            }
+        ]
+    },
+    {
+        "timestamp": "2025-05-22T10:35:43.876903",
+        "model": "meta-llama/Llama-2-7b-chat-hf",
+        "generation_method": "unsupervised context",
+        "prompt": "Your task is to generate an high-quality short documents (around 30 words), that talks about one of the following four News categories (labels):\n- Business\n- Sci/Tech\n- Sports\n- World.\n\nHere some examples of the documents you can use as a reference:\n- The combined worldwide market for desktops, servers and packaged software running on Linux is forecast to grow at a 2003-2008 compound annual growth rate of 25.9 percent worldwide, reaching \\$35.7 billion by 2008.\n- A SECOND-HALF Springbok blitz gave South Africa their first Tri-Nations rugby title in six years with a win over Australia at Kings Park.\n- It #39;ll cost about the same as the regular-sized PS 2 in the US and Europe. The smaller PlayStation 2 has all regular PlayStation 2 functions such as playing CDs and DVDs.\n- Three British nationals were nabbed by gunmen in the Iraqi capital on Thursday, the Iraqi Interior Ministry said. The three British men were believed to be civilians living \n- AP - Seattle and Miami are among the NBA''s four winningest teams so far this season, ranking just behind Phoenix and San Antonio. Yet when the Heat put their 14-game winning streak on the line Monday night against the SuperSonics, Miami won''t be looking at the matchup as a potential NBA Finals preview or a measuring stick to see where it ranks against one of the Western Conference''s elite clubs.\n\nChoose one of the categories (labels), generate the corresponding text and return it in the following JSON format:\n\n```json\n{\n    \"text\": \"<text of the document>\", \n    \"label\": \"<corresponding label>\", \n}\n```\n",
+        "time_taken_seconds": 3.6,
+        "num_examples": 1,
+        "generated_examples": [
+            {
+                "text": "The combined worldwide market for desktops, servers and packaged software running on Linux is forecast to grow at a 2003-2008 compound annual growth rate of 25.9 percent worldwide, reaching $35.7 billion by 2008.",
+                "label": "Business"
+            }
+        ]
+    },
+    {
+        "timestamp": "2025-05-22T10:35:51.652341",
+        "model": "meta-llama/Llama-2-7b-chat-hf",
+        "generation_method": "unsupervised context",
+        "prompt": "Your task is to generate an high-quality short documents (around 30 words), that talks about one of the following four News categories (labels):\n- Business\n- Sci/Tech\n- Sports\n- World.\n\nHere some examples of the documents you can use as a reference:\n- The combined worldwide market for desktops, servers and packaged software running on Linux is forecast to grow at a 2003-2008 compound annual growth rate of 25.9 percent worldwide, reaching \\$35.7 billion by 2008.\n- A SECOND-HALF Springbok blitz gave South Africa their first Tri-Nations rugby title in six years with a win over Australia at Kings Park.\n- It #39;ll cost about the same as the regular-sized PS 2 in the US and Europe. The smaller PlayStation 2 has all regular PlayStation 2 functions such as playing CDs and DVDs.\n- Three British nationals were nabbed by gunmen in the Iraqi capital on Thursday, the Iraqi Interior Ministry said. The three British men were believed to be civilians living \n- AP - Seattle and Miami are among the NBA''s four winningest teams so far this season, ranking just behind Phoenix and San Antonio. Yet when the Heat put their 14-game winning streak on the line Monday night against the SuperSonics, Miami won''t be looking at the matchup as a potential NBA Finals preview or a measuring stick to see where it ranks against one of the Western Conference''s elite clubs.\n\nChoose one of the categories (labels), generate the corresponding text and return it in the following JSON format:\n\n```json\n{\n    \"text\": \"<text of the document>\", \n    \"label\": \"<corresponding label>\", \n}\n```\n",
+        "time_taken_seconds": 4.43,
+        "num_examples": 1,
+        "generated_examples": [
+            {
+                "text": "Amazon has announced plans to expand its grocery delivery service to 200 new cities across the US, Canada, and the UK. The move is expected to increase the company's grocery delivery capacity by 50% and reach 80% of the US population by the end of 2023.",
+                "label": "Business"
+            }
+        ]
+    },
+    {
+        "timestamp": "2025-05-22T10:35:59.420801",
+        "model": "meta-llama/Llama-2-7b-chat-hf",
+        "generation_method": "unsupervised context",
+        "prompt": "Your task is to generate an high-quality short documents (around 30 words), that talks about one of the following four News categories (labels):\n- Business\n- Sci/Tech\n- Sports\n- World.\n\nHere some examples of the documents you can use as a reference:\n- The combined worldwide market for desktops, servers and packaged software running on Linux is forecast to grow at a 2003-2008 compound annual growth rate of 25.9 percent worldwide, reaching \\$35.7 billion by 2008.\n- A SECOND-HALF Springbok blitz gave South Africa their first Tri-Nations rugby title in six years with a win over Australia at Kings Park.\n- It #39;ll cost about the same as the regular-sized PS 2 in the US and Europe. The smaller PlayStation 2 has all regular PlayStation 2 functions such as playing CDs and DVDs.\n- Three British nationals were nabbed by gunmen in the Iraqi capital on Thursday, the Iraqi Interior Ministry said. The three British men were believed to be civilians living \n- AP - Seattle and Miami are among the NBA''s four winningest teams so far this season, ranking just behind Phoenix and San Antonio. Yet when the Heat put their 14-game winning streak on the line Monday night against the SuperSonics, Miami won''t be looking at the matchup as a potential NBA Finals preview or a measuring stick to see where it ranks against one of the Western Conference''s elite clubs.\n\nChoose one of the categories (labels), generate the corresponding text and return it in the following JSON format:\n\n```json\n{\n    \"text\": \"<text of the document>\", \n    \"label\": \"<corresponding label>\", \n}\n```\n",
+        "time_taken_seconds": 4.31,
+        "num_examples": 1,
+        "generated_examples": [
+            {
+                "text": "According to a new report, Amazon is planning to expand its grocery delivery service to 30 new cities across the United States. The service, which was first launched in Seattle in 2002, has already gained popularity in several major cities, including New York, Los Angeles, and Chicago. The move is expected to further solidify Amazon's position as a leader in the e-commerce industry.",
+                "label": "Business"
+            }
+        ]
+    },
+    {
+        "timestamp": "2025-05-22T10:36:06.626866",
+        "model": "meta-llama/Llama-2-7b-chat-hf",
+        "generation_method": "unsupervised context",
+        "prompt": "Your task is to generate an high-quality short documents (around 30 words), that talks about one of the following four News categories (labels):\n- Business\n- Sci/Tech\n- Sports\n- World.\n\nHere some examples of the documents you can use as a reference:\n- The combined worldwide market for desktops, servers and packaged software running on Linux is forecast to grow at a 2003-2008 compound annual growth rate of 25.9 percent worldwide, reaching \\$35.7 billion by 2008.\n- A SECOND-HALF Springbok blitz gave South Africa their first Tri-Nations rugby title in six years with a win over Australia at Kings Park.\n- It #39;ll cost about the same as the regular-sized PS 2 in the US and Europe. The smaller PlayStation 2 has all regular PlayStation 2 functions such as playing CDs and DVDs.\n- Three British nationals were nabbed by gunmen in the Iraqi capital on Thursday, the Iraqi Interior Ministry said. The three British men were believed to be civilians living \n- AP - Seattle and Miami are among the NBA''s four winningest teams so far this season, ranking just behind Phoenix and San Antonio. Yet when the Heat put their 14-game winning streak on the line Monday night against the SuperSonics, Miami won''t be looking at the matchup as a potential NBA Finals preview or a measuring stick to see where it ranks against one of the Western Conference''s elite clubs.\n\nChoose one of the categories (labels), generate the corresponding text and return it in the following JSON format:\n\n```json\n{\n    \"text\": \"<text of the document>\", \n    \"label\": \"<corresponding label>\", \n}\n```\n",
+        "time_taken_seconds": 4.57,
+        "num_examples": 1,
+        "generated_examples": [
+            {
+                "text": "The combined worldwide market for desktops, servers and packaged software running on Linux is forecast to grow at a 2003-2008 compound annual growth rate of 25.9 percent worldwide, reaching $35.7 billion by 2008.",
+                "label": "Business"
+            }
+        ]
+    },
+    {
+        "timestamp": "2025-05-22T10:36:13.852488",
+        "model": "meta-llama/Llama-2-7b-chat-hf",
+        "generation_method": "unsupervised context",
+        "prompt": "Your task is to generate an high-quality short documents (around 30 words), that talks about one of the following four News categories (labels):\n- Business\n- Sci/Tech\n- Sports\n- World.\n\nHere some examples of the documents you can use as a reference:\n- The combined worldwide market for desktops, servers and packaged software running on Linux is forecast to grow at a 2003-2008 compound annual growth rate of 25.9 percent worldwide, reaching \\$35.7 billion by 2008.\n- A SECOND-HALF Springbok blitz gave South Africa their first Tri-Nations rugby title in six years with a win over Australia at Kings Park.\n- It #39;ll cost about the same as the regular-sized PS 2 in the US and Europe. The smaller PlayStation 2 has all regular PlayStation 2 functions such as playing CDs and DVDs.\n- Three British nationals were nabbed by gunmen in the Iraqi capital on Thursday, the Iraqi Interior Ministry said. The three British men were believed to be civilians living \n- AP - Seattle and Miami are among the NBA''s four winningest teams so far this season, ranking just behind Phoenix and San Antonio. Yet when the Heat put their 14-game winning streak on the line Monday night against the SuperSonics, Miami won''t be looking at the matchup as a potential NBA Finals preview or a measuring stick to see where it ranks against one of the Western Conference''s elite clubs.\n\nChoose one of the categories (labels), generate the corresponding text and return it in the following JSON format:\n\n```json\n{\n    \"text\": \"<text of the document>\", \n    \"label\": \"<corresponding label>\", \n}\n```\n",
+        "time_taken_seconds": 4.55,
+        "num_examples": 1,
+        "generated_examples": [
+            {
+                "text": "The combined worldwide market for desktops, servers and packaged software running on Linux is forecast to grow at a 2003-2008 compound annual growth rate of 25.9 percent worldwide, reaching $35.7 billion by 2008.",
+                "label": "Business"
+            }
+        ]
+    },
+    {
+        "timestamp": "2025-05-22T10:37:15.424572",
+        "model": "meta-llama/Llama-2-7b-chat-hf",
+        "generation_method": "unsupervised context",
+        "prompt": "Your task is to generate an high-quality short documents (around 30 words), that talks about one of the following four News categories (labels):\n- Business\n- Sci/Tech\n- Sports\n- World.\n\nHere some examples of the documents you can use as a reference:\n- The shock here was not just from the awful fact itself, that two vibrant young Italian women were kidnapped in Iraq, dragged from their office by attackers who, it seems, knew their names.\n- BAGHDAD, Iraq - A pared-down delegation of Iraqis arrived in Najaf by helicopter Tuesday to present radical Shiite cleric Muqtada al-Sadr with a peace proposal aimed at ending the violent insurgency wracking the holy city.    Despite the delegation''s presence there, fighting intensified in Najaf, with at least one U.S...\n- Albert Pujols and Scott Rolen hit back-to-back home runs in the eighth inning to lead the St Louis Cardinals to a 6-4 win over the Houston Astros in Game Two of the NL Championship Series at Busch Stadium on Thursday.\n- Besides unleashing Solaris 10, Sun Microsystems on Monday plans to turn the spotlight on new storage hardware and software offerings as part of its quarterly product launch.\n- For those who need to make telephone calls in flight and don''t want to sell the second car to finance them, help is on the way.\n\nChoose one of the categories (labels), generate the corresponding text and return it in the following JSON format:\n\n```json\n{\n    \"text\": \"<text of the document>\", \n    \"label\": \"<corresponding label>\", \n}\n```\n",
+        "time_taken_seconds": 2.58,
+        "num_examples": 1,
+        "generated_examples": [
+            {
+                "text": "Amazon's new drone delivery service takes off in the US",
+                "label": "Business"
+            }
+        ]
+    },
+    {
+        "timestamp": "2025-05-22T11:07:29.241917",
+        "model": "meta-llama/Llama-2-7b-chat-hf",
+        "generation_method": "unsupervised context",
+        "prompt": "Your task is to generate an high-quality short documents (around 30 words), that talks about one of the following four News categories (labels):\n- Business\n- Sci/Tech\n- Sports\n- World.\n\nHere some examples of the documents you can use as a reference:\n- With Derek Lowe #39;s days in Boston almost certainly numbered -- and Pedro Martinez #39;s future here in question -- the Red Sox are expected to greet All-Star righthander Carl Pavano this week on Yawkey Way.\n- Symantec has released firmware fixes for a string of critical security holes in its firewall/VPN and Gateway Security products which could be exploited to cause a denial of service, identify \n- King County prosecutors charged a Covington orthodontist yesterday with engaging in sexually explicit Internet conversations with several girls, including three current or former patients, and with dealing child pornography.\n- LONDON (Reuters) - Oil producers are emerging to lock in record high prices for their future crude output, but activity is modest as firms still fear calling a premature end to this year #39;s stunning price rise, traders said on Friday. \n- STOCKHOLM (AFP) - Andre Agassi was set to intensify his chase for a place in next month #39;s eight-man Masters Cup, with a Tuesday morning arrival in Sweden to compete as top seed at the 632,750-euro Stockholm Open.\n\nChoose one of the categories (labels), generate the corresponding text and return it in the following JSON format:\n\n```json\n{\n    \"text\": \"<text of the document>\", \n    \"label\": \"<corresponding label>\", \n}\n```\n",
+        "time_taken_seconds": 5.99,
+        "num_examples": 1,
+        "generated_examples": [
+            {
+                "text": "LONDON (Reuters) - Oil producers are emerging to lock in record high prices for their future crude output, but activity is modest as firms still fear calling a premature end to this year's stunning price rise, traders said on Friday. #oilprices #business",
+                "label": "Business"
+            }
+        ]
+    },
+    {
+        "timestamp": "2025-05-22T11:07:32.739625",
+        "model": "meta-llama/Llama-2-7b-chat-hf",
+        "generation_method": "unsupervised context",
+        "prompt": "Your task is to generate an high-quality short documents (around 30 words), that talks about one of the following four News categories (labels):\n- Business\n- Sci/Tech\n- Sports\n- World.\n\nHere some examples of the documents you can use as a reference:\n- With Derek Lowe #39;s days in Boston almost certainly numbered -- and Pedro Martinez #39;s future here in question -- the Red Sox are expected to greet All-Star righthander Carl Pavano this week on Yawkey Way.\n- Symantec has released firmware fixes for a string of critical security holes in its firewall/VPN and Gateway Security products which could be exploited to cause a denial of service, identify \n- King County prosecutors charged a Covington orthodontist yesterday with engaging in sexually explicit Internet conversations with several girls, including three current or former patients, and with dealing child pornography.\n- LONDON (Reuters) - Oil producers are emerging to lock in record high prices for their future crude output, but activity is modest as firms still fear calling a premature end to this year #39;s stunning price rise, traders said on Friday. \n- STOCKHOLM (AFP) - Andre Agassi was set to intensify his chase for a place in next month #39;s eight-man Masters Cup, with a Tuesday morning arrival in Sweden to compete as top seed at the 632,750-euro Stockholm Open.\n\nChoose one of the categories (labels), generate the corresponding text and return it in the following JSON format:\n\n```json\n{\n    \"text\": \"<text of the document>\", \n    \"label\": \"<corresponding label>\", \n}\n```\n",
+        "time_taken_seconds": 3.47,
+        "num_examples": 1,
+        "generated_examples": [
+            {
+                "text": "Amazon is reportedly planning to acquire the online grocery retailer, Whole Foods, in a deal worth over $13 billion. The acquisition is expected to help Amazon expand its reach in the grocery market and compete with traditional retailers.",
+                "label": "Business"
+            }
+        ]
     }
 ]
