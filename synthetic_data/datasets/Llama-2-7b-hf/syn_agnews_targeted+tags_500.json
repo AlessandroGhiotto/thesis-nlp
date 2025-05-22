@@ -1,0 +1,110 @@
+{
+    "metadata": {
+        "timestamp": "2025-05-22T00:04:28.198852",
+        "dataset": "agnews",
+        "generation_method": "targeted + linguistic tags",
+        "num_examples_generated": 5,
+        "model": "meta-llama/Llama-2-7b-chat-hf",
+        "model.generation_config": {
+            "max_length": 4096,
+            "do_sample": true,
+            "temperature": 0.6,
+            "top_p": 0.9,
+            "pad_token_id": 0,
+            "bos_token_id": 1,
+            "eos_token_id": 2,
+            "transformers_version": "4.49.0",
+            "attn_implementation": "flash_attention_2"
+        },
+        "model_BitsAndBytesConfig": {
+            "_load_in_4bit": true,
+            "bnb_4bit_compute_dtype": "float16",
+            "load_in_4bit": true
+        },
+        "prompt": [
+            {
+                "role": "system",
+                "content": "You are an expert in journalism and NLP specializing in news classification."
+            },
+            {
+                "role": "user",
+                "content": "Your task is to generate one high-quality short document (around 30 words), that talks about one of the following four News categories:  \n- Business\n- Sci/Tech\n- Sports\n- World\n\nFor each example, also list the key phenomena it covers.\n\n### **Follow these topics:**\n- **Business**  \n  - Markets  \n  - Economy  \n  - Companies  \n  - Startups  \n  - Regulations  \n\n- **Sci/Tech**  \n  - AI  \n  - Space  \n  - Cybersecurity  \n  - Biotech  \n  - Climate  \n\n- **Sports**  \n  - Events  \n  - Records  \n  - Highlights  \n  - Scandals  \n  - Olympics  \n\n- **World**  \n  - Politics  \n  - Conflicts  \n  - Disasters  \n  - Human Rights  \n  - Trade\n\n### **Output Format (JSON)**\nThe labels must be one of the specified categories, which are: Business, Sci/Tech, Sports, World. Choose one of the categories (labels), generate the corresponding text, write the corresponding phenomena and return it in the following JSON format:\n\n```json\n{\n    \"text\": \"<text of the document>\", \n    \"label\": \"<corresponding label>\", \n    \"phenomena\": [\"<phenomenon1>\", \"<phenomenon2>\", ...]\n}\n```\n"
+            },
+            {
+                "role": "assistant",
+                "content": "Of course! I'm happy to help. Please provide me with the category you would like me to focus on, and I will generate a high-quality short document for you."
+            }
+        ],
+        "prompt_postfix": null,
+        "system_prompt": null,
+        "apply_chat_template": true,
+        "time_taken_seconds": 40.21,
+        "json_output_file": "synthetic_data/datasets/Llama-2-7b-hf/syn_agnews_targeted+tags_500.json",
+        "num_runs": 5,
+        "seed": 42,
+        "correct_labels": [
+            "Business",
+            "Sci/Tech",
+            "Sports",
+            "World"
+        ],
+        "correct_fields": [
+            "text",
+            "label",
+            "phenomena"
+        ],
+        "append_random_label": true
+    },
+    "generated_examples": [
+        {
+            "text": "Lionel Messi scores hat-trick as Barcelona beats Real Madrid in El Clásico",
+            "label": "Sports",
+            "phenomena": [
+                "Record-breaking performance",
+                "High-stakes rivalry",
+                "Exciting match"
+            ]
+        },
+        {
+            "text": "Lionel Messi scores hat-trick as Barcelona beats Real Madrid 3-2 in El Clásico thriller",
+            "label": "Sports",
+            "phenomena": [
+                "Record-breaking performance",
+                "High-stakes rivalry",
+                "Exciting match"
+            ]
+        },
+        {
+            "text": "The ongoing conflict in Ukraine has reached a boiling point, with both sides accusing each other of aggression and violations of human rights. The UN has called for an immediate ceasefire, but negotiations have stalled. Meanwhile, the humanitarian crisis deepens, with thousands of civilians caught in the crossfire.",
+            "label": "World",
+            "phenomena": [
+                "Conflicts",
+                "Human Rights",
+                "UN",
+                "Ceasefire",
+                "Humanitarian Crisis"
+            ]
+        },
+        {
+            "text": "Microsoft unveils new AI-powered chatbot for customer service",
+            "label": "Business",
+            "phenomena": [
+                "AI",
+                "chatbot",
+                "customer service",
+                "Microsoft"
+            ]
+        },
+        {
+            "text": "The tech industry is abuzz with excitement as Google announces its latest innovation: a new AI-powered chatbot that can analyze financial data in real-time and provide actionable insights to investors. The chatbot, called 'Finley,' is the brainchild of Google's AI research team and has already shown promising results in internal tests. With Finley, investors will be able to make more informed decisions and potentially avoid costly mistakes. The implications of this technology are vast, and the business world is eagerly awaiting its release.",
+            "label": "Business",
+            "phenomena": [
+                "AI innovation",
+                "financial data analysis",
+                "investor insights",
+                "tech industry excitement",
+                "business implications"
+            ]
+        }
+    ]
+}

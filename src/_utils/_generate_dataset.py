@@ -3,6 +3,7 @@ import os
 import time
 from datetime import datetime
 import re
+import random
 from tqdm import tqdm
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from src._utils._helpers import (
@@ -55,39 +56,94 @@ def get_valid_examples(examples, correct_labels=None, correct_fields=None):
     return valid_examples
 
 
+def format_context_examples(context_examples, example_format):
+    ### The intro "Here are some examples..." must be printed in the base prompt
+    # here we have only the examples
+    if example_format == "bullet":
+        # when an example is a string
+        context_str = "".join(f"- {ex}\n" for ex in context_examples)
+    elif example_format == "json":
+        # when an example is a list of dicts
+        context_str = (
+            "```json\n"
+            + json.dumps(context_examples, indent=4, ensure_ascii=False)
+            + "\n```\n"
+        )
+    else:
+        context_str = str(context_examples)
+
+    return context_str
+
+
 def format_prompt_with_context(
     base_prompt, context_examples, example_format="bullet", postfix=None
 ):
     """
     Format the prompt by including context examples, with optional postfix.
+    This is used when the prompt is a string.
+
+    base_prompt + context examples + postfix
     """
-    # base_prompt + context examples + postfix
     prompt_parts = []
     if base_prompt:
         prompt_parts.append(base_prompt)
     if context_examples:
-        if example_format == "json":
-            # when an example is a list of dicts
-            # context_str = "Here are some examples:\n"
-            context_str = ""
-            context_str += (
-                "```json\n"
-                + json.dumps(context_examples, indent=4, ensure_ascii=False)
-                + "\n```\n"
-            )
-        elif example_format == "bullet":
-            # when an example is a string
-            # context_str = "Here are some examples:\n"
-            ### The part "here are some examples..." must be printed in the base prompt
-            context_str = ""
-            for example in context_examples:
-                context_str += f"- {example}\n"
-        else:
-            context_str = f"Context examples:\n{str(context_examples)}\n"
+        context_str = format_context_examples(
+            context_examples, example_format=example_format
+        )
         prompt_parts.append(context_str)
     if postfix:
         prompt_parts.append(postfix)
     return "\n".join([part for part in prompt_parts if part])
+
+
+def insert_context_in_messages(
+    messages,
+    context_examples,
+    placeholder="ADD_CONTEXT_HERE",
+    example_format="bullet",
+    postfix=None,
+):
+    """
+    Replace placeholder in user messages with context and optional postfix.
+    This is used when we have a list of messages.
+
+    the context (lsit of examples) is injected in the user message
+    where the placeholder is found.
+    """
+    context_str = ""
+    if context_examples:
+        context_str = format_context_examples(
+            context_examples, example_format=example_format
+        )
+    if postfix:
+        context_str += f"\n{postfix}"
+
+    # Replace the placeholder in user messages with context
+    updated_messages = []
+    for msg in messages:
+        new_msg = msg.copy()
+        if msg["role"] == "user" and placeholder in msg["content"]:
+            new_msg["content"] = new_msg["content"].replace(placeholder, context_str)
+        updated_messages.append(new_msg)
+    return updated_messages
+
+
+def insert_label_in_messages(messages, label, placeholder="ADD_LABEL_HERE"):
+    """
+    Replace placeholder in user messages with label.
+    This is used when we have a list of messages.
+    the label is injected in the user message
+    where the placeholder is found.
+    """
+    # Replace the placeholder in user messages with label
+    updated_messages = []
+    for msg in messages:
+        new_msg = msg.copy()
+        if msg["role"] == "user" and placeholder in msg["content"]:
+            new_msg["content"] = new_msg["content"].replace(placeholder, label)
+        updated_messages.append(new_msg)
+    return updated_messages
 
 
 def generate_synthetic_data(
@@ -100,6 +156,8 @@ def generate_synthetic_data(
     correct_labels=None,
     correct_fields=["text", "label"],
     apply_chat_template=True,
+    add_random_label=False,
+    label_placeholder="ADD_LABEL_HERE",
 ):
     """
     generate synthetic data in batches without rolling context
@@ -110,6 +168,10 @@ def generate_synthetic_data(
     - tokenizer: the tokenizer to use for generation
     - max_new_tokens: the maximum number of tokens to generate
     - system_prompt: the system prompt to use for generation
+    - correct_labels: the correct labels to use for generation
+    - correct_fields: the correct fields to be obtained in the generation
+    - apply_chat_template: whether to apply the chat template to the prompt
+    - add_random_label: whether to append a random label to the prompt messages (for chat template)
 
     Returns:
         List[dict]: A list of generated examples.
@@ -117,25 +179,39 @@ def generate_synthetic_data(
     """
 
     correct_labels = set(correct_labels) if correct_labels else None
+    correct_labels_list = list(correct_labels) if correct_labels else None
     correct_fields = set(correct_fields) if correct_fields else None
     all_samples = []
+
+    # Determine if prompt is a list of messages
+    # the messages are intended to be used in the chat format
+    messages = prompt if isinstance(prompt, list) else None
+    user_prompt = None if messages else prompt
 
     # Loop to generate data in batches
     with tqdm(total=num_examples, desc="Generating Examples", unit="ex") as pbar:
         run_number = 1
         while len(all_samples) < num_examples:
             run_number += 1
+
+            # Add a random label if requested
+            if add_random_label and messages:
+                random_label = random.choice(correct_labels_list)
+                messages_with_label = insert_label_in_messages(
+                    messages, random_label, placeholder=label_placeholder
+                )
+
             generated_text, _ = get_response(
-                prompt,
-                model,
-                tokenizer,
-                max_new_tokens,
-                system_prompt,
-                print_output=False,  # don't print
-                seed=None,  # don't set seed at each iteration
+                prompt=user_prompt,
+                model=model,
+                tokenizer=tokenizer,
+                max_new_tokens=max_new_tokens,
+                system_prompt=system_prompt,
+                messages=messages_with_label,
+                print_output=False,
+                seed=None,
                 apply_chat_template=apply_chat_template,
             )
-
             json_str = extract_json_from_text(generated_text)
 
             if json_str is None:
@@ -144,6 +220,8 @@ def generate_synthetic_data(
 
             try:
                 batch_samples = json.loads(json_str)
+                if isinstance(batch_samples, dict):
+                    batch_samples = [batch_samples]
                 batch_samples = get_valid_examples(
                     batch_samples, correct_labels, correct_fields
                 )
@@ -178,6 +256,8 @@ def generate_synthetic_data_with_context(
     correct_fields=["text", "label"],
     postfix=None,
     apply_chat_template=True,
+    add_random_label=False,
+    example_format="bullet",
 ):
     """
     Generate synthetic data one at a time, using context examples in the prompt.
@@ -185,6 +265,7 @@ def generate_synthetic_data_with_context(
     - postfix: string to append after the prompt.
     """
     correct_labels = set(correct_labels) if correct_labels else None
+    correct_labels_list = list(correct_labels) if correct_labels else None
     correct_fields = set(correct_fields) if correct_fields else None
     all_samples = []
 
@@ -203,37 +284,68 @@ def generate_synthetic_data_with_context(
             if idx >= len(context_examples):
                 tqdm.write("❌ Used all the examples.")
                 break
+
             this_context = context_examples[idx]
-            prompt_with_context = format_prompt_with_context(
-                prompt, this_context, postfix=postfix
-            )
+
+            # Build prompt with context and label
+            if isinstance(prompt, list):  # messages format
+                messages = prompt
+                messages = insert_context_in_messages(
+                    messages,
+                    this_context,
+                    example_format=example_format,
+                    placeholder="ADD_CONTEXT_HERE",
+                    postfix=postfix,
+                )
+                text_prompt = None
+                if add_random_label and correct_labels_list:
+                    random_label = random.choice(correct_labels_list)
+                    messages = insert_label_in_messages(
+                        messages,
+                        label=random_label,
+                        placeholder="ADD_LABEL_HERE",
+                    )
+
+            else:  # string format
+                messages = None
+                text_prompt = format_prompt_with_context(
+                    prompt, this_context, postfix=postfix, example_format=example_format
+                )
+                if add_random_label and correct_labels_list:
+                    random_label = random.choice(correct_labels_list)
+                    text_prompt += f"\nlabel: {random_label}"
+
             generated_text, _ = get_response(
-                prompt_with_context,
-                model,
-                tokenizer,
-                max_new_tokens,
-                system_prompt,
+                prompt=text_prompt,
+                model=model,
+                tokenizer=tokenizer,
+                max_new_tokens=max_new_tokens,
+                system_prompt=system_prompt,
+                messages=messages,
                 print_output=False,
                 seed=None,
                 apply_chat_template=apply_chat_template,
             )
-            # extract json in the format ```json\n...\n```
-            match = re.search(r"```json\n(.*?)\n```", generated_text, re.DOTALL)
-            if match:
-                generated_text = match.group(1)
-            else:
-                # Try to directly extract a JSON object or array from the text
-                json_match = re.search(r"(\{.*\}|\[.*\])", generated_text, re.DOTALL)
-                if json_match:
-                    generated_text = json_match.group(1)
+
+            json_str = extract_json_from_text(generated_text)
+            if json_str is None:
+                tqdm.write(f"❌ No valid JSON found at run {idx}")
+                idx += 1
+                continue
             try:
-                sample = json.loads(generated_text)
+                sample = json.loads(json_str)
                 if isinstance(sample, dict):
                     sample = [sample]
-                valid = get_valid_examples(sample, correct_labels, correct_fields)
+                valid = get_valid_examples(
+                    sample,
+                    set(correct_labels) if correct_labels else None,
+                    correct_fields,
+                )
                 if valid:
                     out_sample = dict(valid[0])
                     out_sample["context_examples"] = this_context
+                    if random_label:
+                        out_sample["requested_label"] = random_label
                     all_samples.append(out_sample)
                 else:
                     tqdm.write(f"❌ Invalid example at run {idx}")
@@ -290,6 +402,7 @@ def main_generate_dataset(config):
     config["correct_fields"] = config.get("correct_fields", ["text", "label"])
     config["apply_chat_template"] = config.get("apply_chat_template", True)
     config["prompt_postfix"] = config.get("prompt_postfix", None)
+    config["add_random_label"] = config.get("add_random_label", False)
     context_examples = config.get("context_examples", None)
 
     start_time = time.time()
@@ -307,6 +420,7 @@ def main_generate_dataset(config):
             correct_fields=config["correct_fields"],
             postfix=config["prompt_postfix"],
             apply_chat_template=config["apply_chat_template"],
+            add_random_label=config["add_random_label"],
         )
     else:
         data, num_runs = generate_synthetic_data(
@@ -319,6 +433,7 @@ def main_generate_dataset(config):
             correct_labels=config["correct_labels"],
             correct_fields=config["correct_fields"],
             apply_chat_template=config["apply_chat_template"],
+            add_random_label=config["add_random_label"],
         )
     total_time = round(time.time() - start_time, 2)
 
@@ -345,6 +460,7 @@ def main_generate_dataset(config):
         "seed": seed,
         "correct_labels": config["correct_labels"],
         "correct_fields": config["correct_fields"],
+        "add_random_label": config["add_random_label"],
     }
     log_generation(log_details, config["log_file"])
 
