@@ -8,11 +8,7 @@ import numpy as np
 import torch
 import gc
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-from wordcloud import WordCloud
 
-sns.set_style("darkgrid")
 torch.backends.cudnn.deterministic = True
 torch.backends.cudnn.benchmark = True
 
@@ -288,79 +284,6 @@ def get_generated_examples_df(path):
     metadata = data["metadata"]
     df = pd.DataFrame(data["generated_examples"])
     return df, metadata
-
-
-def basic_analysis(df, print_missing_values=True, print_count_statistics=True):
-    """
-    df should be a pandas DataFrame with the columns 'text' and 'label'
-
-    This function will:
-    - Display a WordCloud of the text corpus
-    - Display a Pie Chart of the label distribution
-    - Display a Histogram of the text length distribution
-    - Print basic statistics about the dataset
-    """
-    fig, axes = plt.subplots(1, 3, figsize=(15, 5))
-
-    # ---- 1️ WordCloud ----
-    text_corpus = " ".join(str(text) for text in df["text"])
-    wordcloud = WordCloud(
-        width=800, height=800, background_color="white", colormap="viridis"
-    ).generate(text_corpus)
-    axes[0].imshow(wordcloud, interpolation="bilinear")
-    axes[0].axis("off")
-    axes[0].set_title("WordCloud of Dataset")
-
-    # ---- 2️ Pie Chart for Label Distribution ----
-    label_counts = df["label"].value_counts()
-
-    # Reduce label size if too many labels
-    if len(label_counts) >= 10:
-        label_fontsize = 8
-    else:
-        label_fontsize = 12
-    axes[1].pie(
-        label_counts,
-        labels=label_counts.index,
-        autopct="%1.1f%%",
-        colors=plt.cm.Paired.colors,
-        textprops={"fontsize": label_fontsize},
-    )
-    axes[1].set_title("Label Distribution")
-
-    # ---- 3️ Text Length Distribution ----
-    df["text_length"] = df["text"].apply(lambda x: len(str(x).split()))  # Count words
-    # Filter the dataset (just for visualization purposes)
-    threshold = df["text_length"].quantile(0.995)  # Keep 99.5% of data
-    filtered_df = df[df["text_length"] <= threshold]
-
-    mean_length = df["text_length"].mean()
-
-    sns.histplot(
-        filtered_df["text_length"], bins=30, kde=False, ax=axes[2], label="Text Lengths"
-    )
-    axes[2].axvline(
-        mean_length, color="red", linestyle="--", label=f"Mean = {mean_length:.2f}"
-    )
-    axes[2].set_title("Text Length Distribution")
-    axes[2].set_xlabel("Number of words")
-    axes[2].set_ylabel("Frequency")
-    axes[2].legend()
-
-    plt.tight_layout()
-    plt.show()
-
-    # ---- Print basic statistics ----
-    print(f"Number of train samples: {len(df)}")
-    print(f"Set of labels: {set(df['label'])}")
-    print(f"Number of labels: {len(set(df['label']))}")
-    if print_missing_values:
-        print(f"Missing Values: \n{df.isnull().sum()}", sep="")
-    if print_count_statistics:
-        print("\nWord Count Statistics:")
-        print(df["text_length"].describe().round(2))
-
-    return None
 
 
 def get_context_examples(df, num_examples_per_prompt, num_prompts):

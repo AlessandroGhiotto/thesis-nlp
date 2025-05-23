@@ -302,5 +302,24 @@
             "f1_macro": 0.8148291230238727,
             "accuracy": 0.854
         }
+    },
+    {
+        "experiment_name": "exp_500real_zeroshotLabel",
+        "experiment_dir": "src/agnews/experiments/RoBERTA_500samples/data_DeepSeek-R1-Distill-Qwen-1.5B/exp_500real_zeroshotLabel",
+        "generation_method": "real data with zero-shot labels",
+        "timestamp": "2025-05-23T09:44:04.988860",
+        "model": "roberta-large",
+        "train_size": 100,
+        "dev_size": 500,
+        "synthetic_ratio": 0.0,
+        "epochs": 8,
+        "batch_size": 16,
+        "train_time": 190.9317193031311,
+        "eval_time": 9.103709936141968,
+        "metrics_dev": {
+            "f1_micro": 0.258,
+            "f1_macro": 0.17982488384402753,
+            "accuracy": 0.258
+        }
     }
 ]

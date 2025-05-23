@@ -222,7 +222,7 @@ def generate_synthetic_data(
                 continue
             try:
                 sample = json.loads(json_str)
-            except json.JSONDecodeError as e:
+            except Exception as e:
                 # Try fixing common formatting issues
                 fixed_json_str = fix_missing_commas(json_str)
                 try:
@@ -234,17 +234,6 @@ def generate_synthetic_data(
             sample = sample if isinstance(sample, list) else [sample]
             sample = get_valid_examples(sample, correct_labels, correct_fields)
             all_samples.extend(sample)
-
-            # try:
-            #     batch_samples = json.loads(json_str)
-            #     if isinstance(batch_samples, dict):
-            #         batch_samples = [batch_samples]
-            #     batch_samples = get_valid_examples(
-            #         batch_samples, correct_labels, correct_fields
-            #     )
-            #     all_samples.extend(batch_samples)
-            # except Exception as e:
-            #     tqdm.write(f"❌ Failed to parse generation {run_number}: {e}")
 
             # Ensure we don't exceed the required number of examples
             current_count = min(len(all_samples), num_examples)
@@ -352,7 +341,7 @@ def generate_synthetic_data_with_context(
                 continue
             try:
                 sample = json.loads(json_str)
-            except json.JSONDecodeError as e:
+            except Exception as e:
                 # Try fixing common formatting issues
                 fixed_json_str = fix_missing_commas(json_str)
                 try:

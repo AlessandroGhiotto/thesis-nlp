@@ -1,0 +1,287 @@
+[
+    {
+        "experiment_name": "exp_500real",
+        "experiment_dir": "src/agnews/experiments/RoBERTA_500samples/data_Llama-2-7b-chat-hf/exp_500real",
+        "generation_method": null,
+        "timestamp": "2025-05-22T21:42:42.498222",
+        "model": "roberta-large",
+        "train_size": 500,
+        "dev_size": 500,
+        "synthetic_ratio": 0.0,
+        "epochs": 8,
+        "batch_size": 16,
+        "train_time": 282.1184628009796,
+        "eval_time": 4.11258864402771,
+        "metrics_dev": {
+            "f1_micro": 0.926,
+            "f1_macro": 0.889001394462759,
+            "accuracy": 0.926
+        }
+    },
+    {
+        "experiment_name": "exp_500real",
+        "experiment_dir": "src/agnews/experiments/RoBERTA_500samples/data_Llama-2-7b-chat-hf/exp_500real",
+        "generation_method": null,
+        "timestamp": "2025-05-22T22:11:17.240228",
+        "model": "roberta-large",
+        "train_size": 500,
+        "dev_size": 500,
+        "synthetic_ratio": 0.0,
+        "epochs": 8,
+        "batch_size": 16,
+        "train_time": 194.6587164402008,
+        "eval_time": 4.112619638442993,
+        "metrics_dev": {
+            "f1_micro": 0.926,
+            "f1_macro": 0.889001394462759,
+            "accuracy": 0.926
+        }
+    },
+    {
+        "experiment_name": "exp_250real_250generic",
+        "experiment_dir": "src/agnews/experiments/RoBERTA_500samples/data_Llama-2-7b-chat-hf/exp_250real_250generic",
+        "generation_method": "generic augmentation",
+        "timestamp": "2025-05-22T22:16:28.277923",
+        "model": "roberta-large",
+        "train_size": 500,
+        "dev_size": 500,
+        "synthetic_ratio": 0.5,
+        "epochs": 8,
+        "batch_size": 16,
+        "train_time": 190.62056469917297,
+        "eval_time": 4.098043441772461,
+        "metrics_dev": {
+            "f1_micro": 0.918,
+            "f1_macro": 0.8763570266512852,
+            "accuracy": 0.918
+        }
+    },
+    {
+        "experiment_name": "exp_250real_250unsupContext",
+        "experiment_dir": "src/agnews/experiments/RoBERTA_500samples/data_Llama-2-7b-chat-hf/exp_250real_250unsupContext",
+        "generation_method": "unsupervised context",
+        "timestamp": "2025-05-22T22:24:56.200997",
+        "model": "roberta-large",
+        "train_size": 500,
+        "dev_size": 500,
+        "synthetic_ratio": 0.5,
+        "epochs": 8,
+        "batch_size": 16,
+        "train_time": 191.6332836151123,
+        "eval_time": 4.099419832229614,
+        "metrics_dev": {
+            "f1_micro": 0.902,
+            "f1_macro": 0.8562327667056474,
+            "accuracy": 0.902
+        }
+    },
+    {
+        "experiment_name": "exp_500real",
+        "experiment_dir": "src/agnews/experiments/RoBERTA_500samples/data_Llama-2-7b-chat-hf/exp_500real",
+        "generation_method": null,
+        "timestamp": "2025-05-22T22:53:34.642415",
+        "model": "roberta-large",
+        "train_size": 500,
+        "dev_size": 500,
+        "synthetic_ratio": 0.0,
+        "epochs": 8,
+        "batch_size": 16,
+        "train_time": 193.720600605011,
+        "eval_time": 4.106573581695557,
+        "metrics_dev": {
+            "f1_micro": 0.926,
+            "f1_macro": 0.889001394462759,
+            "accuracy": 0.926
+        }
+    },
+    {
+        "experiment_name": "exp_250real_250generic",
+        "experiment_dir": "src/agnews/experiments/RoBERTA_500samples/data_Llama-2-7b-chat-hf/exp_250real_250generic",
+        "generation_method": "generic augmentation",
+        "timestamp": "2025-05-22T22:56:50.214147",
+        "model": "roberta-large",
+        "train_size": 500,
+        "dev_size": 500,
+        "synthetic_ratio": 0.5,
+        "epochs": 8,
+        "batch_size": 16,
+        "train_time": 190.60483407974243,
+        "eval_time": 4.134196758270264,
+        "metrics_dev": {
+            "f1_micro": 0.918,
+            "f1_macro": 0.8763570266512852,
+            "accuracy": 0.918
+        }
+    },
+    {
+        "experiment_name": "exp_250real_250targeted",
+        "experiment_dir": "src/agnews/experiments/RoBERTA_500samples/data_Llama-2-7b-chat-hf/exp_250real_250targeted",
+        "generation_method": "targeted augmentation",
+        "timestamp": "2025-05-22T23:00:06.149817",
+        "model": "roberta-large",
+        "train_size": 500,
+        "dev_size": 500,
+        "synthetic_ratio": 0.5,
+        "epochs": 8,
+        "batch_size": 16,
+        "train_time": 191.10343885421753,
+        "eval_time": 4.099271059036255,
+        "metrics_dev": {
+            "f1_micro": 0.914,
+            "f1_macro": 0.8759999999999999,
+            "accuracy": 0.914
+        }
+    },
+    {
+        "experiment_name": "exp_250real_250unsupContext",
+        "experiment_dir": "src/agnews/experiments/RoBERTA_500samples/data_Llama-2-7b-chat-hf/exp_250real_250unsupContext",
+        "generation_method": "unsupervised context",
+        "timestamp": "2025-05-22T23:03:23.742680",
+        "model": "roberta-large",
+        "train_size": 500,
+        "dev_size": 500,
+        "synthetic_ratio": 0.5,
+        "epochs": 8,
+        "batch_size": 16,
+        "train_time": 192.73164010047913,
+        "eval_time": 4.120923042297363,
+        "metrics_dev": {
+            "f1_micro": 0.902,
+            "f1_macro": 0.8562327667056474,
+            "accuracy": 0.902
+        }
+    },
+    {
+        "experiment_name": "exp_50real_450generic",
+        "experiment_dir": "src/agnews/experiments/RoBERTA_500samples/data_Llama-2-7b-chat-hf/exp_50real_450generic",
+        "generation_method": "generic augmentation",
+        "timestamp": "2025-05-22T23:06:40.420703",
+        "model": "roberta-large",
+        "train_size": 500,
+        "dev_size": 500,
+        "synthetic_ratio": 0.9,
+        "epochs": 8,
+        "batch_size": 16,
+        "train_time": 191.83028507232666,
+        "eval_time": 4.114819288253784,
+        "metrics_dev": {
+            "f1_micro": 0.866,
+            "f1_macro": 0.8105876213205379,
+            "accuracy": 0.866
+        }
+    },
+    {
+        "experiment_name": "exp_50real_450targeted",
+        "experiment_dir": "src/agnews/experiments/RoBERTA_500samples/data_Llama-2-7b-chat-hf/exp_50real_450targeted",
+        "generation_method": "targeted augmentation",
+        "timestamp": "2025-05-22T23:09:57.205730",
+        "model": "roberta-large",
+        "train_size": 500,
+        "dev_size": 500,
+        "synthetic_ratio": 0.9,
+        "epochs": 8,
+        "batch_size": 16,
+        "train_time": 191.91023588180542,
+        "eval_time": 4.108848571777344,
+        "metrics_dev": {
+            "f1_micro": 0.876,
+            "f1_macro": 0.8189065706156666,
+            "accuracy": 0.876
+        }
+    },
+    {
+        "experiment_name": "exp_50real_450unsupContext",
+        "experiment_dir": "src/agnews/experiments/RoBERTA_500samples/data_Llama-2-7b-chat-hf/exp_50real_450unsupContext",
+        "generation_method": "unsupervised context",
+        "timestamp": "2025-05-22T23:13:14.287142",
+        "model": "roberta-large",
+        "train_size": 500,
+        "dev_size": 500,
+        "synthetic_ratio": 0.9,
+        "epochs": 8,
+        "batch_size": 16,
+        "train_time": 192.2080020904541,
+        "eval_time": 4.103533506393433,
+        "metrics_dev": {
+            "f1_micro": 0.782,
+            "f1_macro": 0.7299034529761619,
+            "accuracy": 0.782
+        }
+    },
+    {
+        "experiment_name": "exp_500generic",
+        "experiment_dir": "src/agnews/experiments/RoBERTA_500samples/data_Llama-2-7b-chat-hf/exp_500generic",
+        "generation_method": "generic augmentation",
+        "timestamp": "2025-05-22T23:16:29.600932",
+        "model": "roberta-large",
+        "train_size": 500,
+        "dev_size": 500,
+        "synthetic_ratio": 1.0,
+        "epochs": 8,
+        "batch_size": 16,
+        "train_time": 190.465190410614,
+        "eval_time": 4.107990980148315,
+        "metrics_dev": {
+            "f1_micro": 0.596,
+            "f1_macro": 0.5845751740911582,
+            "accuracy": 0.596
+        }
+    },
+    {
+        "experiment_name": "exp_500targeted",
+        "experiment_dir": "src/agnews/experiments/RoBERTA_500samples/data_Llama-2-7b-chat-hf/exp_500targeted",
+        "generation_method": "targeted augmentation",
+        "timestamp": "2025-05-22T23:19:45.549210",
+        "model": "roberta-large",
+        "train_size": 500,
+        "dev_size": 500,
+        "synthetic_ratio": 1.0,
+        "epochs": 8,
+        "batch_size": 16,
+        "train_time": 191.10994696617126,
+        "eval_time": 4.098145961761475,
+        "metrics_dev": {
+            "f1_micro": 0.658,
+            "f1_macro": 0.6443849941496125,
+            "accuracy": 0.658
+        }
+    },
+    {
+        "experiment_name": "exp_500unsupContext",
+        "experiment_dir": "src/agnews/experiments/RoBERTA_500samples/data_Llama-2-7b-chat-hf/exp_500unsupContext",
+        "generation_method": "unsupervised context",
+        "timestamp": "2025-05-22T23:23:02.680607",
+        "model": "roberta-large",
+        "train_size": 500,
+        "dev_size": 500,
+        "synthetic_ratio": 1.0,
+        "epochs": 8,
+        "batch_size": 16,
+        "train_time": 192.28503727912903,
+        "eval_time": 4.10969877243042,
+        "metrics_dev": {
+            "f1_micro": 0.646,
+            "f1_macro": 0.6115238523311811,
+            "accuracy": 0.646
+        }
+    },
+    {
+        "experiment_name": "exp_500real_zeroshotLabel",
+        "experiment_dir": "src/agnews/experiments/RoBERTA_500samples/data_Llama-2-7b-chat-hf/exp_500real_zeroshotLabel",
+        "generation_method": "real data with zero-shot labels",
+        "timestamp": "2025-05-22T23:26:12.588064",
+        "model": "roberta-large",
+        "train_size": 463,
+        "dev_size": 500,
+        "synthetic_ratio": 0.0,
+        "epochs": 8,
+        "batch_size": 16,
+        "train_time": 185.01616096496582,
+        "eval_time": 4.1116368770599365,
+        "metrics_dev": {
+            "f1_micro": 0.846,
+            "f1_macro": 0.8157893153818452,
+            "accuracy": 0.846
+        }
+    }
+]

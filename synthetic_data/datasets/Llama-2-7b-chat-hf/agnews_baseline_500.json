@@ -1,0 +1,2063 @@
+{
+    "metadata": {
+        "timestamp": "2025-05-23T12:08:39.295911",
+        "dataset": "agnews",
+        "generation_method": "baseline",
+        "num_examples_generated": 500,
+        "model": "meta-llama/Llama-2-7b-chat-hf",
+        "model.generation_config": {
+            "max_length": 4096,
+            "do_sample": true,
+            "temperature": 0.6,
+            "top_p": 0.9,
+            "pad_token_id": 0,
+            "bos_token_id": 1,
+            "eos_token_id": 2,
+            "transformers_version": "4.51.3",
+            "attn_implementation": "flash_attention_2"
+        },
+        "model_BitsAndBytesConfig": {
+            "_load_in_4bit": true,
+            "bnb_4bit_compute_dtype": "float16",
+            "load_in_4bit": true
+        },
+        "prompt": [
+            {
+                "role": "system",
+                "content": "You are an expert in journalism and NLP specializing in news classification."
+            },
+            {
+                "role": "user",
+                "content": "Your task is to generate one high-quality short document (around 30 words), that talks about one of the following four News categories:  \n- Business\n- Sci/Tech\n- Sports\n- World\n\nChoose one of the categories (labels), generate the corresponding text and return it in the following JSON format:\n\n```json\n{\n    \"text\": \"<text of the document>\", \n    \"label\": \"<corresponding label>\", \n}\n```\n"
+            },
+            {
+                "role": "assistant",
+                "content": "Of course! I'm happy to help. Please provide me with the category you would like me to focus on, and I will generate a high-quality short document for you."
+            },
+            {
+                "role": "user",
+                "content": "label: ADD_LABEL_HERE"
+            }
+        ],
+        "prompt_postfix": null,
+        "system_prompt": null,
+        "apply_chat_template": true,
+        "time_taken_seconds": 1034.71,
+        "json_output_file": "synthetic_data/datasets/Llama-2-7b-chat-hf/agnews_baseline_500.json",
+        "num_runs": 503,
+        "seed": 42,
+        "correct_labels": [
+            "Business",
+            "Sci/Tech",
+            "Sports",
+            "World"
+        ],
+        "correct_fields": [
+            "text",
+            "label"
+        ],
+        "add_random_label": true
+    },
+    "generated_examples": [
+        {
+            "text": "Lionel Messi scores hat-trick as Barcelona beats Real Madrid 3-2 in El Clásico",
+            "label": "Sports"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Rioting Erupts in Hong Kong as Protesters Clash with Police",
+            "label": "World"
+        },
+        {
+            "text": "Stock market sees surge in investor optimism amidst economic recovery",
+            "label": "Business"
+        },
+        {
+            "text": "Company X announces new partnership with industry leader, expanding reach and growth opportunities. #Business #Partnership #Growth",
+            "label": "Business"
+        },
+        {
+            "text": "Microsoft unveils new AI-powered chatbot for customer service",
+            "label": "Business"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick as Barcelona beats Real Madrid 3-2 in El Clásico",
+            "label": "Sports"
+        },
+        {
+            "text": "Researchers discover new species of ancient microbe in Antarctic ice core",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Lewis Hamilton wins record-breaking 7th Formula One World Championship",
+            "label": "Sports"
+        },
+        {
+            "text": "Lebron James leads Lakers to thrilling victory over Mavericks",
+            "label": "Sports"
+        },
+        {
+            "text": "Lebron James leads Lakers to thrilling victory over rival team",
+            "label": "Sports"
+        },
+        {
+            "text": "Global tech giant Apple has announced plans to expand its operations in India, with the opening of a new office in Mumbai. The company said the move is part of its efforts to tap into the country's growing consumer market and to better serve its Indian customers. The new office is expected to create hundreds of jobs in the region.",
+            "label": "Business"
+        },
+        {
+            "text": "New study reveals that automation could lead to significant job losses in the manufacturing sector. Experts warn that companies must prepare for the transition and provide support for affected workers.",
+            "label": "Business"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick as Barcelona beats Real Madrid 3-2 in El Clásico",
+            "label": "Sports"
+        },
+        {
+            "text": "Stock markets around the world are experiencing a surge in activity as investors await the fate of a major merger. The deal, worth billions of dollars, has been in the works for months and is expected to have a significant impact on the industry. Analysts are split on the outcome, with some predicting a boost to competition and others warning of job losses. Stay tuned for updates as the situation unfolds.",
+            "label": "Business"
+        },
+        {
+            "text": "Researchers at MIT have developed a new material that can absorb and convert carbon dioxide into oxygen at an unprecedented rate. This breakthrough could have a significant impact on the fight against climate change. #SciTech #ClimateChange",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "New study reveals that remote work can increase productivity by 25%",
+            "label": "Business"
+        },
+        {
+            "text": "Researchers have discovered a new species of ancient fungus in the Amazon rainforest. The fungus, which dates back over 100 million years, has the potential to unlock new medicines and treatments for diseases. #SciTech #AmazonRainforest",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Major power shift in the Middle East: Saudi Arabia and Israel agree to normalize relations, ending decades of tension. #World #MiddleEast #Diplomacy",
+            "label": "World"
+        },
+        {
+            "text": "Lebron James scores 50 points in thrilling Game 7 victory",
+            "label": "Sports"
+        },
+        {
+            "text": "Stock markets around the world are experiencing a tumultuous week as investors react to a surprise announcement from tech giant Apple. The company's shares have plummeted after it revealed that sales of its new iPhone have fallen short of expectations. The news has had a ripple effect on the broader market, with many other tech stocks also experiencing significant losses. Investors are bracing for more volatility in the coming days as they try to make sense of the latest developments in the technology sector.",
+            "label": "Business"
+        },
+        {
+            "text": "Researchers have developed a new AI-powered system that can detect and diagnose diseases with unprecedented accuracy. The system uses machine learning algorithms to analyze medical images and identify patterns that are indicative of specific conditions. The technology has the potential to revolutionize healthcare by improving diagnosis and treatment options for patients around the world. #AI #medicine #healthcare",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Major power shift in the Middle East as Saudi Arabia and Egypt announce plans to form a united front against Iran's growing influence in the region. #World #MiddleEast #SaudiArabia #Egypt",
+            "label": "World"
+        },
+        {
+            "text": "Global COVID-19 cases surpass 300 million as new variants emerge",
+            "label": "World"
+        },
+        {
+            "text": "Just In: Amazon to Acquire Zoom for $10B, Expanding Video Conferencing Offerings",
+            "label": "Business"
+        },
+        {
+            "text": "Google to Acquire Apple in Blockbuster Deal",
+            "label": "Business"
+        },
+        {
+            "text": "Massive wildfire rages in Australia, displacing thousands",
+            "label": "World"
+        },
+        {
+            "text": "Lebron James leads Lakers to thrilling comeback victory over Celtics",
+            "label": "Sports"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's thrilling victory over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Scientists discover new species of ancient human in Africa, challenge traditional views of human evolution",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Global tensions rise as Russia launches military operation in Ukraine",
+            "label": "World"
+        },
+        {
+            "text": "Major power shift in the Middle East as Saudi Arabia and Israel reportedly agree to share intelligence and coordinate efforts on regional security. Exclusive details in next week's issue of The Journal of International Relations.",
+            "label": "World"
+        },
+        {
+            "text": "Major power shift in the Middle East as Saudi Arabia and Israel establish diplomatic ties",
+            "label": "World"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick as Barcelona beats Real Madrid in El Clásico",
+            "label": "Sports"
+        },
+        {
+            "text": "Researchers at MIT have developed a new material that could revolutionize the way we generate electricity. The new material, called 'Super-Wire,' is capable of conducting electricity with zero resistance, meaning it could greatly improve the efficiency of electrical systems. The discovery could have major implications for the future of renewable energy and could potentially lead to the creation of more sustainable and efficient energy sources. #SciTech #RenewableEnergy",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's thrilling victory over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "New study reveals the brain's ability to process and store memories is influenced by the balance of neurotransmitters. Researchers found that an imbalance of dopamine and acetylcholine can lead to memory impairments. The findings have implications for the development of new treatments for memory-related disorders.",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Lebron James leads Lakers to thrilling victory over Knicks",
+            "label": "Sports"
+        },
+        {
+            "text": "Syrian refugees begin new life in Canada",
+            "label": "World"
+        },
+        {
+            "text": "Major power shift in the Middle East as Saudi Arabia and Israel reportedly establish secret alliance to counter Iran's growing influence in the region.",
+            "label": "World"
+        },
+        {
+            "text": "Stock market sees record highs as tech stocks surge",
+            "label": "Business"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick as Barcelona beats Real Madrid 3-2 in El Clásico",
+            "label": "Sports"
+        },
+        {
+            "text": "Stock market sees surge in tech stocks, Nasdaq reaches new highs. Investors optimistic about future growth despite recent volatility. #business #stockmarket #techstocks",
+            "label": "Business"
+        },
+        {
+            "text": "Syrian refugees face new challenges in Europe",
+            "label": "World"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Google to Acquire Tesla in Blockbuster Deal",
+            "label": "Business"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "New study finds that Mars may have once had liquid water on its surface, raising hopes for future human settlement. #Mars #Water #SciTech",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Major power shift in the Middle East as Saudi Arabia and Israel establish diplomatic relations",
+            "label": "World"
+        },
+        {
+            "text": "Scientists discover new species of ancient fungus in the Amazon rainforest. The fungus, which dates back over 1,000 years, provides clues to the evolution of life on Earth. #SciTech #Amazon #Fungus",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Massive protests erupt in Hong Kong over proposed extradition bill, drawing international attention and concern. #HongKongProtests #WorldNews",
+            "label": "World"
+        },
+        {
+            "text": "Apple's new iPhone sales disappoint, stock tanks",
+            "label": "Business"
+        },
+        {
+            "text": "Mass protests erupt in France over proposed pension reforms. Thousands march in Paris and other cities, calling for the government to withdraw the plans. #France #PensionReforms #Protests",
+            "label": "World"
+        },
+        {
+            "text": "Major power shift in the Middle East as Saudi Arabia and Israel reportedly in talks for peace deal. Could this be the start of a new era of cooperation? #World #Diplomacy",
+            "label": "World"
+        },
+        {
+            "text": "Major tech companies are investing heavily in renewable energy sources, as concerns about climate change and sustainability continue to grow. Google has announced plans to power its data centers with 100% renewable energy, while Amazon has pledged to reach net-zero emissions by 2040. As the technology sector continues to evolve, it's clear that sustainability will play an increasingly important role in the industry's future.",
+            "label": "Business"
+        },
+        {
+            "text": "Massive wildfire rages in Australia, displacing thousands",
+            "label": "World"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's 3-0 win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Samsung unveils new line of AI-powered smartphones, poised to revolutionize the industry",
+            "label": "Business"
+        },
+        {
+            "text": "Global Market Volatility Continues as Central Banks Take Action",
+            "label": "Business"
+        },
+        {
+            "text": "Microsoft to Acquire LinkedIn for $26.2 Billion, Expanding Its Professional Network",
+            "label": "Business"
+        },
+        {
+            "text": "Researchers discover new species of ancient sea creature in Antarctic ice",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Researchers at MIT have developed a new material that can absorb and convert 100% of the sun's energy, making it a promising solution for sustainable energy production. The material, called 'Solar-Ski,' is made of a combination of organic and inorganic materials and has the potential to revolutionize the solar energy industry. #SolarSki #SustainableEnergy #RenewableEnergy",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Major power shift in the Middle East as Saudi Arabia and Israel establish diplomatic relations",
+            "label": "World"
+        },
+        {
+            "text": "Stock prices surge as tech giants report strong earnings",
+            "label": "Business"
+        },
+        {
+            "text": "Massive protests erupt in Hong Kong over controversial extradition bill",
+            "label": "World"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's thrilling victory over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "New study reveals that remote work can increase productivity by 25%",
+            "label": "Business"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick as Barcelona beats Real Madrid 3-2 in El Clásico",
+            "label": "Sports"
+        },
+        {
+            "text": "Rioting breaks out in Hong Kong as protesters demand greater democracy from China",
+            "label": "World"
+        },
+        {
+            "text": "Researchers at MIT have developed a new material that could revolutionize the way we generate electricity. The new material, called 'super-grid,' is capable of storing and releasing electrical energy in a highly efficient manner. This could lead to a significant reduction in the amount of energy wasted during the transmission and distribution of electricity. #SciTech #EnergyEfficiency",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Major power shift in the Middle East as Saudi Arabia and Israel reportedly establish secret alliance to counter Iran's growing influence in the region. #World #MiddleEast #Diplomacy",
+            "label": "World"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Microsoft announces new AI-powered software, set to revolutionize industry",
+            "label": "Business"
+        },
+        {
+            "text": "Mass protests erupt in Hong Kong over controversial extradition bill",
+            "label": "World"
+        },
+        {
+            "text": "Stock market sees record highs as investors cheer economic growth",
+            "label": "Business"
+        },
+        {
+            "text": "Researchers at MIT have developed a new material that can absorb and convert 100% of the sun's energy into electricity. This breakthrough could revolutionize the way we generate power and reduce our reliance on fossil fuels. #SciTech #RenewableEnergy",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Researchers have developed a new material that can absorb and convert carbon dioxide into oxygen at an unprecedented rate. This breakthrough could have significant implications for reducing carbon emissions and mitigating the effects of climate change. #SciTech #ClimateChange",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Researchers discover new species of ancient human in Africa, challenge long-held theories about human evolution",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Microsoft to Acquire Activision Blizzard in $68 Billion Deal",
+            "label": "Business"
+        },
+        {
+            "text": "Riots break out in Paris over new carbon tax, protesters clash with police",
+            "label": "World"
+        },
+        {
+            "text": "Global stock markets experience a surge in investor optimism following the announcement of a major corporate merger. Analysts predict the deal will lead to significant cost savings and increased competitiveness in the industry.",
+            "label": "Business"
+        },
+        {
+            "text": "Global stock markets experience turbulence as trade tensions escalate",
+            "label": "Business"
+        },
+        {
+            "text": "Major power shift in the Middle East as Saudi Arabia and Israel establish diplomatic relations",
+            "label": "World"
+        },
+        {
+            "text": "Scientists discover new species of ancient tree in the Amazon rainforest. The tree, which dates back over 100 million years, provides insight into the evolution of plant life on Earth. #SciTech #AmazonRainforest #Evolution",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "New study reveals the brain's neural networks are more flexible than previously thought. Researchers used advanced imaging techniques to show that brain connections can be reorganized in response to learning and experience. This finding could lead to new treatments for brain injuries and disorders. #neuroscience #brainplasticity",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Mass protests erupt in Hong Kong over proposed extradition bill, sparking fears of political unrest and human rights abuses. #HongKongProtests #ExtraditionBill",
+            "label": "World"
+        },
+        {
+            "text": "Microsoft announces major update to Windows operating system, set to release in fall. New features include improved security, faster performance, and enhanced user experience. #Windows #Microsoft #Tech",
+            "label": "Business"
+        },
+        {
+            "text": "Microsoft to Acquire LinkedIn for $26.2 Billion",
+            "label": "Business"
+        },
+        {
+            "text": "Researchers at MIT have developed a new material that could revolutionize the way we generate electricity. The material, called 'super-sponge,' is able to absorb and release energy with incredible efficiency, making it a promising candidate for next-generation power sources. #SciTech #Energy #Innovation",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Global economy shows signs of slowdown amid trade tensions",
+            "label": "Business"
+        },
+        {
+            "text": "Global stock markets experience turbulence as trade tensions escalate",
+            "label": "Business"
+        },
+        {
+            "text": "Researchers at MIT have developed a new material that can absorb and convert 100% of the sun's energy, making it a promising solution for sustainable energy storage. The new material, called 'SolarSkin,' is made from a combination of organic and inorganic materials and is able to harness the full spectrum of sunlight, including UV and infrared rays. According to the researchers, SolarSkin could be used to create more efficient solar panels and other energy-harvesting devices, potentially leading to a significant reduction in the world's reliance on fossil fuels. #SolarSkin #SustainableEnergy #RenewableEnergy",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick as Barcelona beats Real Madrid 3-2 in El Clásico",
+            "label": "Sports"
+        },
+        {
+            "text": "Scientists discover new species of ancient human in Africa, challenging our understanding of human evolution. #SciTech #Archaeology",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Researchers at MIT have developed a new material that can absorb and convert 100% of the sun's energy, making it a promising solution for sustainable energy production. The material, called 'SolarSkin,' is made of a combination of organic and inorganic materials and is capable of converting even the smallest amounts of sunlight into usable energy. This breakthrough could revolutionize the way we generate electricity and help reduce our reliance on fossil fuels. #SolarSkin #SustainableEnergy #RenewableEnergy",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Researchers at MIT have developed a new material that can absorb and convert carbon dioxide into oxygen at an unprecedented rate. The new material, called 'CarbonCure', has the potential to significantly reduce carbon emissions and help combat climate change. #SciTech #ClimateChange",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Major power shift in the Middle East: Saudi Arabia and Israel strike historic deal, ending decades-long feud",
+            "label": "World"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick as Barcelona beats Real Madrid in El Clásico",
+            "label": "Sports"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's thrilling victory over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Rioting Erupts in Lebanon After Prime Minister Resigns",
+            "label": "World"
+        },
+        {
+            "text": "Massive protests erupt in Hong Kong over China's new extradition bill. Thousands gather in central district, demanding government withdrawal. #HongKongProtests #China #WorldNews",
+            "label": "World"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Major power shift in global politics as China surpasses US as world's largest economy",
+            "label": "World"
+        },
+        {
+            "text": "Researchers have discovered a new species of ancient fungus in the Amazon rainforest. The fungus, which is thought to be millions of years old, has a unique ability to produce a compound that could potentially be used to treat a range of diseases. The finding could have significant implications for medicine and conservation efforts in the region.",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Global stock markets experience turbulence as investors react to unexpected economic data. Dow Jones plummets 500 points, S&P 500 falls 2%, and Nasdaq suffers worst day in over a year. Expert analysts weigh in on the impact of the data and the future of the economy.",
+            "label": "Business"
+        },
+        {
+            "text": "Researchers discover new species of ancient fungus in Amazon rainforest. #SciTech #AmazonRainforest",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Major power shift in the Middle East as Saudi Arabia and Egypt form new alliance to counterbalance Iran's growing influence in the region.",
+            "label": "World"
+        },
+        {
+            "text": "Sears to Close 80 More Stores, Citing Online Competition",
+            "label": "Business"
+        },
+        {
+            "text": "Lebron James scores 50 points in thrilling NBA finals game",
+            "label": "Sports"
+        },
+        {
+            "text": "Major power shift in the Middle East as Saudi Arabia and Israel reportedly establish secret alliance",
+            "label": "World"
+        },
+        {
+            "text": "Global stock markets see surge in trading activity as investors react to latest economic data. #business #stockmarket #economicdata",
+            "label": "Business"
+        },
+        {
+            "text": "Stock market sees surge in tech stocks, analysts predict continued growth",
+            "label": "Business"
+        },
+        {
+            "text": "Major power shift in the Middle East as Saudi Arabia and Israel reportedly hold secret talks",
+            "label": "World"
+        },
+        {
+            "text": "Stock market sees surge in tech stocks, with Apple leading the way. #stockmarket #techstocks #Apple",
+            "label": "Business"
+        },
+        {
+            "text": "LeBron James scores 50 points in NBA All-Star Game, leads Eastern Conference to victory",
+            "label": "Sports"
+        },
+        {
+            "text": "Major power shift in the Middle East as Saudi Arabia and Israel reportedly hold secret talks",
+            "label": "World"
+        },
+        {
+            "text": "Researchers at MIT have developed a new material that can absorb and convert 100% of the sun's energy, making it a promising solution for sustainable energy production. The material, called 'SolarSkin,' is made of a combination of organic and inorganic materials and can be applied to any surface, including buildings and solar panels. This breakthrough could revolutionize the way we generate electricity and reduce our reliance on fossil fuels. #SolarSkin #SustainableEnergy",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick as Barcelona beats Real Madrid 3-1 in El Clásico",
+            "label": "Sports"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Massive protests erupt in Hong Kong over proposed extradition bill, drawing international attention and concern. #HongKongProtests #WorldNews",
+            "label": "World"
+        },
+        {
+            "text": "Major earthquake strikes Indonesia, at least 16 dead and hundreds injured",
+            "label": "World"
+        },
+        {
+            "text": "New study reveals that remote work can increase productivity by 25%",
+            "label": "Business"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick as Barcelona beats Real Madrid in El Clásico",
+            "label": "Sports"
+        },
+        {
+            "text": "Microsoft to Acquire Activision Blizzard in $68.7 Billion Deal",
+            "label": "Business"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's thrilling win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Researchers at MIT have developed a new AI algorithm that can predict the next breakthrough in science with 90% accuracy. The algorithm uses a complex network of machine learning models to analyze patterns in scientific literature and identify emerging trends. According to the study's lead author, the algorithm could revolutionize the way scientists identify and prioritize research areas. #sciencetech #breakthroughs",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's 3-0 win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Stock markets around the world are experiencing a surge in activity as investors bet on a global economic recovery. The Dow Jones Industrial Average hit a new high today, led by gains in technology and healthcare stocks. Analysts say the recent GDP growth numbers and improved corporate earnings are giving investors confidence to put their money to work. However, some experts are warning of a potential bubble and cautioning investors to be cautious.",
+            "label": "Business"
+        },
+        {
+            "text": "Global market trends: Experts predict a surge in demand for sustainable products in the coming years, with a projected growth of 20% in the eco-friendly product market. Major companies are already shifting their focus towards sustainable practices and product development to stay ahead of the competition. #sustainability #ecofriendly #businesstrends",
+            "label": "Business"
+        },
+        {
+            "text": "Researchers at MIT have developed a new material that could revolutionize the way we generate electricity. The new material, called 'super-ionic' conductor, is capable of transporting ions at speeds 10 times faster than traditional materials. This could lead to more efficient and sustainable energy storage and generation systems, potentially transforming the way we power our homes and industries. #SciTech #Energy #Innovation",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Global stock markets experience a surge following a series of positive economic reports, including a 3.5% increase in GDP and a 20% jump in corporate profits. Analysts attribute the growth to a combination of fiscal policies and increased consumer spending. The Dow Jones Industrial Average reaches a new record high, up 500 points in the past quarter. #business #stockmarket #economicgrowth",
+            "label": "Business"
+        },
+        {
+            "text": "Riots erupt in Hong Kong over proposed extradition bill, drawing international concern",
+            "label": "World"
+        },
+        {
+            "text": "Scientists discover new species of ancient human in Africa",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "New study reveals that automation could lead to significant job losses in the manufacturing sector. Experts warn that companies must prepare for the transition to avoid disruption. #business #automation #jobloss",
+            "label": "Business"
+        },
+        {
+            "text": "Microsoft to Acquire Activision Blizzard in $68 Billion Deal",
+            "label": "Business"
+        },
+        {
+            "text": "Massive protests erupt in Hong Kong over China's new extradition law, with thousands demanding government to withdraw the bill. #HongKongProtests #China #World",
+            "label": "World"
+        },
+        {
+            "text": "Researchers discover new species of ancient fungus in Amazon rainforest. #SciTech #Amazon #Fungus",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Massive protests erupt in Hong Kong over controversial extradition bill. Thousands gather in central district, demanding government withdrawal. #HongKongProtests #StandWithHK",
+            "label": "World"
+        },
+        {
+            "text": "Researchers discover new species of ancient microbe in Antarctic ice core",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "New study finds that exposure to blue light from screens can increase the risk of depression. Researchers suggest implementing screen time limits and blue light filtering to mitigate the risk. #mentalhealth #bluelight",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's 3-0 win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Global market trends: Tech giants lead the way in renewable energy investments",
+            "label": "Business"
+        },
+        {
+            "text": "Stock market sees record highs as investors cheer corporate earnings",
+            "label": "Business"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Major power shift in the Middle East as Saudi Arabia and Israel reportedly in secret talks to normalize relations. Diplomatic earthquake could have far-reaching consequences for the region and global politics.",
+            "label": "World"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick as Barcelona beats Real Madrid 3-2 in El Clásico thriller",
+            "label": "Sports"
+        },
+        {
+            "text": "Just in: Amazon to acquire Tesla in major shake-up of tech industry. Deal valued at $500B. Details inside.",
+            "label": "Business"
+        },
+        {
+            "text": "Global stock markets see significant gains following central bank rate cuts. #Business #StockMarket #Economy",
+            "label": "Business"
+        },
+        {
+            "text": "Lebron James leads Lakers to thrilling victory over Mavericks",
+            "label": "Sports"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's 3-0 win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "New study reveals that automation could create 100,000 new jobs in the next decade. Despite initial job losses, the long-term benefits of increased productivity and efficiency make automation a crucial investment for businesses. #automation #jobs #productivity",
+            "label": "Business"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's victory over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick as Barcelona beats Real Madrid 3-1 in El Clásico",
+            "label": "Sports"
+        },
+        {
+            "text": "Major power shift in the Middle East as Saudi Arabia and Israel establish diplomatic relations, marking a new era in regional politics.",
+            "label": "World"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Microsoft to Acquire Activision Blizzard in $68.7 Billion Deal",
+            "label": "Business"
+        },
+        {
+            "text": "Major power shift in the Middle East as Saudi Arabia and Israel reportedly strike a deal on nuclear energy. Exclusive details on the agreement and its implications for the region. #World #MiddleEast #NuclearEnergy",
+            "label": "World"
+        },
+        {
+            "text": "Researchers at MIT have developed a new material that can absorb and convert carbon dioxide into oxygen. This breakthrough could help reduce carbon emissions and combat climate change. #SciTech #ClimateChange",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Stock market sees record highs as investors remain optimistic about economic growth. #business #stockmarket #economy",
+            "label": "Business"
+        },
+        {
+            "text": "Major tech companies are facing antitrust scrutiny from regulators worldwide. Google, Amazon, Facebook, and Apple are all facing investigations into their business practices, with some countries imposing hefty fines. Experts say the scrutiny is necessary to ensure fair competition in the tech industry, but others argue it could stifle innovation. #antitrust #techindustry #competition",
+            "label": "Business"
+        },
+        {
+            "text": "Researchers at MIT have developed a new material that can absorb and convert 100% of the sun's energy, making it a promising solution for sustainable energy production. The material, called 'Solar absorber,' is made of a combination of organic and inorganic materials and has been shown to be highly efficient in converting sunlight into electrical energy. This breakthrough could potentially revolutionize the way we generate electricity and help reduce our reliance on fossil fuels. #SolarEnergy #SustainableEnergy",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Major tech giants to face antitrust probe in US",
+            "label": "Business"
+        },
+        {
+            "text": "Researchers at MIT have developed a new AI algorithm that can analyze medical images with unprecedented accuracy. The algorithm could revolutionize the field of medical imaging and improve patient outcomes. #SciTech #AI #MedicalImaging",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Researchers have discovered a new species of ancient sea creature in the depths of the Mariana Trench. The creature, which resembles a cross between a starfish and an octopus, is believed to have lived over 200 million years ago. The findings were published in the journal Nature and have shed new light on the evolution of marine life. #SciTech #MarineLife",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Lewis Hamilton wins record-breaking 7th Formula One world championship",
+            "label": "Sports"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick as Barcelona beats Real Madrid in El Clásico",
+            "label": "Sports"
+        },
+        {
+            "text": "Researchers at MIT have developed a new material that can absorb and convert 100% of the sun's energy, making it a potential game-changer for renewable energy production. The material, called 'SolarSkin,' is lightweight, flexible, and can be integrated into a variety of surfaces, including roofs and windows. Could this be the breakthrough we need to finally transition away from fossil fuels?",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Massive protests erupt in Hong Kong as China imposes new security law, sparking fears of erosion of autonomy and democratic rights. #HongKongProtests #China #HumanRights",
+            "label": "World"
+        },
+        {
+            "text": "Researchers at MIT have developed a new AI algorithm that can detect and diagnose diseases with 90% accuracy. The algorithm uses a combination of machine learning and medical imaging to identify subtle patterns in medical scans that are indicative of disease. The breakthrough could revolutionize the field of medicine and improve patient outcomes. #SciTech #Medicine",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Scientists discover new species of ancient virus in Antarctic ice",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Researchers have developed a new AI algorithm that can detect and diagnose diseases more accurately than current methods. The algorithm uses machine learning to analyze medical images and identify patterns that indicate disease. The study could lead to faster and more accurate diagnoses for patients around the world. #medicine #AI #health",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Lebron James leads Lakers to thrilling victory over rival team",
+            "label": "Sports"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Researchers at MIT have developed a new AI algorithm that can detect and diagnose medical conditions with greater accuracy than ever before. The algorithm uses a combination of machine learning and natural language processing to analyze medical records and identify patterns that can indicate specific conditions. The technology has the potential to revolutionize healthcare by improving diagnosis and treatment, and could save countless lives in the future. #SciTech #AI #Healthcare",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Major earthquake strikes Indonesia, at least 100 dead and thousands displaced",
+            "label": "World"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "New Study Reveals Top CEOs Prioritize Employee Well-being",
+            "label": "Business"
+        },
+        {
+            "text": "Global Market for Electric Vehicles Expected to Reach $1 Trillion by 2025",
+            "label": "Business"
+        },
+        {
+            "text": "Global tech giants eyeing Indian market, investment opportunities",
+            "label": "Business"
+        },
+        {
+            "text": "Researchers have discovered a new species of ancient human in the Philippines, which may have lived alongside other human species such as Neanderthals and Homo sapiens. The new species, named Homo luzonensis, is believed to have lived on the island of Luzon at least 50,000 years ago. The findings were published in the journal Nature on Wednesday. #SciTech #Archaeology #HumanEvolution",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Global stock markets see significant gains after central bank announcements",
+            "label": "Business"
+        },
+        {
+            "text": "Researchers have discovered a new species of ancient fossil in the Amazon rainforest. The fossil, which dates back to the Cretaceous period, provides new insights into the evolution of plant life on Earth. #SciTech #Fossils",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Global stock markets experience turbulence as trade tensions escalate",
+            "label": "Business"
+        },
+        {
+            "text": "Massive protests erupt in Hong Kong over proposed extradition bill, as thousands gather in central district to demand government withdrawal. #HongKongProtests #ExtraditionBill",
+            "label": "World"
+        },
+        {
+            "text": "Researchers at MIT have developed a new AI algorithm that can analyze medical images with unprecedented accuracy. The algorithm uses a combination of machine learning and computer vision techniques to detect even the smallest abnormalities in CT scans and MRI images. This breakthrough could lead to earlier diagnosis and treatment of diseases such as cancer and Alzheimer's. #AI #medicalimaging #healthtech",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Global tech giant Apple announces new product line, sparking competition and excitement in the industry.",
+            "label": "Business"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Researchers at MIT have developed a new AI algorithm that can generate realistic images of objects and scenes, even when only given a verbal description. The algorithm uses a combination of natural language processing and computer vision techniques to generate images that are almost indistinguishable from real-world photographs. This breakthrough could have significant implications for industries such as entertainment, advertising, and journalism, where realistic image generation is crucial. #AI #imagegeneration #SciTech",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Stock Market Sees Surge in Tech Stocks, Analysts Predict Continued Growth",
+            "label": "Business"
+        },
+        {
+            "text": "Global tech giant Apple has announced plans to expand its operations in India, with the company set to invest $100 million in a new manufacturing facility in the country. The move is expected to create thousands of jobs and further solidify Apple's position as a leading technology player in the region. #Apple #India #manufacturing",
+            "label": "Business"
+        },
+        {
+            "text": "Researchers at MIT have developed a new material that could revolutionize the way we generate electricity. The new material, called 'Super-Brown-Out,' is capable of harnessing electricity from even the smallest of movements, such as the swaying of trees in the wind. This could lead to a significant increase in the efficiency of renewable energy sources and a major reduction in carbon emissions. #SciTech #RenewableEnergy #CarbonEmissions",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Researchers at MIT have developed a new material that can absorb and convert 100% of the sun's energy, making it a promising solution for sustainable energy production. The material, called 'Solar-Skin,' is made of a combination of organic and inorganic materials and is able to harness the full spectrum of sunlight, including infrared light. This breakthrough could potentially revolutionize the way we generate electricity and help reduce our reliance on fossil fuels. #SolarEnergy #RenewableEnergy",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Researchers at MIT have developed a new material that can absorb and convert carbon dioxide into oxygen at an unprecedented rate. The new material, called 'CO2-Tron,' has the potential to revolutionize the fight against climate change. Read more at <https://www.mit.edu/newsoffice/2023/co2-tron>.",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Microsoft announces new AI-powered chatbot for customer service, set to revolutionize industry",
+            "label": "Business"
+        },
+        {
+            "text": "New study finds that Mars once had liquid water on its surface, raising hopes for life beyond Earth. Researchers used advanced imaging techniques to detect signs of water on the Red Planet's surface. #Mars #Water #SciTech",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "New study reveals that automation could create 100,000 new jobs in the next decade. Despite fears of job loss, experts say that automation will actually boost economic growth and create new opportunities. #automation #jobs #economicgrowth",
+            "label": "Business"
+        },
+        {
+            "text": "Researchers discover new species of ancient sea creature in Antarctic ice",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Lewis Hamilton wins record-breaking 7th Formula One World Championship",
+            "label": "Sports"
+        },
+        {
+            "text": "Scientists discover new species of ancient human in Africa",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Massive wildfire in Brazil destroys hundreds of homes, forces thousands to evacuate",
+            "label": "World"
+        },
+        {
+            "text": "Scientists discover new species of ancient fungus in the Amazon rainforest. The fungus, which dates back over 100 million years, could provide new insights into the evolution of life on Earth. #SciTech #AmazonRainforest",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Major power shift in the Middle East as Saudi Arabia and Israel reportedly hold secret talks on security and economic cooperation. #World #SaudiArabia #Israel",
+            "label": "World"
+        },
+        {
+            "text": "Scientists discover new species of ancient human in Africa",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Researchers at MIT have developed a new AI algorithm that can detect and diagnose medical conditions with unprecedented accuracy. The algorithm uses a combination of machine learning and medical imaging to identify diseases such as cancer and Alzheimer's with up to 90% accuracy. This breakthrough could revolutionize the field of medicine and improve healthcare outcomes for millions of people around the world. #SciTech #AI #Medicine",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Microsoft to Acquire Activision Blizzard in $68 Billion Deal",
+            "label": "Business"
+        },
+        {
+            "text": "New study reveals that automation could save businesses millions in labor costs. Experts say it's a game-changer for productivity and efficiency, but some worry about job losses. #business #automation #productivity",
+            "label": "Business"
+        },
+        {
+            "text": "Mass protests erupt in Hong Kong over China's new extradition bill, with thousands marching through the streets and demanding the bill's withdrawal. #HongKongProtests #China #ExtraditionBill",
+            "label": "World"
+        },
+        {
+            "text": "Samsung unveils new line of smartphones with advanced AI features",
+            "label": "Business"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Massive protests erupt in Hong Kong as China imposes new laws, sparking fears of erosion of autonomy",
+            "label": "World"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick as Barcelona beats Real Madrid 3-2 in El Clásico",
+            "label": "Sports"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's thrilling victory over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Researchers discover new species of ancient human in the Philippines",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Major tech giants announce plans to merge, creating a new global leader in the industry. The move is expected to shake up the market and lead to significant changes in the way businesses operate. #techmerger #businessnews",
+            "label": "Business"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's thrilling win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's thrilling victory over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Global Market for Electric Vehicles Expected to Reach $1 Trillion by 2025",
+            "label": "Business"
+        },
+        {
+            "text": "Lebron James leads Lakers to thrilling victory in NBA Finals",
+            "label": "Sports"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "New study reveals that automation could lead to significant job growth in the tech industry. #business #tech #automation",
+            "label": "Business"
+        },
+        {
+            "text": "Researchers at MIT have developed a new material that could revolutionize the way we generate electricity. The new material, called 'Super-Grid,' is capable of storing and releasing electrical energy in a more efficient and sustainable way than traditional batteries. This could have a major impact on the way we power our homes and industries, and could help reduce our reliance on fossil fuels. #SciTech #RenewableEnergy",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Lebron James scores 50 points in thrilling NBA Finals victory",
+            "label": "Sports"
+        },
+        {
+            "text": "Global economy shows signs of slowdown amidst trade tensions",
+            "label": "Business"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick as Barcelona beats Real Madrid 3-2 in El Clásico",
+            "label": "Sports"
+        },
+        {
+            "text": "Researchers at MIT have developed a new material that can absorb and convert carbon dioxide into oxygen at an unprecedented rate. The new material, called 'CoolTech,' could help reduce carbon emissions and mitigate the effects of climate change. #SciTech #ClimateChange",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Riots break out in Paris as protesters demand climate action",
+            "label": "World"
+        },
+        {
+            "text": "Major power shift in the Middle East as Saudi Arabia and Israel reportedly establish secret alliance to counter Iran's growing influence in the region. #World #SaudiArabia #Israel",
+            "label": "World"
+        },
+        {
+            "text": "Major tech companies are facing antitrust scrutiny from regulators around the world. The US Justice Department has launched a probe into Google's business practices, while the European Union has imposed billions of dollars in fines on Google, Amazon, and Facebook for antitrust violations. The scrutiny has raised concerns about the future of the tech industry and the impact of regulation on innovation and competition.",
+            "label": "Business"
+        },
+        {
+            "text": "Massive earthquake strikes Indonesia, at least 168 dead and thousands injured",
+            "label": "World"
+        },
+        {
+            "text": "Global economy sees steady growth in Q2, led by tech sector",
+            "label": "Business"
+        },
+        {
+            "text": "Mass protests erupt in France over proposed pension reforms, with thousands marching in major cities and disrupting traffic. #France #PensionReforms #Protests",
+            "label": "World"
+        },
+        {
+            "text": "Researchers at MIT have developed a new AI algorithm that can detect and diagnose diseases with unprecedented accuracy. The algorithm uses a combination of machine learning and medical imaging to identify subtle patterns in medical scans that are indicative of disease. The breakthrough could lead to earlier and more accurate diagnosis of a wide range of conditions, including cancer, heart disease, and neurological disorders. #SciTech #AI #Medicine",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Stock market sees surge in tech stocks, Nasdaq reaches new highs",
+            "label": "Business"
+        },
+        {
+            "text": "Mass protests erupt in Hong Kong over controversial extradition bill",
+            "label": "World"
+        },
+        {
+            "text": "Researchers discover new species of ancient human in the Philippines, shedding light on the evolution of humanity. #SciTech #Archaeology",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Massive protests erupt in Hong Kong as China imposes new security laws, sparking fears of erosion of autonomy and human rights. #HongKongProtests #China #HumanRights",
+            "label": "World"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick as Barcelona beats Real Madrid 3-2 in El Clásico",
+            "label": "Sports"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Researchers at MIT have developed a new material that can absorb and convert carbon dioxide into oxygen at an unprecedented rate. This breakthrough could have significant implications for combating climate change. #SciTech #ClimateChange",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Lebron James leads Lakers to thrilling victory over Celtics in NBA Finals",
+            "label": "Sports"
+        },
+        {
+            "text": "Stock market sees record highs as tech stocks surge. Apple, Amazon, and Microsoft lead the way. #business #stockmarket #techstocks",
+            "label": "Business"
+        },
+        {
+            "text": "Major power shift in the Middle East: Saudi Arabia and Israel establish diplomatic relations, marking a new era in regional politics. #World #Diplomacy #MiddleEast",
+            "label": "World"
+        },
+        {
+            "text": "Sales of electric vehicles surge as consumers turn to eco-friendly options. #EVs #Sustainability",
+            "label": "Business"
+        },
+        {
+            "text": "Syrian refugees face new challenges in Europe",
+            "label": "World"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's thrilling victory over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "New study reveals that automation could lead to significant job losses in the manufacturing sector. Experts warn that companies must take proactive steps to retrain workers and adapt to the changing job market. #Business #Automation #JobLosses",
+            "label": "Business"
+        },
+        {
+            "text": "Massive protests erupt in Hong Kong over controversial extradition bill, with thousands demanding government to withdraw the proposal. #HongKongProtests #StandWithHK",
+            "label": "World"
+        },
+        {
+            "text": "Massive protests erupt in Hong Kong as China imposes new security law, sparking fears of further erosion of freedoms",
+            "label": "World"
+        },
+        {
+            "text": "Global stock markets experience record highs as investors remain optimistic about economic growth. #business #stockmarket #economy",
+            "label": "Business"
+        },
+        {
+            "text": "Researchers at MIT have developed a new material that can absorb and convert carbon dioxide into oxygen at an unprecedented rate. The new material, called 'CARB-X,' could help reduce carbon emissions and mitigate the effects of climate change. #SciTech #ClimateChange",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Syrian refugees begin new life in Canada",
+            "label": "World"
+        },
+        {
+            "text": "Lebron James leads Lakers to thrilling victory over Celtics in NBA Finals",
+            "label": "Sports"
+        },
+        {
+            "text": "Mass protests erupt in France against proposed pension reforms, with thousands marching in Paris and other cities. #France #PensionReform #Protests",
+            "label": "World"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's thrilling victory over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Microsoft unveils new AI-powered tool to streamline business operations",
+            "label": "Business"
+        },
+        {
+            "text": "Major power shift in the Middle East as Saudi Arabia and Israel establish diplomatic relations",
+            "label": "World"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's thrilling win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Global stock markets experience turbulence as investors react to unexpected economic data. Dow Jones plummets 500 points, S&P 500 falls 2%, and Nasdaq suffers worst day in 6 months. Expert analysts weigh in on the impact of the latest data on the overall health of the global economy.",
+            "label": "Business"
+        },
+        {
+            "text": "Rights group condemns violence against Myanmar's Rohingya minority",
+            "label": "World"
+        },
+        {
+            "text": "Massive protests erupt in Hong Kong as China imposes controversial new security law",
+            "label": "World"
+        },
+        {
+            "text": "Company X announced plans to expand into new markets, citing growing demand for its products. The move is expected to create new jobs and boost revenue. #business #expansion #jobs",
+            "label": "Business"
+        },
+        {
+            "text": "Massive protests erupt in Hong Kong as China introduces controversial new security law",
+            "label": "World"
+        },
+        {
+            "text": "Major tech company announces plans to expand into new market, creating job opportunities for local community.",
+            "label": "Business"
+        },
+        {
+            "text": "Major power shift in the Middle East as Saudi Arabia and Israel strike historic peace deal",
+            "label": "World"
+        },
+        {
+            "text": "Researchers discover new species of ancient human in the Philippines, shedding light on the evolution of humanity. #SciTech #Archaeology",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Mass protests erupt in Hong Kong over China's new extradition law, sparking fears of political unrest and human rights abuses. Thousands gather in central district, demanding government withdrawal of the controversial legislation. #HongKongProtests #China #HumanRights",
+            "label": "World"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick as Barcelona beats Real Madrid 3-2 in El Clásico",
+            "label": "Sports"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Researchers at MIT have developed a new AI algorithm that can predict the spread of infectious diseases with unprecedented accuracy. The algorithm uses machine learning techniques to analyze data from past outbreaks and identify patterns that can help prevent future ones. According to the study's lead author, this could be a game-changer in the fight against infectious diseases. #SciTech #AI #InfectiousDiseases",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Mass protests erupt in Hong Kong over proposed extradition bill, drawing attention to the city's political and economic ties with mainland China. #HongKongProtests #China #World",
+            "label": "World"
+        },
+        {
+            "text": "Lebron James scores 50th career triple-double in thrilling win for Lakers",
+            "label": "Sports"
+        },
+        {
+            "text": "Lebron James leads Lakers to thrilling comeback victory over Mavericks",
+            "label": "Sports"
+        },
+        {
+            "text": "Massive wildfire rages in Australia, displacing thousands",
+            "label": "World"
+        },
+        {
+            "text": "Samsung unveils new flagship smartphone with advanced AI features",
+            "label": "Business"
+        },
+        {
+            "text": "Major power shift in the Middle East: Saudi Arabia and Israel to form alliance against Iran",
+            "label": "World"
+        },
+        {
+            "text": "Major tech companies are facing antitrust scrutiny from regulators in multiple countries. The Wall Street Journal reports that Google, Amazon, and Facebook are all under investigation for their market dominance and potential abuse of power. The probes come as the companies continue to expand their reach and influence in the global economy.",
+            "label": "Business"
+        },
+        {
+            "text": "Researchers at MIT have developed a new AI algorithm that can analyze medical images with unprecedented accuracy. The algorithm could revolutionize the diagnosis and treatment of diseases, particularly cancer. #SciTech #AI #MedicalImaging",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Researchers at MIT have developed a new material that can absorb and convert 100% of the sun's energy, providing a sustainable solution for renewable energy production. The material, called 'SolarSilk,' is made from a combination of silk and titanium dioxide and can be integrated into solar panels to increase their efficiency. This breakthrough could revolutionize the way we generate electricity and reduce our reliance on fossil fuels. #SolarSilk #RenewableEnergy #Sustainability",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's 5-0 win over Levante",
+            "label": "Sports"
+        },
+        {
+            "text": "Lebron James leads Lakers to thrilling victory over Golden State",
+            "label": "Sports"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick as Barcelona beats Real Madrid 3-2 in El Clásico",
+            "label": "Sports"
+        },
+        {
+            "text": "Global Market for Electric Vehicles to Reach $1 Trillion by 2025, Says New Report",
+            "label": "Business"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick as Barcelona beats Real Madrid 3-2 in El Clásico",
+            "label": "Sports"
+        },
+        {
+            "text": "Massive wildfires sweep through Amazon rainforest, threatening indigenous communities and endangered species. #AmazonRainforest #Wildfires #Conservation",
+            "label": "World"
+        },
+        {
+            "text": "Google announces new AI-powered chatbot to revolutionize customer service",
+            "label": "Business"
+        },
+        {
+            "text": "Scientists discover new species of ancient human in Africa, challenging traditional views of human evolution",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Global Market: Apple's New Product Launch to Disrupt Industry",
+            "label": "Business"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick as Barcelona beats Real Madrid 3-2 in El Clásico",
+            "label": "Sports"
+        },
+        {
+            "text": "Mass protests erupt in Hong Kong over controversial extradition bill",
+            "label": "World"
+        },
+        {
+            "text": "Global tensions rise as North Korea conducts new missile test",
+            "label": "World"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's thrilling victory over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Major power shift in the Middle East as Saudi Arabia and Egypt announce plans to form a united front against Iran's growing influence in the region. #World #MiddleEast",
+            "label": "World"
+        },
+        {
+            "text": "Stock market sees surge in tech stocks, Dow Jones reaches new highs",
+            "label": "Business"
+        },
+        {
+            "text": "Microsoft to Acquire Activision Blizzard in $68 Billion Deal",
+            "label": "Business"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's thrilling win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Major power shift in the Middle East as Saudi Arabia and Israel establish diplomatic relations, marking a new era in regional politics.",
+            "label": "World"
+        },
+        {
+            "text": "Researchers at MIT have developed a new AI algorithm that can predict the likelihood of a patient developing a specific disease based on their electronic health records. The algorithm could help doctors identify patients at high risk of developing certain conditions, such as diabetes or heart disease, and provide early intervention. #SciTech #HealthTech",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "New study reveals that automation could create 200,000 new jobs in the next decade. Despite fears of job loss, experts say that AI will lead to new opportunities in fields like data analysis and cybersecurity. #business #automation #jobs",
+            "label": "Business"
+        },
+        {
+            "text": "New study reveals the top skills required for success in the modern workplace. According to the study, critical thinking, creativity, and effective communication are the most important skills for career advancement. The study also found that workers who prioritize their mental health and well-being are more likely to be satisfied with their jobs and have better work-life balance. #business #careeradvice #mentalhealth",
+            "label": "Business"
+        },
+        {
+            "text": "Google Announces New AI-Powered Chatbot for Small Business Owners",
+            "label": "Business"
+        },
+        {
+            "text": "New study reveals that automation could create 100,000 new jobs in the next decade. Industries such as manufacturing, transportation, and customer service are already seeing significant benefits from automation. While some jobs may be lost to automation, the overall impact is expected to be positive. #business #automation #jobs",
+            "label": "Business"
+        },
+        {
+            "text": "Researchers at MIT have developed a new material that can absorb and convert 100% of the sun's energy into electricity. This breakthrough could revolutionize the way we generate power and reduce our reliance on fossil fuels. #SciTech #RenewableEnergy",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick as Barcelona beats Real Madrid in El Clásico",
+            "label": "Sports"
+        },
+        {
+            "text": "Company X announces new partnership with supplier Y, expanding its reach in the industry.",
+            "label": "Business"
+        },
+        {
+            "text": "Rioting breaks out in Hong Kong after Chief Executive Carrie Lam announces plans to introduce a controversial extradition bill. Protests escalate as police use tear gas and rubber bullets on demonstrators. #HongKong #ExtraditionBill #Protest",
+            "label": "World"
+        },
+        {
+            "text": "New study reveals the Earth's magnetic field is weakening at an alarming rate, posing a threat to global communication and navigation systems. Scientists warn of potential consequences for aviation, shipping, and even the power grid. #SciTech #EarthsMagneticField",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Major power shift in the Middle East as Saudi Arabia and Israel establish diplomatic relations, marking a significant turning point in the region's geopolitics.",
+            "label": "World"
+        },
+        {
+            "text": "Global Market Analysis: The rise of electric vehicles is transforming the automotive industry. Major car manufacturers are investing heavily in EV technology, leading to increased competition and innovation. Will traditional players adapt or be left behind?",
+            "label": "Business"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "New study reveals how brain's neural networks adapt to learning new skills. Findings could lead to better brain training methods. #neuroscience #brainplasticity",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's thrilling win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "New study reveals the secrets of antibiotic resistance. Researchers have discovered a new mechanism that bacteria use to evade antibiotics, which could lead to the development of new treatments. #antibioticresistance #bacteriology",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Global economy shows signs of slowdown amid trade tensions",
+            "label": "Business"
+        },
+        {
+            "text": "Global Market for Electric Vehicles Expected to Reach $1 Trillion by 2025",
+            "label": "Business"
+        },
+        {
+            "text": "Researchers discover new species of ancient microbe in Antarctic ice core",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Massive protests erupt in Hong Kong over proposed extradition bill, with thousands marching through the streets and demanding the withdrawal of the bill. #HongKongProtests #ExtraditionBill",
+            "label": "World"
+        },
+        {
+            "text": "Major earthquake strikes Indonesia, at least 168 dead and thousands displaced",
+            "label": "World"
+        },
+        {
+            "text": "Microsoft to Acquire Activision Blizzard in $68 Billion Deal",
+            "label": "Business"
+        },
+        {
+            "text": "New study reveals that automation could save businesses millions in labor costs. Experts say it's a no-brainer for companies to invest in automation technology. #automation #business #laborcosts",
+            "label": "Business"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Google Announces New AI-Powered Tool for Small Business Owners",
+            "label": "Business"
+        },
+        {
+            "text": "Researchers at MIT have developed a new material that could revolutionize the way we generate electricity. The new material, called a 'super-grid,' is capable of storing and releasing electrical energy in a highly efficient manner, potentially leading to a more sustainable and reliable energy infrastructure. Read more at <https://www.technologyreview.com/energy/2023/01/10/365338/mit-super-grid-electricity-storage/>",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Major cyber attack hits global companies, governments",
+            "label": "World"
+        },
+        {
+            "text": "Global COVID-19 cases surpass 300 million as variants spread",
+            "label": "World"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Syrian refugees face new challenges in Europe",
+            "label": "World"
+        },
+        {
+            "text": "Massive earthquake strikes Indonesia, at least 168 dead and over 100,000 displaced. Rescuers race against time to reach survivors buried under debris. #earthquake #Indonesia #disasterrelief",
+            "label": "World"
+        },
+        {
+            "text": "Researchers at MIT have developed a new AI-powered device that can detect and diagnose diseases in minutes, revolutionizing healthcare. The device uses advanced machine learning algorithms to analyze medical images and identify potential health issues with unprecedented accuracy. This breakthrough could change the way we approach healthcare and save countless lives. #SciTech #Healthcare #AI",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Major power shift in the Middle East as Saudi Arabia and Israel reportedly form alliance against Iran's growing influence in the region.",
+            "label": "World"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's 3-0 win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Lebron James leads Lakers to thrilling victory over Golden State",
+            "label": "Sports"
+        },
+        {
+            "text": "Major power shift in the Middle East as Saudi Arabia and Israel establish diplomatic relations, marking a significant turning point in the region's geopolitics.",
+            "label": "World"
+        },
+        {
+            "text": "Major tech company announces new AI-powered product line, set to revolutionize industry",
+            "label": "Business"
+        },
+        {
+            "text": "Major power shift in the Middle East: Saudi Arabia and Israel reportedly in secret talks to normalize relations. Implications for the region and global politics significant. #World #MiddleEast #Diplomacy",
+            "label": "World"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's 3-0 win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Researchers at MIT have developed a new AI algorithm that can detect and diagnose diseases with unprecedented accuracy. The algorithm uses a combination of machine learning and medical imaging to identify subtle patterns in medical scans that were previously undetectable by human doctors. The breakthrough could revolutionize the field of medicine and improve healthcare outcomes for millions of people around the world.",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Rioting breaks out in Hong Kong after China imposes controversial new security law",
+            "label": "World"
+        },
+        {
+            "text": "Massive wildfires sweep across Australia, displacing thousands",
+            "label": "World"
+        },
+        {
+            "text": "Researchers at MIT have developed a new material that could revolutionize the way we generate electricity. The new material, called a 'super-grid,' is capable of storing and releasing energy in a matter of milliseconds, making it much more efficient than traditional energy storage systems. This could have a major impact on the way we power our homes and industries, and could even help to mitigate the effects of grid failures and power outages. #SciTech #EnergyStorage",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's 5-0 thrashing of Levski Sofia",
+            "label": "Sports"
+        },
+        {
+            "text": "Researchers have discovered a new species of ancient human in the Philippines, which may have lived as recently as 50,000 years ago. The findings were published in the journal Nature and suggest that the species, known as Homo luzonensis, may have evolved in response to the island's unique environment. #SciTech #Archaeology #HumanEvolution",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Sales of electric vehicles surge as consumers increasingly prioritize sustainability. Major car manufacturers investing heavily in EV technology.",
+            "label": "Business"
+        },
+        {
+            "text": "Major power shift in the Middle East as Saudi Arabia and Israel reportedly establish secret alliance to counter Iran's growing influence in the region. Expert analysts warn of potential game-changer in global politics, as implications for US foreign policy and global security are significant.",
+            "label": "World"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Researchers discover new species of ancient sea creature in Antarctic ice",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Global stock markets experience turbulence as trade tensions escalate",
+            "label": "Business"
+        },
+        {
+            "text": "Rioting breaks out in Hong Kong as protesters demand greater autonomy from China",
+            "label": "World"
+        },
+        {
+            "text": "Researchers at MIT have developed a new material that can absorb and convert carbon dioxide into oxygen. The material, called 'CO2-Tech,' has the potential to revolutionize the way we tackle climate change. #SciTech #ClimateChange",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Lebron James leads Lakers to thrilling victory in NBA Finals",
+            "label": "Sports"
+        },
+        {
+            "text": "Major power shift in the Middle East as Saudi Arabia and Israel establish diplomatic relations",
+            "label": "World"
+        },
+        {
+            "text": "Major power shift in the Middle East as Saudi Arabia and Israel reportedly form secret alliance to counter Iran's growing influence in the region.",
+            "label": "World"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Major power shift in the Middle East as Saudi Arabia and Israel establish diplomatic relations",
+            "label": "World"
+        },
+        {
+            "text": "Major power shift in the Middle East as Saudi Arabia and Israel reportedly establish secret diplomatic relations. Implications for regional security and geopolitics significant. #World #Diplomacy",
+            "label": "World"
+        },
+        {
+            "text": "Researchers at MIT have developed a new material that could revolutionize the way we generate electricity. The new material, called a 'super-grid,' is capable of storing and releasing energy with incredible efficiency. This could lead to a significant reduction in our reliance on fossil fuels and a major step towards a more sustainable future. #SciTech #RenewableEnergy",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Massive protests erupt in Hong Kong over proposed extradition bill, sparking fears of political unrest and human rights violations.",
+            "label": "World"
+        },
+        {
+            "text": "Researchers have discovered a new species of ancient human in the Philippines, which may have lived as recently as 50,000 years ago. The findings suggest that the species, known as Homo luzonensis, may have evolved in response to the island's unique environment and may have coexisted with other human species in the region. #SciTech #Archaeology #HumanEvolution",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Global COVID-19 cases surpass 300 million as new variants emerge",
+            "label": "World"
+        },
+        {
+            "text": "Sales of electric vehicles surge as consumers embrace sustainable transportation. Tesla leads the way with a 50% increase in quarterly sales. Other automakers are following suit with new EV models and incentives. #Tesla #ElectricVehicles #SustainableTransportation",
+            "label": "Business"
+        },
+        {
+            "text": "Microsoft announces new AI-powered tool for small businesses",
+            "label": "Business"
+        },
+        {
+            "text": "Researchers at MIT have developed a new AI algorithm that can analyze medical images with unprecedented accuracy. The algorithm uses a combination of machine learning and computer vision techniques to detect subtle patterns in the images that can indicate the presence of certain diseases. The breakthrough could lead to earlier and more accurate diagnoses, improving patient outcomes. #medicalAI #healthtech",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Researchers at MIT have developed a new material that can absorb and convert carbon dioxide into oxygen at an unprecedented rate. The material, called Aerogel-X, is made of a network of nanofibers that are covered in tiny pores. The pores allow carbon dioxide to enter the material, where it is converted into oxygen through a chemical reaction. The material is highly efficient and could potentially be used to reduce carbon emissions in power plants and other industrial settings. #SciTech #ClimateChange",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Stock Market Sees Record Highs as Investors Bet on Economic Recovery",
+            "label": "Business"
+        },
+        {
+            "text": "Major power shift in the Middle East as Saudi Arabia and Israel establish diplomatic relations",
+            "label": "World"
+        },
+        {
+            "text": "New study finds that Mars may have once had liquid water on its surface. Researchers used advanced imaging techniques to detect signs of water on the red planet's surface. The discovery could have implications for future manned missions to Mars. #Mars #Water #Space",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick as Barcelona beats Real Madrid 3-2 in El Clásico",
+            "label": "Sports"
+        },
+        {
+            "text": "Major power shift in the Middle East as Saudi Arabia and Israel establish diplomatic relations, marking a new era in regional politics. #World #Diplomacy",
+            "label": "World"
+        },
+        {
+            "text": "Massive protests erupt in Hong Kong over proposed extradition bill, with thousands marching through the streets and demanding greater autonomy from China. #HongKongProtests #China #WorldNews",
+            "label": "World"
+        },
+        {
+            "text": "Major tech company announces new AI-powered product line, set to disrupt industry",
+            "label": "Business"
+        },
+        {
+            "text": "Researchers at MIT have developed a new material that can absorb and convert carbon dioxide into oxygen at an unprecedented rate. This breakthrough could help combat climate change by reducing the amount of greenhouse gases in the atmosphere. #climatechange #carboncapture #science",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Riots break out in Paris over controversial new law",
+            "label": "World"
+        },
+        {
+            "text": "New study finds that Mars may have once had liquid water on its surface. Researchers analyzing data from NASA's Curiosity rover believe that the planet's ancient riverbeds could have supported life. #Mars #Science",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Researchers discover new species of ancient human in the Philippines",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Researchers at MIT have developed a new material that can absorb and convert carbon dioxide into oxygen at an unprecedented rate. The new material, called Aerographene, is a highly efficient and sustainable solution for reducing carbon emissions. According to the study, Aerographene could potentially capture and convert up to 90% of carbon dioxide emissions from power plants and industrial processes. This breakthrough could have a significant impact on reducing carbon footprint and mitigating climate change. #SciTech #ClimateChange",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Global stock markets experience turbulence as investors react to geopolitical tensions and economic uncertainty. #business #stockmarket #investing",
+            "label": "Business"
+        },
+        {
+            "text": "Researchers at MIT have developed a new AI algorithm that can analyze medical images with unprecedented accuracy. The algorithm uses a combination of machine learning and computer vision techniques to detect subtle patterns in medical images that could indicate disease. The algorithm has the potential to revolutionize the field of medical imaging and improve patient outcomes.",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Massive protests erupt in Hong Kong as China imposes controversial new security law",
+            "label": "World"
+        },
+        {
+            "text": "Major power shift in the Middle East: Saudi Arabia and Israel sign historic peace deal, ending decades-long conflict",
+            "label": "World"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Stock Market Sees Record Highs as Investors Bet on Economic Recovery",
+            "label": "Business"
+        },
+        {
+            "text": "Major earthquake strikes Indonesia, at least 168 dead and over 2,000 injured. Rescue efforts underway. #earthquake #Indonesia",
+            "label": "World"
+        },
+        {
+            "text": "Stock market sees record highs on positive economic data",
+            "label": "Business"
+        },
+        {
+            "text": "Global tech giant Apple announces new product line, stock soars",
+            "label": "Business"
+        },
+        {
+            "text": "Global Market for Electric Vehicles Expected to Reach $1 Trillion by 2025",
+            "label": "Business"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's thrilling victory over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Apple unveils new iPhone with improved camera and faster charging",
+            "label": "Business"
+        },
+        {
+            "text": "Researchers at MIT have developed a new AI algorithm that can detect and track individual cells in real-time, opening up new possibilities for personalized medicine. The algorithm uses advanced computer vision techniques and machine learning to analyze video footage of cells in motion, allowing doctors to diagnose and treat diseases more effectively. #SciTech #MedTech",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's big win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Researchers have discovered a new species of ancient dinosaur in Madagascar, which lived during the Cretaceous period. The dinosaur, named 'Spiropleura madagascariensis', had a unique spiral pattern on its body and was likely a herbivore. The findings were published in the journal Nature. #SciTech #DinosaurDiscovery",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Researchers discover new species of ancient virus in Antarctic ice core",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Global economy sees steady growth in Q2, fueled by consumer spending and business investment. #business #economy #growth",
+            "label": "Business"
+        },
+        {
+            "text": "Researchers have discovered a new species of ancient human in the Philippines, which could challenge our understanding of human evolution. The species, known as Homo luzonensis, is believed to have lived on the island of Luzon at least 50,000 years ago. The finding was announced in a study published in the journal Nature. #HomoLuzonensis #Evolution #Science",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Scientists discover new species of ancient human in Africa, challenging traditional views of human evolution.",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Researchers have discovered a new species of ancient fungus in the Amazon rainforest. The fungus, which is believed to be millions of years old, has a unique ability to photosynthesize and could provide insights into the evolution of life on Earth. #SciTech #AmazonRainforest",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Global supply chain disruptions are causing concern for businesses of all sizes. The ongoing COVID-19 pandemic has highlighted the importance of diversifying supply chains and building resilience. Companies are now investing in new technologies and partnerships to mitigate risks and ensure continuity of operations. #business #supplychain #resilience",
+            "label": "Business"
+        },
+        {
+            "text": "Global market trends: Stocks see significant gains as central banks intervene",
+            "label": "Business"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's 3-0 win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Researchers discover new species of ancient human in the Philippines",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Global economy shows signs of slowing down amidst trade tensions. Major stock markets experience volatility, while central banks reconsider monetary policies. Experts warn of potential recession if tensions persist.",
+            "label": "Business"
+        },
+        {
+            "text": "Google Announces AI-Powered Virtual Assistant for Small Businesses",
+            "label": "Business"
+        },
+        {
+            "text": "Researchers have discovered a new species of ancient fungus in the Amazon rainforest. The fungus, which is believed to be millions of years old, has the potential to revolutionize the treatment of various diseases. #SciTech #AmazonRainforest",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's victory over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Stock Market Sees Record Highs as Investors Bet on Economic Recovery",
+            "label": "Business"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick as Barcelona beats Real Madrid 3-2 in El Clásico",
+            "label": "Sports"
+        },
+        {
+            "text": "Researchers at MIT have developed a new AI algorithm that can generate realistic images of medical conditions, such as tumors, with 90% accuracy. This could revolutionize the field of medical imaging and improve diagnosis rates. #SciTech #AI",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Global economy sees steady growth in Q2, led by tech sector",
+            "label": "Business"
+        },
+        {
+            "text": "Researchers at MIT have developed a new material that can absorb and convert carbon dioxide into oxygen at an unprecedented rate. This breakthrough could have significant implications for reducing carbon emissions and mitigating the effects of climate change. #SciTech #ClimateChange",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Major power shift in the Middle East as Saudi Arabia and Israel establish diplomatic ties",
+            "label": "World"
+        },
+        {
+            "text": "Researchers at MIT have developed a new material that can absorb and convert 100% of the sun's energy, making it a promising solution for sustainable energy production. The material, called 'SolarSkin,' is made from a combination of organic and inorganic materials and is capable of converting even the most diffuse light into usable energy. This breakthrough could potentially revolutionize the way we generate electricity and help reduce our reliance on fossil fuels. #SolarSkin #SustainableEnergy #FutureTech",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Researchers at MIT have developed a new AI algorithm that can predict the spread of infectious diseases with unprecedented accuracy. The algorithm uses machine learning techniques to analyze data from past outbreaks and identify patterns that can help prevent future ones. Could this be the key to controlling the next pandemic?",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Researchers at MIT have developed a new material that can absorb and convert carbon dioxide into oxygen at an unprecedented rate. The material, called 'CO2-Tron,' has the potential to revolutionize the fight against climate change. #SciTech #ClimateChange",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Company X announced plans to expand its operations into new markets, including the launch of a new product line. The move is expected to create new jobs and boost revenue growth. #business #expansion #newproduct",
+            "label": "Business"
+        },
+        {
+            "text": "Researchers discover new species of ancient human in the Philippines",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Researchers have developed a new AI algorithm that can predict the spread of infectious diseases with unprecedented accuracy. The algorithm uses machine learning techniques to analyze data from various sources, including medical records, weather patterns, and social media activity. The team believes that this technology could revolutionize the way we prevent and control outbreaks, saving countless lives and preventing unnecessary suffering. #AI #InfectiousDiseases #PublicHealth",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Major power shift in the Middle East as Saudi Arabia and Israel establish diplomatic relations",
+            "label": "World"
+        },
+        {
+            "text": "Global stock markets experience turbulence as investors react to geopolitical tensions",
+            "label": "Business"
+        },
+        {
+            "text": "Major power shift in the Middle East as Saudi Arabia and Israel reportedly establish secret alliance",
+            "label": "World"
+        },
+        {
+            "text": "Researchers at MIT have developed a new material that can absorb and convert carbon dioxide into oxygen at an unprecedented rate. This breakthrough could have significant implications for reducing carbon emissions and mitigating the effects of climate change. #SciTech #ClimateChange",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "New Study Finds Majority of Small Businesses Not Prepared for Cyber Attacks",
+            "label": "Business"
+        },
+        {
+            "text": "Massive wildfires sweep across Australia, displacing thousands",
+            "label": "World"
+        },
+        {
+            "text": "Scientists discover new species of ancient human in Africa",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick as Barcelona beats Real Madrid 3-2 in El Clásico",
+            "label": "Sports"
+        },
+        {
+            "text": "Rohingya refugees face new challenges in Bangladesh",
+            "label": "World"
+        },
+        {
+            "text": "Global stock markets experience turbulence as investors react to geopolitical tensions and economic uncertainty. #business #stockmarkets #economicnews",
+            "label": "Business"
+        },
+        {
+            "text": "Global COVID-19 cases surpass 300 million mark, death toll reaches new high",
+            "label": "World"
+        },
+        {
+            "text": "Massive protests erupt in Hong Kong over controversial extradition bill",
+            "label": "World"
+        },
+        {
+            "text": "Major power shift in the Middle East as Saudi Arabia and Israel establish diplomatic relations",
+            "label": "World"
+        },
+        {
+            "text": "Lebron James leads Lakers to thrilling victory over Warriors",
+            "label": "Sports"
+        },
+        {
+            "text": "Global economy sees steady growth in Q2, despite trade tensions",
+            "label": "Business"
+        },
+        {
+            "text": "Stock market sees surge in tech stocks, with Apple leading the way. #stockmarket #techstocks #Apple",
+            "label": "Business"
+        },
+        {
+            "text": "Major tech company announces new AI-powered tool for streamlining workflow, set to revolutionize industry",
+            "label": "Business"
+        },
+        {
+            "text": "Scientists discover new species of ancient sea creature in Antarctic waters",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Global economy shows signs of slowdown amid trade tensions",
+            "label": "Business"
+        },
+        {
+            "text": "Company X announced plans to expand into new markets, citing growth opportunities in the industry. The move is expected to create new jobs and drive revenue for the company. #business #expansion #growth",
+            "label": "Business"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Researchers discover new species of ancient human in the Philippines",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Researchers at MIT have developed a new material that can absorb and convert 100% of the sun's energy, providing a potential solution to the world's energy crisis. The material, called 'SolarSkin,' is lightweight, flexible, and can be integrated into building facades or solar panels. Could this be the game-changer the world needs?",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Major power shift in the Middle East as Saudi Arabia and Egypt form new alliance to counter Iran's growing influence",
+            "label": "World"
+        },
+        {
+            "text": "Scientists discover new species of ancient human in Africa, challenging traditional views on human evolution",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Researchers have discovered a new species of ancient fungus in the Amazon rainforest. The fungus, which is estimated to be over 1,000 years old, provides insight into the evolution of life on Earth. #SciTech #AmazonRainforest",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Lewis Hamilton wins record-breaking 7th Formula One world championship",
+            "label": "Sports"
+        },
+        {
+            "text": "Global trade tensions weigh on business sentiment",
+            "label": "Business"
+        },
+        {
+            "text": "Researchers at MIT have developed a new material that can absorb and convert 100% of the sun's energy into electricity. This breakthrough could revolutionize the way we generate power and reduce our reliance on fossil fuels. #SolarEnergy #RenewableEnergy",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Researchers at MIT have developed a new material that could revolutionize the way we generate electricity. The material, called 'super-capacitor,' can store and release energy up to 10 times faster than traditional batteries. This could lead to more efficient and sustainable energy storage systems, potentially transforming the way we power our homes and devices. #SciTech #EnergyStorage",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Lebron James scores 50th career triple-double in thrilling victory over the Rockets",
+            "label": "Sports"
+        },
+        {
+            "text": "Researchers have discovered a new species of ancient human in the Philippines, which may have evolved in isolation for up to 50,000 years. The findings were published in the journal Nature and shed light on the complex evolutionary history of humanity. #SciTech #Archaeology #HumanEvolution",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Researchers have discovered a new species of ancient fungus in the Amazon rainforest, which could provide insights into the evolution of life on Earth. The fungus, which dates back over 100 million years, has a unique mechanism for photosynthesis and could lead to new approaches in agriculture and medicine. #SciTech #AmazonRainforest #Fungus",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Syrian refugees face new challenges in Europe",
+            "label": "World"
+        },
+        {
+            "text": "Massive protests erupt in Hong Kong over proposed extradition bill, as tensions between China and the US continue to escalate. #HongKongProtests #China #US",
+            "label": "World"
+        },
+        {
+            "text": "Researchers discover new species of ancient human in Africa, challenging our understanding of human evolution",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Researchers at MIT have developed a new material that can absorb and convert 100% of the sun's energy into electricity. This breakthrough could revolutionize the way we generate power and reduce our reliance on fossil fuels. #SciTech #RenewableEnergy",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Global Market for Electric Vehicles to Reach $1 Trillion by 2025",
+            "label": "Business"
+        },
+        {
+            "text": "Researchers at MIT have developed a new material that could revolutionize the way we generate electricity. The new material, called 'Super-Grid,' is capable of storing and releasing electrical energy in a more efficient and sustainable way than traditional batteries. This could potentially transform the way we power our homes and businesses, making the transition to renewable energy sources more feasible. #SciTech #RenewableEnergy",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Microsoft announces new AI-powered chatbot for customer service",
+            "label": "Business"
+        },
+        {
+            "text": "Major power shift in the Middle East as Saudi Arabia and Israel establish diplomatic relations, marking a significant turning point in the region's geopolitics.",
+            "label": "World"
+        },
+        {
+            "text": "Researchers at MIT have developed a new AI-powered system that can detect and diagnose medical conditions with unprecedented accuracy. The system uses a combination of machine learning algorithms and medical imaging techniques to identify diseases such as cancer and diabetes with up to 90% accuracy. This could potentially revolutionize the field of medicine and improve patient outcomes. #SciTech #MedicalResearch",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Researchers at MIT have developed a new AI algorithm that can detect and diagnose medical conditions with unprecedented accuracy. The algorithm uses a combination of machine learning and medical imaging to identify diseases such as cancer, diabetes, and heart disease. The breakthrough could revolutionize healthcare and save countless lives. #SciTech #MedicalResearch",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Lebron James leads Lakers to thrilling victory over Golden State",
+            "label": "Sports"
+        },
+        {
+            "text": "Researchers at MIT have developed a new material that can absorb and convert carbon dioxide into oxygen at an unprecedented rate. The new material, called 'CO2-Tech,' has the potential to revolutionize the fight against climate change. Learn more about this groundbreaking discovery in our latest article.",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Major power shift in the Middle East as Saudi Arabia and Israel establish diplomatic relations",
+            "label": "World"
+        },
+        {
+            "text": "Researchers at MIT have developed a new material that can absorb and convert carbon dioxide into oxygen at an unprecedented rate. This breakthrough could have significant implications for reducing carbon emissions and mitigating the effects of climate change. #SciTech #ClimateChange",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Stock markets around the world are experiencing a tumultuous week as investors react to a series of unexpected events. The Dow Jones Industrial Average has fallen sharply, wiping out all of its gains for the year, as concerns about the global economy and trade tensions continue to grow. In Europe, the FTSE 100 has also fallen, while in Asia, the Nikkei 225 has plunged to its lowest level in over a year. The sell-off has been fueled by a combination of factors, including a decline in oil prices, a stronger dollar, and fears about the impact of the COVID-19 pandemic on corporate earnings. Despite the volatility, some analysts are warning against panicking, citing the resilience of the global economy and the potential for a rebound in the near future.",
+            "label": "Business"
+        },
+        {
+            "text": "Researchers at MIT have developed a new material that could revolutionize the way we generate electricity. The material, called 'Super-Heavy Metals,' is capable of storing and releasing electrical energy with incredible efficiency. This breakthrough could lead to more sustainable and cost-effective energy production in the future. #SciTech #Energy #Innovation",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Stock market sees record highs as investors remain optimistic about economic growth. #business #stockmarket #economicgrowth",
+            "label": "Business"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick as Barcelona beats Real Madrid 3-2 in El Clásico",
+            "label": "Sports"
+        },
+        {
+            "text": "Scientists discover new species of ancient fungus in the Amazon rainforest. The fungus, which is believed to be millions of years old, provides insight into the evolution of life on Earth. #SciTech #AmazonRainforest",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's thrilling victory over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's 3-0 win over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Researchers at MIT have developed a new AI algorithm that can detect and predict heart disease with 90% accuracy. The algorithm uses a combination of medical imaging and machine learning to identify patients at risk of heart disease. The breakthrough could save thousands of lives and improve heart health around the world.",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Global market trends indicate a shift towards sustainable and eco-friendly practices in the corporate world. Companies are now prioritizing environmental impact and social responsibility in their operations, from reducing carbon footprint to implementing ethical supply chain management. This shift is driven by consumer demand and regulatory changes, as well as the realization that sustainable practices can also lead to cost savings and improved brand reputation.",
+            "label": "Business"
+        },
+        {
+            "text": "Researchers at MIT have developed a new material that could revolutionize the way we generate electricity. The new material, called a 'super-grid,' is capable of storing and releasing electrical energy in a matter of milliseconds, making it much more efficient than traditional power grids. This breakthrough could have a major impact on the way we power our homes and businesses, and could potentially help to mitigate the effects of climate change. #SciTech #RenewableEnergy",
+            "label": "Sci/Tech"
+        },
+        {
+            "text": "Global economy shows signs of slowdown, experts warn of recession. Major corporations are feeling the pinch as trade tensions and supply chain disruptions take their toll. How are businesses adapting to these challenges? #business #economy #recession",
+            "label": "Business"
+        },
+        {
+            "text": "Lionel Messi scores hat-trick in Barcelona's victory over Real Madrid",
+            "label": "Sports"
+        },
+        {
+            "text": "Major power shift in the Middle East as Saudi Arabia and Israel reportedly strike a secret deal, ending decades of tension and paving the way for a new era of cooperation. #World #SaudiArabia #Israel",
+            "label": "World"
+        },
+        {
+            "text": "Researchers at MIT have developed a new AI algorithm that can identify and track individual cells in real-time, potentially revolutionizing the field of personalized medicine. The algorithm uses advanced computer vision techniques to analyze live-cell imaging data and could lead to new treatments for diseases such as cancer and Alzheimer's. #SciTech #AI #Medicine",
+            "label": "Sci/Tech"
+        }
+    ]
+}

@@ -309,7 +309,9 @@ def main_multiclassRoBERTA(
         dev_df.to_csv(dev_path, index=False)
 
     # preprocess data
-    labels = combined_df["label"].unique().tolist()
+    ### I use both train and dev sets to get the labels
+    ### so I dont get error if a label is not in the train set
+    labels = list(set(combined_df["label"].unique()) | set(dev_df["label"].unique()))
     id2label = {idx: label for idx, label in enumerate(labels)}
     label2id = {label: idx for idx, label in enumerate(labels)}
 

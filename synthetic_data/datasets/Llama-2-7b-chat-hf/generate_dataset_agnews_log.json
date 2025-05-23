@@ -1,0 +1,478 @@
+[
+    {
+        "timestamp": "2025-05-22T19:00:43.430884",
+        "dataset": "agnews",
+        "generation_method": "baseline",
+        "num_examples_generated": 500,
+        "model": "meta-llama/Llama-2-7b-chat-hf",
+        "model.generation_config": {
+            "max_length": 4096,
+            "do_sample": true,
+            "temperature": 0.6,
+            "top_p": 0.9,
+            "pad_token_id": 0,
+            "bos_token_id": 1,
+            "eos_token_id": 2,
+            "transformers_version": "4.51.3",
+            "attn_implementation": "flash_attention_2"
+        },
+        "model_BitsAndBytesConfig": {
+            "_load_in_4bit": true,
+            "bnb_4bit_compute_dtype": "float16",
+            "load_in_4bit": true
+        },
+        "prompt": [
+            {
+                "role": "system",
+                "content": "You are an expert in journalism and NLP specializing in news classification."
+            },
+            {
+                "role": "user",
+                "content": "Your task is to generate one high-quality short document (around 30 words), that talks about one of the following four News categories:  \n- Business\n- Sci/Tech\n- Sports\n- World\n\nChoose one of the categories (labels), generate the corresponding text and return it in the following JSON format:\n\n```json\n{\n    \"text\": \"<text of the document>\", \n    \"label\": \"<corresponding label>\", \n}\n```\n"
+            },
+            {
+                "role": "assistant",
+                "content": "Of course! I'm happy to help. Please provide me with the category you would like me to focus on, and I will generate a high-quality short document for you."
+            },
+            {
+                "role": "user",
+                "content": "label: ADD_LABEL_HERE"
+            }
+        ],
+        "prompt_postfix": null,
+        "system_prompt": null,
+        "apply_chat_template": true,
+        "time_taken_seconds": 1012.27,
+        "json_output_file": "synthetic_data/datasets/Llama-2-7b-chat-hf/agnews_baseline_500.json",
+        "num_runs": 502,
+        "seed": 42,
+        "correct_labels": [
+            "Business",
+            "Sci/Tech",
+            "Sports",
+            "World"
+        ],
+        "correct_fields": [
+            "text",
+            "label"
+        ],
+        "add_random_label": true
+    },
+    {
+        "timestamp": "2025-05-22T19:27:16.349888",
+        "dataset": "agnews",
+        "generation_method": "targeted + linguistic tags",
+        "num_examples_generated": 500,
+        "model": "meta-llama/Llama-2-7b-chat-hf",
+        "model.generation_config": {
+            "max_length": 4096,
+            "do_sample": true,
+            "temperature": 0.6,
+            "top_p": 0.9,
+            "pad_token_id": 0,
+            "bos_token_id": 1,
+            "eos_token_id": 2,
+            "transformers_version": "4.51.3",
+            "attn_implementation": "flash_attention_2"
+        },
+        "model_BitsAndBytesConfig": {
+            "_load_in_4bit": true,
+            "bnb_4bit_compute_dtype": "float16",
+            "load_in_4bit": true
+        },
+        "prompt": [
+            {
+                "role": "system",
+                "content": "You are an expert in journalism and NLP specializing in news classification."
+            },
+            {
+                "role": "user",
+                "content": "Your task is to generate one high-quality short document (around 30 words), that talks about one of the following four News categories:  \n- Business\n- Sci/Tech\n- Sports\n- World\n\nFor each example, also list the key phenomena it covers.\n\n### **Follow these topics:**\n- **Business**  \n  - Markets  \n  - Economy  \n  - Companies  \n  - Startups  \n  - Regulations  \n\n- **Sci/Tech**  \n  - AI  \n  - Space  \n  - Cybersecurity  \n  - Biotech  \n  - Climate  \n\n- **Sports**  \n  - Events  \n  - Records  \n  - Highlights  \n  - Scandals  \n  - Olympics  \n\n- **World**  \n  - Politics  \n  - Conflicts  \n  - Disasters  \n  - Human Rights  \n  - Trade\n\n### **Output Format (JSON)**\nThe labels must be one of the specified categories, which are: Business, Sci/Tech, Sports, World. Choose one of the categories (labels), generate the corresponding text, write the corresponding phenomena and return it in the following JSON format:\n\n```json\n{\n    \"text\": \"<text of the document>\", \n    \"label\": \"<corresponding label>\", \n    \"phenomena\": [\"<phenomenon1>\", \"<phenomenon2>\", ...]\n}\n```\n"
+            },
+            {
+                "role": "assistant",
+                "content": "Of course! I'm happy to help. Please provide me with the category you would like me to focus on, and I will generate a high-quality short document for you."
+            },
+            {
+                "role": "user",
+                "content": "label: ADD_LABEL_HERE"
+            }
+        ],
+        "prompt_postfix": null,
+        "system_prompt": null,
+        "apply_chat_template": true,
+        "time_taken_seconds": 1592.91,
+        "json_output_file": "synthetic_data/datasets/Llama-2-7b-chat-hf/agnews_targeted+tags_500.json",
+        "num_runs": 510,
+        "seed": 42,
+        "correct_labels": [
+            "Business",
+            "Sci/Tech",
+            "Sports",
+            "World"
+        ],
+        "correct_fields": [
+            "text",
+            "label",
+            "phenomena"
+        ],
+        "add_random_label": true
+    },
+    {
+        "timestamp": "2025-05-22T19:53:49.052263",
+        "dataset": "agnews",
+        "generation_method": "targeted + linguistic tags",
+        "num_examples_generated": 500,
+        "model": "meta-llama/Llama-2-7b-chat-hf",
+        "model.generation_config": {
+            "max_length": 4096,
+            "do_sample": true,
+            "temperature": 0.6,
+            "top_p": 0.9,
+            "pad_token_id": 0,
+            "bos_token_id": 1,
+            "eos_token_id": 2,
+            "transformers_version": "4.51.3",
+            "attn_implementation": "flash_attention_2"
+        },
+        "model_BitsAndBytesConfig": {
+            "_load_in_4bit": true,
+            "bnb_4bit_compute_dtype": "float16",
+            "load_in_4bit": true
+        },
+        "prompt": [
+            {
+                "role": "system",
+                "content": "You are an expert in journalism and NLP specializing in news classification."
+            },
+            {
+                "role": "user",
+                "content": "Your task is to generate one high-quality short document (around 30 words), that talks about one of the following four News categories:  \n- Business\n- Sci/Tech\n- Sports\n- World\n\nFor each example, also list the key phenomena it covers.\n\n### **Follow these topics:**\n- **Business**  \n  - Markets  \n  - Economy  \n  - Companies  \n  - Startups  \n  - Regulations  \n\n- **Sci/Tech**  \n  - AI  \n  - Space  \n  - Cybersecurity  \n  - Biotech  \n  - Climate  \n\n- **Sports**  \n  - Events  \n  - Records  \n  - Highlights  \n  - Scandals  \n  - Olympics  \n\n- **World**  \n  - Politics  \n  - Conflicts  \n  - Disasters  \n  - Human Rights  \n  - Trade\n\n### **Output Format (JSON)**\nThe labels must be one of the specified categories, which are: Business, Sci/Tech, Sports, World. Choose one of the categories (labels), generate the corresponding text, write the corresponding phenomena and return it in the following JSON format:\n\n```json\n{\n    \"text\": \"<text of the document>\", \n    \"label\": \"<corresponding label>\", \n    \"phenomena\": [\"<phenomenon1>\", \"<phenomenon2>\", ...]\n}\n```\n"
+            },
+            {
+                "role": "assistant",
+                "content": "Of course! I'm happy to help. Please provide me with the category you would like me to focus on, and I will generate a high-quality short document for you."
+            },
+            {
+                "role": "user",
+                "content": "label: ADD_LABEL_HERE"
+            }
+        ],
+        "prompt_postfix": null,
+        "system_prompt": null,
+        "apply_chat_template": true,
+        "time_taken_seconds": 1592.69,
+        "json_output_file": "synthetic_data/datasets/Llama-2-7b-chat-hf/agnews_targeted+tags_500_2.json",
+        "num_runs": 507,
+        "seed": 344,
+        "correct_labels": [
+            "Business",
+            "Sci/Tech",
+            "Sports",
+            "World"
+        ],
+        "correct_fields": [
+            "text",
+            "label",
+            "phenomena"
+        ],
+        "add_random_label": true
+    },
+    {
+        "timestamp": "2025-05-22T20:13:33.833963",
+        "dataset": "agnews",
+        "generation_method": "unsupervised context",
+        "num_examples_generated": 500,
+        "model": "meta-llama/Llama-2-7b-chat-hf",
+        "model.generation_config": {
+            "max_length": 4096,
+            "do_sample": true,
+            "temperature": 0.6,
+            "top_p": 0.9,
+            "pad_token_id": 0,
+            "bos_token_id": 1,
+            "eos_token_id": 2,
+            "transformers_version": "4.51.3",
+            "attn_implementation": "flash_attention_2"
+        },
+        "model_BitsAndBytesConfig": {
+            "_load_in_4bit": true,
+            "bnb_4bit_compute_dtype": "float16",
+            "load_in_4bit": true
+        },
+        "prompt": [
+            {
+                "role": "system",
+                "content": "You are an expert in journalism and NLP specializing in news classification."
+            },
+            {
+                "role": "user",
+                "content": "Your task is to generate an high-quality short documents (around 30 words), that talks about one of the following four News categories (labels):\n- Business\n- Sci/Tech\n- Sports\n- World\n\nHere some examples of the documents you can use as a reference:\nADD_CONTEXT_HERE\n\nChoose one of the categories (labels), generate the corresponding text and return it in the following JSON format:\n\n```json\n[\n    {\n        \"text\": \"<text of the document>\", \n        \"label\": \"<corresponding label>\",\n    }\n]\n```\n"
+            },
+            {
+                "role": "assistant",
+                "content": "Of course! I'm happy to help. Please provide me with the category you would like me to focus on, and I will generate a high-quality short document for you."
+            },
+            {
+                "role": "user",
+                "content": "label: ADD_LABEL_HERE"
+            }
+        ],
+        "prompt_postfix": null,
+        "system_prompt": null,
+        "apply_chat_template": true,
+        "time_taken_seconds": 1184.58,
+        "json_output_file": "synthetic_data/datasets/Llama-2-7b-chat-hf/agnews_unsupervisedContext_500.json",
+        "num_runs": 538,
+        "seed": 42,
+        "correct_labels": [
+            "Business",
+            "Sci/Tech",
+            "Sports",
+            "World"
+        ],
+        "correct_fields": [
+            "text",
+            "label"
+        ],
+        "add_random_label": true
+    },
+    {
+        "timestamp": "2025-05-23T12:08:39.295911",
+        "dataset": "agnews",
+        "generation_method": "baseline",
+        "num_examples_generated": 500,
+        "model": "meta-llama/Llama-2-7b-chat-hf",
+        "model.generation_config": {
+            "max_length": 4096,
+            "do_sample": true,
+            "temperature": 0.6,
+            "top_p": 0.9,
+            "pad_token_id": 0,
+            "bos_token_id": 1,
+            "eos_token_id": 2,
+            "transformers_version": "4.51.3",
+            "attn_implementation": "flash_attention_2"
+        },
+        "model_BitsAndBytesConfig": {
+            "_load_in_4bit": true,
+            "bnb_4bit_compute_dtype": "float16",
+            "load_in_4bit": true
+        },
+        "prompt": [
+            {
+                "role": "system",
+                "content": "You are an expert in journalism and NLP specializing in news classification."
+            },
+            {
+                "role": "user",
+                "content": "Your task is to generate one high-quality short document (around 30 words), that talks about one of the following four News categories:  \n- Business\n- Sci/Tech\n- Sports\n- World\n\nChoose one of the categories (labels), generate the corresponding text and return it in the following JSON format:\n\n```json\n{\n    \"text\": \"<text of the document>\", \n    \"label\": \"<corresponding label>\", \n}\n```\n"
+            },
+            {
+                "role": "assistant",
+                "content": "Of course! I'm happy to help. Please provide me with the category you would like me to focus on, and I will generate a high-quality short document for you."
+            },
+            {
+                "role": "user",
+                "content": "label: ADD_LABEL_HERE"
+            }
+        ],
+        "prompt_postfix": null,
+        "system_prompt": null,
+        "apply_chat_template": true,
+        "time_taken_seconds": 1034.71,
+        "json_output_file": "synthetic_data/datasets/Llama-2-7b-chat-hf/agnews_baseline_500.json",
+        "num_runs": 503,
+        "seed": 42,
+        "correct_labels": [
+            "Business",
+            "Sci/Tech",
+            "Sports",
+            "World"
+        ],
+        "correct_fields": [
+            "text",
+            "label"
+        ],
+        "add_random_label": true
+    },
+    {
+        "timestamp": "2025-05-23T12:35:46.865841",
+        "dataset": "agnews",
+        "generation_method": "targeted + linguistic tags",
+        "num_examples_generated": 500,
+        "model": "meta-llama/Llama-2-7b-chat-hf",
+        "model.generation_config": {
+            "max_length": 4096,
+            "do_sample": true,
+            "temperature": 0.6,
+            "top_p": 0.9,
+            "pad_token_id": 0,
+            "bos_token_id": 1,
+            "eos_token_id": 2,
+            "transformers_version": "4.51.3",
+            "attn_implementation": "flash_attention_2"
+        },
+        "model_BitsAndBytesConfig": {
+            "_load_in_4bit": true,
+            "bnb_4bit_compute_dtype": "float16",
+            "load_in_4bit": true
+        },
+        "prompt": [
+            {
+                "role": "system",
+                "content": "You are an expert in journalism and NLP specializing in news classification."
+            },
+            {
+                "role": "user",
+                "content": "Your task is to generate one high-quality short document (around 30 words), that talks about one of the following four News categories:  \n- Business\n- Sci/Tech\n- Sports\n- World\n\nFor each example, also list the key phenomena it covers.\n\n### **Follow these topics:**\n- **Business**  \n  - Markets  \n  - Economy  \n  - Companies  \n  - Startups  \n  - Regulations  \n\n- **Sci/Tech**  \n  - AI  \n  - Space  \n  - Cybersecurity  \n  - Biotech  \n  - Climate  \n\n- **Sports**  \n  - Events  \n  - Records  \n  - Highlights  \n  - Scandals  \n  - Olympics  \n\n- **World**  \n  - Politics  \n  - Conflicts  \n  - Disasters  \n  - Human Rights  \n  - Trade\n\n### **Output Format (JSON)**\nThe labels must be one of the specified categories, which are: Business, Sci/Tech, Sports, World. Choose one of the categories (labels), generate the corresponding text, write the corresponding phenomena and return it in the following JSON format:\n\n```json\n{\n    \"text\": \"<text of the document>\", \n    \"label\": \"<corresponding label>\", \n    \"phenomena\": [\"<phenomenon1>\", \"<phenomenon2>\", ...]\n}\n```\n"
+            },
+            {
+                "role": "assistant",
+                "content": "Of course! I'm happy to help. Please provide me with the category you would like me to focus on, and I will generate a high-quality short document for you."
+            },
+            {
+                "role": "user",
+                "content": "label: ADD_LABEL_HERE"
+            }
+        ],
+        "prompt_postfix": null,
+        "system_prompt": null,
+        "apply_chat_template": true,
+        "time_taken_seconds": 1627.52,
+        "json_output_file": "synthetic_data/datasets/Llama-2-7b-chat-hf/agnews_targeted+tags_500.json",
+        "num_runs": 514,
+        "seed": 42,
+        "correct_labels": [
+            "Business",
+            "Sci/Tech",
+            "Sports",
+            "World"
+        ],
+        "correct_fields": [
+            "text",
+            "label",
+            "phenomena"
+        ],
+        "add_random_label": true
+    },
+    {
+        "timestamp": "2025-05-23T13:02:14.783477",
+        "dataset": "agnews",
+        "generation_method": "targeted + linguistic tags",
+        "num_examples_generated": 500,
+        "model": "meta-llama/Llama-2-7b-chat-hf",
+        "model.generation_config": {
+            "max_length": 4096,
+            "do_sample": true,
+            "temperature": 0.6,
+            "top_p": 0.9,
+            "pad_token_id": 0,
+            "bos_token_id": 1,
+            "eos_token_id": 2,
+            "transformers_version": "4.51.3",
+            "attn_implementation": "flash_attention_2"
+        },
+        "model_BitsAndBytesConfig": {
+            "_load_in_4bit": true,
+            "bnb_4bit_compute_dtype": "float16",
+            "load_in_4bit": true
+        },
+        "prompt": [
+            {
+                "role": "system",
+                "content": "You are an expert in journalism and NLP specializing in news classification."
+            },
+            {
+                "role": "user",
+                "content": "Your task is to generate one high-quality short document (around 30 words), that talks about one of the following four News categories:  \n- Business\n- Sci/Tech\n- Sports\n- World\n\nFor each example, also list the key phenomena it covers.\n\n### **Follow these topics:**\n- **Business**  \n  - Markets  \n  - Economy  \n  - Companies  \n  - Startups  \n  - Regulations  \n\n- **Sci/Tech**  \n  - AI  \n  - Space  \n  - Cybersecurity  \n  - Biotech  \n  - Climate  \n\n- **Sports**  \n  - Events  \n  - Records  \n  - Highlights  \n  - Scandals  \n  - Olympics  \n\n- **World**  \n  - Politics  \n  - Conflicts  \n  - Disasters  \n  - Human Rights  \n  - Trade\n\n### **Output Format (JSON)**\nThe labels must be one of the specified categories, which are: Business, Sci/Tech, Sports, World. Choose one of the categories (labels), generate the corresponding text, write the corresponding phenomena and return it in the following JSON format:\n\n```json\n{\n    \"text\": \"<text of the document>\", \n    \"label\": \"<corresponding label>\", \n    \"phenomena\": [\"<phenomenon1>\", \"<phenomenon2>\", ...]\n}\n```\n"
+            },
+            {
+                "role": "assistant",
+                "content": "Of course! I'm happy to help. Please provide me with the category you would like me to focus on, and I will generate a high-quality short document for you."
+            },
+            {
+                "role": "user",
+                "content": "label: ADD_LABEL_HERE"
+            }
+        ],
+        "prompt_postfix": null,
+        "system_prompt": null,
+        "apply_chat_template": true,
+        "time_taken_seconds": 1587.8,
+        "json_output_file": "synthetic_data/datasets/Llama-2-7b-chat-hf/agnews_targeted+tags_500_2.json",
+        "num_runs": 508,
+        "seed": 344,
+        "correct_labels": [
+            "Business",
+            "Sci/Tech",
+            "Sports",
+            "World"
+        ],
+        "correct_fields": [
+            "text",
+            "label",
+            "phenomena"
+        ],
+        "add_random_label": true
+    },
+    {
+        "timestamp": "2025-05-23T13:21:29.383894",
+        "dataset": "agnews",
+        "generation_method": "unsupervised context",
+        "num_examples_generated": 500,
+        "model": "meta-llama/Llama-2-7b-chat-hf",
+        "model.generation_config": {
+            "max_length": 4096,
+            "do_sample": true,
+            "temperature": 0.6,
+            "top_p": 0.9,
+            "pad_token_id": 0,
+            "bos_token_id": 1,
+            "eos_token_id": 2,
+            "transformers_version": "4.51.3",
+            "attn_implementation": "flash_attention_2"
+        },
+        "model_BitsAndBytesConfig": {
+            "_load_in_4bit": true,
+            "bnb_4bit_compute_dtype": "float16",
+            "load_in_4bit": true
+        },
+        "prompt": [
+            {
+                "role": "system",
+                "content": "You are an expert in journalism and NLP specializing in news classification."
+            },
+            {
+                "role": "user",
+                "content": "Your task is to generate an high-quality short documents (around 30 words), that talks about one of the following four News categories (labels):\n- Business\n- Sci/Tech\n- Sports\n- World\n\nHere some examples of the documents you can use as a reference:\nADD_CONTEXT_HERE\n\nChoose one of the categories (labels), generate the corresponding text and return it in the following JSON format:\n\n```json\n[\n    {\n        \"text\": \"<text of the document>\", \n        \"label\": \"<corresponding label>\",\n    }\n]\n```\n"
+            },
+            {
+                "role": "assistant",
+                "content": "Of course! I'm happy to help. Please provide me with the category you would like me to focus on, and I will generate a high-quality short document for you."
+            },
+            {
+                "role": "user",
+                "content": "label: ADD_LABEL_HERE"
+            }
+        ],
+        "prompt_postfix": null,
+        "system_prompt": null,
+        "apply_chat_template": true,
+        "time_taken_seconds": 1154.35,
+        "json_output_file": "synthetic_data/datasets/Llama-2-7b-chat-hf/agnews_unsupervisedContext_500.json",
+        "num_runs": 543,
+        "seed": 42,
+        "correct_labels": [
+            "Business",
+            "Sci/Tech",
+            "Sports",
+            "World"
+        ],
+        "correct_fields": [
+            "text",
+            "label"
+        ],
+        "add_random_label": true
+    }
+]

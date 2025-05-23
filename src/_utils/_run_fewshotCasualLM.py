@@ -6,6 +6,7 @@ import random
 import pandas as pd
 from tqdm import tqdm
 from sklearn.metrics import f1_score, accuracy_score
+import re
 from src._utils._helpers import set_seed
 
 
@@ -70,7 +71,14 @@ def construct_fewshot_prompt(selected_examples, instruction):
 
 
 def run_fewshot_task(
-    fewshot_prompt, test_df, model, tokenizer, labels, system_prompt=None
+    fewshot_prompt,
+    test_df,
+    model,
+    tokenizer,
+    labels,
+    system_prompt=None,
+    boxed_label=False,
+    max_new_tokens=None,
 ):
     """Run few-shot prompting task"""
     list_of_lengths = (lambda x: [len(i) for i in x])(labels)
@@ -114,9 +122,7 @@ def run_fewshot_task(
 
         generated_ids = model.generate(
             **model_inputs,
-            max_new_tokens=max(
-                list_of_lengths
-            ),  # TRY TO INCREASE THIS IF DON'T GET OUTPUT
+            max_new_tokens=max_new_tokens if max_new_tokens else max(list_of_lengths),
         )
         output = tokenizer.batch_decode(
             generated_ids,
@@ -125,9 +131,16 @@ def run_fewshot_task(
             output_scores=True,
         )[0]
         # extract the predicted label
-        predicted_label = output.split("Category:")[-1].strip()
-        # EXAMPLE predicted_label: Business\nText: NEW DELHI
-        predicted_label = predicted_label.split("\n")[0].strip()
+        if boxed_label:
+            match = re.search(r"\\boxed{(.*?)}", output)
+            if match:
+                predicted_label = match.group(1).strip()
+            else:
+                predicted_label = None
+        else:
+            predicted_label = output.split("Category:")[-1].strip()
+            # EXAMPLE predicted_label: Business\nText: NEW DELHI
+            predicted_label = predicted_label.split("\n")[0].strip()
         predictions.append(predicted_label)
     res_df = test_df.copy()
     res_df.loc[:, "predicted_label"] = predictions
@@ -167,6 +180,8 @@ def main_fewshot_classification(config):
 
     config["fewshot_df"] = config.get("fewshot_df", None)
     config["label"] = config.get("label", None)  # take label if given
+    config["boxed_label"] = config.get("boxed_label", False)
+    config["max_new_tokens"] = config.get("max_new_tokens", None)
     if config["label"] is None:  # or take from fewshot_df
         config["label"] = config["fewshot_df"]["label"].unique().tolist()
     system_prompt = config.get("system_prompt", None)
@@ -187,12 +202,14 @@ def main_fewshot_classification(config):
 
     # RUN FEWSHOT TASK
     predictions_df = run_fewshot_task(
-        fewshot_prompt,
-        config["test_df"],
-        config["model"],
-        config["tokenizer"],
-        config["label"],
-        system_prompt,
+        fewshot_prompt=fewshot_prompt,
+        test_df=config["test_df"],
+        model=config["model"],
+        tokenizer=config["tokenizer"],
+        labels=config["label"],
+        system_prompt=system_prompt,
+        boxed_label=config["boxed_label"],
+        max_new_tokens=config["max_new_tokens"],
     )
 
     # COMPUTE METRICS
@@ -216,6 +233,7 @@ def main_fewshot_classification(config):
         "label": config["label"],
         "instruction": config["instruction"],
         "system_prompt": system_prompt,
+        "boxed_label": config["boxed_label"],
         "eval_time": eval_time,
         "log_file": config["log_file"],
         "output_file": config["output_file"],
