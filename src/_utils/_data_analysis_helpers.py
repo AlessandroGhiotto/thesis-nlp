@@ -3,6 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 from wordcloud import WordCloud
+import matplotlib.lines as mlines
 
 sns.set_style("darkgrid")
 
@@ -225,7 +226,7 @@ def check_patterns(df, print_n=0, dataset_name=None):
     return results
 
 
-def plot_micromacrof1(df, x_col="synthetic_ratio", hue_col="generation_method"):
+def plot_f1_lineplot(df, x_col="synthetic_ratio", hue_col="generation_method"):
     df_long = df.melt(
         id_vars=[x_col, hue_col],
         value_vars=["micro-f1", "macro-f1"],
@@ -259,5 +260,110 @@ def plot_micromacrof1(df, x_col="synthetic_ratio", hue_col="generation_method"):
 
     # for ax in g.axes.flat:
     #     ax.set_ylim(0, 1.05)
+
+    plt.show()
+
+
+def plot_f1_generationMethod(df, x_col="synthetic_ratio", hue_col="generation_method"):
+    df_long = df.melt(
+        id_vars=[x_col, hue_col],
+        value_vars=["micro-f1", "macro-f1"],
+        var_name="metric",
+        value_name="score",
+    )
+
+    fig, axes = plt.subplots(1, 2, figsize=(15, 6), sharey=True)
+
+    cmap = sns.color_palette("tab10")
+    palette = {
+        #'real': 'red', # cmap[3]
+        "generic": cmap[0],
+        "targeted": cmap[1],
+        "unsupContext": cmap[2],
+        "zeroshotLabels": cmap[4],
+    }
+    markers = {
+        #'real': '*',
+        "generic": "X",
+        "targeted": "s",
+        "unsupContext": "P",
+        "zeroshotLabels": "D",
+    }
+
+    solid_dashes = {k: "" for k in df_long[hue_col].unique()}
+    for ax, metric in zip(axes, df_long["metric"].unique()):
+        # Exclude 'real' from the plot
+        df_metric = df_long[
+            (df_long["metric"] == metric) & (df_long[hue_col] != "real")
+        ]
+
+        sns.lineplot(
+            data=df_metric,
+            x=x_col,
+            y="score",
+            hue=hue_col,
+            style=hue_col,
+            dashes=solid_dashes,
+            markers=markers,
+            palette=palette,
+            ax=ax,
+            linewidth=2,
+            markersize=10,
+            legend=False,
+        )
+
+        # Add horizontal real-only line
+        real_score = df_long[
+            (df_long[hue_col] == "real") & (df_long["metric"] == metric)
+        ]["score"].values[0]
+        ax.axhline(
+            y=real_score, linestyle="--", color=cmap[3], linewidth=2, alpha=1, zorder=0
+        )
+
+        ax.set_title(metric)
+        ax.set_xlabel(x_col.replace("_", " ").title())
+        ax.set_ylabel("Score")
+
+    custom_lines = [
+        mlines.Line2D(
+            [],
+            [],
+            color=palette[k],
+            marker=markers[k],
+            linestyle="-",
+            markersize=10,
+            label=k,
+        )
+        for k in df_long[hue_col].unique()
+        if k != "real"
+    ]
+    # custom_lines.append(
+    #     mlines.Line2D([], [], color='red', marker='*', linestyle='None', markersize=15, label='real')
+    # )
+    custom_lines.append(
+        mlines.Line2D(
+            [], [], color=cmap[3], linestyle="--", linewidth=2, label=r"100% real"
+        )
+    )
+
+    fig.legend(
+        handles=custom_lines,
+        title=hue_col.replace("_", " ").title(),
+        loc="center right",
+        bbox_to_anchor=(1.02, 0.5),
+        borderaxespad=0.0,
+        frameon=False,
+    )
+    plt.tight_layout(rect=[0, 0, 0.92, 1])
+
+    # fig.legend(
+    #     handles=custom_lines,
+    #     title="Generation Method",
+    #     loc='lower center',
+    #     bbox_to_anchor=(0.5, -0.06),
+    #     ncol=3,
+    #     frameon=False
+    # )
+    # plt.tight_layout(rect=[0, 0.05, 1, 1])
 
     plt.show()

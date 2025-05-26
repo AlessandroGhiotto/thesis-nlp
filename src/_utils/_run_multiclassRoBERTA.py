@@ -37,25 +37,38 @@ def combine_datasets_no_duplicates(
     real_df, synth_df, synth_ratio=0.0, max_samples=500, text_column="text"
 ):
     """Combine real and synthetic datasets by selecting unique texts, without overlap, based on a target ratio."""
-    # unique texts
-    all_texts = pd.concat(
-        [real_df[[text_column]], synth_df[[text_column]]], ignore_index=True
-    )
-    unique_texts = all_texts.drop_duplicates(subset=text_column)
-    unique_texts = unique_texts.sample(frac=1, random_state=42).reset_index(drop=True)
-    unique_texts = unique_texts.head(max_samples)
+    if real_df is not None and synth_df is not None and 0 < synth_ratio < 1:
+        # unique texts
+        all_texts = pd.concat(
+            [real_df[[text_column]], synth_df[[text_column]]], ignore_index=True
+        )
+        unique_texts = all_texts.drop_duplicates(subset=text_column)
+        unique_texts = unique_texts.sample(frac=1, random_state=42).reset_index(
+            drop=True
+        )
+        unique_texts = unique_texts.head(max_samples)
 
-    # Split the texts
-    num_synth = int(synth_ratio * len(unique_texts))
-    synth_texts = set(unique_texts.iloc[:num_synth][text_column])
-    real_texts = set(unique_texts.iloc[num_synth:][text_column])
+        # Split the texts
+        num_synth = int(synth_ratio * len(unique_texts))
+        synth_texts = set(unique_texts.iloc[:num_synth][text_column])
+        real_texts = set(unique_texts.iloc[num_synth:][text_column])
 
-    # Select from each df based on the text assignment
-    synth_part = synth_df[synth_df[text_column].isin(synth_texts)]
-    real_part = real_df[real_df[text_column].isin(real_texts)]
+        # Select from each df based on the text assignment
+        synth_part = synth_df[synth_df[text_column].isin(synth_texts)]
+        real_part = real_df[real_df[text_column].isin(real_texts)]
 
-    combined_df = pd.concat([synth_part, real_part], ignore_index=True)
-    combined_df = combined_df.sample(frac=1, random_state=42).reset_index(drop=True)
+        combined_df = pd.concat([synth_part, real_part], ignore_index=True)
+        combined_df = combined_df.sample(frac=1, random_state=42).reset_index(drop=True)
+    elif synth_ratio == 0:
+        # only real data
+        combined_df = real_df.sample(n=min(max_samples, len(real_df)), random_state=42)
+    elif synth_ratio == 1:
+        # only synthetic data
+        combined_df = synth_df.sample(
+            n=min(max_samples, len(synth_df)), random_state=42
+        )
+    else:
+        raise ValueError("At least one dataset must be provided.")
     return combined_df
 
 
