@@ -33,6 +33,32 @@ disable_progress_bar()  # disable progress bar for datasets library (no progress
 logging.getLogger("transformers.modeling_utils").setLevel(logging.ERROR)
 
 
+def combine_datasets_no_duplicates(
+    real_df, synth_df, synth_ratio=0.0, max_samples=500, text_column="text"
+):
+    """Combine real and synthetic datasets by selecting unique texts, without overlap, based on a target ratio."""
+    # unique texts
+    all_texts = pd.concat(
+        [real_df[[text_column]], synth_df[[text_column]]], ignore_index=True
+    )
+    unique_texts = all_texts.drop_duplicates(subset=text_column)
+    unique_texts = unique_texts.sample(frac=1, random_state=42).reset_index(drop=True)
+    unique_texts = unique_texts.head(max_samples)
+
+    # Split the texts
+    num_synth = int(synth_ratio * len(unique_texts))
+    synth_texts = set(unique_texts.iloc[:num_synth][text_column])
+    real_texts = set(unique_texts.iloc[num_synth:][text_column])
+
+    # Select from each df based on the text assignment
+    synth_part = synth_df[synth_df[text_column].isin(synth_texts)]
+    real_part = real_df[real_df[text_column].isin(real_texts)]
+
+    combined_df = pd.concat([synth_part, real_part], ignore_index=True)
+    combined_df = combined_df.sample(frac=1, random_state=42).reset_index(drop=True)
+    return combined_df
+
+
 def combine_datasets(real_df=None, synth_df=None, synth_ratio=0.0, max_samples=500):
     """Combine real and synthetic datasets to create a training dataset."""
     combined_df = pd.DataFrame()
@@ -242,8 +268,8 @@ def evaluation(test_dataset, model):
 
     # compute metrics
     eval_metrics = {
-        "f1_micro": f1_score(all_labels, all_preds, average="micro"),
-        "f1_macro": f1_score(all_labels, all_preds, average="macro"),
+        "micro-f1": f1_score(all_labels, all_preds, average="micro"),
+        "macro-f1": f1_score(all_labels, all_preds, average="macro"),
         "accuracy": accuracy_score(all_labels, all_preds),
     }
 
@@ -295,10 +321,23 @@ def main_multiclassRoBERTA(
     if dev_df is None:
         raise ValueError("A development dataset (dev_df) must be provided.")
 
+    if generation_method:
+        experiment_name = f"{generation_method}_synth{int(synth_ratio * max_samples)}_real{int((1 - synth_ratio) * max_samples)}"
+    else:
+        experiment_name = f"synth{int(synth_ratio * max_samples)}_real{int((1 - synth_ratio) * max_samples)}"
+    output_dir = os.path.join(output_dir, experiment_name)
     os.makedirs(output_dir, exist_ok=True)
 
     # combine datasets
-    combined_df = combine_datasets(real_df, synth_df, synth_ratio, max_samples)
+    if generation_method == "zeroshotLabels":
+        # combine datasets without duplicates
+        # in this case the texts in the real and synthetic datasets are equal
+        # I take them so that the synthetic dataset does not overlap with the real dataset
+        combined_df = combine_datasets_no_duplicates(
+            real_df, synth_df, synth_ratio, max_samples
+        )
+    else:
+        combined_df = combine_datasets(real_df, synth_df, synth_ratio, max_samples)
 
     # save datasets for reproducibility
     train_path = os.path.join(output_dir, "train.csv")
@@ -345,7 +384,7 @@ def main_multiclassRoBERTA(
         synth_ratio = 1.0
 
     train_details = {
-        "experiment_name": os.path.basename(output_dir),
+        "experiment_name": experiment_name,
         "experiment_dir": output_dir,
         "generation_method": generation_method,
         "timestamp": datetime.now().isoformat(),

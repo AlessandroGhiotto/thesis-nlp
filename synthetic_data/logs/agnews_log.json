@@ -931,5 +931,19 @@
                 "label": "Business"
             }
         ]
+    },
+    {
+        "timestamp": "2025-05-26T10:24:16.917360",
+        "model": "meta-llama/Llama-2-7b-chat-hf",
+        "generation_method": "unsupervised context",
+        "prompt": "Your task is to generate an high-quality short documents (around 30 words), that talks about one of the following four News categories (labels):\n- Business\n- Sci/Tech\n- Sports\n- World.\n\nHere some examples of the documents you can use as a reference:\n- With Derek Lowe #39;s days in Boston almost certainly numbered -- and Pedro Martinez #39;s future here in question -- the Red Sox are expected to greet All-Star righthander Carl Pavano this week on Yawkey Way.\n- Symantec has released firmware fixes for a string of critical security holes in its firewall/VPN and Gateway Security products which could be exploited to cause a denial of service, identify \n- King County prosecutors charged a Covington orthodontist yesterday with engaging in sexually explicit Internet conversations with several girls, including three current or former patients, and with dealing child pornography.\n- LONDON (Reuters) - Oil producers are emerging to lock in record high prices for their future crude output, but activity is modest as firms still fear calling a premature end to this year #39;s stunning price rise, traders said on Friday. \n- STOCKHOLM (AFP) - Andre Agassi was set to intensify his chase for a place in next month #39;s eight-man Masters Cup, with a Tuesday morning arrival in Sweden to compete as top seed at the 632,750-euro Stockholm Open.\n\nChoose one of the categories (labels), generate the corresponding text and return it in the following JSON format:\n\n```json\n{\n    \"text\": \"<text of the document>\", \n    \"label\": \"<corresponding label>\", \n}\n```\n",
+        "time_taken_seconds": 5.26,
+        "num_examples": 1,
+        "generated_examples": [
+            {
+                "text": "LONDON (Reuters) - Oil producers are emerging to lock in record high prices for their future crude output, but activity is modest as firms still fear calling a premature end to this year's stunning price rise, traders said on Friday. #oilprices #business",
+                "label": "Business"
+            }
+        ]
     }
 ]

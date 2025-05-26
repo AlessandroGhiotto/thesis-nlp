@@ -54,6 +54,8 @@ def get_valid_examples(examples, correct_labels=None, correct_fields=None):
             continue
         valid_examples.append(ex)
 
+    if len(valid_examples) == 0:
+        valid_examples = None
     return valid_examples
 
 
@@ -196,13 +198,12 @@ def generate_synthetic_data(
             run_number += 1
 
             # Add a random label if requested
-            if add_random_label and messages:
+            if add_random_label and messages and correct_labels_list:
                 random_label = random.choice(correct_labels_list)
-                messages_with_label = insert_label_in_messages(
+                messages = [m.copy() for m in prompt]
+                messages = insert_label_in_messages(
                     messages, random_label, placeholder=label_placeholder
                 )
-            else:
-                messages_with_label = messages
 
             generated_text, _ = get_response(
                 prompt=user_prompt,
@@ -210,7 +211,7 @@ def generate_synthetic_data(
                 tokenizer=tokenizer,
                 max_new_tokens=max_new_tokens,
                 system_prompt=system_prompt,
-                messages=messages_with_label,
+                messages=messages,
                 print_output=False,
                 seed=None,
                 apply_chat_template=apply_chat_template,
@@ -233,7 +234,10 @@ def generate_synthetic_data(
 
             sample = sample if isinstance(sample, list) else [sample]
             sample = get_valid_examples(sample, correct_labels, correct_fields)
-            all_samples.extend(sample)
+            if len(sample) > 0:
+                all_samples.extend(sample)
+            else:
+                tqdm.write(f"❌ Invalid example at run {run_number}")
 
             # Ensure we don't exceed the required number of examples
             current_count = min(len(all_samples), num_examples)
@@ -353,8 +357,7 @@ def generate_synthetic_data_with_context(
 
             sample = sample if isinstance(sample, list) else [sample]
             sample = get_valid_examples(sample, correct_labels, correct_fields)
-            all_samples.extend(sample)
-            if sample:
+            if len(sample) > 0:
                 out_sample = dict(sample[0])
                 out_sample["context_examples"] = this_context
                 if add_random_label:

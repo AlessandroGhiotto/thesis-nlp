@@ -283,5 +283,43 @@
             "f1_macro": 0.8157893153818452,
             "accuracy": 0.846
         }
+    },
+    {
+        "experiment_name": "data_Llama-2-7b-chat-hf",
+        "experiment_dir": "src/agnews/experiments/RoBERTA_500samples/data_Llama-2-7b-chat-hf",
+        "generation_method": null,
+        "timestamp": "2025-05-26T15:06:19.985453",
+        "model": "roberta-large",
+        "train_size": 500,
+        "dev_size": 500,
+        "synthetic_ratio": 0.0,
+        "epochs": 8,
+        "batch_size": 16,
+        "train_time": 332.0922393798828,
+        "eval_time": 8.769207239151001,
+        "metrics_dev": {
+            "f1_micro": 0.92,
+            "f1_macro": 0.8763927361416133,
+            "accuracy": 0.92
+        }
+    },
+    {
+        "experiment_name": "zeroshotLabels_synth250_real250",
+        "experiment_dir": "src/agnews/experiments/RoBERTA_500samples/data_Llama-2-7b-chat-hf/zeroshotLabels_synth250_real250",
+        "generation_method": "zeroshotLabels",
+        "timestamp": "2025-05-26T15:59:19.000477",
+        "model": "roberta-large",
+        "train_size": 490,
+        "dev_size": 500,
+        "synthetic_ratio": 0.5,
+        "epochs": 8,
+        "batch_size": 16,
+        "train_time": 316.3433487415314,
+        "eval_time": 8.719711303710938,
+        "metrics_dev": {
+            "micro-f1": 0.918,
+            "macro-f1": 0.8845472063981279,
+            "accuracy": 0.918
+        }
     }
 ]

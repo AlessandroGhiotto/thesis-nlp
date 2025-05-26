@@ -223,3 +223,41 @@ def check_patterns(df, print_n=0, dataset_name=None):
     results["non_latin"] = count_documents_with_non_latin(df, print_n)
 
     return results
+
+
+def plot_micromacrof1(df, x_col="synthetic_ratio", hue_col="generation_method"):
+    df_long = df.melt(
+        id_vars=[x_col, hue_col],
+        value_vars=["micro-f1", "macro-f1"],
+        var_name="metric",
+        value_name="score",
+    )
+
+    # Build relplot
+    g = sns.relplot(
+        data=df_long,
+        x=x_col,
+        y="score",
+        col="metric",
+        hue=hue_col,
+        style=hue_col,
+        kind="line",
+        markers=True,
+        dashes=False,
+        height=6,
+        aspect=1.2,
+        facet_kws={"sharey": True},
+    )
+
+    # Adjust marker size and line width
+    for ax in g.axes.flat:
+        for line in ax.lines:
+            line.set_markersize(12)  # marker size
+            line.set_linewidth(2)  # line width
+
+    g.set_titles(col_template="{col_name}")
+
+    # for ax in g.axes.flat:
+    #     ax.set_ylim(0, 1.05)
+
+    plt.show()

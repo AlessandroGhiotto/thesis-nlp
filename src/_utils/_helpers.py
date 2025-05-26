@@ -8,6 +8,7 @@ import numpy as np
 import torch
 import gc
 import pandas as pd
+import concurrent.futures
 
 torch.backends.cudnn.deterministic = True
 torch.backends.cudnn.benchmark = True
@@ -34,6 +35,16 @@ def clear_cuda_cache(model=None):
 
     gc.collect()  # Run garbage collection
     torch.cuda.empty_cache()
+
+
+def safe_generate(model, model_inputs, max_new_tokens, timeout=180):
+    with concurrent.futures.ThreadPoolExecutor() as executor:
+        future = executor.submit(
+            model.generate,
+            **model_inputs,
+            max_new_tokens=max_new_tokens,
+        )
+        return future.result(timeout=timeout)
 
 
 def get_response(
@@ -86,17 +97,22 @@ def get_response(
             messages,
             tokenize=False,
             add_generation_prompt=True,
-        ).strip()
+        )
         model_inputs = tokenizer([formatted_text], return_tensors="pt").to(model.device)
     else:
         # plain prompt (no chat template)
         model_inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
 
     # Generate output
-    generated_ids = model.generate(
-        **model_inputs,
-        max_new_tokens=max_new_tokens,
-    )
+    # generated_ids = model.generate(
+    #     **model_inputs,
+    #     max_new_tokens=max_new_tokens,
+    # )
+    try:
+        generated_ids = safe_generate(model, model_inputs, max_new_tokens)
+    except concurrent.futures.TimeoutError:
+        print("Timeout during generation!")
+        return "[TIMEOUT]", -1
 
     # Remove the prompt part from output
     generated_ids = [
