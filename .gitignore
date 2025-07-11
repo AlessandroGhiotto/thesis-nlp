@@ -14,3 +14,9 @@ src/_utils/_adaptiveICL/models/
 *sst2*
 *SST2*
 *trec*
+# code examples
+src/_utils/baseRobertaOneShot.py
+src/_utils/fewshotLama2paperPrompt.py
+src/_utils/fewshotT5.py
+src/_utils/finetunet5sum.py
+src/_utils/multilabelRoBERTA.py
