@@ -945,5 +945,33 @@
                 "label": "Business"
             }
         ]
+    },
+    {
+        "timestamp": "2025-07-12T10:34:07.168430",
+        "model": "meta-llama/Llama-2-7b-chat-hf",
+        "generation_method": "baseline",
+        "prompt": "Your task is to generate one high-quality short document (around 30 words), that talks about one of the following four News categories:  \n- Business\n- Sci/Tech\n- Sports\n- World\n\nChoose one of the categories (labels), generate the corresponding text and return it in the following JSON format:\n\n```json\n{\n    \"text\": \"<text of the document>\", \n    \"label\": \"<corresponding label>\", \n}\n```\n",
+        "time_taken_seconds": 3.55,
+        "num_examples": 1,
+        "generated_examples": [
+            {
+                "text": "Researchers have discovered a new species of ancient human in the Philippines, which may have evolved independently of other human species. The findings were published in the journal Nature and shed light on the complex evolutionary history of humanity. #SciTech #Archaeology",
+                "label": "Sci/Tech"
+            }
+        ]
+    },
+    {
+        "timestamp": "2025-07-12T10:38:26.657509",
+        "model": "meta-llama/Llama-2-7b-chat-hf",
+        "generation_method": "baseline",
+        "prompt": "Your task is to generate one high-quality short document (around 30 words), that talks about one of the following four News categories:  \n- Business\n- Sci/Tech\n- Sports\n- World\n\nChoose one of the categories (labels), generate the corresponding text and return it in the following JSON format:\n\n```json\n{\n    \"text\": \"<text of the document>\", \n    \"label\": \"<corresponding label>\", \n}\n```\n",
+        "time_taken_seconds": 3.52,
+        "num_examples": 1,
+        "generated_examples": [
+            {
+                "text": "Researchers have discovered a new species of ancient human in the Philippines, which may have evolved independently of other human species. The findings were published in the journal Nature and shed light on the complex evolutionary history of humanity. #SciTech #Archaeology",
+                "label": "Sci/Tech"
+            }
+        ]
     }
 ]
