@@ -20,3 +20,7 @@ src/_utils/fewshotLama2paperPrompt.py
 src/_utils/fewshotT5.py
 src/_utils/finetunet5sum.py
 src/_utils/multilabelRoBERTA.py
+
+# tex thesis
+_BAI__Thesis_Ghiotto_Alessandro/
+_BAI__Thesis_Ghiotto_Alessandro.pdf
