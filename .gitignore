@@ -22,5 +22,6 @@ src/_utils/finetunet5sum.py
 src/_utils/multilabelRoBERTA.py
 
 # tex thesis
-_BAI__Thesis_Ghiotto_Alessandro/
-_BAI__Thesis_Ghiotto_Alessandro.pdf
+Thesis_Ghiotto_Alessandro/
+Thesis_Ghiotto_Alessandro.pdf
+Thesis_Ghiotto_Alessandro_pdfA.pdf
